@@ -1,0 +1,61 @@
+diff -ruN brawltools2-orig/BrawlLib/Properties/Settings.Designer.cs brawltools2/BrawlLib/Properties/Settings.Designer.cs
+--- brawltools2-orig/BrawlLib/Properties/Settings.Designer.cs	2013-12-08 13:15:13.154533600 -0600
++++ brawltools2/BrawlLib/Properties/Settings.Designer.cs	2013-12-31 15:08:47.201600900 -0600
+@@ -36,6 +36,18 @@
+             }
+         }
+ 
++		[global::System.Configuration.UserScopedSettingAttribute()]
++		[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
++		[global::System.Configuration.DefaultSettingValueAttribute("false")]
++		public bool HideMDL0Errors {
++			get {
++				return ((bool)(this["HideMDL0Errors"]));
++			}
++			set {
++				this["HideMDL0Errors"] = value;
++			}
++		}
++
+         [global::System.Configuration.UserScopedSettingAttribute()]
+         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+         [global::System.Configuration.DefaultSettingValueAttribute("")]
+diff -ruN brawltools2-orig/BrawlLib/SSBB/ResourceNodes/MDL0/MDL0Node.cs brawltools2/BrawlLib/SSBB/ResourceNodes/MDL0/MDL0Node.cs
+--- brawltools2-orig/BrawlLib/SSBB/ResourceNodes/MDL0/MDL0Node.cs	2013-12-28 20:13:04.677742900 -0600
++++ brawltools2/BrawlLib/SSBB/ResourceNodes/MDL0/MDL0Node.cs	2013-12-31 15:09:38.003961500 -0600
+@@ -757,7 +757,7 @@
+                     string message = _errors.Count + (_errors.Count > 1 ? " errors have" : " error has") + " been found in the model " + _name + ".\n" + (_errors.Count > 1 ? "These errors" : "This error") + " will be fixed when you save:";
+                     foreach (string s in _errors)
+                         message += "\n - " + s;
+-                    MessageBox.Show(message);
++					if (!Properties.Settings.Default.HideMDL0Errors) MessageBox.Show(message);
+                 }
+             }
+         }
+diff -ruN brawltools2-orig/BrawlLib/System/Windows/Forms/TextureConverterDialog.cs brawltools2/BrawlLib/System/Windows/Forms/TextureConverterDialog.cs
+--- brawltools2-orig/BrawlLib/System/Windows/Forms/TextureConverterDialog.cs	2013-12-08 13:15:08.415262500 -0600
++++ brawltools2/BrawlLib/System/Windows/Forms/TextureConverterDialog.cs	2013-12-31 15:06:04.493834300 -0600
+@@ -27,6 +27,9 @@
+         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+         public string ImageSource { get { return _imageSource; } set { _imageSource = value; } }
+ 
++		[Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
++		public Drawing.Size? InitialSize;
++
+         private BRESNode _bresParent;
+         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+         public BRESNode BRESParentNode { get { return _bresParent; } }
+@@ -261,6 +264,13 @@
+             }
+             else
+                 Recommend();
++
++			if (InitialSize != null) {
++				chkConstrainProps.Checked = false;
++				numW.Value = InitialSize.Value.Width;
++				numH.Value = InitialSize.Value.Height;
++				btnApplyDims.PerformClick();
++			}
+         }
+ 
+         public bool LoadImages(string path)

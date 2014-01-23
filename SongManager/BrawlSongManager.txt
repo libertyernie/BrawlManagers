@@ -1,0 +1,48 @@
+﻿Brawl Song Manager 3.2 - January 22, 2014
+Copyright © 2014 libertyernie
+http://lakora.us/brawl/songmanager
+
+Brawl Song Manager is a program that uses BrawlLib to quickly view which BRSTM
+music files are installed on your SD card (or in whatever folder, on whatever
+device, you use for Brawl hacks.)
+
+The left side of the window has a list of .BRSTM music files in the current
+directory; you can change the directory through the File menu. When you choose
+a .BRSTM file, the right side of the window will display the playback module
+from BrawlBox, allowing you to listen to the song.
+
+To replace a song, drag the new .BRSTM or .WAV onto the main panel.
+To add a song, drag a .BRSTM or .WAV onto the menu and enter a filename.
+Right-click the .BRSTM in the menu for other options (Export, Rename, Delete).
+
+KEYBOARD SHORTCUTS:
+PageUp:		go up one song (focus does not need to be on the song list)
+PageDown:	go down one song (focus does not need to be on the song list)
+
+----------------------------------------
+
+If you have an info.pac file in ..\..\info2\info.pac, ..\..\info2\info_en.pac,
+or .\info.pac, then the program will load that file and allow you to change
+song titles (when applicable) - unless you have MiscData[140].msbin in the
+current directory, in which case the program loads that instead. You can save
+your changes through the File menu or by pressing Enter in the text box.
+The "Restore" button resets the song title to the one loaded from info.pac,
+while the "Default" button loads the default Brawl name for that slot.
+
+If you have an info_training file, that will be updated as well. If song names
+in the two files are different, the text box will be colored red.
+
+----------------------------------------
+
+Hint: In the "change directory" dialog, select your SD card and hit OK. If
+there are no .brstm files in the root of your SD card, the program should jump
+to /private/wii/app/RSBE/pf/sound/strm or /projectm/pf/sound/strm instead, if
+one exists. (Try using the "Start in" field in the shortcut properties, or
+running BrawlSongManager.exe from the root of your SD card.)
+
+----------------------------------------
+
+Changes in 3.2:
+	* Code for stage/song mappings and center panel moved to
+	  BrawlManagerLi.dllb, to enable integration with Stage Manager
+	* ./minusery/pf/sound/strm added to search paths

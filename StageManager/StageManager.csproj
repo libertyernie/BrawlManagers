@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{758AE6D5-2133-4194-A36C-F371AE01A7C5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BrawlStageManager</RootNamespace>
+    <AssemblyName>BrawlStageManager</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK">
+      <HintPath>..\..\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NameCreatorSettings.cs" />
+    <Compile Include="SongListItem.cs" />
+    <Compile Include="SingleUseDialogs\AskNameDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleUseDialogs\AskNameDialog.Designer.cs">
+      <DependentUpon>AskNameDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleUseDialogs\ConfirmIconReplaceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleUseDialogs\ConfirmIconReplaceDialog.Designer.cs">
+      <DependentUpon>ConfirmIconReplaceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleUseDialogs\CopyPacRelDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleUseDialogs\CopyPacRelDialog.Designer.cs">
+      <DependentUpon>CopyPacRelDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleUseDialogs\EnterSizeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleUseDialogs\EnterSizeDialog.Designer.cs">
+      <DependentUpon>EnterSizeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IconsToMenumain.cs" />
+    <Compile Include="RegistryUtilities\DefaultDirectory.cs" />
+    <Compile Include="ImagePreviewPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleUseDialogs\ModifyPAT0Dialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleUseDialogs\ModifyPAT0Dialog.Designer.cs">
+      <DependentUpon>ModifyPAT0Dialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MSBinViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PortraitViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PortraitViewer.designer.cs">
+      <DependentUpon>PortraitViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListControl.Designer.cs">
+      <DependentUpon>ListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistryUtilities\FontSettings.cs" />
+    <Compile Include="RegistryUtilities\GeneralRegistry.cs" />
+    <Compile Include="RegistryUtilities\OptionsMenuSettings.cs" />
+    <Compile Include="RegistryUtilities\ResizeSettings.cs" />
+    <Compile Include="SongsByStageID.cs" />
+    <Compile Include="StageInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StageInfoControl.Designer.cs">
+      <DependentUpon>StageInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TEX0Extension.cs" />
+    <EmbeddedResource Include="SingleUseDialogs\AskNameDialog.resx">
+      <DependentUpon>AskNameDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleUseDialogs\ConfirmIconReplaceDialog.resx">
+      <DependentUpon>ConfirmIconReplaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleUseDialogs\CopyPacRelDialog.resx">
+      <DependentUpon>CopyPacRelDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleUseDialogs\EnterSizeDialog.resx">
+      <DependentUpon>EnterSizeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleUseDialogs\ModifyPAT0Dialog.resx">
+      <DependentUpon>ModifyPAT0Dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MSBinViewer.resx">
+      <DependentUpon>MSBinViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PortraitViewer.resx">
+      <DependentUpon>PortraitViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ListControl.resx">
+      <DependentUpon>ListControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StageInfoControl.resx">
+      <DependentUpon>StageInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="NameCreator.cs" />
+    <Compile Include="NameCreatorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NameCreatorDialog.Designer.cs">
+      <DependentUpon>NameCreatorDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="NameCreatorDialog.resx">
+      <DependentUpon>NameCreatorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="blockout.png" />
+    <EmbeddedResource Include="border.png" />
+    <Content Include="BrawlStageManager.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icon.ico" />
+    <EmbeddedResource Include="XX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrawlManagerLib\BrawlManagerLib.csproj">
+      <Project>{b5d693d8-3952-44f9-8952-8c1af74f0634}</Project>
+      <Name>BrawlManagerLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\brawltools\BrawlLib\BrawlLib.csproj">
+      <Project>{462d0bbf-ce82-405b-8848-2f91e9e14c55}</Project>
+      <Name>BrawlLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
