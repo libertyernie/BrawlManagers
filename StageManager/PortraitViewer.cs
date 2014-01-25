@@ -271,6 +271,7 @@ namespace BrawlStageManager {
 							: sender == frontstname ? frontstnameResizeTo
 							: sender == selmap_mark ? selmapMarkResizeTo
 							: null;
+						dlg.FormBorderStyle = FormBorderStyle.FixedSingle;
 						if (dlg.ShowDialog(null, tex0) == DialogResult.OK) {
 							tex0.IsDirty = true;
 							UpdateImage();
