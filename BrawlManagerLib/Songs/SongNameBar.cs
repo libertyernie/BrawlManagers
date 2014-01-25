@@ -55,6 +55,12 @@ namespace BrawlManagerLib {
 			}
 		}
 
+		public bool InfoLoaded {
+			get {
+				return info != null;
+			}
+		}
+
 		public bool IsDirty {
 			get {
 				return modifiedStringIndices.Count > 0;

@@ -55,6 +55,11 @@ namespace BrawlManagerLib {
 				return _rootPath != null;
 			}
 		}
+		public bool InfoLoaded {
+			get {
+				return songNameBar.InfoLoaded;
+			}
+		}
 		public string LastFileCalledFor { get; private set; }
 
 		public SongPanel() {

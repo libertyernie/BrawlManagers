@@ -801,9 +801,13 @@ namespace BrawlStageManager {
 					"Note", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 				if (dr == DialogResult.No) return;
 			}
-			string msbintmp = TempFiles.Create();
-			songPanel1.ExportMSBin(msbintmp);
-			portraitViewer1.updateMuMenumain(msbintmp);
+			if (songPanel1.InfoLoaded) {
+				string msbintmp = TempFiles.Create();
+				songPanel1.ExportMSBin(msbintmp);
+				portraitViewer1.updateMuMenumain(msbintmp);
+			} else {
+				portraitViewer1.updateMuMenumain();
+			}
 		}
 		private void updateScselcharacter2ToolStripMenuItem_Click(object sender, EventArgs e) {
 			portraitViewer1.copyIconsToSelcharacter2();
