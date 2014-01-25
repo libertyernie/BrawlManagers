@@ -254,7 +254,10 @@ namespace BrawlStageManager {
 		public void Replace(object sender, string filename) {
 			var ig = StringComparison.CurrentCultureIgnoreCase;
 			if (filename.EndsWith(".tex0", ig)) {
-				GetTexInfoFor(sender).tex0.Replace(filename);
+				TEX0Node tex0 = GetTexInfoFor(sender).tex0;
+				tex0.Replace(filename);
+				tex0.IsDirty = true;
+				UpdateImage();
 			} else if (filename.EndsWith(".brres", ig)) {
 				using (ResourceNode node = NodeFactory.FromFile(null, filename)) {
 					TEX0Node tex0;
