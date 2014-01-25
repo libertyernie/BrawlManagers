@@ -46,6 +46,12 @@ namespace BrawlStageManager {
 				(sender == selmap_mark) ? textures.selmap_mark :
 				null;
 		}
+
+		public string OpenFilePath {
+			get {
+				return _openFilePath;
+			}
+		}
 		#endregion
 
 		#region Private fields

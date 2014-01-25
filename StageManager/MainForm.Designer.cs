@@ -113,6 +113,9 @@
 			this.collapsibleSplitter2 = new BrawlManagerLib.CollapsibleSplitter();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.collapsibleSplitter5 = new BrawlManagerLib.CollapsibleSplitter();
+			this.brawlBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.brawlBoxStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.brawlBoxcommon5scselmapToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.collapsibleSplitter1 = new BrawlManagerLib.CollapsibleSplitter();
 			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.collapsibleSplitter4 = new BrawlManagerLib.CollapsibleSplitter();
@@ -269,7 +272,8 @@
             this.toolsToolStripMenuItem,
             this.resizeToolStripMenuItem,
             this.texturesToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.brawlBoxToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(684, 24);
@@ -880,6 +884,31 @@
 			this.collapsibleSplitter5.UseAnimations = false;
 			this.collapsibleSplitter5.VisualStyle = BrawlManagerLib.VisualStyles.Mozilla;
 			// 
+			// brawlBoxToolStripMenuItem
+			// 
+			this.brawlBoxToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.brawlBoxToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.brawlBoxStageToolStripMenuItem,
+            this.brawlBoxcommon5scselmapToolStripMenuItem1});
+			this.brawlBoxToolStripMenuItem.Name = "brawlBoxToolStripMenuItem";
+			this.brawlBoxToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+			this.brawlBoxToolStripMenuItem.Text = "BrawlBox";
+			this.brawlBoxToolStripMenuItem.Click += new System.EventHandler(this.brawlBoxToolStripMenuItem_Click);
+			// 
+			// brawlBoxStageToolStripMenuItem
+			// 
+			this.brawlBoxStageToolStripMenuItem.Name = "brawlBoxStageToolStripMenuItem";
+			this.brawlBoxStageToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.brawlBoxStageToolStripMenuItem.Text = "No stage loaded";
+			this.brawlBoxStageToolStripMenuItem.Click += new System.EventHandler(this.brawlBoxStageToolStripMenuItem_Click);
+			// 
+			// brawlBoxcommon5scselmapToolStripMenuItem1
+			// 
+			this.brawlBoxcommon5scselmapToolStripMenuItem1.Name = "brawlBoxcommon5scselmapToolStripMenuItem1";
+			this.brawlBoxcommon5scselmapToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+			this.brawlBoxcommon5scselmapToolStripMenuItem1.Text = "common5/sc_selmap";
+			this.brawlBoxcommon5scselmapToolStripMenuItem1.Click += new System.EventHandler(this.brawlBoxcommon5scselmapToolStripMenuItem1_Click);
+			// 
 			// collapsibleSplitter1
 			// 
 			this.collapsibleSplitter1.AnimationDelay = 20;
@@ -1055,6 +1084,9 @@
 		private System.Windows.Forms.ToolStripMenuItem drawBlocksOverPrevbasesToolStripMenuItem;
 		private System.Windows.Forms.Panel panel2;
 		private BrawlManagerLib.CollapsibleSplitter collapsibleSplitter5;
+		private System.Windows.Forms.ToolStripMenuItem brawlBoxToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem brawlBoxStageToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem brawlBoxcommon5scselmapToolStripMenuItem1;
 
 
 

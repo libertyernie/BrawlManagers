@@ -8,6 +8,7 @@ using System.IO;
 using BrawlLib.Wii.Textures;
 using BrawlStageManager.RegistryUtilities;
 using BrawlManagerLib;
+using System.Diagnostics;
 
 namespace BrawlStageManager {
 	public partial class MainForm : Form {
@@ -632,6 +633,11 @@ namespace BrawlStageManager {
 
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
 			open((FileInfo)listBox1.SelectedItem);
+			if (listBox1.SelectedItem == null) {
+				brawlBoxStageToolStripMenuItem.Text = "No stage loaded";
+			} else {
+				brawlBoxStageToolStripMenuItem.Text = listBox1.SelectedItem.ToString();
+			}
 		}
 		private void stageContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e) {
 			listBox1.SelectedIndex = listBox1.IndexFromPoint(listBox1.PointToClient(Cursor.Position));
@@ -850,6 +856,10 @@ namespace BrawlStageManager {
 				portraitViewer1.ResizeAllPrevbases(dialog.SizeEntry);
 			}
 		}
+
+		private void drawBlocksOverPrevbasesToolStripMenuItem_Click(object sender, EventArgs e) {
+			portraitViewer1.DrawBlocksOverPrevbases();
+		}
 		
 		private void switchPrevbaseSize(object sender, EventArgs e) {
 			foreach (ToolStripMenuItem item in prevbaseSize.DropDownItems) {
@@ -896,6 +906,32 @@ namespace BrawlStageManager {
 
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
 			new AboutBSM(null, System.Reflection.Assembly.GetExecutingAssembly()).ShowDialog(this);
+		}
+
+		private void brawlBoxToolStripMenuItem_Click(object sender, EventArgs e) {
+			
+		}
+
+		private void brawlBoxStageToolStripMenuItem_Click(object sender, EventArgs e) {
+			string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			if (File.Exists(exeDir + "/BrawlBox.exe")) {
+				if (listBox1.SelectedItem == null) return;
+				string filepath = ((FileInfo)listBox1.SelectedItem).FullName;
+				Process.Start(exeDir + "/BrawlBox.exe", '"' + filepath + '"');
+			} else {
+				MessageBox.Show(this, "Could not find BrawlBox.exe.");
+			}
+		}
+
+		private void brawlBoxcommon5scselmapToolStripMenuItem1_Click(object sender, EventArgs e) {
+			string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			if (!File.Exists(exeDir + "/BrawlBox.exe")) {
+				MessageBox.Show(this, "Could not find BrawlBox.exe.");
+			} else if (!File.Exists(portraitViewer1.OpenFilePath)) {
+				MessageBox.Show(this, "Could not find " + portraitViewer1.OpenFilePath + ".");
+			} else {
+				Process.Start(exeDir + "/BrawlBox.exe", '"' + portraitViewer1.OpenFilePath + '"');
+			}
 		}
 
 		private void MainForm_KeyDown(object sender, KeyEventArgs e) {
@@ -1002,9 +1038,5 @@ namespace BrawlStageManager {
 			MessageBox.Show("Registry settings for BrawlStageManager have been cleared.");
 		}
 		#endregion
-
-		private void drawBlocksOverPrevbasesToolStripMenuItem_Click(object sender, EventArgs e) {
-			portraitViewer1.DrawBlocksOverPrevbases();
-		}
 	}
 }
