@@ -261,7 +261,7 @@ namespace BrawlStageManager {
 						msBinNodes.Add((MSBinNode)node); // This is an MSBin node - add it to the list
 					} else if (renderModels.Checked) {
 						ResourceNode modelfolder = node.FindChild("3DModels(NW4R)", false);
-						if (modelfolder != null) {
+						if (modelfolder != null && _rootNode.Name != "STGBATTLEFIELDII") {
 							foreach (ResourceNode child in modelfolder.Children) {
 								if (child is MDL0Node && !child.Name.StartsWith("MShadow")) {
 									try {
