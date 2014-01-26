@@ -644,6 +644,7 @@ namespace BrawlStageManager {
 						bmp = ts.Bitmap;
 					} else {
 						if (fontSettings == null) changeFrontStnameFont();
+						if (fontSettings == null) return;
 						bmp = NameCreator.createImage(fontSettings, n.EntryText);
 					}
 					string tempfile = TempFiles.Create(".png");
