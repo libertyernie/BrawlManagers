@@ -355,6 +355,11 @@ namespace BrawlStageManager {
 		#endregion
 
 		#region Changing directory
+		private void ReloadDirectory() {
+			if (savePacsIfNecessary("reloading the list")) {
+				changeDirectory(CurrentDirectory); // Refresh .pac list
+			}
+		}
 		private void changeDirectory(string newpath) {
 			changeDirectory(new DirectoryInfo(newpath));
 		}
@@ -445,9 +450,7 @@ namespace BrawlStageManager {
 					}
 					if (FileOperations.Copy(filepath, CurrentDirectory + "\\" + nd.EntryText)) { // Use FileOperations (calls Windows shell -> asks for confirmation to overwrite)
 						MessageBox.Show(this, "File copied.");
-						if (savePacsIfNecessary("reloading the list")) {
-							changeDirectory(CurrentDirectory); // Refresh .pac list
-						}
+						ReloadDirectory();
 					}
 				}
 			} else if (_rootPath != null) {
@@ -612,7 +615,7 @@ namespace BrawlStageManager {
 			_rootNode = null;
 			FileOperations.Delete(stageInfoControl1.RelFile.FullName);
 			FileOperations.Delete((listBox1.SelectedItem as FileInfo).FullName);
-			changeDirectory(CurrentDirectory);
+			ReloadDirectory();
 		}
 		private void exportbrstmToolStripMenuItem_Click(object sender, EventArgs e) {
 			songPanel1.Export();
@@ -724,10 +727,7 @@ namespace BrawlStageManager {
 			portraitViewer1.useTextureConverter = useTextureConverterToolStripMenuItem.Checked;
 		}
 		private void useAFixedStageListToolStripMenuItem_Click(object sender, EventArgs e) {
-			bool cont = savePacsIfNecessary("reloading the list");
-			if (cont) {
-				changeDirectory(CurrentDirectory); // Refresh .pac list
-			}
+			ReloadDirectory();
 		}
 		private void backgroundColorToolStripMenuItem_Click(object sender, EventArgs e) {
 			using (ColorDialog cd = new ColorDialog()) {
