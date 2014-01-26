@@ -17,10 +17,7 @@ namespace BrawlStageManager {
 
 		public static Bitmap createImage(NameCreatorSettings fontData, string text) {
 			int linebreak = text.IndexOf("\\n");
-			int linebreak2 = text.Substring(linebreak + 2).IndexOf("\\n");
-			if (linebreak2 > -1) {
-				return createImageMonospace(text.Replace("\\n", "\n").Split('\n'));
-			} else if (linebreak > -1) {
+			if (linebreak > -1) {
 				return createImage(fontData,
 					text.Substring(0, linebreak),
 					text.Substring(linebreak + 2));
@@ -33,21 +30,6 @@ namespace BrawlStageManager {
 				Alignment = StringAlignment.Center,
 				LineAlignment = StringAlignment.Center,
 			});
-			return b;
-		}
-		
-		public static Bitmap createImageMonospace(params string[] line) {
-			StringFormat format = new StringFormat() {
-				Alignment = StringAlignment.Near,
-				LineAlignment = StringAlignment.Center,
-			};
-			Bitmap b = new Bitmap(208, 56);
-			Graphics g = Graphics.FromImage(b);
-			g.FillRectangle(new SolidBrush(Color.Black), 0, 0, 208, 56);
-			g.DrawString(line[0], new Font("Consolas", 12, FontStyle.Bold), new SolidBrush(Color.White), -3, 8, format);
-			g.DrawString(line[1], new Font("Consolas", 12, FontStyle.Bold), new SolidBrush(Color.White), -3, 28, format);
-			g.DrawString(line[2], new Font("Consolas", 12, FontStyle.Bold), new SolidBrush(Color.White), -3, 48, format);
-
 			return b;
 		}
 
