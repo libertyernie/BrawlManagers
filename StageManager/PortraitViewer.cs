@@ -255,6 +255,7 @@ namespace BrawlStageManager {
 			var ig = StringComparison.CurrentCultureIgnoreCase;
 			if (filename.EndsWith(".tex0", ig)) {
 				TEX0Node tex0 = GetTexInfoFor(sender).tex0;
+				if (tex0 == null) return;
 				tex0.Replace(filename);
 				tex0.IsDirty = true;
 				UpdateImage();
@@ -272,6 +273,7 @@ namespace BrawlStageManager {
 				}
 			} else {
 				TEX0Node tex0 = GetTexInfoFor(sender).tex0;
+				if (tex0 == null) return;
 				if (useTextureConverter) {
 					using (TextureConverterDialog dlg = new TextureConverterDialog()) {
 						dlg.ImageSource = filename;
