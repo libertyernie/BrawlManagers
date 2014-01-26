@@ -637,8 +637,15 @@ namespace BrawlStageManager {
 				n.EntryText = "Battlefield";
 				n.LabelText = "Enter the stage name. (Use \\n for a line break.)";
 				if (n.ShowDialog() == DialogResult.OK) {
-					if (fontSettings == null) changeFrontStnameFont();
-					Bitmap bmp = NameCreator.createImage(fontSettings, n.EntryText);
+					Bitmap bmp;
+					if (n.EntryText == "]") {
+						var ts = new ThreeStageFrontStnameDialog();
+						if (ts.ShowDialog() != DialogResult.OK) return;
+						bmp = ts.Bitmap;
+					} else {
+						if (fontSettings == null) changeFrontStnameFont();
+						bmp = NameCreator.createImage(fontSettings, n.EntryText);
+					}
 					string tempfile = TempFiles.Create(".png");
 					bmp.Save(tempfile);
 					Replace(frontstname, tempfile);
