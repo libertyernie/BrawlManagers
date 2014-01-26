@@ -195,11 +195,11 @@ namespace BrawlStageManager {
 		/// If the common5/sc_selmap or info.pac is dirty, asks the user whether they want to save them.
 		/// </summary>
 		/// <returns>true if the files did not need to be saved OR the user saved them; false otherwise.</returns>
-		private bool savePacsIfNecessary() {
+		private bool savePacsIfNecessary(string verb = "closing") {
 			bool s = portraitViewer1.IsDirty;
 			bool i = songPanel1.IsInfoBarDirty();
 			if (s || i) {
-				var result = MessageBox.Show("Would you like to save common5/sc_selmap and info.pac before closing?", Text, MessageBoxButtons.YesNoCancel);
+				var result = MessageBox.Show("Would you like to save common5/sc_selmap and info.pac before " + verb + "?", Text, MessageBoxButtons.YesNoCancel);
 				if (result == DialogResult.Cancel) {
 					return false;
 				} else if (result == DialogResult.Yes) {
@@ -443,8 +443,12 @@ namespace BrawlStageManager {
 					if (!nd.EntryText.ToLower().EndsWith(".pac")) {
 						nd.EntryText += ".pac"; // Force .pac extension so it shows up in the list
 					}
-					FileOperations.Copy(filepath, CurrentDirectory + "\\" + nd.EntryText); // Use FileOperations (calls Windows shell -> asks for confirmation to overwrite)
-					changeDirectory(CurrentDirectory); // Refresh .pac list
+					if (FileOperations.Copy(filepath, CurrentDirectory + "\\" + nd.EntryText)) { // Use FileOperations (calls Windows shell -> asks for confirmation to overwrite)
+						MessageBox.Show(this, "File copied.");
+						if (savePacsIfNecessary("reloading the list")) {
+							changeDirectory(CurrentDirectory); // Refresh .pac list
+						}
+					}
 				}
 			} else if (_rootPath != null) {
 				name = new FileInfo(_rootPath).Name;
@@ -720,7 +724,7 @@ namespace BrawlStageManager {
 			portraitViewer1.useTextureConverter = useTextureConverterToolStripMenuItem.Checked;
 		}
 		private void useAFixedStageListToolStripMenuItem_Click(object sender, EventArgs e) {
-			bool cont = savePacsIfNecessary();
+			bool cont = savePacsIfNecessary("reloading the list");
 			if (cont) {
 				changeDirectory(CurrentDirectory); // Refresh .pac list
 			}
