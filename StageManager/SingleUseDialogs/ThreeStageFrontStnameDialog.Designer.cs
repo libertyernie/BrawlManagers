@@ -37,6 +37,8 @@
 			this.txtSubtitle = new System.Windows.Forms.TextBox();
 			this.txtCombo1Subtitle = new System.Windows.Forms.TextBox();
 			this.txtCombo2Subtitle = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -147,6 +149,30 @@
 			this.txtCombo2Subtitle.Size = new System.Drawing.Size(208, 20);
 			this.txtCombo2Subtitle.TabIndex = 7;
 			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label1.Location = new System.Drawing.Point(12, 402);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(23, 23);
+			this.label1.TabIndex = 11;
+			this.label1.Text = "É";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label1.Click += new System.EventHandler(this.label1_Click);
+			// 
+			// label2
+			// 
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label2.Location = new System.Drawing.Point(34, 402);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(23, 23);
+			this.label2.TabIndex = 12;
+			this.label2.Text = "é";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label2.Click += new System.EventHandler(this.label2_Click);
+			// 
 			// ThreeStageFrontStnameDialog
 			// 
 			this.AcceptButton = this.button1;
@@ -154,6 +180,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.button2;
 			this.ClientSize = new System.Drawing.Size(232, 437);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.txtCombo2Subtitle);
 			this.Controls.Add(this.txtCombo1Subtitle);
 			this.Controls.Add(this.txtSubtitle);
@@ -188,6 +216,8 @@
 		private System.Windows.Forms.TextBox txtSubtitle;
 		private System.Windows.Forms.TextBox txtCombo1Subtitle;
 		private System.Windows.Forms.TextBox txtCombo2Subtitle;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
 	}
 }
 

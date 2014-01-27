@@ -87,5 +87,17 @@ namespace BrawlStageManager {
 		private void copyToolStripMenuItem_Click(object sender, EventArgs e) {
 			Clipboard.SetImage(Bitmap);
 		}
+
+		private void label1_Click(object sender, EventArgs e) {
+			if (this.ActiveControl is TextBox) {
+				((TextBox)this.ActiveControl).Paste("É");
+			}
+		}
+
+		private void label2_Click(object sender, EventArgs e) {
+			if (this.ActiveControl is TextBox) {
+				((TextBox)this.ActiveControl).Paste("é");
+			}
+		}
 	}
 }
