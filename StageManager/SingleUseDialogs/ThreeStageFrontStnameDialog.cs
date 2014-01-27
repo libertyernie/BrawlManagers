@@ -21,6 +21,7 @@ namespace BrawlStageManager {
 
 		static Font big = new Font("DejaVu Sans", 15f, FontStyle.Bold);
 		static Font small = new Font("DejaVu Sans", 12f, FontStyle.Bold);
+		static Font tiny = new Font("DejaVu Sans", 10f, FontStyle.Bold);
 		static StringFormat sf = new StringFormat() {
 			Alignment = StringAlignment.Center,
 			LineAlignment = StringAlignment.Center,
@@ -39,6 +40,15 @@ namespace BrawlStageManager {
 			} else {
 				g.DrawString(s0[0], big, whitebrush, 104, 17, sf);
 				g.DrawString(s0[1], big, whitebrush, 104, 41, sf);
+			}
+			if (txtSubtitle.Text != "") {
+				var size = g.MeasureString(txtSubtitle.Text, tiny);
+				g.FillRectangle(new SolidBrush(Color.Black),
+					104 - size.Width / 2,
+					59 - size.Height / 2,
+					size.Width,
+					size.Height);
+				g.DrawString(txtSubtitle.Text, tiny, whitebrush, 104, 59, sf);
 			}
 
 			g.DrawString(txtCombo1.Text, small, whitebrush, 24, 85, sf);
