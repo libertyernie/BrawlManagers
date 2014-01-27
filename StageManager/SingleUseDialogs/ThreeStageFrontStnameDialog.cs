@@ -21,7 +21,7 @@ namespace BrawlStageManager {
 
 		static Font big = new Font("DejaVu Sans", 15f, FontStyle.Bold);
 		static Font small = new Font("DejaVu Sans", 12f, FontStyle.Bold);
-		static Font tiny = new Font("DejaVu Sans", 10f, FontStyle.Bold);
+		static Font tiny = new Font("DejaVu Sans", 6f, FontStyle.Bold);
 		static StringFormat sf = new StringFormat() {
 			Alignment = StringAlignment.Center,
 			LineAlignment = StringAlignment.Center,
@@ -45,21 +45,39 @@ namespace BrawlStageManager {
 				var size = g.MeasureString(txtSubtitle.Text, tiny);
 				g.FillRectangle(new SolidBrush(Color.Black),
 					104 - size.Width / 2,
-					59 - size.Height / 2,
+					58 - size.Height / 2,
 					size.Width,
 					size.Height);
-				g.DrawString(txtSubtitle.Text, tiny, whitebrush, 104, 59, sf);
+				g.DrawString(txtSubtitle.Text, tiny, whitebrush, 104, 58, sf);
 			}
 
 			g.DrawString(txtCombo1.Text, small, whitebrush, 24, 85, sf);
 			string[] s1 = (txtCombo1Stage.Text + "\n").Split('\n');
 			g.DrawString(s1[0], small, whitebrush, 128, 75, sf);
 			g.DrawString(s1[1], small, whitebrush, 128, 95, sf);
+			if (txtCombo1Subtitle.Text != "") {
+				var size = g.MeasureString(txtCombo1Subtitle.Text, tiny);
+				g.FillRectangle(new SolidBrush(Color.Black),
+					104 - size.Width / 2,
+					108 - size.Height / 2,
+					size.Width,
+					size.Height);
+				g.DrawString(txtCombo1Subtitle.Text, tiny, whitebrush, 128, 108, sf);
+			}
 
 			g.DrawString(txtCombo2.Text, small, whitebrush, 24, 141, sf);
 			string[] s2 = (txtCombo2Stage.Text + "\n").Split('\n');
 			g.DrawString(s2[0], small, whitebrush, 128, 131, sf);
 			g.DrawString(s2[1], small, whitebrush, 128, 151, sf);
+			if (txtCombo2Subtitle.Text != "") {
+				var size = g.MeasureString(txtCombo2Subtitle.Text, tiny);
+				g.FillRectangle(new SolidBrush(Color.Black),
+					104 - size.Width / 2,
+					164 - size.Height / 2,
+					size.Width,
+					size.Height);
+				g.DrawString(txtCombo2Subtitle.Text, tiny, whitebrush, 128, 164, sf);
+			}
 
 			panel1.BackgroundImage = Bitmap;
 		}
