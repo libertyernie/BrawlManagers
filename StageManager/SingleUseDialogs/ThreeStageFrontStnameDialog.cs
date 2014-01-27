@@ -35,7 +35,9 @@ namespace BrawlStageManager {
 			g.DrawLine(new Pen(Color.White), 0, 56, 208, 56);
 
 			string[] s0 = txtMainStage.Text.Split('\n');
+			int subtitlepos0 = 58;
 			if (s0.Length == 1) {
+				subtitlepos0 -= 12;
 				g.DrawString(txtMainStage.Text, big, whitebrush, 104, 29, sf);
 			} else {
 				g.DrawString(s0[0], big, whitebrush, 104, 17, sf);
@@ -45,38 +47,38 @@ namespace BrawlStageManager {
 				var size = g.MeasureString(txtSubtitle.Text, tiny);
 				g.FillRectangle(new SolidBrush(Color.Black),
 					104 - size.Width / 2,
-					58 - size.Height / 2,
+					subtitlepos0 - size.Height / 2,
 					size.Width,
 					size.Height);
-				g.DrawString(txtSubtitle.Text, tiny, whitebrush, 104, 58, sf);
+				g.DrawString(txtSubtitle.Text, tiny, whitebrush, 104, subtitlepos0, sf);
 			}
 
-			g.DrawString(txtCombo1.Text, small, whitebrush, 24, 85, sf);
-			string[] s1 = (txtCombo1Stage.Text + "\n").Split('\n');
-			g.DrawString(s1[0], small, whitebrush, 128, 75, sf);
-			g.DrawString(s1[1], small, whitebrush, 128, 95, sf);
+			g.DrawString(txtCombo1.Text, small, whitebrush, 24, 84, sf);
+			string[] s1 = txtCombo1Stage.Text.Split('\n');
+			int subtitlepos1 = 108;
+			if (s1.Length == 1) {
+				subtitlepos1 -= 9;
+				g.DrawString(s1[0], small, whitebrush, 128, 84, sf);
+			} else {
+				g.DrawString(s1[0], small, whitebrush, 128, 75, sf);
+				g.DrawString(s1[1], small, whitebrush, 128, 93, sf);
+			}
 			if (txtCombo1Subtitle.Text != "") {
-				var size = g.MeasureString(txtCombo1Subtitle.Text, tiny);
-				g.FillRectangle(new SolidBrush(Color.Black),
-					104 - size.Width / 2,
-					108 - size.Height / 2,
-					size.Width,
-					size.Height);
-				g.DrawString(txtCombo1Subtitle.Text, tiny, whitebrush, 128, 108, sf);
+				g.DrawString(txtCombo1Subtitle.Text, tiny, whitebrush, 128, subtitlepos1, sf);
 			}
 
-			g.DrawString(txtCombo2.Text, small, whitebrush, 24, 141, sf);
-			string[] s2 = (txtCombo2Stage.Text + "\n").Split('\n');
-			g.DrawString(s2[0], small, whitebrush, 128, 131, sf);
-			g.DrawString(s2[1], small, whitebrush, 128, 151, sf);
+			g.DrawString(txtCombo2.Text, small, whitebrush, 24, 140, sf);
+			string[] s2 = txtCombo2Stage.Text.Split('\n');
+			int subtitlepos2 = 164;
+			if (s2.Length == 1) {
+				subtitlepos2 -= 9;
+				g.DrawString(s2[0], small, whitebrush, 128, 140, sf);
+			} else {
+				g.DrawString(s2[0], small, whitebrush, 128, 131, sf);
+				g.DrawString(s2[1], small, whitebrush, 128, 149, sf);
+			}
 			if (txtCombo2Subtitle.Text != "") {
-				var size = g.MeasureString(txtCombo2Subtitle.Text, tiny);
-				g.FillRectangle(new SolidBrush(Color.Black),
-					104 - size.Width / 2,
-					164 - size.Height / 2,
-					size.Width,
-					size.Height);
-				g.DrawString(txtCombo2Subtitle.Text, tiny, whitebrush, 128, 164, sf);
+				g.DrawString(txtCombo2Subtitle.Text, tiny, whitebrush, 128, subtitlepos2, sf);
 			}
 
 			panel1.BackgroundImage = Bitmap;
