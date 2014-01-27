@@ -21,7 +21,7 @@ namespace BrawlStageManager {
 
 		static Font big = new Font("DejaVu Sans", 15f, FontStyle.Bold);
 		static Font small = new Font("DejaVu Sans", 12f, FontStyle.Bold);
-		static Font tiny = new Font("DejaVu Sans", 6f, FontStyle.Bold);
+		static Font tiny = new Font("Arial Black", 8f, FontStyle.Bold);
 		static StringFormat sf = new StringFormat() {
 			Alignment = StringAlignment.Center,
 			LineAlignment = StringAlignment.Center,
