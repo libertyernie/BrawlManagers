@@ -638,39 +638,42 @@ namespace BrawlStageManager {
 		public void generateName() {
 			using (NameDialog n = new NameDialog()) {
 				n.EntryText = "Battlefield";
-				n.LabelText = "Enter the stage name. (Use \\n for a line break.)";
+				n.LabelText = "Enter the stage name. (Use \\n for a line break.)\nType just ] to launch genname.bat/genname.exe instead.";
 				if (n.ShowDialog() == DialogResult.OK) {
-					string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-					string tempfile = TempFiles.Create(".png");
 					if (n.EntryText == "]") {
-						/* ts = new ThreeStageFrontStnameDialog();
-						if (ts.ShowDialog() != DialogResult.OK) return;
-						bmp = ts.Bitmap;*/
-						ProcessStartInfo start = new ProcessStartInfo() {
-							WorkingDirectory = exeDir,
-							FileName = "genname.bat",
-							Arguments = tempfile
-						};
-						if (!File.Exists(exeDir + "\\" + start.FileName)) {
-							MessageBox.Show(this, "Could not find " + start.FileName + ".");
-							return;
-						}
-						using (Process p = Process.Start(start)) {
-							p.WaitForExit();
-							if (!File.Exists(tempfile)) {
-								MessageBox.Show(this, "The program did not write to the temporary file path. Make sure it's using %1 (first argument) as the output filename.");
-								return;
-							}
-						}
+						generateNameExternal();
 					} else {
 						if (fontSettings == null) changeFrontStnameFont();
 						if (fontSettings == null) return;
 						Bitmap bmp = NameCreator.createImage(fontSettings, n.EntryText);
+						string tempfile = TempFiles.Create(".png");
 						bmp.Save(tempfile);
+						Replace(frontstname, tempfile);
 					}
-					Replace(frontstname, tempfile);
 				}
 			}
+		}
+
+		public void generateNameExternal() {
+			string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			string tempfile = TempFiles.Create(".png");
+			ProcessStartInfo start = new ProcessStartInfo() {
+				WorkingDirectory = exeDir,
+				FileName = File.Exists(exeDir + "\\genname.bat") ? "genname.bat" : "genname.exe",
+				Arguments = tempfile
+			};
+			if (!File.Exists(exeDir + "\\" + start.FileName)) {
+				MessageBox.Show(this, "Could not find genname.bat or genname.exe.\nCreate a program or batch file that takes an output PNG file path as its only argument. It should write to this path before closing.");
+				return;
+			}
+			using (Process p = Process.Start(start)) {
+				p.WaitForExit();
+				if (!File.Exists(tempfile)) {
+					MessageBox.Show(this, "The program did not write to the temporary file path. Make sure it's using %1 (first argument) as the output filename.");
+					return;
+				}
+			}
+			Replace(frontstname, tempfile);
 		}
 
 		public void repaintIconBorder() {
