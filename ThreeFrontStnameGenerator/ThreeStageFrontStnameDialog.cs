@@ -99,5 +99,11 @@ namespace ThreeFrontStnameGenerator {
 				((TextBox)this.ActiveControl).Paste("é");
 			}
 		}
+
+		private void label4_Click(object sender, EventArgs e) {
+			if (this.ActiveControl is TextBox) {
+				((TextBox)this.ActiveControl).Paste("−");
+			}
+		}
 	}
 }
