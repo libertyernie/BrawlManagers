@@ -11,6 +11,7 @@ namespace ThreeFrontStnameGenerator {
 		static int Main(string[] args) {
 			if (args.Length == 0) {
 				MessageBox.Show("Usage: [program.exe] [filename.png]");
+				return 1;
 			}
 			using (var dialog = new ThreeStageFrontStnameDialog()) {
 				if (dialog.ShowDialog() == DialogResult.OK) {

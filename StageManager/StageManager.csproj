@@ -69,12 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NameCreatorSettings.cs" />
-    <Compile Include="SingleUseDialogs\ThreeStageFrontStnameDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SingleUseDialogs\ThreeStageFrontStnameDialog.Designer.cs">
-      <DependentUpon>ThreeStageFrontStnameDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="SongListItem.cs" />
     <Compile Include="SingleUseDialogs\AskNameDialog.cs">
       <SubType>Form</SubType>
@@ -185,9 +179,6 @@
     <EmbeddedResource Include="ListControl.resx">
       <DependentUpon>ListControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SingleUseDialogs\ThreeStageFrontStnameDialog.resx">
-      <DependentUpon>ThreeStageFrontStnameDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StageInfoControl.resx">
       <DependentUpon>StageInfoControl.cs</DependentUpon>
