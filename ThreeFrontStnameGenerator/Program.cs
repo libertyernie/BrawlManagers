@@ -10,7 +10,7 @@ namespace ThreeFrontStnameGenerator {
 		[STAThread]
 		static int Main(string[] args) {
 			if (args.Length == 0) {
-				MessageBox.Show("Usage: [program.exe] [filename.png]");
+				MessageBox.Show("Usage: [program.exe] [filename.png]\nName this program genname.exe and put it in the same folder as BrawlStageManager.exe.");
 				return 1;
 			}
 			using (var dialog = new ThreeStageFrontStnameDialog()) {
