@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StageManager", "StageManage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrawlBox", "..\brawltools\BrawlBox\BrawlBox.csproj", "{0B8588FD-74EE-4A7D-A397-91EA3F6A2C77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreeFrontStnameGenerator", "ThreeFrontStnameGenerator\ThreeFrontStnameGenerator.csproj", "{66F430BC-753C-4406-BB6C-8F47DB71FDA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		_DEBUG|Any CPU = _DEBUG|Any CPU
@@ -198,6 +200,27 @@ Global
 		{0B8588FD-74EE-4A7D-A397-91EA3F6A2C77}.Release|x64.ActiveCfg = Release|Any CPU
 		{0B8588FD-74EE-4A7D-A397-91EA3F6A2C77}.Release|x86.ActiveCfg = Release|x86
 		{0B8588FD-74EE-4A7D-A397-91EA3F6A2C77}.Release|x86.Build.0 = Release|x86
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}._DEBUG|Any CPU.ActiveCfg = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}._DEBUG|Any CPU.Build.0 = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}._DEBUG|Itanium.ActiveCfg = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}._DEBUG|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}._DEBUG|Mixed Platforms.Build.0 = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}._DEBUG|x64.ActiveCfg = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}._DEBUG|x86.ActiveCfg = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Debug|Itanium.ActiveCfg = Debug|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Release|Itanium.ActiveCfg = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Release|x64.ActiveCfg = Release|Any CPU
+		{66F430BC-753C-4406-BB6C-8F47DB71FDA0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

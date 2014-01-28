@@ -9,6 +9,7 @@ using System.IO;
 using BrawlLib.Wii.Textures;
 using BrawlManagerLib;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace BrawlStageManager {
 	public partial class PortraitViewer : UserControl {
@@ -641,9 +642,27 @@ namespace BrawlStageManager {
 				if (n.ShowDialog() == DialogResult.OK) {
 					Bitmap bmp;
 					if (n.EntryText == "]") {
-						var ts = new ThreeStageFrontStnameDialog();
+						/* ts = new ThreeStageFrontStnameDialog();
 						if (ts.ShowDialog() != DialogResult.OK) return;
-						bmp = ts.Bitmap;
+						bmp = ts.Bitmap;*/
+						string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+						ProcessStartInfo start = new ProcessStartInfo() {
+							WorkingDirectory = exeDir,
+							FileName = "genname.bat",
+							UseShellExecute = false,
+							RedirectStandardOutput = true
+						};
+						if (!File.Exists(exeDir + "\\" + start.FileName)) {
+							MessageBox.Show(this, "Could not find " + start.FileName + ".");
+							return;
+						}
+						using (Process p = Process.Start(start)) {
+							p.WaitForExit();
+							if (p.ExitCode != 0) {
+								return;
+							}
+							bmp = new Bitmap(p.StandardOutput.BaseStream);
+						}
 					} else {
 						if (fontSettings == null) changeFrontStnameFont();
 						if (fontSettings == null) return;
