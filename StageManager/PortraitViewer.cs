@@ -640,17 +640,16 @@ namespace BrawlStageManager {
 				n.EntryText = "Battlefield";
 				n.LabelText = "Enter the stage name. (Use \\n for a line break.)";
 				if (n.ShowDialog() == DialogResult.OK) {
-					Bitmap bmp;
+					string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+					string tempfile = TempFiles.Create(".png");
 					if (n.EntryText == "]") {
 						/* ts = new ThreeStageFrontStnameDialog();
 						if (ts.ShowDialog() != DialogResult.OK) return;
 						bmp = ts.Bitmap;*/
-						string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 						ProcessStartInfo start = new ProcessStartInfo() {
 							WorkingDirectory = exeDir,
 							FileName = "genname.bat",
-							UseShellExecute = false,
-							RedirectStandardOutput = true
+							Arguments = tempfile
 						};
 						if (!File.Exists(exeDir + "\\" + start.FileName)) {
 							MessageBox.Show(this, "Could not find " + start.FileName + ".");
@@ -658,18 +657,17 @@ namespace BrawlStageManager {
 						}
 						using (Process p = Process.Start(start)) {
 							p.WaitForExit();
-							if (p.ExitCode != 0) {
+							if (!File.Exists(tempfile)) {
+								MessageBox.Show(this, "The program did not write to the temporary file path. Make sure it's using %1 (first argument) as the output filename.");
 								return;
 							}
-							bmp = new Bitmap(p.StandardOutput.BaseStream);
 						}
 					} else {
 						if (fontSettings == null) changeFrontStnameFont();
 						if (fontSettings == null) return;
-						bmp = NameCreator.createImage(fontSettings, n.EntryText);
+						Bitmap bmp = NameCreator.createImage(fontSettings, n.EntryText);
+						bmp.Save(tempfile);
 					}
-					string tempfile = TempFiles.Create(".png");
-					bmp.Save(tempfile);
 					Replace(frontstname, tempfile);
 				}
 			}

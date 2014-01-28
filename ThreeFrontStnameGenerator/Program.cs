@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ThreeFrontStnameGenerator {
@@ -13,12 +8,14 @@ namespace ThreeFrontStnameGenerator {
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static int Main() {
+		static int Main(string[] args) {
+			if (args.Length == 0) {
+				MessageBox.Show("Usage: [program.exe] [filename.png]");
+			}
 			using (var dialog = new ThreeStageFrontStnameDialog()) {
 				if (dialog.ShowDialog() == DialogResult.OK) {
 					Bitmap bmp = dialog.Bitmap;
-					Stream stream = System.Console.OpenStandardOutput();
-					bmp.Save(stream, ImageFormat.Png);
+					bmp.Save(args[0]);
 					return 0;
 				} else {
 					return 1;
