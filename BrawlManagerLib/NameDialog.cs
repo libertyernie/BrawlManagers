@@ -20,10 +20,15 @@ namespace BrawlManagerLib
 			}
 			set {
 				label1.Text = value;
+				int h = 125;
+				foreach (char c in value) {
+					if (c == '\n') h += 13;
+				}
+				if (h > Height) Height = h;
 			}
 		}
 
-        public NameDialog() { InitializeComponent(); }
+		public NameDialog() { InitializeComponent();  }
 
         public DialogResult ShowDialog(IWin32Window owner, string text)
         {
@@ -62,7 +67,7 @@ namespace BrawlManagerLib
 			this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtName.HideSelection = false;
-			this.txtName.Location = new System.Drawing.Point(12, 38);
+			this.txtName.Location = new System.Drawing.Point(12, 25);
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(260, 20);
 			this.txtName.TabIndex = 0;
@@ -71,7 +76,7 @@ namespace BrawlManagerLib
 			// 
 			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(197, 64);
+			this.btnCancel.Location = new System.Drawing.Point(197, 51);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 2;
@@ -82,7 +87,7 @@ namespace BrawlManagerLib
 			// btnOkay
 			// 
 			this.btnOkay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnOkay.Location = new System.Drawing.Point(116, 64);
+			this.btnOkay.Location = new System.Drawing.Point(116, 51);
 			this.btnOkay.Name = "btnOkay";
 			this.btnOkay.Size = new System.Drawing.Size(75, 23);
 			this.btnOkay.TabIndex = 1;
@@ -95,16 +100,16 @@ namespace BrawlManagerLib
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(12, 9);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(19, 26);
+			this.label1.Size = new System.Drawing.Size(19, 13);
 			this.label1.TabIndex = 3;
-			this.label1.Text = "    \r\n    ";
+			this.label1.Text = "    ";
 			// 
 			// NameDialog
 			// 
 			this.AcceptButton = this.btnOkay;
 			this.AutoSize = true;
 			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(284, 99);
+			this.ClientSize = new System.Drawing.Size(284, 86);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btnOkay);
 			this.Controls.Add(this.btnCancel);
@@ -122,5 +127,6 @@ namespace BrawlManagerLib
         #endregion
 
 
-    }
+
+	}
 }
