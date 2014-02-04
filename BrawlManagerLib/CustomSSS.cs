@@ -7,8 +7,15 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace BrawlManagerLib {
+    /// <summary>
+    /// Allows read-write access to Custom SSS code, and read-only access to all Stage-Dependent Song Loader instances.
+    /// This class will store the entire codeset, split between itself (the SSS code) and the portions before/after (in raw byte[]).
+    /// </summary>
 	public class CustomSSS {
-		public byte[] sss1 { get; private set; }
+		private static byte[] SDSL_HEADER = { 0x28, 0x70, 0x8c, 0xeb, 0x00, 0x00, 0x00 };
+		public Dictionary<byte, Song> SongsByStage { get; private set; }
+
+        public byte[] sss1 { get; private set; }
 		public byte[] sss2 { get; private set; }
 		public byte[] sss3 { get; private set; }
 
@@ -75,7 +82,7 @@ namespace BrawlManagerLib {
 			return 0xFF;
 		}
 
-		public CustomSSS(string[] s) {
+        public CustomSSS(string[] s) {
 			init(s);
 		}
 
@@ -163,6 +170,26 @@ namespace BrawlManagerLib {
 
 			DataAfter = new byte[data.Length - index];
 			Array.ConstrainedCopy(data, index, DataAfter, 0, data.Length - index);
+
+            SongsByStage = new Dictionary<byte, Song>();
+            for (int line = 0; line < data.Length; line += 8) {
+                if (ByteUtilities.ByteArrayEquals(data, line, SDSL_HEADER, 0, SDSL_HEADER.Length)) {
+                    byte stageID = data[line + 7];
+                    byte songID1 = data[line + 22];
+                    byte songID2 = data[line + 23];
+                    ushort songID = (ushort)(0x100 * songID1 + songID2);
+                    Song s = (from g in SongIDMap.Songs
+                              where g.ID == songID
+                              select g).First();
+                    if (SongsByStage.ContainsKey(stageID)) {
+                        Console.WriteLine(String.Format("WARNING: code mapping stage {0} to song {1} will not " +
+                            "take effect, since a later code maps it to song {2}", stageID, SongsByStage[stageID], s));
+                        SongsByStage.Remove(stageID);
+                    }
+                    SongsByStage.Add(stageID, s);
+                    line += 24;
+                }
+            }
 		}
 
 		public override string ToString() {
