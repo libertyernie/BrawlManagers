@@ -52,6 +52,7 @@
     <Compile Include="CollapsibleSplitter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomSongVolume.cs" />
     <Compile Include="CustomSSS.cs" />
     <Compile Include="Songs\Song.cs" />
     <Compile Include="ByteUtilities.cs" />
