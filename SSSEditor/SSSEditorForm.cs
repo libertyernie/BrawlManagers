@@ -61,6 +61,8 @@ namespace SSSEditor {
 
 			sss = new CustomSSS(gct);
 			ReloadIfValidPac(pac);
+
+			FormClosed += (o, e) => TempFiles.TryToDeleteAll();
 		}
 
 		private void ReloadData() {

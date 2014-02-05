@@ -69,6 +69,7 @@ namespace BrawlSongManager {
 			listBox1.DragDrop += dragDrop;
 
 			this.FormClosing += closing;
+			this.FormClosed += closed;
 
 			changeDirectory(path);
 		}
@@ -341,6 +342,10 @@ namespace BrawlSongManager {
 				File.Delete(tempfile);
 				File.Delete(infotmp);
 			}
+		}
+
+		private void closed(object sender, FormClosedEventArgs e) {
+			TempFiles.TryToDeleteAll();
 		}
 	}
 }
