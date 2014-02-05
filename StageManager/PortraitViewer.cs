@@ -78,7 +78,15 @@ namespace BrawlStageManager {
 		#endregion
 
 		#region Custom SSS
-		public CustomSSS AutoSSS, DefaultSSS;
+		public CustomSSS DefaultSSS, _autoSSS;
+		public CustomSSS AutoSSS {
+			get {
+				return _autoSSS;
+			} set {
+				_autoSSS = value;
+				label1.Text = value == null ? "No custom SSS loaded" : "Loaded " + AutoSSS;
+			}
+		}
 		public CustomSSS BestSSS {
 			get {
 				return AutoSSS ?? DefaultSSS;
@@ -237,7 +245,6 @@ namespace BrawlStageManager {
 
 			// Find and load GCT, if it exists
 			AutoSSS = null;
-			label1.Text = "No custom SSS loaded";
 			foreach (string file in new string[] {
 				"RSBE01.gct",
 				"/data/gecko/codes/RSBE01.gct",
@@ -245,10 +252,14 @@ namespace BrawlStageManager {
 			}) {
 				if (File.Exists(file)) {
 					AutoSSS = new CustomSSS(File.ReadAllBytes(file));
-					Console.WriteLine("Loaded " + file + ": " + AutoSSS);
-					label1.Text = "Loaded " + file + ": " + AutoSSS;
 					break;
 				}
+			}
+		}
+
+		public void LoadCustomSSS(string file) {
+			if (File.Exists(file)) {
+				AutoSSS = new CustomSSS(file);
 			}
 		}
 

@@ -664,6 +664,15 @@ namespace BrawlStageManager {
 				changeDirectory(FolderDialog.SelectedPath);
 			}
 		}
+
+		private void loadCustomSSSToolStripMenuItem_Click(object sender, EventArgs e) {
+			OpenDialog.Filter = "Codeset files (*.txt, *.gct)|*.txt;*.gct";
+			OpenDialog.Multiselect = true;
+			if (OpenDialog.ShowDialog() == DialogResult.OK) {
+				portraitViewer1.LoadCustomSSS(OpenDialog.FileName);
+			}
+		}
+
 		private void exportAllToolStripMenuItem_Click(object sender, EventArgs e) {
 			if (FolderDialog.ShowDialog() != DialogResult.OK) {
 				return;

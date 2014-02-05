@@ -109,17 +109,18 @@
 			this.texturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.brawlBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.brawlBoxStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.brawlBoxcommon5scselmapToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.collapsibleSplitter3 = new BrawlManagerLib.CollapsibleSplitter();
 			this.collapsibleSplitter2 = new BrawlManagerLib.CollapsibleSplitter();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.collapsibleSplitter5 = new BrawlManagerLib.CollapsibleSplitter();
-			this.brawlBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.brawlBoxStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.brawlBoxcommon5scselmapToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.collapsibleSplitter1 = new BrawlManagerLib.CollapsibleSplitter();
 			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.collapsibleSplitter4 = new BrawlManagerLib.CollapsibleSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
+			this.loadCustomSSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
 			this.splitContainerLeft.Panel1.SuspendLayout();
 			this.splitContainerLeft.Panel2.SuspendLayout();
@@ -284,6 +285,7 @@
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeDirectoryToolStripMenuItem,
+            this.loadCustomSSSToolStripMenuItem,
             this.toolStripMenuItem3,
             this.currentStageToolStripMenuItem,
             this.currentSongToolStripMenuItem,
@@ -822,6 +824,31 @@
 			this.aboutToolStripMenuItem.Text = "About";
 			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
 			// 
+			// brawlBoxToolStripMenuItem
+			// 
+			this.brawlBoxToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.brawlBoxToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.brawlBoxStageToolStripMenuItem,
+            this.brawlBoxcommon5scselmapToolStripMenuItem1});
+			this.brawlBoxToolStripMenuItem.Name = "brawlBoxToolStripMenuItem";
+			this.brawlBoxToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+			this.brawlBoxToolStripMenuItem.Text = "BrawlBox";
+			this.brawlBoxToolStripMenuItem.Click += new System.EventHandler(this.brawlBoxToolStripMenuItem_Click);
+			// 
+			// brawlBoxStageToolStripMenuItem
+			// 
+			this.brawlBoxStageToolStripMenuItem.Name = "brawlBoxStageToolStripMenuItem";
+			this.brawlBoxStageToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.brawlBoxStageToolStripMenuItem.Text = "No stage loaded";
+			this.brawlBoxStageToolStripMenuItem.Click += new System.EventHandler(this.brawlBoxStageToolStripMenuItem_Click);
+			// 
+			// brawlBoxcommon5scselmapToolStripMenuItem1
+			// 
+			this.brawlBoxcommon5scselmapToolStripMenuItem1.Name = "brawlBoxcommon5scselmapToolStripMenuItem1";
+			this.brawlBoxcommon5scselmapToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+			this.brawlBoxcommon5scselmapToolStripMenuItem1.Text = "common5/sc_selmap";
+			this.brawlBoxcommon5scselmapToolStripMenuItem1.Click += new System.EventHandler(this.brawlBoxcommon5scselmapToolStripMenuItem1_Click);
+			// 
 			// collapsibleSplitter3
 			// 
 			this.collapsibleSplitter3.AnimationDelay = 20;
@@ -884,31 +911,6 @@
 			this.collapsibleSplitter5.UseAnimations = false;
 			this.collapsibleSplitter5.VisualStyle = BrawlManagerLib.VisualStyles.Mozilla;
 			// 
-			// brawlBoxToolStripMenuItem
-			// 
-			this.brawlBoxToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-			this.brawlBoxToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.brawlBoxStageToolStripMenuItem,
-            this.brawlBoxcommon5scselmapToolStripMenuItem1});
-			this.brawlBoxToolStripMenuItem.Name = "brawlBoxToolStripMenuItem";
-			this.brawlBoxToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-			this.brawlBoxToolStripMenuItem.Text = "BrawlBox";
-			this.brawlBoxToolStripMenuItem.Click += new System.EventHandler(this.brawlBoxToolStripMenuItem_Click);
-			// 
-			// brawlBoxStageToolStripMenuItem
-			// 
-			this.brawlBoxStageToolStripMenuItem.Name = "brawlBoxStageToolStripMenuItem";
-			this.brawlBoxStageToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-			this.brawlBoxStageToolStripMenuItem.Text = "No stage loaded";
-			this.brawlBoxStageToolStripMenuItem.Click += new System.EventHandler(this.brawlBoxStageToolStripMenuItem_Click);
-			// 
-			// brawlBoxcommon5scselmapToolStripMenuItem1
-			// 
-			this.brawlBoxcommon5scselmapToolStripMenuItem1.Name = "brawlBoxcommon5scselmapToolStripMenuItem1";
-			this.brawlBoxcommon5scselmapToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
-			this.brawlBoxcommon5scselmapToolStripMenuItem1.Text = "common5/sc_selmap";
-			this.brawlBoxcommon5scselmapToolStripMenuItem1.Click += new System.EventHandler(this.brawlBoxcommon5scselmapToolStripMenuItem1_Click);
-			// 
 			// collapsibleSplitter1
 			// 
 			this.collapsibleSplitter1.AnimationDelay = 20;
@@ -954,11 +956,19 @@
 			// portraitViewer1
 			// 
 			this.portraitViewer1.AutoSize = true;
+			this.portraitViewer1.AutoSSS = null;
 			this.portraitViewer1.Dock = System.Windows.Forms.DockStyle.Right;
 			this.portraitViewer1.Location = new System.Drawing.Point(471, 24);
 			this.portraitViewer1.Name = "portraitViewer1";
 			this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
 			this.portraitViewer1.TabIndex = 2;
+			// 
+			// loadCustomSSSToolStripMenuItem
+			// 
+			this.loadCustomSSSToolStripMenuItem.Name = "loadCustomSSSToolStripMenuItem";
+			this.loadCustomSSSToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.loadCustomSSSToolStripMenuItem.Text = "Load custom SSS";
+			this.loadCustomSSSToolStripMenuItem.Click += new System.EventHandler(this.loadCustomSSSToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -1087,6 +1097,7 @@
 		private System.Windows.Forms.ToolStripMenuItem brawlBoxToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem brawlBoxStageToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem brawlBoxcommon5scselmapToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem loadCustomSSSToolStripMenuItem;
 
 
 
