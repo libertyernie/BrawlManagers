@@ -27,6 +27,8 @@ namespace BrawlSongManager {
 			}
 		}
 
+		private string FallbackDirectory;
+
 		private bool GroupSongs;
 
 		/// <summary>
@@ -78,13 +80,8 @@ namespace BrawlSongManager {
 			if (fi == null) { // No .brstm file selected (i.e. you just opened the program)
 				RightControl = chooseLabel;
 			} else {
-					try {
-						fi.Refresh(); // Update file size
-						songPanel1.Open(fi);
-					} catch (FileNotFoundException) {
-						// This might happen if you delete the file from Explorer after this program puts it in the list
-						RightControl = couldNotOpenLabel;
-					}
+				fi.Refresh(); // Update file size
+				songPanel1.Open(fi, FallbackDirectory);
 				RightControl = null;
 			}
 			this.Refresh();
@@ -225,9 +222,17 @@ namespace BrawlSongManager {
 
 		private void changeDirectoryToolStripMenuItem_Click(object sender, EventArgs e) {
 			FolderBrowserDialog fbd = new FolderBrowserDialog();
-//			fbd.SelectedPath = CurrentDirectory; // Uncomment this if you want the "change directory" dialog to start with the current directory selected
+			fbd.SelectedPath = CurrentDirectory;
 			if (fbd.ShowDialog() == DialogResult.OK) {
 				changeDirectory(fbd.SelectedPath);
+			}
+		}
+
+		private void openFallbackDirectoryToolStripMenuItem_Click(object sender, EventArgs e) {
+			FolderBrowserDialog fbd = new FolderBrowserDialog();
+			fbd.SelectedPath = FallbackDirectory;
+			if (fbd.ShowDialog() == DialogResult.OK) {
+				FallbackDirectory = fbd.SelectedPath;
 			}
 		}
 

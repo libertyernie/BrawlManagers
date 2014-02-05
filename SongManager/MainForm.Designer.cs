@@ -49,6 +49,7 @@
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.splitContainerTop = new System.Windows.Forms.SplitContainer();
+			this.openFallbackDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -122,6 +123,7 @@
 			// 
 			// songPanel1
 			// 
+			this.songPanel1.AllowDrop = true;
 			this.songPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.songPanel1.Location = new System.Drawing.Point(0, 0);
 			this.songPanel1.Name = "songPanel1";
@@ -156,6 +158,7 @@
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeDirectoryToolStripMenuItem,
+            this.openFallbackDirectoryToolStripMenuItem,
             this.saveInfopacToolStripMenuItem,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -165,21 +168,21 @@
 			// changeDirectoryToolStripMenuItem
 			// 
 			this.changeDirectoryToolStripMenuItem.Name = "changeDirectoryToolStripMenuItem";
-			this.changeDirectoryToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-			this.changeDirectoryToolStripMenuItem.Text = "Change directory...";
+			this.changeDirectoryToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+			this.changeDirectoryToolStripMenuItem.Text = "Change directory";
 			this.changeDirectoryToolStripMenuItem.Click += new System.EventHandler(this.changeDirectoryToolStripMenuItem_Click);
 			// 
 			// saveInfopacToolStripMenuItem
 			// 
 			this.saveInfopacToolStripMenuItem.Name = "saveInfopacToolStripMenuItem";
-			this.saveInfopacToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.saveInfopacToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.saveInfopacToolStripMenuItem.Text = "Save info.pac";
 			this.saveInfopacToolStripMenuItem.Click += new System.EventHandler(this.saveInfopacToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -279,6 +282,13 @@
 			this.splitContainerTop.SplitterDistance = 197;
 			this.splitContainerTop.TabIndex = 0;
 			// 
+			// openFallbackDirectoryToolStripMenuItem
+			// 
+			this.openFallbackDirectoryToolStripMenuItem.Name = "openFallbackDirectoryToolStripMenuItem";
+			this.openFallbackDirectoryToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+			this.openFallbackDirectoryToolStripMenuItem.Text = "Open fallback directory";
+			this.openFallbackDirectoryToolStripMenuItem.Click += new System.EventHandler(this.openFallbackDirectoryToolStripMenuItem_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,6 +343,7 @@
 		private System.Windows.Forms.SplitContainer splitContainerTop;
 		private System.Windows.Forms.Label rightLabel;
 		private BrawlManagerLib.SongPanel songPanel1;
+		private System.Windows.Forms.ToolStripMenuItem openFallbackDirectoryToolStripMenuItem;
 
 
 

@@ -45,11 +45,17 @@ namespace BrawlManagerLib {
 			}
 		}
 
+		/// <summary>
+		/// If the file last requested is open, its path is stored here. If a fallback file is open, this will be null.
+		/// </summary>
 		public string RootPath {
 			get {
 				return _rootPath;
 			}
 		}
+		/// <summary>
+		/// Whether you can export or delete a file.
+		/// </summary>
 		public bool FileOpen {
 			get {
 				return _rootPath != null;
@@ -88,7 +94,7 @@ namespace BrawlManagerLib {
 			lblFilename.Text = "";
 			songNameBar.Index = -1;
 		}
-		public void Open(FileInfo fi) {
+		public void Open(FileInfo fi, string fallbackDir = null) {
 			LastFileCalledFor = fi.FullName;
 			lblFilename.Text = Path.GetFileNameWithoutExtension(LastFileCalledFor);
 
@@ -100,6 +106,12 @@ namespace BrawlManagerLib {
 			if (fi.Exists) {
 				_rootPath = fi.FullName;
 				_rootNode = NodeFactory.FromFile(null, _rootPath);
+			} else if (fallbackDir != null) {
+				FileInfo fallback = new FileInfo(fallbackDir + Path.DirectorySeparatorChar + fi.Name);
+				if (fallback.Exists) {
+					_rootPath = null;
+					_rootNode = NodeFactory.FromFile(null, fallback.FullName);
+				}
 			}
 			if (LoadNames) {
 				string filename = Path.GetFileNameWithoutExtension(LastFileCalledFor).ToUpper();
