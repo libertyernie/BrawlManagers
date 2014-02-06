@@ -115,9 +115,6 @@
     <Content Include="BrawlLib changelog.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="BrawlLib patch.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\brawltools\BrawlLib\BrawlLib.csproj">

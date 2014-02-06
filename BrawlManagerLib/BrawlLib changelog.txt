@@ -12,15 +12,20 @@ they be held accountable for the manner in which it is used.
 ---------Note----------
 This version of BrawlLib is based on BrawlBox v0.71 from:
 http://forums.kc-mm.com/index.php?topic=17547.0
+For all changes, see: https://github.com/libertyernie/brawltools
 
 The TextureConverterDialog has one added property - "InitialSize" - which is a
 System.Drawing.Size object, defaulting to null. If it's not null, the dialog
 will auto-set the "resize" dimensions when it opens up.
 
+AudioPlaybackPanel has two new properties to control volume. "Volume" controls
+how much quieter to make the audio, in hundredths of a decibel; "VolumePercent"
+takes a percentage (.00001 to 1) and sets Volume for you using that.
+
 There is also a new setting in the BrawlLib assembly: HideMDL0Errors.
 Set this to "true" to hide the popup boxes on model errors.
 
--libertyernie - Dec. 31, 2013
+-libertyernie - Feb. 6, 2014
 -----------------------
 
  ====================================
