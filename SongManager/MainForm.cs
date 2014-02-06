@@ -29,7 +29,12 @@ namespace BrawlSongManager {
 
 		private string FallbackDirectory;
 
-		private bool GroupSongs;
+		private enum ListType {
+			FilesInDir, // default
+			GroupByStage, // Brawl
+			WithCSV
+		}
+		private ListType listType;
 
 		/// <summary>
 		/// Change the message on the right section of the window.
@@ -52,10 +57,10 @@ namespace BrawlSongManager {
 		public MainForm(string path, bool loadNames, bool loadBrstms, bool groupSongs) {
 			InitializeComponent();
 
-			// Setting these values also sets the items in the Options menu to the correct "Checked" value
 			loadNamesFromInfopacToolStripMenuItem.Checked = songPanel1.LoadNames = loadNames;
 			loadBRSTMPlayerToolStripMenuItem.Checked = songPanel1.LoadBrstms = loadBrstms;
-			groupSongsByStageToolStripMenuItem.Checked = GroupSongs = groupSongs;
+			groupSongsByStageToolStripMenuItem.Checked = groupSongs;
+			listType = groupSongs ? ListType.GroupByStage : ListType.FilesInDir;
 
 			// Later commands to change the titlebar assume there is a hypen in the title somewhere
 			this.Text += " -";
@@ -129,19 +134,24 @@ namespace BrawlSongManager {
 			});
 
 			listBox1.Items.Clear();
-			if (GroupSongs) {
-				List<string> filenamesAdded = new List<string>();
-				listBox1.Items.AddRange(SongsByStage.FromCurrentDir);
-				foreach (object o in SongsByStage.FromCurrentDir) {
-					if (o is SongsByStage.SongInfo) {
-						filenamesAdded.Add(((SongsByStage.SongInfo)o).File.Name);
+			switch (listType) {
+				case ListType.FilesInDir:
+					listBox1.Items.AddRange(brstmFiles);
+					break;
+				case ListType.GroupByStage:
+					List<string> filenamesAdded = new List<string>();
+					listBox1.Items.AddRange(SongsByStage.FromCurrentDir);
+					// make sure we don't add anything twice
+					foreach (object o in SongsByStage.FromCurrentDir) {
+						if (o is SongsByStage.SongInfo) {
+							filenamesAdded.Add(((SongsByStage.SongInfo)o).File.Name);
+						}
 					}
-				}
-				foreach (FileInfo f in brstmFiles) {
-					if (!filenamesAdded.Contains(f.Name)) listBox1.Items.Add(new SongsByStage.SongInfo(f));
-				}
-			} else {
-				listBox1.Items.AddRange(brstmFiles);
+					// add remainder
+					foreach (FileInfo f in brstmFiles) {
+						if (!filenamesAdded.Contains(f.Name)) listBox1.Items.Add(new SongsByStage.SongInfo(f));
+					}
+					break;
 			}
 			listBox1.Refresh();
 
@@ -268,7 +278,9 @@ namespace BrawlSongManager {
 		}
 
 		private void groupSongsByStageToolStripMenuItem_Click(object sender, EventArgs e) {
-			GroupSongs = !GroupSongs;
+			listType = groupSongsByStageToolStripMenuItem.Checked
+				? ListType.GroupByStage
+				: ListType.FilesInDir;
 			refreshDirectory();
 		}
 		#endregion
