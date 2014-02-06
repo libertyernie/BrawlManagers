@@ -73,7 +73,7 @@ A7AC0004 2C1D7FFF
 			}
 
 			if (index < 0) {
-				MessageBox.Show("No Custom Song Volume code found. An empty code will be created.");
+				Console.WriteLine("No Custom Song Volume code found. An empty code will be created.");
 				DataBefore = data.ToArray();
 				DataAfter = new byte[0];
 				return;
