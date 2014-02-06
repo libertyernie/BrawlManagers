@@ -28,6 +28,7 @@ namespace BrawlSongManager {
 		}
 
 		private string FallbackDirectory;
+		private CustomSongVolume csv;
 
 		private enum ListType {
 			FilesInDir, // default
@@ -88,6 +89,9 @@ namespace BrawlSongManager {
 				fi.Refresh(); // Update file size
 				songPanel1.Open(fi, FallbackDirectory);
 				RightControl = null;
+				string basename = Path.GetFileNameWithoutExtension(fi.FullName);
+				Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
+				if (song != null) Console.WriteLine(song.DefaultName);
 			}
 			this.Refresh();
 		}
@@ -97,11 +101,24 @@ namespace BrawlSongManager {
 			this.Text = this.Text.Substring(0, this.Text.IndexOf('-')) + "- " + newpath; // Update titlebar
 
 			refreshDirectory();
-
-			statusToolStripMenuItem.Text = songPanel1.findInfoFile();
 		}
 		private void changeDirectory(DirectoryInfo path) {
 			changeDirectory(path.FullName);
+		}
+
+		private void findGCT() {
+			csv = null;
+			foreach (string file in new string[] {
+				"RSBE01.gct",
+				"/data/gecko/codes/RSBE01.gct",
+				"/codes/RSBE01.gct",
+			}) {
+				if (File.Exists(file)) {
+					csv = new CustomSongVolume(File.ReadAllBytes(file));
+					Console.WriteLine(csv);
+					break;
+				}
+			}
 		}
 
 		private void refreshDirectory() {
@@ -162,6 +179,9 @@ namespace BrawlSongManager {
 				// This occurs when you delete the last item in the list (and "group songs" is off)
 				listBox1.SelectedIndex = listBox1.Items.Count - 1;
 			}
+
+			statusToolStripMenuItem.Text = songPanel1.findInfoFile();
+			findGCT();
 		}
 
 		private void closing(object sender, FormClosingEventArgs e) {
