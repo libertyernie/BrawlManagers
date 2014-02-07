@@ -112,11 +112,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BrawlLib changelog.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\brawltools\BrawlLib\BrawlLib.csproj">
       <Project>{462d0bbf-ce82-405b-8848-2f91e9e14c55}</Project>
       <Name>BrawlLib</Name>
