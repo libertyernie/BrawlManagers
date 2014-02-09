@@ -34,15 +34,7 @@ namespace ThreeFrontStnameGenerator {
 			g.FillRectangle(new SolidBrush(Color.Black), 0, 0, 208, 168);
 			g.DrawLine(new Pen(Color.White), 0, 56, 208, 56);
 
-			string[] s0 = txtMainStage.Text.Split('\n');
 			int subtitlepos0 = 58;
-			if (s0.Length == 1) {
-				subtitlepos0 -= 12;
-				g.DrawString(txtMainStage.Text, big, whitebrush, 104, 29, sf);
-			} else {
-				g.DrawString(s0[0], big, whitebrush, 104, 17, sf);
-				g.DrawString(s0[1], big, whitebrush, 104, 41, sf);
-			}
 			if (txtSubtitle.Text != "") {
 				var size = g.MeasureString(txtSubtitle.Text, tiny);
 				g.FillRectangle(new SolidBrush(Color.Black),
@@ -51,6 +43,14 @@ namespace ThreeFrontStnameGenerator {
 					size.Width,
 					size.Height);
 				g.DrawString(txtSubtitle.Text, tiny, whitebrush, 104, subtitlepos0, sf);
+			}
+			string[] s0 = txtMainStage.Text.Split('\n');
+			if (s0.Length == 1) {
+				subtitlepos0 -= 12;
+				g.DrawString(txtMainStage.Text, big, whitebrush, 104, 29, sf);
+			} else {
+				g.DrawString(s0[0], big, whitebrush, 104, 17, sf);
+				g.DrawString(s0[1], big, whitebrush, 104, 41, sf);
 			}
 
 			g.DrawString(txtCombo1.Text, small, whitebrush, 24, 84, sf);
