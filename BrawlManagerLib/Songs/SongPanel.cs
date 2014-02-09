@@ -44,6 +44,16 @@ namespace BrawlManagerLib {
 				lblFilename.Visible = value;
 			}
 		}
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		[DefaultValue(false)]
+		public bool ShowVolumeSpinner {
+			get {
+				return nudVolume.Visible;
+			}
+			set {
+				nudVolume.Visible = value;
+			}
+		}
 
 		/// <summary>
 		/// If the file last requested is open, its path is stored here. If a fallback file is open, this will be null.
@@ -68,14 +78,9 @@ namespace BrawlManagerLib {
 		}
 		public string LastFileCalledFor { get; private set; }
 
-		public int? Volume {
+		public byte? VolumeByte {
 			set {
-				app.Volume = value;
-			}
-		}
-		public double? VolumePercent {
-			set {
-				app.VolumePercent = value;
+				nudVolume.Value = value ?? -1;
 			}
 		}
 
@@ -86,6 +91,7 @@ namespace BrawlManagerLib {
 			LoadBrstms = true;
 			ShowPropertyGrid = true;
 			ShowFilename = false;
+			ShowVolumeSpinner = false;
 
 			AllowDrop = true;
 			this.DragEnter += SongPanel_DragEnter;
@@ -242,6 +248,10 @@ namespace BrawlManagerLib {
 				}
 				bcd.Dispose();
 			}
+		}
+
+		private void nudVolume_ValueChanged(object sender, EventArgs e) {
+			//app.VolumePercent = (double)nudVolume.Value / 127.0;
 		}
 	}
 }

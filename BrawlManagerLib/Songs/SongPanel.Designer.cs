@@ -26,9 +26,11 @@
 			this.grid = new System.Windows.Forms.PropertyGrid();
 			this.app = new System.Windows.Forms.AudioPlaybackPanel();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.songNameBar = new BrawlManagerLib.SongNameBar();
 			this.lblFilename = new System.Windows.Forms.Label();
+			this.nudVolume = new System.Windows.Forms.NumericUpDown();
+			this.songNameBar = new BrawlManagerLib.SongNameBar();
 			this.panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudVolume)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grid
@@ -48,6 +50,7 @@
 			this.app.Size = new System.Drawing.Size(300, 111);
 			this.app.TabIndex = 1;
 			this.app.TargetStreams = null;
+			this.app.Volume = null;
 			// 
 			// panel1
 			// 
@@ -59,15 +62,6 @@
 			this.panel1.Size = new System.Drawing.Size(300, 20);
 			this.panel1.TabIndex = 3;
 			// 
-			// songNameBar
-			// 
-			this.songNameBar.Dock = System.Windows.Forms.DockStyle.Top;
-			this.songNameBar.Index = 0;
-			this.songNameBar.Location = new System.Drawing.Point(26, 0);
-			this.songNameBar.Name = "songNameBar";
-			this.songNameBar.Size = new System.Drawing.Size(274, 20);
-			this.songNameBar.TabIndex = 2;
-			// 
 			// lblFilename
 			// 
 			this.lblFilename.Dock = System.Windows.Forms.DockStyle.Left;
@@ -78,16 +72,52 @@
 			this.lblFilename.TabIndex = 3;
 			this.lblFilename.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
+			// nudVolume
+			// 
+			this.nudVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.nudVolume.Enabled = false;
+			this.nudVolume.Location = new System.Drawing.Point(258, 22);
+			this.nudVolume.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+			this.nudVolume.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+			this.nudVolume.Name = "nudVolume";
+			this.nudVolume.Size = new System.Drawing.Size(40, 20);
+			this.nudVolume.TabIndex = 4;
+			this.nudVolume.Value = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+			this.nudVolume.ValueChanged += new System.EventHandler(this.nudVolume_ValueChanged);
+			// 
+			// songNameBar
+			// 
+			this.songNameBar.Dock = System.Windows.Forms.DockStyle.Top;
+			this.songNameBar.Index = 0;
+			this.songNameBar.Location = new System.Drawing.Point(26, 0);
+			this.songNameBar.Name = "songNameBar";
+			this.songNameBar.Size = new System.Drawing.Size(274, 20);
+			this.songNameBar.TabIndex = 2;
+			// 
 			// SongPanel
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.nudVolume);
 			this.Controls.Add(this.grid);
 			this.Controls.Add(this.app);
 			this.Controls.Add(this.panel1);
 			this.Name = "SongPanel";
 			this.Size = new System.Drawing.Size(300, 300);
 			this.panel1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.nudVolume)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -99,5 +129,6 @@
 		private SongNameBar songNameBar;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblFilename;
+		private System.Windows.Forms.NumericUpDown nudVolume;
 	}
 }

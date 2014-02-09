@@ -92,9 +92,9 @@ namespace BrawlSongManager {
 					string basename = Path.GetFileNameWithoutExtension(fi.FullName);
 					Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
 					if (song != null && csv.Settings.ContainsKey(song.ID)) {
-						songPanel1.VolumePercent = csv.Settings[song.ID] / 127.0;
+						songPanel1.VolumeByte = csv.Settings[song.ID];
 					} else {
-						songPanel1.Volume = 127;
+						songPanel1.VolumeByte = null;
 					}
 				}
 				RightControl = null;
