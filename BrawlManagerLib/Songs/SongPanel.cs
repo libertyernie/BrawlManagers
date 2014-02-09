@@ -68,6 +68,17 @@ namespace BrawlManagerLib {
 		}
 		public string LastFileCalledFor { get; private set; }
 
+		public int? Volume {
+			set {
+				app.Volume = value;
+			}
+		}
+		public double? VolumePercent {
+			set {
+				app.VolumePercent = value;
+			}
+		}
+
 		public SongPanel() {
 			InitializeComponent();
 
