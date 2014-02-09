@@ -88,10 +88,16 @@ namespace BrawlSongManager {
 			} else {
 				fi.Refresh(); // Update file size
 				songPanel1.Open(fi, FallbackDirectory);
+				if (csv != null) {
+					string basename = Path.GetFileNameWithoutExtension(fi.FullName);
+					Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
+					if (song != null && csv.Settings.ContainsKey(song.ID)) {
+						songPanel1.VolumePercent = csv.Settings[song.ID] / 127.0;
+					} else {
+						songPanel1.Volume = 127;
+					}
+				}
 				RightControl = null;
-				string basename = Path.GetFileNameWithoutExtension(fi.FullName);
-				Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
-				if (song != null) Console.WriteLine(song.DefaultName);
 			}
 			this.Refresh();
 		}
@@ -112,10 +118,12 @@ namespace BrawlSongManager {
 				"RSBE01.gct",
 				"/data/gecko/codes/RSBE01.gct",
 				"/codes/RSBE01.gct",
+				"../../../../codes/RSBE01.gct",
 			}) {
 				if (File.Exists(file)) {
 					csv = new CustomSongVolume(File.ReadAllBytes(file));
-					Console.WriteLine(csv);
+					int ct = csv.Settings.Count;
+					if (ct > 0) Console.WriteLine("Loaded Custom Song Volume (" + ct + " settings)");
 					break;
 				}
 			}
