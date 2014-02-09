@@ -17,7 +17,7 @@ namespace BrawlManagerLib {
 		public byte[] DataBefore { get; private set; } // Contains the GCT header
 		public byte[] DataAfter { get; private set; } // Contains the GCT footer
 
-		private List<Tuple<ushort, byte>> settings;
+		public Dictionary<ushort, byte> Settings { get; private set; }
 
 		public CustomSongVolume(string[] s) {
 			init(s);
@@ -63,7 +63,7 @@ A7AC0004 2C1D7FFF
 4A000000 90000000
 161C4000");
 		private void init(byte[] data) {
-			settings = new List<Tuple<ushort, byte>>();
+			Settings = new Dictionary<ushort, byte>();
 
 			int index = -1;
 			for (int line = 0; line < data.Length; line += 8) {
@@ -92,7 +92,7 @@ A7AC0004 2C1D7FFF
 					if (found_terminator) throw new InvalidDataException("Two terminators");
 					found_terminator = true;
 				} else {
-					settings.Add(new Tuple<ushort, byte>(u, data[index + i + 3]));
+					Settings.Add(u, data[index + i + 3]);
 				}
 			}
 			if (!found_terminator) throw new InvalidDataException("No terminators");
@@ -106,24 +106,24 @@ A7AC0004 2C1D7FFF
 
 		public override string ToString() {
 			return string.Join("\n", 
-				from p in settings
-				join s in SongIDMap.Songs on p.Item1 equals s.ID
-				select (p.Item2/127.0) + " <= " + s.DefaultName
+				from p in Settings
+				join s in SongIDMap.Songs on p.Key equals s.ID
+				select (p.Value/127.0) + " <= " + s.DefaultName
 			);
 		}
 
 		public byte[] ExportCode() {
-			int len = 0x48 + 4*settings.Count + 4;
+			int len = 0x48 + 4*Settings.Count + 4;
 			while (len % 8 != 0) len++;
 			byte[] b = new byte[len];
 			Array.Copy(CSV_HEADER, b, 0x44);
-			b[0x47] = (byte)(4*settings.Count + 4);
+			b[0x47] = (byte)(4*Settings.Count + 4);
 
 			int index = 0x48;
-			foreach (var s in settings) {
-				b[index] = (byte)(s.Item1 / 0x100);
-				b[index+1] = (byte)(s.Item1 % 0x100);
-				b[index+3] = (byte)(s.Item2);
+			foreach (var s in Settings) {
+				b[index] = (byte)(s.Key / 0x100);
+				b[index+1] = (byte)(s.Key % 0x100);
+				b[index+3] = (byte)(s.Value);
 				index += 4;
 			}
 			b[index] = 0x7F;
