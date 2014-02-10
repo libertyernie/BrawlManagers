@@ -42,6 +42,7 @@
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.changeDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.loadCustomSSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
 			this.currentStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.currentSongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,7 +121,7 @@
 			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.collapsibleSplitter4 = new BrawlManagerLib.CollapsibleSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
-			this.loadCustomSSSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
 			this.splitContainerLeft.Panel1.SuspendLayout();
 			this.splitContainerLeft.Panel2.SuspendLayout();
@@ -305,6 +306,13 @@
 			this.changeDirectoryToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
 			this.changeDirectoryToolStripMenuItem.Text = "Change directory...";
 			this.changeDirectoryToolStripMenuItem.Click += new System.EventHandler(this.changeDirectoryToolStripMenuItem_Click);
+			// 
+			// loadCustomSSSToolStripMenuItem
+			// 
+			this.loadCustomSSSToolStripMenuItem.Name = "loadCustomSSSToolStripMenuItem";
+			this.loadCustomSSSToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.loadCustomSSSToolStripMenuItem.Text = "Load custom SSS";
+			this.loadCustomSSSToolStripMenuItem.Click += new System.EventHandler(this.loadCustomSSSToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem3
 			// 
@@ -616,6 +624,7 @@
             this.listMenSelmapMarkUsageToolStripMenuItem,
             this.toolStripMenuItem1,
             this.addmissingPAT0EntriesToolStripMenuItem,
+            this.toolStripMenuItem6,
             this.downgradeMenSelmapMarksToolStripMenuItem,
             this.resizeAllPrevbasesToolStripMenuItem,
             this.drawBlocksOverPrevbasesToolStripMenuItem});
@@ -665,7 +674,7 @@
 			// 
 			this.addMenSelmapMarksToolStripMenuItem.Name = "addMenSelmapMarksToolStripMenuItem";
 			this.addMenSelmapMarksToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-			this.addMenSelmapMarksToolStripMenuItem.Text = "Add MenSelmapMark(s)";
+			this.addMenSelmapMarksToolStripMenuItem.Text = "Add SelmapMarks/SelchrMarks";
 			this.addMenSelmapMarksToolStripMenuItem.Click += new System.EventHandler(this.addMenSelmapMarksToolStripMenuItem_Click);
 			// 
 			// listMenSelmapMarkUsageToolStripMenuItem
@@ -684,7 +693,7 @@
 			// 
 			this.addmissingPAT0EntriesToolStripMenuItem.Name = "addmissingPAT0EntriesToolStripMenuItem";
 			this.addmissingPAT0EntriesToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-			this.addmissingPAT0EntriesToolStripMenuItem.Text = "Add \"missing\" PAT0 entries";
+			this.addmissingPAT0EntriesToolStripMenuItem.Text = "Prepare for expansion stages";
 			this.addmissingPAT0EntriesToolStripMenuItem.Click += new System.EventHandler(this.addmissingPAT0EntriesToolStripMenuItem_Click);
 			// 
 			// downgradeMenSelmapMarksToolStripMenuItem
@@ -698,7 +707,7 @@
 			// 
 			this.resizeAllPrevbasesToolStripMenuItem.Name = "resizeAllPrevbasesToolStripMenuItem";
 			this.resizeAllPrevbasesToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-			this.resizeAllPrevbasesToolStripMenuItem.Text = "Resize all Prevbases to selected size";
+			this.resizeAllPrevbasesToolStripMenuItem.Text = "Resize all Prevbases";
 			this.resizeAllPrevbasesToolStripMenuItem.Click += new System.EventHandler(this.resizeAllPrevbasesToolStripMenuItem_Click);
 			// 
 			// drawBlocksOverPrevbasesToolStripMenuItem
@@ -963,12 +972,10 @@
 			this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
 			this.portraitViewer1.TabIndex = 2;
 			// 
-			// loadCustomSSSToolStripMenuItem
+			// toolStripMenuItem6
 			// 
-			this.loadCustomSSSToolStripMenuItem.Name = "loadCustomSSSToolStripMenuItem";
-			this.loadCustomSSSToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-			this.loadCustomSSSToolStripMenuItem.Text = "Load custom SSS";
-			this.loadCustomSSSToolStripMenuItem.Click += new System.EventHandler(this.loadCustomSSSToolStripMenuItem_Click);
+			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+			this.toolStripMenuItem6.Size = new System.Drawing.Size(280, 6);
 			// 
 			// MainForm
 			// 
@@ -1098,6 +1105,7 @@
 		private System.Windows.Forms.ToolStripMenuItem brawlBoxStageToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem brawlBoxcommon5scselmapToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem loadCustomSSSToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
 
 
 
