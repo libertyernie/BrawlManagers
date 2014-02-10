@@ -532,7 +532,12 @@ namespace BrawlStageManager {
 
 		#region Public methods - special operations
 		public bool AddMenSelmapMark(string path, bool ask) {
-			Bitmap bitmap = new Bitmap(path);
+			string tmp = null;
+			if (path.EndsWith(".tex0", StringComparison.InvariantCultureIgnoreCase)) {
+				tmp = TempFiles.Create(".png");
+				NodeFactory.FromFile(null, path).Export(tmp);
+			}
+			Bitmap bitmap = new Bitmap(tmp ?? path);
 			string name = Path.GetFileNameWithoutExtension(path);
 			if (ask) {
 				using (var nameDialog = new AskNameDialog(BitmapUtilities.AlphaSwap(bitmap))) {
