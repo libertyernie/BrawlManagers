@@ -37,8 +37,8 @@
 			this.colorCode = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.lblSong = new System.Windows.Forms.Label();
 			this.lblIndex = new System.Windows.Forms.Label();
+			this.lblSong = new System.Windows.Forms.Label();
 			this.nudDefIndex = new System.Windows.Forms.NumericUpDown();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -159,6 +159,8 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.Controls.Add(this.panel2);
 			this.panel1.Controls.Add(this.nudDefIndex);
 			this.panel1.Controls.Add(this.lblStageID);
@@ -166,7 +168,6 @@
 			this.panel1.Controls.Add(this.nudIconID);
 			this.panel1.Controls.Add(this.btnUp);
 			this.panel1.Controls.Add(this.btnDown);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(84, 0);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(249, 62);
@@ -184,6 +185,17 @@
 			this.panel2.Size = new System.Drawing.Size(243, 21);
 			this.panel2.TabIndex = 12;
 			// 
+			// lblIndex
+			// 
+			this.lblIndex.Dock = System.Windows.Forms.DockStyle.Left;
+			this.lblIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblIndex.Location = new System.Drawing.Point(0, 0);
+			this.lblIndex.Name = "lblIndex";
+			this.lblIndex.Size = new System.Drawing.Size(26, 21);
+			this.lblIndex.TabIndex = 9;
+			this.lblIndex.Text = "88.";
+			this.lblIndex.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
 			// lblSong
 			// 
 			this.lblSong.Dock = System.Windows.Forms.DockStyle.Right;
@@ -195,17 +207,6 @@
 			this.lblSong.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.toolTip1.SetToolTip(this.lblSong, "Song");
 			this.lblSong.Visible = false;
-			// 
-			// lblIndex
-			// 
-			this.lblIndex.Dock = System.Windows.Forms.DockStyle.Left;
-			this.lblIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblIndex.Location = new System.Drawing.Point(0, 0);
-			this.lblIndex.Name = "lblIndex";
-			this.lblIndex.Size = new System.Drawing.Size(26, 21);
-			this.lblIndex.TabIndex = 9;
-			this.lblIndex.Text = "88.";
-			this.lblIndex.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// nudDefIndex
 			// 
@@ -242,7 +243,6 @@
 			// 
 			// radioButton1
 			// 
-			this.radioButton1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.radioButton1.Image = global::SSSEditor.Properties.Resources.stageicon;
 			this.radioButton1.Location = new System.Drawing.Point(0, 0);
 			this.radioButton1.Margin = new System.Windows.Forms.Padding(0);
