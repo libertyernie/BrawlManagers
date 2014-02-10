@@ -285,8 +285,10 @@ namespace BrawlStageManager {
 				}
 			} else {
 				TEX0Node tex0 = GetTexInfoFor(sender).tex0;
-				if (tex0 == null) return;
-				if (useTextureConverter) {
+				if (tex0 == null) {
+					AddNewTEX0(sender, filename);
+					return;
+				} else if (useTextureConverter) {
 					using (TextureConverterDialog dlg = new TextureConverterDialog()) {
 						dlg.ImageSource = filename;
 						dlg.InitialSize =
@@ -319,6 +321,33 @@ namespace BrawlStageManager {
 					UpdateImage();
 				}
 			}
+		}
+
+		private void AddNewTEX0(object sender, string filename) {
+			BRESNode md80 = sc_selmap.FindChild("MiscData[80]", false) as BRESNode;
+			string temp = Path.Combine(Path.GetTempPath(), GetTexInfoFor(sender).pat0.Texture + Path.GetExtension(filename));
+			File.Copy(filename, temp);
+			using (TextureConverterDialog dlg = new TextureConverterDialog()) {
+				dlg.ImageSource = temp;
+				dlg.InitialFormat =
+					sender == prevbase ? WiiPixelFormat.CMPR
+					: sender == frontstname ? WiiPixelFormat.I4
+					: sender == icon ? WiiPixelFormat.CI8
+					: sender == seriesicon ? WiiPixelFormat.I4
+					: sender == selmap_mark ? WiiPixelFormat.IA4
+					: (WiiPixelFormat?)null;
+				dlg.InitialSize =
+					sender == prevbase ? prevbaseResizeTo
+					: sender == frontstname ? frontstnameResizeTo
+					: sender == selmap_mark ? selmapMarkResizeTo
+					: null;
+				dlg.FormBorderStyle = FormBorderStyle.FixedSingle;
+				if (dlg.ShowDialog(null, md80) == DialogResult.OK) {
+					md80.IsDirty = true; // do this to be safe
+					UpdateImage();
+				}
+			}
+			File.Delete(temp);
 		}
 
 		public void save() {
@@ -466,6 +495,11 @@ namespace BrawlStageManager {
 			return tempFile;
 		}
 
+		/// <summary>
+		/// Adds PAT0 entries for each stage to the given PAT0TextureNode.
+		/// </summary>
+		/// <param name="pathToPAT0TextureNode">Path relative to sc_selmap_en</param>
+		/// <param name="fromExisting">Whether to use the previous existing PAT0's texture (true), or to go by number (false)</param>
 		private void AddPAT0(string pathToPAT0TextureNode, bool fromExisting) {
 			var look = sc_selmap.FindChild(pathToPAT0TextureNode, false).Children[0];
 			if (!(look is PAT0TextureNode)) {
@@ -481,7 +515,7 @@ namespace BrawlStageManager {
 													   select (PAT0TextureEntryNode)c).ToList();
 			if ((from c in childrenList where c.FrameIndex >= 40 && c.FrameIndex < 50 select c).Count() >= 10) {
 				MessageBox.Show("Skipping " + pathToPAT0TextureNode.Substring(pathToPAT0TextureNode.LastIndexOf('/') + 1) +
-					" - mappings for icon numbersx 40-49 already exist.");
+					" - mappings for icon numbers 40-49 already exist.");
 				return;
 			}
 
@@ -503,7 +537,6 @@ namespace BrawlStageManager {
 									 orderby e.Item2 descending
 									 select e.Item1).FirstOrDefault()
 									?? "ChangeThisTextureNamePlease")
-					/*: ((i > 31 && i < 50) || (i > 59)) ? basename + "." + "00"*/
 					: basename + "." + i.ToString("D2");
 				var entry = new PAT0TextureEntryNode();
 				tn.AddChild(entry);
@@ -557,17 +590,6 @@ namespace BrawlStageManager {
 
 		public void copyIconsToSelcharacter2() {
 			string fileToSaveTo = null;
-			/*int[] SelmapNumForThisSelcharacter2Num =
-			{ 00,
-			  01,02,03,04,05,
-			  06,08,10,09,11,
-			  12,13,14,15,16,
-			  17,18,21,22,23,
-			  27,26,19,24,07,
-			  25,20,30,31,28,29,
-			  32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,
-			  50,51,52,53,54,
-			  55,56,57,58,59};*/
 
 			ResourceNode s2 = null;
 			if (common5 != null) {
