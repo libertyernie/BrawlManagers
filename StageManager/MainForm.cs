@@ -841,9 +841,7 @@ namespace BrawlStageManager {
 			OpenDialog.Multiselect = false;
 		}
 		private void listMenSelmapMarkUsageToolStripMenuItem_Click(object sender, EventArgs e) {
-			new AboutBSM(null, null) {
-				AboutText = portraitViewer1.MenSelmapMarkUsageReport()
-			}.ShowDialog(this);
+			TextBoxDialog.ShowDialog(portraitViewer1.MenSelmapMarkUsageReport());
 		}
 		private void addmissingPAT0EntriesToolStripMenuItem_Click(object sender, EventArgs e) {
 			if (DialogResult.Yes == MessageBox.Show("Would you like to fill in the gaps on SelchrMark and SelmapMark PAT0 entries so there's one for each stage? (The mappings will remain the same until you modify them. Renaming MenSelchrMarks after doing this may cause problems, but for MenSelmapMarks it should be OK.)", "Confirm", MessageBoxButtons.YesNo)) {
