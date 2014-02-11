@@ -9,6 +9,7 @@ using BrawlLib.Wii.Textures;
 using BrawlStageManager.RegistryUtilities;
 using BrawlManagerLib;
 using System.Diagnostics;
+using BrawlStageManager.SingleUseDialogs;
 
 namespace BrawlStageManager {
 	public partial class MainForm : Form {
@@ -844,14 +845,15 @@ namespace BrawlStageManager {
 			TextBoxDialog.ShowDialog(portraitViewer1.MenSelmapMarkUsageReport());
 		}
 		private void addmissingPAT0EntriesToolStripMenuItem_Click(object sender, EventArgs e) {
-			if (DialogResult.Yes == MessageBox.Show("Would you like to fill in the gaps on PAT0 entries so there's one for each stage? (The mappings for MenSelchrMark and MenSelmapMark will remain the same until you modify them.", "Confirm", MessageBoxButtons.YesNo)) {
+			BatchAddPAT0Dialog dialog = new BatchAddPAT0Dialog();
+			if (dialog.ShowDialog(this) == DialogResult.OK) {
 				//TODO ask if they want different MenSelchrMark or MenSelmapMark for each stage
-				portraitViewer1.AddPAT0FromExisting("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnamelogoM");
-				portraitViewer1.AddPAT0FromExisting("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/lambert113");
-				portraitViewer1.AddPAT0ByStageNumber("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/basebgM");
-				portraitViewer1.AddPAT0ByStageNumber("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameM");
-				portraitViewer1.AddPAT0ByStageNumber("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameshadowM");
-				portraitViewer1.AddPAT0ByStageNumber("MiscData[80]/AnmTexPat(NW4R)/MenSelmapIcon/iconM");
+				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnamelogoM", dialog.SelmapMarkFromExisting);
+				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/lambert113", dialog.SelchrMarkFromExisting);
+				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/basebgM", false);
+				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameM", false);
+				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameshadowM", false);
+				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapIcon/iconM", false);
 				MessageBox.Show("Save the common5/sc_selmap file and restart the program for the changes to take effect.");
 			}
 		}

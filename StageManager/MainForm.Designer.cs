@@ -92,6 +92,7 @@
 			this.listMenSelmapMarkUsageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.addmissingPAT0EntriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
 			this.downgradeMenSelmapMarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resizeAllPrevbasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.drawBlocksOverPrevbasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,12 +117,11 @@
 			this.collapsibleSplitter3 = new BrawlManagerLib.CollapsibleSplitter();
 			this.collapsibleSplitter2 = new BrawlManagerLib.CollapsibleSplitter();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.collapsibleSplitter5 = new BrawlManagerLib.CollapsibleSplitter();
 			this.collapsibleSplitter1 = new BrawlManagerLib.CollapsibleSplitter();
 			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
+			this.collapsibleSplitter5 = new BrawlManagerLib.CollapsibleSplitter();
 			this.collapsibleSplitter4 = new BrawlManagerLib.CollapsibleSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
-			this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
 			this.splitContainerLeft.Panel1.SuspendLayout();
 			this.splitContainerLeft.Panel2.SuspendLayout();
@@ -693,8 +693,13 @@
 			// 
 			this.addmissingPAT0EntriesToolStripMenuItem.Name = "addmissingPAT0EntriesToolStripMenuItem";
 			this.addmissingPAT0EntriesToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-			this.addmissingPAT0EntriesToolStripMenuItem.Text = "Prepare for expansion stages";
+			this.addmissingPAT0EntriesToolStripMenuItem.Text = "Prepare sc_selmap for expansion stages";
 			this.addmissingPAT0EntriesToolStripMenuItem.Click += new System.EventHandler(this.addmissingPAT0EntriesToolStripMenuItem_Click);
+			// 
+			// toolStripMenuItem6
+			// 
+			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+			this.toolStripMenuItem6.Size = new System.Drawing.Size(280, 6);
 			// 
 			// downgradeMenSelmapMarksToolStripMenuItem
 			// 
@@ -905,21 +910,6 @@
 			this.panel2.Size = new System.Drawing.Size(311, 477);
 			this.panel2.TabIndex = 8;
 			// 
-			// collapsibleSplitter5
-			// 
-			this.collapsibleSplitter5.AnimationDelay = 20;
-			this.collapsibleSplitter5.AnimationStep = 20;
-			this.collapsibleSplitter5.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
-			this.collapsibleSplitter5.ControlToHide = this.splitContainerLeft;
-			this.collapsibleSplitter5.ExpandParentForm = false;
-			this.collapsibleSplitter5.Location = new System.Drawing.Point(144, 24);
-			this.collapsibleSplitter5.Name = "collapsibleSplitter5";
-			this.collapsibleSplitter5.Size = new System.Drawing.Size(8, 477);
-			this.collapsibleSplitter5.TabIndex = 1;
-			this.collapsibleSplitter5.TabStop = false;
-			this.collapsibleSplitter5.UseAnimations = false;
-			this.collapsibleSplitter5.VisualStyle = BrawlManagerLib.VisualStyles.Mozilla;
-			// 
 			// collapsibleSplitter1
 			// 
 			this.collapsibleSplitter1.AnimationDelay = 20;
@@ -946,6 +936,21 @@
 			this.stageInfoControl1.TabIndex = 0;
 			this.stageInfoControl1.UseRelDescription = false;
 			// 
+			// collapsibleSplitter5
+			// 
+			this.collapsibleSplitter5.AnimationDelay = 20;
+			this.collapsibleSplitter5.AnimationStep = 20;
+			this.collapsibleSplitter5.BorderStyle3D = System.Windows.Forms.Border3DStyle.Flat;
+			this.collapsibleSplitter5.ControlToHide = this.splitContainerLeft;
+			this.collapsibleSplitter5.ExpandParentForm = false;
+			this.collapsibleSplitter5.Location = new System.Drawing.Point(144, 24);
+			this.collapsibleSplitter5.Name = "collapsibleSplitter5";
+			this.collapsibleSplitter5.Size = new System.Drawing.Size(8, 477);
+			this.collapsibleSplitter5.TabIndex = 1;
+			this.collapsibleSplitter5.TabStop = false;
+			this.collapsibleSplitter5.UseAnimations = false;
+			this.collapsibleSplitter5.VisualStyle = BrawlManagerLib.VisualStyles.Mozilla;
+			// 
 			// collapsibleSplitter4
 			// 
 			this.collapsibleSplitter4.AnimationDelay = 20;
@@ -971,11 +976,6 @@
 			this.portraitViewer1.Name = "portraitViewer1";
 			this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
 			this.portraitViewer1.TabIndex = 2;
-			// 
-			// toolStripMenuItem6
-			// 
-			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-			this.toolStripMenuItem6.Size = new System.Drawing.Size(280, 6);
 			// 
 			// MainForm
 			// 

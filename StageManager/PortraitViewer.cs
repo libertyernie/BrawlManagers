@@ -500,7 +500,7 @@ namespace BrawlStageManager {
 		/// </summary>
 		/// <param name="pathToPAT0TextureNode">Path relative to sc_selmap_en</param>
 		/// <param name="fromExisting">Whether to use the previous existing PAT0's texture (true), or to go by number (false)</param>
-		private void AddPAT0(string pathToPAT0TextureNode, bool fromExisting) {
+		public void AddPAT0(string pathToPAT0TextureNode, bool fromExisting) {
 			var look = sc_selmap.FindChild(pathToPAT0TextureNode, false).Children[0];
 			if (!(look is PAT0TextureNode)) {
 				throw new FormatException(look.Name);
@@ -663,14 +663,6 @@ namespace BrawlStageManager {
 
 		public void openModifyPAT0Dialog() {
 			modifyPAT0.PerformClick();
-		}
-
-		public void AddPAT0FromExisting(string pathToPAT0TextureNode) {
-			AddPAT0(pathToPAT0TextureNode, true);
-		}
-
-		public void AddPAT0ByStageNumber(string pathToPAT0TextureNode) {
-			AddPAT0(pathToPAT0TextureNode, false);
 		}
 
 		public void generateName() {

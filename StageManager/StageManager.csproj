@@ -69,6 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NameCreatorSettings.cs" />
+    <Compile Include="SingleUseDialogs\BatchAddPAT0Dialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingleUseDialogs\BatchAddPAT0Dialog.Designer.cs">
+      <DependentUpon>BatchAddPAT0Dialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SongListItem.cs" />
     <Compile Include="SingleUseDialogs\AskNameDialog.cs">
       <SubType>Form</SubType>
@@ -142,6 +148,9 @@
     <Compile Include="TEX0Extension.cs" />
     <EmbeddedResource Include="SingleUseDialogs\AskNameDialog.resx">
       <DependentUpon>AskNameDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleUseDialogs\BatchAddPAT0Dialog.resx">
+      <DependentUpon>BatchAddPAT0Dialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingleUseDialogs\ConfirmIconReplaceDialog.resx">
       <DependentUpon>ConfirmIconReplaceDialog.cs</DependentUpon>
