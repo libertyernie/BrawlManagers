@@ -101,10 +101,10 @@
 			this.radioCopyFromPrevious.AutoSize = true;
 			this.radioCopyFromPrevious.Location = new System.Drawing.Point(155, 178);
 			this.radioCopyFromPrevious.Name = "radioCopyFromPrevious";
-			this.radioCopyFromPrevious.Size = new System.Drawing.Size(180, 30);
+			this.radioCopyFromPrevious.Size = new System.Drawing.Size(141, 30);
 			this.radioCopyFromPrevious.TabIndex = 6;
 			this.radioCopyFromPrevious.TabStop = true;
-			this.radioCopyFromPrevious.Text = "Copy from previous stage\r\n(Hanenbow / Pokémon Stadium)";
+			this.radioCopyFromPrevious.Text = "Use MenSelchrMark.20\r\nand MenSelmapMark.01";
 			this.radioCopyFromPrevious.UseVisualStyleBackColor = true;
 			// 
 			// label6

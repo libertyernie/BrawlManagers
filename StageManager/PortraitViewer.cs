@@ -499,8 +499,8 @@ namespace BrawlStageManager {
 		/// Adds PAT0 entries for each stage to the given PAT0TextureNode.
 		/// </summary>
 		/// <param name="pathToPAT0TextureNode">Path relative to sc_selmap_en</param>
-		/// <param name="fromExisting">Whether to use the previous existing PAT0's texture (true), or to go by number (false)</param>
-		public void AddPAT0(string pathToPAT0TextureNode, bool fromExisting) {
+		/// <param name="defaultName">The texture name to be used for new PAT0 entries. If null, the name will be taken from the first entry, with the number at the end replaced with the icon number.</param>
+		public void AddPAT0(string pathToPAT0TextureNode, string defaultName = null) {
 			var look = sc_selmap.FindChild(pathToPAT0TextureNode, false).Children[0];
 			if (!(look is PAT0TextureNode)) {
 				throw new FormatException(look.Name);
@@ -532,12 +532,7 @@ namespace BrawlStageManager {
 
 			for (int i = 1; i < 80; i++) {
 				string texname =
-					fromExisting ? ((from e in entries
-									 where e.Item2 <= i
-									 orderby e.Item2 descending
-									 select e.Item1).FirstOrDefault()
-									?? "ChangeThisTextureNamePlease")
-					: basename + "." + i.ToString("D2");
+					defaultName ?? basename + "." + i.ToString("D2");
 				var entry = new PAT0TextureEntryNode();
 				tn.AddChild(entry);
 				entry.FrameIndex = i;
