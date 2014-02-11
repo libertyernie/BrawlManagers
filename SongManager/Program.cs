@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using BrawlLib.SSBB.ResourceNodes;
 using System.Diagnostics;
 
 namespace BrawlSongManager {
@@ -43,8 +42,24 @@ namespace BrawlSongManager {
 			if (dir == null) {
 				dir = System.IO.Directory.GetCurrentDirectory();
 			}
+
+			try {
+				accessLibraries();
+			} catch (Exception e) {
+				MessageBox.Show(null, e.Message, e.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
 			form = new MainForm(dir, loadNames, loadBrstms, groupSongs);
 			Application.Run(form);
+		}
+
+		private static void accessLibraries() {
+			var D = BrawlLib.Properties.Settings.Default;
+			if (D.GetType().GetProperty("HideMDL0Errors") != null) {
+				D.GetType().InvokeMember("HideMDL0Errors", System.Reflection.BindingFlags.SetProperty, null, D, new object[] { true });
+			}
+			var Q = new BrawlManagerLib.CollapsibleSplitter();
 		}
 
 		private static string BSMHelp() {

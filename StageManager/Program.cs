@@ -20,9 +20,12 @@ namespace BrawlStageManager {
 			}
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			var D = BrawlLib.Properties.Settings.Default;
-			if (D.GetType().GetProperty("HideMDL0Errors") != null) {
-				D.GetType().InvokeMember("HideMDL0Errors", System.Reflection.BindingFlags.SetProperty, null, D, new object[] { true });
+
+			try {
+				accessLibraries();
+			} catch (Exception e) {
+				MessageBox.Show(null, e.Message, e.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
 			}
 
 			string dir = null;
@@ -40,8 +43,17 @@ namespace BrawlStageManager {
 				dir = DefaultDirectory.GetIfExists()
 					?? System.IO.Directory.GetCurrentDirectory();
 			}
+
 			form = new MainForm(dir, useRelDescription);
 			Application.Run(form);
+		}
+
+		private static void accessLibraries() {
+			var D = BrawlLib.Properties.Settings.Default;
+			if (D.GetType().GetProperty("HideMDL0Errors") != null) {
+				D.GetType().InvokeMember("HideMDL0Errors", System.Reflection.BindingFlags.SetProperty, null, D, new object[] { true });
+			}
+			var Q = new BrawlManagerLib.CollapsibleSplitter();
 		}
 
 		private static string BSMHelp() {
