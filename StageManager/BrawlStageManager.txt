@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 3.2 - January 21, 2013
+﻿Brawl Stage Manager 3.3 - February 12, 2013
 Copyright © 2014 libertyernie
 http://lakora.us/brawl/stagemanager
 
@@ -25,12 +25,13 @@ Right bracket (]):	Generate a new FrontStname using a custom font
 -------- Notes --------
 
 You can copy your icons to the sc_selcharacter2 (Random Stage Select menu) and
-to the mu_menumain (for My Music) from the Tools menu. For sc_selcharacter2,
-Stage Manager will read your Custom SSS code (if any) to figure out which
-stages will be selectable and copy the icons accordingly; for mu_menumain,
-if you have a texture named "MenSelmapIcon.XX" along with the other icons,
-Stage Manager will replace each of the STGCUSTOM stages with this icon for My
-Music only. (Project M also uses MenSelmapIcon.XX for stage striking.)
+to the mu_menumain (for My Music) from the Tools menu.
+* For sc_selcharacter2, Stage Manager will read your Custom SSS code (if any)
+  to figure out which stages will be selectable and copy the icons accordingly.
+* For mu_menumain, Stage Manager will replace each of the STGCUSTOM icons with
+  a warning icon for My Music only. (MenSelmapIcon.XX will be used if present;
+  otherwise, an icon embedded in BrawlStageManager.exe will be used instead.)
+  Music titles will also be copied from info.pac if it exists.
 
 -------- Detailed Instructions --------
 
@@ -88,16 +89,16 @@ the tilde (~) button on your keyboard.)
 
 ----------------------------------------
 
-New in 3.2:
-	* New panel (taken from Song Manager) allows you to play, replace, and delete
-	  .brstm files associated with a stage - includes normal stage/song mappings
-	  and any instances of Stage-Dependent Song Loader found in the codeset
-	* Song titles included when updating mu_menumain, if info.pac exists
-	* Folder import (drag and drop) now includes the first BRSTM found in the dir
-	* Folder export includes the BRSTM, but only if a SDSL code is being used
+New in 3.3:
+	* Textures that don't exist (solid dark red) can be added by drag-and-drop or through "Replace"
+	* "Add missing PAT0 entries" renamed to "prepare sc_selmap for expansion stages";
+	  * Also has a nice options/info dialog
+	  * You can choose to have a MenSelchrMark / MenSelmapMark for each stage, or use the Battlefield ones
 
-	* Use collapsible splitters for all top/bottom/left/right docked panels
-	* PAT0 modification dialog lets you paste a name into the box if it's valid
-	* If no PAT0 exists for a stage, the one for the stage before it will be
-	  shown, with a brown border
-	* border.png more than 4 pixels wide can now be used for border replace ([)
+	* Fix importing of .tex0 files (for drag-and-drop and MenSelmapMark import)
+	* TextureConverterDialog acts as a normal window (non-modal with a taskbar button)
+	* mu_menumain export will still work if there's no info.pac
+	* Option added to load a different Custom SSS code (and SDSL codes) than the one auto-detected
+	* Typing the name [ in the stage name generator will try to open "genname.bat"
+	  or "genname.exe" with a temporary .png file path as an argument; once that
+	  program closes, Stage Manager will read from that temp file
