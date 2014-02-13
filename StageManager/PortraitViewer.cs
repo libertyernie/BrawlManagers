@@ -297,6 +297,7 @@ namespace BrawlStageManager {
 							: sender == selmap_mark ? selmapMarkResizeTo
 							: null;
 						dlg.FormBorderStyle = FormBorderStyle.FixedSingle;
+						dlg.ShowInTaskbar = true;
 						if (dlg.ShowDialog(null, tex0) == DialogResult.OK) {
 							tex0.IsDirty = true;
 							UpdateImage();
@@ -342,6 +343,7 @@ namespace BrawlStageManager {
 					: sender == selmap_mark ? selmapMarkResizeTo
 					: null;
 				dlg.FormBorderStyle = FormBorderStyle.FixedSingle;
+				dlg.ShowInTaskbar = true;
 				if (dlg.ShowDialog(null, md80) == DialogResult.OK) {
 					md80.IsDirty = true; // do this to be safe
 					UpdateImage();
