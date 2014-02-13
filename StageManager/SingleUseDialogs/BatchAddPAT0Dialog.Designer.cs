@@ -33,6 +33,7 @@
 			this.label6 = new System.Windows.Forms.Label();
 			this.OK = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
+			this.lblVSeparator = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -69,7 +70,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(152, 48);
+			this.label4.Location = new System.Drawing.Point(161, 48);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(80, 26);
 			this.label4.TabIndex = 3;
@@ -78,7 +79,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(152, 74);
+			this.label5.Location = new System.Drawing.Point(161, 74);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(161, 65);
 			this.label5.TabIndex = 4;
@@ -88,7 +89,7 @@
 			// radioOneEach
 			// 
 			this.radioOneEach.AutoSize = true;
-			this.radioOneEach.Location = new System.Drawing.Point(155, 142);
+			this.radioOneEach.Location = new System.Drawing.Point(164, 142);
 			this.radioOneEach.Name = "radioOneEach";
 			this.radioOneEach.Size = new System.Drawing.Size(142, 30);
 			this.radioOneEach.TabIndex = 5;
@@ -99,7 +100,7 @@
 			// radioCopyFromPrevious
 			// 
 			this.radioCopyFromPrevious.AutoSize = true;
-			this.radioCopyFromPrevious.Location = new System.Drawing.Point(155, 178);
+			this.radioCopyFromPrevious.Location = new System.Drawing.Point(164, 178);
 			this.radioCopyFromPrevious.Name = "radioCopyFromPrevious";
 			this.radioCopyFromPrevious.Size = new System.Drawing.Size(141, 30);
 			this.radioCopyFromPrevious.TabIndex = 6;
@@ -136,6 +137,15 @@
 			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			// 
+			// lblVSeparator
+			// 
+			this.lblVSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.lblVSeparator.Location = new System.Drawing.Point(152, 47);
+			this.lblVSeparator.Name = "lblVSeparator";
+			this.lblVSeparator.Size = new System.Drawing.Size(3, 161);
+			this.lblVSeparator.TabIndex = 10;
+			this.lblVSeparator.Text = "label7";
+			// 
 			// BatchAddPAT0Dialog
 			// 
 			this.AcceptButton = this.OK;
@@ -143,6 +153,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
 			this.ClientSize = new System.Drawing.Size(334, 261);
+			this.Controls.Add(this.lblVSeparator);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.OK);
 			this.Controls.Add(this.label6);
@@ -172,5 +183,6 @@
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button OK;
 		private System.Windows.Forms.Button btnCancel;
+		private System.Windows.Forms.Label lblVSeparator;
 	}
 }
