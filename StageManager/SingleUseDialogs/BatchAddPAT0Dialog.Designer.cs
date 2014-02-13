@@ -165,7 +165,7 @@
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Name = "BatchAddPAT0Dialog";
-			this.Text = "BatchAddPAT0Dialog";
+			this.Text = "Prepare PAT0 Entries";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
