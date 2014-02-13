@@ -1,4 +1,4 @@
-﻿SSS Editor 3.2 - January 22, 2013
+﻿SSS Editor 3.3 - February 13, 2014
 Copyright © 2014 libertyernie
 http://lakora.us/brawl/ssseditor
 
@@ -109,8 +109,6 @@ where [index] is a reference to the stage/icon list below. For example, putting 
 
 -------- Changes --------
 
-Changes in 3.2:
-	* Tooltip on song filename now shows 4-digit ID and default song name
-	* ./minusery/pf/system/common5.pac added to default search paths
-	* Other changes to work with updates in BrawlManagerLib.dll
-
+Changes in 3.3:
+	* Icon is now at the top of the row, not in the middle (workaround for when
+	  the row gets really big after you delete some stages)

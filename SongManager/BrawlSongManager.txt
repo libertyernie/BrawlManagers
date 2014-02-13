@@ -1,4 +1,4 @@
-﻿Brawl Song Manager 3.2 - January 22, 2014
+﻿Brawl Song Manager 3.3 - February 13, 2014
 Copyright © 2014 libertyernie
 http://lakora.us/brawl/songmanager
 
@@ -42,7 +42,9 @@ running BrawlSongManager.exe from the root of your SD card.)
 
 ----------------------------------------
 
-Changes in 3.2:
-	* Code for stage/song mappings and center panel moved to
-	  BrawlManagerLi.dllb, to enable integration with Stage Manager
-	* ./minusery/pf/sound/strm added to search paths
+Changes in 3.3:
+	* Song Manager now deletes temporary files upon exit
+	* You can specify a fallback directory containing Brawl's music, where
+	  BRSTMs will be loaded from if they don't exist in the current directory
+	* Song Manager now reads your GCT and looks for the Custom Song Volume code;
+	  custom song volumes will be displayed (but not applied to playback)
