@@ -94,7 +94,7 @@ namespace BrawlSongManager {
 					if (song != null && csv.Settings.ContainsKey(song.ID)) {
 						songPanel1.VolumeByte = csv.Settings[song.ID];
 					} else {
-						songPanel1.VolumeByte = null;
+						songPanel1.VolumeByte = song.DefaultVolume;
 					}
 				}
 				RightControl = null;
