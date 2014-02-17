@@ -91,7 +91,9 @@ namespace BrawlSongManager {
 				if (csv != null) {
 					string basename = Path.GetFileNameWithoutExtension(fi.FullName);
 					Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
-					if (song != null && csv.Settings.ContainsKey(song.ID)) {
+					if (song == null) {
+						songPanel1.VolumeByte = null;
+					} else if (csv.Settings.ContainsKey(song.ID)) {
 						songPanel1.VolumeByte = csv.Settings[song.ID];
 					} else {
 						songPanel1.VolumeByte = song.DefaultVolume;
