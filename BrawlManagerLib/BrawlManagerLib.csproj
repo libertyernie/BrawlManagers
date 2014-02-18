@@ -54,6 +54,11 @@
     </Compile>
     <Compile Include="CustomSongVolume.cs" />
     <Compile Include="CustomSSS.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Songs\Song.cs" />
     <Compile Include="ByteUtilities.cs" />
     <Compile Include="CopyDialog.cs">
@@ -100,6 +105,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NameDialog.resx">
       <DependentUpon>NameDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Songs\SongNameBar.resx">
       <DependentUpon>SongNameBar.cs</DependentUpon>

@@ -6,6 +6,7 @@ using System.IO;
 using BrawlManagerLib;
 using System.Audio;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace BrawlManagerLib {
 	public partial class SongPanel : UserControl {
@@ -81,6 +82,16 @@ namespace BrawlManagerLib {
 		public byte? VolumeByte {
 			set {
 				nudVolume.Value = value ?? -1;
+			}
+		}
+		public string VolumeToolTip {
+			set {
+				toolTip1.SetToolTip(volumeIcon, value);
+			}
+		}
+		public Image VolumeIcon {
+			set {
+				volumeIcon.Image = value == null ? null : BitmapUtilities.Resize(value, volumeIcon.Size);
 			}
 		}
 
@@ -251,7 +262,7 @@ namespace BrawlManagerLib {
 		}
 
 		private void nudVolume_ValueChanged(object sender, EventArgs e) {
-			//app.VolumePercent = (double)nudVolume.Value / 127.0;
+			app.VolumePercent = nudVolume.Value < 0 ? 1.0 : (double)nudVolume.Value / 127.0;
 		}
 	}
 }

@@ -7,6 +7,7 @@ using System.Audio;
 using System.Collections.Generic;
 using BrawlManagerLib;
 using System.Linq;
+using System.Drawing;
 
 namespace BrawlSongManager {
 	public partial class MainForm : Form {
@@ -88,17 +89,23 @@ namespace BrawlSongManager {
 			} else {
 				fi.Refresh(); // Update file size
 				songPanel1.Open(fi, FallbackDirectory);
-				if (csv != null) {
-					string basename = Path.GetFileNameWithoutExtension(fi.FullName);
-					Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
-					if (song == null) {
-						songPanel1.VolumeByte = null;
-					} else if (csv.Settings.ContainsKey(song.ID)) {
-						songPanel1.VolumeByte = csv.Settings[song.ID];
-					} else {
-						songPanel1.VolumeByte = song.DefaultVolume;
-					}
+
+				string basename = Path.GetFileNameWithoutExtension(fi.FullName);
+				Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
+				if (song == null) {
+					songPanel1.VolumeByte = null;
+					songPanel1.VolumeToolTip = null;
+					songPanel1.VolumeIcon = null;
+				} else if (csv != null && csv.Settings.ContainsKey(song.ID)) {
+					songPanel1.VolumeByte = csv.Settings[song.ID];
+					songPanel1.VolumeToolTip = "Custom Song Volume code set";
+					songPanel1.VolumeIcon = SystemIcons.Information.ToBitmap();
+				} else {
+					songPanel1.VolumeByte = (song.DefaultVolume ?? 127);
+					songPanel1.VolumeToolTip = (song.DefaultVolume == null ? "Default volume unknown" : null);
+					songPanel1.VolumeIcon = (song.DefaultVolume == null ? SystemIcons.Warning.ToBitmap() : null);
 				}
+
 				RightControl = null;
 			}
 			this.Refresh();
