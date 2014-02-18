@@ -31,6 +31,8 @@ namespace BrawlSongManager {
 		private string FallbackDirectory;
 		private CustomSongVolume csv;
 
+		private ushort? currentSongID; // for CSV code
+
 		private enum ListType {
 			FilesInDir, // default
 			GroupByStage, // Brawl
@@ -92,18 +94,25 @@ namespace BrawlSongManager {
 
 				string basename = Path.GetFileNameWithoutExtension(fi.FullName);
 				Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
+				currentSongID = (song == null ? (ushort?)null : song.ID);
 				if (song == null) {
-					songPanel1.VolumeByte = null;
-					songPanel1.VolumeToolTip = null;
-					songPanel1.VolumeIcon = null;
+					songPanel1.VolumeByte = 127;
+					songPanel1.VolumeToolTip = "Filename not recognized";
+					songPanel1.VolumeIcon = SystemIcons.Warning.ToBitmap();
 				} else if (csv != null && csv.Settings.ContainsKey(song.ID)) {
 					songPanel1.VolumeByte = csv.Settings[song.ID];
 					songPanel1.VolumeToolTip = "Custom Song Volume code set";
 					songPanel1.VolumeIcon = SystemIcons.Information.ToBitmap();
 				} else {
-					songPanel1.VolumeByte = (song.DefaultVolume ?? 127);
-					songPanel1.VolumeToolTip = (song.DefaultVolume == null ? "Default volume unknown" : null);
-					songPanel1.VolumeIcon = (song.DefaultVolume == null ? SystemIcons.Warning.ToBitmap() : null);
+					if (song.DefaultVolume == null) {
+						songPanel1.VolumeByte = 127;
+						songPanel1.VolumeToolTip = "Default volume unknown";
+						songPanel1.VolumeIcon = SystemIcons.Warning.ToBitmap();
+					} else {
+						songPanel1.VolumeByte = song.DefaultVolume;
+						songPanel1.VolumeToolTip = null;
+						songPanel1.VolumeIcon = null;
+					}
 				}
 
 				RightControl = null;
@@ -115,7 +124,31 @@ namespace BrawlSongManager {
 			CurrentDirectory = newpath; // Update the program's working directory
 			this.Text = this.Text.Substring(0, this.Text.IndexOf('-')) + "- " + newpath; // Update titlebar
 
+			DirectoryInfo dir = new DirectoryInfo(CurrentDirectory);
+			RightControl = chooseLabel;
+			brstmFiles = dir.GetFiles("*.brstm");
+
+			// Special code for the root directory of a drive
+			if (brstmFiles.Length == 0) {
+				DirectoryInfo search = new DirectoryInfo(dir.FullName + "\\private\\wii\\app\\RSBE\\pf\\sound\\strm");
+				if (search.Exists) {
+					changeDirectory(search); // Change to the typical song folder used by the FPC, if it exists on the drive
+					return;
+				}
+				search = new DirectoryInfo(dir.FullName + "\\projectm\\pf\\sound\\strm");
+				if (search.Exists) {
+					changeDirectory(search);
+					return;
+				}
+				search = new DirectoryInfo(dir.FullName + "\\minusery\\pf\\sound\\strm");
+				if (search.Exists) {
+					changeDirectory(search);
+					return;
+				}
+			}
+
 			refreshDirectory();
+			findGCT();
 		}
 		private void changeDirectory(DirectoryInfo path) {
 			changeDirectory(path.FullName);
@@ -145,24 +178,6 @@ namespace BrawlSongManager {
 			RightControl = chooseLabel;
 			brstmFiles = dir.GetFiles("*.brstm");
 
-			// Special code for the root directory of a drive
-			if (brstmFiles.Length == 0) {
-				DirectoryInfo search = new DirectoryInfo(dir.FullName + "\\private\\wii\\app\\RSBE\\pf\\sound\\strm");
-				if (search.Exists) {
-					changeDirectory(search); // Change to the typical song folder used by the FPC, if it exists on the drive
-					return;
-				}
-				search = new DirectoryInfo(dir.FullName + "\\projectm\\pf\\sound\\strm");
-				if (search.Exists) {
-					changeDirectory(search);
-					return;
-				}
-				search = new DirectoryInfo(dir.FullName + "\\minusery\\pf\\sound\\strm");
-				if (search.Exists) {
-					changeDirectory(search);
-					return;
-				}
-			}
 			Array.Sort(brstmFiles, delegate(FileInfo f1, FileInfo f2) {
 				return f1.Name.ToLower().CompareTo(f2.Name.ToLower()); // Sort by filename, case-insensitive
 			});
@@ -177,13 +192,20 @@ namespace BrawlSongManager {
 					listBox1.Items.AddRange(SongsByStage.FromCurrentDir);
 					// make sure we don't add anything twice
 					foreach (object o in SongsByStage.FromCurrentDir) {
-						if (o is SongsByStage.SongInfo) {
-							filenamesAdded.Add(((SongsByStage.SongInfo)o).File.Name);
+						if (o is SongInfo) {
+							filenamesAdded.Add(((SongInfo)o).File.Name);
 						}
 					}
 					// add remainder
 					foreach (FileInfo f in brstmFiles) {
-						if (!filenamesAdded.Contains(f.Name)) listBox1.Items.Add(new SongsByStage.SongInfo(f));
+						if (!filenamesAdded.Contains(f.Name)) listBox1.Items.Add(new SongInfo(f));
+					}
+					break;
+				case ListType.WithCSV:
+					if (csv != null) {
+						foreach (var pair in csv.Settings) {
+							listBox1.Items.Add(new SongInfo(pair.Key, csv));
+						}
 					}
 					break;
 			}
@@ -198,7 +220,6 @@ namespace BrawlSongManager {
 			}
 
 			statusToolStripMenuItem.Text = songPanel1.findInfoFile();
-			findGCT();
 		}
 
 		private void closing(object sender, FormClosingEventArgs e) {
@@ -251,8 +272,8 @@ namespace BrawlSongManager {
 		/// </summary>
 		private void loadSelectedFile() {
 			object o = listBox1.SelectedItem;
-			if (o is SongsByStage.SongInfo) {
-				SongsByStage.SongInfo s = (SongsByStage.SongInfo)o;
+			if (o is SongInfo) {
+				SongInfo s = (SongInfo)o;
 				s.File.Refresh();
 				listBox1.Refresh();
 				open(s.File);
@@ -315,12 +336,32 @@ namespace BrawlSongManager {
 		}
 
 		private void groupSongsByStageToolStripMenuItem_Click(object sender, EventArgs e) {
-			listType = groupSongsByStageToolStripMenuItem.Checked
-				? ListType.GroupByStage
+			if (!groupSongsByStageToolStripMenuItem.Checked) {
+				groupSongsByStageToolStripMenuItem.Checked = true;
+				onlyShowSongsWithCSVCodeToolStripMenuItem.Checked = false;
+			} else {
+				groupSongsByStageToolStripMenuItem.Checked = false;
+			}
+			updateListType();
+		}
+
+		private void onlyShowSongsWithCSVCodeToolStripMenuItem_Click(object sender, EventArgs e) {
+			if (!onlyShowSongsWithCSVCodeToolStripMenuItem.Checked) {
+				onlyShowSongsWithCSVCodeToolStripMenuItem.Checked = true;
+				groupSongsByStageToolStripMenuItem.Checked = false;
+			} else {
+				onlyShowSongsWithCSVCodeToolStripMenuItem.Checked = false;
+			}
+			updateListType();
+		}
+		#endregion
+
+		private void updateListType() {
+			listType = groupSongsByStageToolStripMenuItem.Checked ? ListType.GroupByStage
+				: onlyShowSongsWithCSVCodeToolStripMenuItem.Checked ? ListType.WithCSV
 				: ListType.FilesInDir;
 			refreshDirectory();
 		}
-		#endregion
 
 		private void saveInfopacToolStripMenuItem_Click(object sender, EventArgs e) {
 			songPanel1.save();
