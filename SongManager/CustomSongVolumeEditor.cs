@@ -55,6 +55,7 @@ namespace BrawlSongManager {
 			} else {
 				btnAdd.Text = "Add";
 				nudVolume.Enabled = false;
+				nudVolume.Value = defaultFor(ID);
 			}
 		}
 
@@ -74,7 +75,7 @@ namespace BrawlSongManager {
 		}
 
 		private void nudVolume_ValueChanged(object sender, EventArgs e) {
-			CSV.Settings[ID] = Value;
+			if (nudVolume.Enabled) CSV.Settings[ID] = Value;
 			ValueChanged(this, new EventArgs());
 		}
 	}

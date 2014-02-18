@@ -94,20 +94,20 @@ namespace BrawlSongManager {
 				Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
 				customSongVolumeEditor1.ID = (song != null ? song.ID : (ushort)0);
 				if (song == null) {
-					songPanel1.VolumeByte = 127;
+					//songPanel1.VolumeByte = 127;
 					songPanel1.VolumeToolTip = "Filename not recognized";
 					songPanel1.VolumeIcon = SystemIcons.Warning.ToBitmap();
 				} else if (csv != null && csv.Settings.ContainsKey(song.ID)) {
-					songPanel1.VolumeByte = csv.Settings[song.ID];
+					//songPanel1.VolumeByte = csv.Settings[song.ID];
 					songPanel1.VolumeToolTip = "Custom Song Volume code set";
 					songPanel1.VolumeIcon = SystemIcons.Information.ToBitmap();
 				} else {
 					if (song.DefaultVolume == null) {
-						songPanel1.VolumeByte = 127;
+						//songPanel1.VolumeByte = 127;
 						songPanel1.VolumeToolTip = "Default volume unknown";
 						songPanel1.VolumeIcon = SystemIcons.Warning.ToBitmap();
 					} else {
-						songPanel1.VolumeByte = song.DefaultVolume;
+						//songPanel1.VolumeByte = song.DefaultVolume;
 						songPanel1.VolumeToolTip = null;
 						songPanel1.VolumeIcon = null;
 					}
