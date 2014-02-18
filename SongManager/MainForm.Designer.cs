@@ -31,6 +31,7 @@
 			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.songPanel1 = new BrawlManagerLib.SongPanel();
 			this.rightLabel = new System.Windows.Forms.Label();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +42,9 @@
 			this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadNamesFromInfopacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadBRSTMPlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.groupSongsByStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.onlyShowSongsWithCSVCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.updateMumenumainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,9 +52,7 @@
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.splitContainerTop = new System.Windows.Forms.SplitContainer();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-			this.onlyShowSongsWithCSVCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.songPanel1 = new BrawlManagerLib.SongPanel();
+			this.customSongVolumeEditor1 = new BrawlSongManager.CustomSongVolumeEditor();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -122,6 +123,16 @@
 			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
 			this.deleteToolStripMenuItem.Text = "Delete";
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+			// 
+			// songPanel1
+			// 
+			this.songPanel1.AllowDrop = true;
+			this.songPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.songPanel1.Location = new System.Drawing.Point(0, 0);
+			this.songPanel1.Name = "songPanel1";
+			this.songPanel1.ShowVolumeSpinner = true;
+			this.songPanel1.Size = new System.Drawing.Size(408, 290);
+			this.songPanel1.TabIndex = 1;
 			// 
 			// rightLabel
 			// 
@@ -216,12 +227,24 @@
 			this.loadBRSTMPlayerToolStripMenuItem.Text = "Load BRSTM player";
 			this.loadBRSTMPlayerToolStripMenuItem.Click += new System.EventHandler(this.loadBRSTMPlayerToolStripMenuItem_Click);
 			// 
+			// toolStripMenuItem1
+			// 
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(240, 6);
+			// 
 			// groupSongsByStageToolStripMenuItem
 			// 
 			this.groupSongsByStageToolStripMenuItem.Name = "groupSongsByStageToolStripMenuItem";
 			this.groupSongsByStageToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
 			this.groupSongsByStageToolStripMenuItem.Text = "Group songs by stage (SSBB)";
 			this.groupSongsByStageToolStripMenuItem.Click += new System.EventHandler(this.groupSongsByStageToolStripMenuItem_Click);
+			// 
+			// onlyShowSongsWithCSVCodeToolStripMenuItem
+			// 
+			this.onlyShowSongsWithCSVCodeToolStripMenuItem.Name = "onlyShowSongsWithCSVCodeToolStripMenuItem";
+			this.onlyShowSongsWithCSVCodeToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+			this.onlyShowSongsWithCSVCodeToolStripMenuItem.Text = "Only show songs with CSV code";
+			this.onlyShowSongsWithCSVCodeToolStripMenuItem.Click += new System.EventHandler(this.onlyShowSongsWithCSVCodeToolStripMenuItem_Click);
 			// 
 			// toolsToolStripMenuItem
 			// 
@@ -284,33 +307,22 @@
 			this.splitContainerTop.SplitterDistance = 197;
 			this.splitContainerTop.TabIndex = 0;
 			// 
-			// toolStripMenuItem1
+			// customSongVolumeEditor1
 			// 
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(240, 6);
-			// 
-			// onlyShowSongsWithCSVCodeToolStripMenuItem
-			// 
-			this.onlyShowSongsWithCSVCodeToolStripMenuItem.Name = "onlyShowSongsWithCSVCodeToolStripMenuItem";
-			this.onlyShowSongsWithCSVCodeToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-			this.onlyShowSongsWithCSVCodeToolStripMenuItem.Text = "Only show songs with CSV code";
-			this.onlyShowSongsWithCSVCodeToolStripMenuItem.Click += new System.EventHandler(this.onlyShowSongsWithCSVCodeToolStripMenuItem_Click);
-			// 
-			// songPanel1
-			// 
-			this.songPanel1.AllowDrop = true;
-			this.songPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.songPanel1.Location = new System.Drawing.Point(0, 0);
-			this.songPanel1.Name = "songPanel1";
-			this.songPanel1.ShowVolumeSpinner = true;
-			this.songPanel1.Size = new System.Drawing.Size(408, 290);
-			this.songPanel1.TabIndex = 1;
+			this.customSongVolumeEditor1.CSV = null;
+			this.customSongVolumeEditor1.ID = ((ushort)(0));
+			this.customSongVolumeEditor1.Location = new System.Drawing.Point(271, 0);
+			this.customSongVolumeEditor1.Name = "customSongVolumeEditor1";
+			this.customSongVolumeEditor1.Size = new System.Drawing.Size(150, 32);
+			this.customSongVolumeEditor1.TabIndex = 2;
+			this.customSongVolumeEditor1.ValueChanged += new System.EventHandler(this.customSongVolumeEditor1_ValueChanged);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(592, 314);
+			this.Controls.Add(this.customSongVolumeEditor1);
 			this.Controls.Add(this.splitContainerTop);
 			this.Controls.Add(this.menuStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -363,6 +375,7 @@
 		private System.Windows.Forms.ToolStripMenuItem openFallbackDirectoryToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem onlyShowSongsWithCSVCodeToolStripMenuItem;
+		private CustomSongVolumeEditor customSongVolumeEditor1;
 
 
 

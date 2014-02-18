@@ -31,8 +31,6 @@ namespace BrawlSongManager {
 		private string FallbackDirectory;
 		private CustomSongVolume csv;
 
-		private ushort? currentSongID; // for CSV code
-
 		private enum ListType {
 			FilesInDir, // default
 			GroupByStage, // Brawl
@@ -94,7 +92,7 @@ namespace BrawlSongManager {
 
 				string basename = Path.GetFileNameWithoutExtension(fi.FullName);
 				Song song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
-				currentSongID = (song == null ? (ushort?)null : song.ID);
+				customSongVolumeEditor1.ID = (song != null ? song.ID : (ushort)0);
 				if (song == null) {
 					songPanel1.VolumeByte = 127;
 					songPanel1.VolumeToolTip = "Filename not recognized";
@@ -166,6 +164,7 @@ namespace BrawlSongManager {
 					csv = new CustomSongVolume(File.ReadAllBytes(file));
 					int ct = csv.Settings.Count;
 					if (ct > 0) Console.WriteLine("Loaded Custom Song Volume (" + ct + " settings)");
+					customSongVolumeEditor1.CSV = csv;
 					break;
 				}
 			}
@@ -437,6 +436,10 @@ namespace BrawlSongManager {
 				File.Delete(tempfile);
 				File.Delete(infotmp);
 			}
+		}
+
+		private void customSongVolumeEditor1_ValueChanged(object sender, EventArgs e) {
+			songPanel1.VolumeByte = customSongVolumeEditor1.Value;
 		}
 
 		private void closed(object sender, FormClosedEventArgs e) {
