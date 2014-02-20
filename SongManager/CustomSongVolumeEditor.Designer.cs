@@ -61,7 +61,7 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.pictureBox1.Location = new System.Drawing.Point(45, 2);
+			this.pictureBox1.Location = new System.Drawing.Point(3, 2);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(16, 16);
 			this.pictureBox1.TabIndex = 2;
@@ -70,9 +70,9 @@
 			// lblSongID
 			// 
 			this.lblSongID.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.lblSongID.Location = new System.Drawing.Point(3, 0);
+			this.lblSongID.Location = new System.Drawing.Point(25, 0);
 			this.lblSongID.Name = "lblSongID";
-			this.lblSongID.Size = new System.Drawing.Size(36, 20);
+			this.lblSongID.Size = new System.Drawing.Size(98, 20);
 			this.lblSongID.TabIndex = 3;
 			this.lblSongID.Text = "EEEE";
 			this.lblSongID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -81,10 +81,10 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.lblSongID);
 			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.nudVolume);
 			this.Controls.Add(this.btnAdd);
+			this.Controls.Add(this.lblSongID);
 			this.Name = "CustomSongVolumeEditor";
 			this.Size = new System.Drawing.Size(227, 20);
 			((System.ComponentModel.ISupportInitialize)(this.nudVolume)).EndInit();

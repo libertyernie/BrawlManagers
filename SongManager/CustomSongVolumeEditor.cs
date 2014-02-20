@@ -74,13 +74,13 @@ namespace BrawlSongManager {
 		}
 
 		private void reload() {
-			lblSongID.Text = Song == null ? "null" : Song.ID.ToString("X4");
+			lblSongID.Text = Song == null ? "Playback volume:" : Song.ID.ToString("X4");
 			if (Song == null) {
-				this.VolumeToolTip = "Filename not recognized";
+				this.VolumeToolTip = "Filename not recognized - volume will only affect playback in this program and will not be saved";
 				this.VolumeIcon = SystemIcons.Warning.ToBitmap();
 
 				btnAdd.Text = "Add";
-				btnAdd.Enabled = false;
+				btnAdd.Visible = false;
 				nudVolume.Enabled = true;
 				nudVolume.Value = 80;
 			} else if (CSV != null && CSV.Settings.ContainsKey(Song.ID)) {
@@ -88,7 +88,7 @@ namespace BrawlSongManager {
 				this.VolumeIcon = SystemIcons.Information.ToBitmap();
 
 				btnAdd.Text = "Remove";
-				btnAdd.Enabled = true;
+				btnAdd.Visible = true;
 				nudVolume.Enabled = true;
 				nudVolume.Value = CSV.Settings[Song.ID];
 			} else if (Song.DefaultVolume == null) {
@@ -96,7 +96,7 @@ namespace BrawlSongManager {
 				this.VolumeIcon = SystemIcons.Warning.ToBitmap();
 
 				btnAdd.Text = "Add";
-				btnAdd.Enabled = true;
+				btnAdd.Visible = true;
 				nudVolume.Enabled = false;
 				nudVolume.Value = 80;
 			} else {
@@ -104,7 +104,7 @@ namespace BrawlSongManager {
 				this.VolumeIcon = null;
 
 				btnAdd.Text = "Add";
-				btnAdd.Enabled = true;
+				btnAdd.Visible = true;
 				nudVolume.Enabled = false;
 				nudVolume.Value = Song.DefaultVolume ?? 0;
 			}
