@@ -72,6 +72,7 @@ namespace BrawlSongManager {
 		}
 
 		private void reload() {
+			lblSongID.Text = Song == null ? "null" : Song.ID.ToString("X4");
 			if (Song == null) {
 				this.VolumeToolTip = "Filename not recognized";
 				this.VolumeIcon = SystemIcons.Warning.ToBitmap();

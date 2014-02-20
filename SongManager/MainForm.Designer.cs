@@ -73,6 +73,7 @@
 			// splitContainer1.Panel1
 			// 
 			this.splitContainer1.Panel1.Controls.Add(this.listBox1);
+			this.splitContainer1.Panel1.Controls.Add(this.customSongVolumeEditor1);
 			// 
 			// splitContainer1.Panel2
 			// 
@@ -87,9 +88,10 @@
 			this.listBox1.ContextMenuStrip = this.contextMenuStrip1;
 			this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listBox1.FormattingEnabled = true;
+			this.listBox1.IntegralHeight = false;
 			this.listBox1.Location = new System.Drawing.Point(0, 0);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(180, 290);
+			this.listBox1.Size = new System.Drawing.Size(180, 269);
 			this.listBox1.TabIndex = 0;
 			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
 			// 
@@ -310,12 +312,14 @@
 			// customSongVolumeEditor1
 			// 
 			this.customSongVolumeEditor1.CSV = null;
-			this.customSongVolumeEditor1.ID = ((ushort)(0));
-			this.customSongVolumeEditor1.Location = new System.Drawing.Point(240, 0);
+			this.customSongVolumeEditor1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.customSongVolumeEditor1.Location = new System.Drawing.Point(0, 269);
 			this.customSongVolumeEditor1.Name = "customSongVolumeEditor1";
-			this.customSongVolumeEditor1.Size = new System.Drawing.Size(181, 21);
+			this.customSongVolumeEditor1.Size = new System.Drawing.Size(180, 21);
+			this.customSongVolumeEditor1.Song = null;
 			this.customSongVolumeEditor1.TabIndex = 2;
 			this.customSongVolumeEditor1.Value = ((byte)(0));
+			this.customSongVolumeEditor1.VolumeIcon = ((System.Drawing.Image)(resources.GetObject("customSongVolumeEditor1.VolumeIcon")));
 			this.customSongVolumeEditor1.ValueChanged += new System.EventHandler(this.customSongVolumeEditor1_ValueChanged);
 			// 
 			// MainForm
@@ -323,7 +327,6 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(592, 314);
-			this.Controls.Add(this.customSongVolumeEditor1);
 			this.Controls.Add(this.splitContainerTop);
 			this.Controls.Add(this.menuStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
