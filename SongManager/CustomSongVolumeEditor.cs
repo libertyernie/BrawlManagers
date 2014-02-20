@@ -68,7 +68,9 @@ namespace BrawlSongManager {
 		}
 
 		public void SetBasename(string basename) {
-			Song = SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
+			Song = basename == null
+				? null
+				: SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
 		}
 
 		private void reload() {

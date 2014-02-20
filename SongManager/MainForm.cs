@@ -86,6 +86,7 @@ namespace BrawlSongManager {
 		private void open(FileInfo fi) {
 			if (fi == null) { // No .brstm file selected (i.e. you just opened the program)
 				RightControl = chooseLabel;
+				customSongVolumeEditor1.SetBasename(null);
 			} else {
 				fi.Refresh(); // Update file size
 				songPanel1.Open(fi, FallbackDirectory);
