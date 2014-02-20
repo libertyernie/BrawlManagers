@@ -310,11 +310,13 @@
 			// customSongVolumeEditor1
 			// 
 			this.customSongVolumeEditor1.CSV = null;
+			this.customSongVolumeEditor1.Icon = null;
 			this.customSongVolumeEditor1.ID = ((ushort)(0));
-			this.customSongVolumeEditor1.Location = new System.Drawing.Point(271, 0);
+			this.customSongVolumeEditor1.Location = new System.Drawing.Point(240, 0);
 			this.customSongVolumeEditor1.Name = "customSongVolumeEditor1";
-			this.customSongVolumeEditor1.Size = new System.Drawing.Size(150, 32);
+			this.customSongVolumeEditor1.Size = new System.Drawing.Size(181, 21);
 			this.customSongVolumeEditor1.TabIndex = 2;
+			this.customSongVolumeEditor1.Value = ((byte)(0));
 			this.customSongVolumeEditor1.ValueChanged += new System.EventHandler(this.customSongVolumeEditor1_ValueChanged);
 			// 
 			// MainForm
