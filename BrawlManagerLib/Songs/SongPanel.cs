@@ -84,16 +84,6 @@ namespace BrawlManagerLib {
 				nudVolume.Value = value ?? -1;
 			}
 		}
-		public string VolumeToolTip {
-			set {
-				toolTip1.SetToolTip(volumeIcon, value);
-			}
-		}
-		public Image VolumeIcon {
-			set {
-				volumeIcon.Image = value == null ? null : BitmapUtilities.Resize(value, volumeIcon.Size);
-			}
-		}
 
 		public SongPanel() {
 			InitializeComponent();

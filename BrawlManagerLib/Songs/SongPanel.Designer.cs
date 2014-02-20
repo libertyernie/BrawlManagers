@@ -29,12 +29,10 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.lblFilename = new System.Windows.Forms.Label();
 			this.nudVolume = new System.Windows.Forms.NumericUpDown();
-			this.volumeIcon = new System.Windows.Forms.PictureBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.songNameBar = new BrawlManagerLib.SongNameBar();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudVolume)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.volumeIcon)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grid
@@ -101,17 +99,6 @@
             0});
 			this.nudVolume.ValueChanged += new System.EventHandler(this.nudVolume_ValueChanged);
 			// 
-			// volumeIcon
-			// 
-			this.volumeIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.volumeIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.volumeIcon.Location = new System.Drawing.Point(239, 24);
-			this.volumeIcon.Margin = new System.Windows.Forms.Padding(0);
-			this.volumeIcon.Name = "volumeIcon";
-			this.volumeIcon.Size = new System.Drawing.Size(16, 16);
-			this.volumeIcon.TabIndex = 5;
-			this.volumeIcon.TabStop = false;
-			// 
 			// songNameBar
 			// 
 			this.songNameBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -125,7 +112,6 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.volumeIcon);
 			this.Controls.Add(this.nudVolume);
 			this.Controls.Add(this.grid);
 			this.Controls.Add(this.app);
@@ -134,7 +120,6 @@
 			this.Size = new System.Drawing.Size(300, 300);
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.nudVolume)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.volumeIcon)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -147,7 +132,6 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblFilename;
 		private System.Windows.Forms.NumericUpDown nudVolume;
-		private System.Windows.Forms.PictureBox volumeIcon;
 		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }
