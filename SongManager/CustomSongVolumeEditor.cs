@@ -22,17 +22,20 @@ namespace BrawlSongManager {
 			}
 		}
 		private Song _song;
+		private ushort? _idReqested;
 		public Song Song {
 			get {
 				return _song;
 			}
 			set {
+				_idReqested = value == null ? (ushort?)null : value.ID;
 				_song = value;
 				reload();
 			}
 		}
 		public ushort ID {
 			set {
+				_idReqested = value;
 				Song = SongIDMap.Songs.Where(s => s.ID == value).FirstOrDefault();
 			}
 		}
@@ -74,13 +77,24 @@ namespace BrawlSongManager {
 		}
 
 		private void reload() {
-			lblSongID.Text = Song == null ? "Playback volume:" : Song.ID.ToString("X4");
-			if (Song == null) {
+			lblSongID.Text = _idReqested == null ? ""
+				: Song == null ? "Playback volume:"
+				: Song.ID.ToString("X4");
+			if (_idReqested == null) {
+				this.VolumeToolTip = null;
+				this.VolumeIcon = null;
+
+				btnAdd.Text = "Add";
+				btnAdd.Visible = false;
+				nudVolume.Visible = false;
+				nudVolume.Enabled = false;
+			} else if (Song == null) {
 				this.VolumeToolTip = "Filename not recognized - volume will only affect playback in this program and will not be saved";
 				this.VolumeIcon = SystemIcons.Warning.ToBitmap();
 
 				btnAdd.Text = "Add";
 				btnAdd.Visible = false;
+				nudVolume.Visible = true;
 				nudVolume.Enabled = true;
 				nudVolume.Value = 80;
 			} else if (CSV != null && CSV.Settings.ContainsKey(Song.ID)) {
@@ -89,14 +103,16 @@ namespace BrawlSongManager {
 
 				btnAdd.Text = "Remove";
 				btnAdd.Visible = true;
+				nudVolume.Visible = true;
 				nudVolume.Enabled = true;
 				nudVolume.Value = CSV.Settings[Song.ID];
 			} else if (Song.DefaultVolume == null) {
-				this.VolumeToolTip = "Default volume unknown";
+				//this.VolumeToolTip = "Default volume unknown";
 				this.VolumeIcon = SystemIcons.Warning.ToBitmap();
 
 				btnAdd.Text = "Add";
 				btnAdd.Visible = true;
+				nudVolume.Visible = false;
 				nudVolume.Enabled = false;
 				nudVolume.Value = 80;
 			} else {
@@ -105,6 +121,7 @@ namespace BrawlSongManager {
 
 				btnAdd.Text = "Add";
 				btnAdd.Visible = true;
+				nudVolume.Visible = true;
 				nudVolume.Enabled = false;
 				nudVolume.Value = Song.DefaultVolume ?? 0;
 			}
