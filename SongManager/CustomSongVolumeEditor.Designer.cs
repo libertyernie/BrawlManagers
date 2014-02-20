@@ -23,9 +23,11 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.nudVolume = new System.Windows.Forms.NumericUpDown();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.nudVolume)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
@@ -81,5 +83,6 @@
 		private System.Windows.Forms.Button btnAdd;
 		private System.Windows.Forms.NumericUpDown nudVolume;
 		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }

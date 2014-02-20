@@ -310,7 +310,6 @@
 			// customSongVolumeEditor1
 			// 
 			this.customSongVolumeEditor1.CSV = null;
-			this.customSongVolumeEditor1.Icon = null;
 			this.customSongVolumeEditor1.ID = ((ushort)(0));
 			this.customSongVolumeEditor1.Location = new System.Drawing.Point(240, 0);
 			this.customSongVolumeEditor1.Name = "customSongVolumeEditor1";
