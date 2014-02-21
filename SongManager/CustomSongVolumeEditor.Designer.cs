@@ -83,7 +83,6 @@
 			this.lblUnknownVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblUnknownVolume.Location = new System.Drawing.Point(129, 0);
 			this.lblUnknownVolume.Name = "lblUnknownVolume";
-			this.lblUnknownVolume.Padding = new System.Windows.Forms.Padding(3);
 			this.lblUnknownVolume.Size = new System.Drawing.Size(95, 20);
 			this.lblUnknownVolume.TabIndex = 4;
 			this.lblUnknownVolume.Text = "???";

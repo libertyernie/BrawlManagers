@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using BrawlManagerLib;
+using System.Reflection;
 
 namespace BrawlSongManager {
 	[DefaultEvent("ValueChanged")]
@@ -103,7 +104,7 @@ namespace BrawlSongManager {
 				nudVolume.Value = 80;
 			} else if (CSV != null && CSV.Settings.ContainsKey(Song.ID)) {
 				this.VolumeToolTip = "Custom Song Volume code set";
-				this.VolumeIcon = SystemIcons.Information.ToBitmap();
+				this.VolumeIcon = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlSongManager.speaker.png"));
 
 				btnAdd.Text = "Remove";
 				btnAdd.Visible = true;
