@@ -9,6 +9,8 @@ using System.Reflection;
 namespace BrawlSongManager {
 	[DefaultEvent("ValueChanged")]
 	public partial class CustomSongVolumeEditor : UserControl {
+		private static Image SPEAKER = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlSongManager.speaker.png"));
+
 		public bool ChangeMadeSinceCSVLoaded {get; private set;}
 
 		private CustomSongVolume _csv;
@@ -95,7 +97,7 @@ namespace BrawlSongManager {
 				nudVolume.Enabled = false;
 			} else if (Song == null) {
 				this.VolumeToolTip = "Filename not recognized - volume will only affect playback in this program and will not be saved";
-				this.VolumeIcon = SystemIcons.Warning.ToBitmap();
+				this.VolumeIcon = SPEAKER;
 
 				btnAdd.Visible = false;
 				lblUnknownVolume.Visible = false;
@@ -104,7 +106,6 @@ namespace BrawlSongManager {
 				nudVolume.Value = 80;
 			} else if (CSV != null && CSV.Settings.ContainsKey(Song.ID)) {
 				this.VolumeToolTip = "Custom Song Volume code set";
-				this.VolumeIcon = new Bitmap(Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlSongManager.speaker.png"));
 
 				btnAdd.Text = "Remove";
 				btnAdd.Visible = true;
