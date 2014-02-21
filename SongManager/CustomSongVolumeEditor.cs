@@ -21,22 +21,29 @@ namespace BrawlSongManager {
 				reload();
 			}
 		}
+
+		private string _basenameRequested;
 		private Song _song;
-		private ushort? _idReqested;
 		public Song Song {
 			get {
 				return _song;
 			}
 			set {
-				_idReqested = value == null ? (ushort?)null : value.ID;
+				_basenameRequested = value == null ? null : value.Filename;
 				_song = value;
 				reload();
 			}
 		}
-		public ushort ID {
+		public string SongFilename {
+			get {
+				return _basenameRequested;
+			}
 			set {
-				_idReqested = value;
-				Song = SongIDMap.Songs.Where(s => s.ID == value).FirstOrDefault();
+				_basenameRequested = value;
+				_song = value == null
+					? null
+					: SongIDMap.Songs.Where(s => s.Filename == value).FirstOrDefault();
+				reload();
 			}
 		}
 
@@ -70,30 +77,27 @@ namespace BrawlSongManager {
 			InitializeComponent();
 		}
 
-		public void SetBasename(string basename) {
-			Song = basename == null
-				? null
-				: SongIDMap.Songs.Where(s => s.Filename == basename).FirstOrDefault();
-		}
-
 		private void reload() {
-			lblSongID.Text = _idReqested == null ? ""
+			this.VolumeToolTip = null;
+			this.VolumeIcon = null;
+			btnAdd.Text = "Add";
+
+			lblSongID.Text =
+				_basenameRequested == null ? ""
 				: Song == null ? "Playback volume:"
 				: Song.ID.ToString("X4");
-			if (_idReqested == null) {
-				this.VolumeToolTip = null;
-				this.VolumeIcon = null;
 
-				btnAdd.Text = "Add";
+			if (_basenameRequested == null) {
 				btnAdd.Visible = false;
+				lblUnknownVolume.Visible = false;
 				nudVolume.Visible = false;
 				nudVolume.Enabled = false;
 			} else if (Song == null) {
 				this.VolumeToolTip = "Filename not recognized - volume will only affect playback in this program and will not be saved";
 				this.VolumeIcon = SystemIcons.Warning.ToBitmap();
 
-				btnAdd.Text = "Add";
 				btnAdd.Visible = false;
+				lblUnknownVolume.Visible = false;
 				nudVolume.Visible = true;
 				nudVolume.Enabled = true;
 				nudVolume.Value = 80;
@@ -103,24 +107,22 @@ namespace BrawlSongManager {
 
 				btnAdd.Text = "Remove";
 				btnAdd.Visible = true;
+				lblUnknownVolume.Visible = false;
 				nudVolume.Visible = true;
 				nudVolume.Enabled = true;
 				nudVolume.Value = CSV.Settings[Song.ID];
 			} else if (Song.DefaultVolume == null) {
-				//this.VolumeToolTip = "Default volume unknown";
+				this.VolumeToolTip = "Default volume unknown";
 				this.VolumeIcon = SystemIcons.Warning.ToBitmap();
 
-				btnAdd.Text = "Add";
 				btnAdd.Visible = true;
-				nudVolume.Visible = false;
+				lblUnknownVolume.Visible = true;
+				nudVolume.Visible = true;
 				nudVolume.Enabled = false;
 				nudVolume.Value = 80;
 			} else {
-				this.VolumeToolTip = null;
-				this.VolumeIcon = null;
-
-				btnAdd.Text = "Add";
 				btnAdd.Visible = true;
+				lblUnknownVolume.Visible = false;
 				nudVolume.Visible = true;
 				nudVolume.Enabled = false;
 				nudVolume.Value = Song.DefaultVolume ?? 0;

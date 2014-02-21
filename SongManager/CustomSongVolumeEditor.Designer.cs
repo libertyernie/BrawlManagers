@@ -29,7 +29,7 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.lblSongID = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
+			this.lblUnknownVolume = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.nudVolume)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
@@ -78,24 +78,27 @@
 			this.lblSongID.Text = "EEEE";
 			this.lblSongID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// label1
+			// lblUnknownVolume
 			// 
-			this.label1.Location = new System.Drawing.Point(129, 0);
-			this.label1.Name = "label1";
-			this.label1.Padding = new System.Windows.Forms.Padding(2);
-			this.label1.Size = new System.Drawing.Size(95, 18);
-			this.label1.TabIndex = 4;
-			this.label1.Text = "???";
+			this.lblUnknownVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblUnknownVolume.Location = new System.Drawing.Point(129, 0);
+			this.lblUnknownVolume.Name = "lblUnknownVolume";
+			this.lblUnknownVolume.Padding = new System.Windows.Forms.Padding(3);
+			this.lblUnknownVolume.Size = new System.Drawing.Size(95, 20);
+			this.lblUnknownVolume.TabIndex = 4;
+			this.lblUnknownVolume.Text = "???";
+			this.lblUnknownVolume.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblUnknownVolume.Visible = false;
 			// 
 			// CustomSongVolumeEditor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.pictureBox1);
-			this.Controls.Add(this.nudVolume);
 			this.Controls.Add(this.btnAdd);
 			this.Controls.Add(this.lblSongID);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.lblUnknownVolume);
+			this.Controls.Add(this.nudVolume);
 			this.Name = "CustomSongVolumeEditor";
 			this.Size = new System.Drawing.Size(227, 20);
 			((System.ComponentModel.ISupportInitialize)(this.nudVolume)).EndInit();
@@ -111,6 +114,6 @@
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.ToolTip toolTip1;
 		private System.Windows.Forms.Label lblSongID;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lblUnknownVolume;
 	}
 }
