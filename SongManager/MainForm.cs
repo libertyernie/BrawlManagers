@@ -30,6 +30,7 @@ namespace BrawlSongManager {
 
 		private string FallbackDirectory;
 		private CustomSongVolume csv;
+		private string csvPath; // used only for save function
 
 		private enum ListType {
 			FilesInDir, // default
@@ -144,7 +145,8 @@ namespace BrawlSongManager {
 				if (File.Exists(file)) {
 					csv = new CustomSongVolume(File.ReadAllBytes(file));
 					int ct = csv.Settings.Count;
-					if (ct > 0) Console.WriteLine("Loaded Custom Song Volume (" + ct + " settings)");
+					Console.WriteLine("Loaded Custom Song Volume (" + ct + " settings)");
+					csvPath = file;
 					break;
 				}
 			}
@@ -345,6 +347,12 @@ namespace BrawlSongManager {
 
 		private void saveInfopacToolStripMenuItem_Click(object sender, EventArgs e) {
 			songPanel1.save();
+		}
+
+		private void saveGCTCodesetToolStripMenuItem_Click(object sender, EventArgs e) {
+			if (MessageBox.Show(this, "Overwrite " + Path.GetFileName(csvPath) + "?", "Overwrite", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+				File.WriteAllBytes(csvPath, csv.ExportGCT());
+			}
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e) {

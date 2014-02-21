@@ -31,6 +31,7 @@
 			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.customSongVolumeEditor1 = new BrawlSongManager.CustomSongVolumeEditor();
 			this.songPanel1 = new BrawlManagerLib.SongPanel();
 			this.rightLabel = new System.Windows.Forms.Label();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -52,7 +53,7 @@
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.splitContainerTop = new System.Windows.Forms.SplitContainer();
-			this.customSongVolumeEditor1 = new BrawlSongManager.CustomSongVolumeEditor();
+			this.saveGCTCodesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -126,6 +127,20 @@
 			this.deleteToolStripMenuItem.Text = "Delete";
 			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
 			// 
+			// customSongVolumeEditor1
+			// 
+			this.customSongVolumeEditor1.CSV = null;
+			this.customSongVolumeEditor1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.customSongVolumeEditor1.Location = new System.Drawing.Point(0, 269);
+			this.customSongVolumeEditor1.Name = "customSongVolumeEditor1";
+			this.customSongVolumeEditor1.Size = new System.Drawing.Size(180, 21);
+			this.customSongVolumeEditor1.Song = null;
+			this.customSongVolumeEditor1.SongFilename = null;
+			this.customSongVolumeEditor1.TabIndex = 2;
+			this.customSongVolumeEditor1.Value = ((byte)(0));
+			this.customSongVolumeEditor1.VolumeIcon = ((System.Drawing.Image)(resources.GetObject("customSongVolumeEditor1.VolumeIcon")));
+			this.customSongVolumeEditor1.ValueChanged += new System.EventHandler(this.customSongVolumeEditor1_ValueChanged);
+			// 
 			// songPanel1
 			// 
 			this.songPanel1.AllowDrop = true;
@@ -166,6 +181,7 @@
             this.changeDirectoryToolStripMenuItem,
             this.openFallbackDirectoryToolStripMenuItem,
             this.saveInfopacToolStripMenuItem,
+            this.saveGCTCodesetToolStripMenuItem,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -309,18 +325,12 @@
 			this.splitContainerTop.SplitterDistance = 197;
 			this.splitContainerTop.TabIndex = 0;
 			// 
-			// customSongVolumeEditor1
+			// saveGCTCodesetToolStripMenuItem
 			// 
-			this.customSongVolumeEditor1.CSV = null;
-			this.customSongVolumeEditor1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.customSongVolumeEditor1.Location = new System.Drawing.Point(0, 269);
-			this.customSongVolumeEditor1.Name = "customSongVolumeEditor1";
-			this.customSongVolumeEditor1.Size = new System.Drawing.Size(180, 21);
-			this.customSongVolumeEditor1.Song = null;
-			this.customSongVolumeEditor1.TabIndex = 2;
-			this.customSongVolumeEditor1.Value = ((byte)(0));
-			this.customSongVolumeEditor1.VolumeIcon = ((System.Drawing.Image)(resources.GetObject("customSongVolumeEditor1.VolumeIcon")));
-			this.customSongVolumeEditor1.ValueChanged += new System.EventHandler(this.customSongVolumeEditor1_ValueChanged);
+			this.saveGCTCodesetToolStripMenuItem.Name = "saveGCTCodesetToolStripMenuItem";
+			this.saveGCTCodesetToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+			this.saveGCTCodesetToolStripMenuItem.Text = "Save GCT codeset";
+			this.saveGCTCodesetToolStripMenuItem.Click += new System.EventHandler(this.saveGCTCodesetToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -380,6 +390,7 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem onlyShowSongsWithCSVCodeToolStripMenuItem;
 		private CustomSongVolumeEditor customSongVolumeEditor1;
+		private System.Windows.Forms.ToolStripMenuItem saveGCTCodesetToolStripMenuItem;
 
 
 
