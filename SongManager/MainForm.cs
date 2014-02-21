@@ -211,6 +211,16 @@ namespace BrawlSongManager {
 					songPanel1.save();
 				} else if (res == DialogResult.Cancel) {
 					e.Cancel = true;
+					return;
+				}
+			}
+			if (customSongVolumeEditor1.ChangeMadeSinceCSVLoaded) {
+				DialogResult res = MessageBox.Show("Save changes to " + Path.GetFileName(csvPath) + "?", "Closing", MessageBoxButtons.YesNoCancel);
+				if (res == DialogResult.Yes) {
+					File.WriteAllBytes(csvPath, csv.ExportGCT());
+				} else if (res == DialogResult.Cancel) {
+					e.Cancel = true;
+					return;
 				}
 			}
 		}

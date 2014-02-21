@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using BrawlManagerLib;
 using System.Reflection;
@@ -12,6 +9,8 @@ using System.Reflection;
 namespace BrawlSongManager {
 	[DefaultEvent("ValueChanged")]
 	public partial class CustomSongVolumeEditor : UserControl {
+		public bool ChangeMadeSinceCSVLoaded {get; private set;}
+
 		private CustomSongVolume _csv;
 		public CustomSongVolume CSV {
 			get {
@@ -19,6 +18,7 @@ namespace BrawlSongManager {
 			}
 			set {
 				_csv = value;
+				ChangeMadeSinceCSVLoaded = false;
 				reload();
 			}
 		}
@@ -136,12 +136,19 @@ namespace BrawlSongManager {
 			} else {
 				CSV.Settings.Add(Song.ID, (byte)nudVolume.Value);
 			}
+			ChangeMadeSinceCSVLoaded = true;
 			reload();
 		}
 
 		private void nudVolume_ValueChanged(object sender, EventArgs e) {
 			// Don't update the CSV code if the song is unknown (in which case the number spinner acts only as a playback control)
-			if (nudVolume.Enabled && Song != null) CSV.Settings[Song.ID] = Value;
+			if (nudVolume.Enabled && Song != null) {
+				byte oldval = CSV.Settings[Song.ID];
+				if (oldval != Value) {
+					ChangeMadeSinceCSVLoaded = true;
+					CSV.Settings[Song.ID] = Value;
+				}
+			}
 			if (ValueChanged != null) ValueChanged(this, new EventArgs());
 		}
 	}
