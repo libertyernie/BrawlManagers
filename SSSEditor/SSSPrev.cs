@@ -41,6 +41,7 @@ namespace SSSEditor {
 			}
 			set {
 				_numIcons = value;
+				numericUpDown1.Value = value;
 				needsReload = true;
 			}
 		}
@@ -133,6 +134,13 @@ namespace SSSEditor {
 			string tempfile = TempFiles.Create();
 			File.Copy(f.FullName, tempfile, true);
 			return NodeFactory.FromFile(null, tempfile);
+		}
+
+		private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
+			if (numericUpDown1.Value != _numIcons) {
+				NumIcons = (int)numericUpDown1.Value;
+				Refresh();
+			}
 		}
 	}
 }

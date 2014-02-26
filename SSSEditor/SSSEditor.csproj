@@ -100,6 +100,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SSSPrev.resx">
+      <DependentUpon>SSSPrev.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StagePairControl.resx">
       <DependentUpon>StagePairControl.cs</DependentUpon>
     </EmbeddedResource>
