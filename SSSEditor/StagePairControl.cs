@@ -174,8 +174,10 @@ namespace SSSEditor {
 
             nudDefIndex.ValueChanged += (o, e) => {
                 colorCode.BackColor =
-                  nudDefIndex.Value == 0x1E ? Color.Yellow
-                : nudDefIndex.Value < 0x29 ? Color.Green
+				  nudDefIndex.Value == 0x1E ? Color.Yellow
+				: nudDefIndex.Value < 0x1f ? Color.Green
+				: nudDefIndex.Value < 0x29 ? Color.DarkGreen
+				: nudDefIndex.Value >= 55 ? Color.Orange
                 : Color.Red;
             };
 
