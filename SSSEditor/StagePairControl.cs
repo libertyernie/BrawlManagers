@@ -177,7 +177,7 @@ namespace SSSEditor {
 				  nudDefIndex.Value == 0x1E ? Color.Yellow
 				: nudDefIndex.Value < 0x1f ? Color.Green
 				: nudDefIndex.Value < 0x29 ? Color.DarkGreen
-				: nudDefIndex.Value >= 55 ? Color.Orange
+				: nudDefIndex.Value >= 55 && nudDefIndex.Value < 86 ? Color.Orange
                 : Color.Red;
             };
 
