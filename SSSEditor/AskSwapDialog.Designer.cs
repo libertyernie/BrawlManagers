@@ -28,7 +28,10 @@
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.btnOkay = new System.Windows.Forms.Button();
+			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+			this.label2 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -62,7 +65,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(12, 33);
+			this.comboBox1.Location = new System.Drawing.Point(12, 59);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(210, 21);
 			this.comboBox1.TabIndex = 2;
@@ -72,7 +75,7 @@
 			// 
 			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(147, 76);
+			this.btnCancel.Location = new System.Drawing.Point(147, 96);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 3;
@@ -83,12 +86,36 @@
 			// 
 			this.btnOkay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnOkay.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnOkay.Location = new System.Drawing.Point(66, 76);
+			this.btnOkay.Location = new System.Drawing.Point(66, 96);
 			this.btnOkay.Name = "btnOkay";
 			this.btnOkay.Size = new System.Drawing.Size(75, 23);
 			this.btnOkay.TabIndex = 4;
 			this.btnOkay.Text = "OK";
 			this.btnOkay.UseVisualStyleBackColor = true;
+			// 
+			// numericUpDown2
+			// 
+			this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.numericUpDown2.Location = new System.Drawing.Point(132, 33);
+			this.numericUpDown2.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+			this.numericUpDown2.Name = "numericUpDown2";
+			this.numericUpDown2.Size = new System.Drawing.Size(90, 20);
+			this.numericUpDown2.TabIndex = 6;
+			this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+			// 
+			// label2
+			// 
+			this.label2.Location = new System.Drawing.Point(12, 35);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(114, 13);
+			this.label2.TabIndex = 5;
+			this.label2.Text = "(dec value):";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
 			// 
 			// AskSwapDialog
 			// 
@@ -96,7 +123,9 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(234, 111);
+			this.ClientSize = new System.Drawing.Size(234, 131);
+			this.Controls.Add(this.numericUpDown2);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.btnOkay);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.comboBox1);
@@ -105,6 +134,7 @@
 			this.Name = "AskSwapDialog";
 			this.Text = "Swap";
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -117,5 +147,7 @@
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.Button btnOkay;
+		private System.Windows.Forms.NumericUpDown numericUpDown2;
+		private System.Windows.Forms.Label label2;
 	}
 }
