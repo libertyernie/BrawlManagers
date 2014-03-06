@@ -12,7 +12,11 @@ namespace BrawlManagerLib {
 		static TempFiles() {
 			string p = Path.Combine(Path.GetTempPath(), "StageManager");
 			if (Directory.Exists(p)) {
-				Directory.Delete(p, true);
+				try {
+					Directory.Delete(p, true);
+				} catch (IOException) {
+					Console.WriteLine("could not clear out " + p + " (files probably in use)");
+				}
 			}
 			Directory.CreateDirectory(p);
 		}
