@@ -10,6 +10,7 @@ using BrawlLib.Wii.Textures;
 using BrawlManagerLib;
 using System.Reflection;
 using System.Diagnostics;
+using BrawlStageManager.SingleUseDialogs;
 
 namespace BrawlStageManager {
 	public partial class PortraitViewer : UserControl {
@@ -604,17 +605,39 @@ namespace BrawlStageManager {
 			if (s2 == null) return;
 
 			ResourceNode md0 = s2.FindChild("MenuRule_en/ModelData[0]", false);
+			MSBinNode md1 = s2.FindChild("MenuRule_en/MiscData[1]", false) as MSBinNode;
 			ResourceNode md80 = sc_selmap.FindChild("MiscData[80]", false);
 			if (md0 == null || md80 == null) return;
 
-			using (ProgressWindow w = new ProgressWindow()) {
+			Image[] icons = new Image[41];
+			Image[] frontstnames = new Image[41];
+			for (int i = 1; i < 60; i++) {
+				if (i == 32) i = 50;
+				int sssPos = StageIDMap.sssPositionForSelcharacter2Icon(i);
+				string nameSelmap = BestSSS[sssPos].Item2.ToString("D2");
+				icons[sssPos] = ((md80.FindChild("Textures(NW4R)/MenSelmapIcon." + nameSelmap, false) as TEX0Node).GetImage(0));
+				frontstnames[sssPos] = ((md80.FindChild("Textures(NW4R)/MenSelmapFrontStname." + nameSelmap, false) as TEX0Node).GetImage(0));
+			}
+
+			var d = new RandomSelectEditNamesDialog(md1._strings, icons, frontstnames);
+			if (d.ShowDialog() == DialogResult.OK) {
+				for (int i = 0; i < md1._strings.Count; i++) {
+					md1._strings[i] = d[i].ToString();
+				}
+			} else {
+				return;
+			}
+
+			using (ProgressWindow w = new ProgressWindow() { CanCancel = false }) {
 				w.Begin(0, 60, 0);
 				for (int i = 1; i < 60; i++) {
 					if (i == 32) i = 50;
+
+					int sssPos = StageIDMap.sssPositionForSelcharacter2Icon(i);
 					string tempFile1 = TempFiles.Create(".tex0");
 					string tempFile2 = TempFiles.Create(".plt0");
 					string nameSelcharacter2 = i.ToString("D2");
-					string nameSelmap = BestSSS[StageIDMap.sssPositionForSelcharacter2Icon(i)].Item2.ToString("D2");
+					string nameSelmap = BestSSS[sssPos].Item2.ToString("D2");
 					TEX0Node iconFrom = md80.FindChild("Textures(NW4R)/MenSelmapIcon." + nameSelmap, false) as TEX0Node;
 					TEX0Node iconTo = md0.FindChild("Textures(NW4R)/MenSelmapIcon." + nameSelcharacter2, false) as TEX0Node;
 					var palFrom = md80.FindChild("Palettes(NW4R)/MenSelmapIcon." + nameSelmap, false);
