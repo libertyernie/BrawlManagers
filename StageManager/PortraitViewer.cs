@@ -620,6 +620,7 @@ namespace BrawlStageManager {
 			}
 
 			var d = new RandomSelectEditNamesDialog(md1._strings, icons, frontstnames);
+			d.Message = "When finished, press OK to continue.";
 			if (d.ShowDialog() == DialogResult.OK) {
 				for (int i = 0; i < md1._strings.Count; i++) {
 					md1._strings[i] = d[i].ToString();

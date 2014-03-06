@@ -30,6 +30,7 @@
 			this.btnReset = new System.Windows.Forms.Button();
 			this.btnOkay = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
+			this.lblMessage = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.icon)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.frontstname)).BeginInit();
 			this.SuspendLayout();
@@ -101,12 +102,23 @@
 			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			// 
+			// lblMessage
+			// 
+			this.lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblMessage.Location = new System.Drawing.Point(126, 101);
+			this.lblMessage.Name = "lblMessage";
+			this.lblMessage.Size = new System.Drawing.Size(278, 122);
+			this.lblMessage.TabIndex = 7;
+			// 
 			// RandomSelectEditNamesDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
 			this.ClientSize = new System.Drawing.Size(416, 261);
+			this.Controls.Add(this.lblMessage);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnOkay);
 			this.Controls.Add(this.btnReset);
@@ -132,6 +144,7 @@
 		private System.Windows.Forms.Button btnReset;
 		private System.Windows.Forms.Button btnOkay;
 		private System.Windows.Forms.Button btnCancel;
+		private System.Windows.Forms.Label lblMessage;
 
 	}
 }

@@ -36,11 +36,25 @@ namespace BrawlStageManager.SingleUseDialogs {
 				int index = nameList.SelectedIndex;
 				if (index >= 0) nameList.Items[index] = names[index];
 			};
+			this.Shown += (o, e) => {
+				if (nameList.SelectedIndex < 0) {
+					nameList.SelectedIndex = 0;
+				}
+			};
 		}
 
 		public object this[int index] {
 			get {
 				return nameList.Items[index];
+			}
+		}
+
+		public string Message {
+			get {
+				return lblMessage.Text;
+			}
+			set {
+				lblMessage.Text = value;
 			}
 		}
 	}
