@@ -39,10 +39,6 @@ namespace BrawlStageManager {
 					dir = arg;
 				}
 			}
-			if (dir == null) {
-				dir = DefaultDirectory.GetIfExists()
-					?? System.IO.Directory.GetCurrentDirectory();
-			}
 
 			form = new MainForm(dir, useRelDescription);
 			Application.Run(form);

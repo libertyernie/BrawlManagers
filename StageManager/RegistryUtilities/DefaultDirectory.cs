@@ -4,8 +4,6 @@ using System.Windows.Forms;
 
 namespace BrawlStageManager.RegistryUtilities {
 	public class DefaultDirectory {
-		private const string SUBKEY = "SOFTWARE\\libertyernie\\BrawlStageManager";
-
 		public static void Set(string dir) {
 			Registry.CurrentUser.CreateSubKey(GeneralRegistry.SUBKEY).SetValue("LastDirectory", dir);
 			MessageBox.Show("The default directory for this program has been set to:\n" + dir);

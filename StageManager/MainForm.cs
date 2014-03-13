@@ -85,7 +85,13 @@ namespace BrawlStageManager {
 		public MainForm(string path, bool useRelDescription) {
 			InitializeComponent();
 
-			clearDefaultDirectoryToolStripMenuItem.Enabled = (DefaultDirectory.Get() != null);
+			try {
+				clearDefaultDirectoryToolStripMenuItem.Enabled = (DefaultDirectory.Get() != null);
+				if (path == null) path = DefaultDirectory.GetIfExists() ?? System.IO.Directory.GetCurrentDirectory();
+			} catch (Exception e) {
+				BrawlManagerLib.TextBoxDialog.ShowDialog("Exception caught: " + e.Message + "\n" + e.StackTrace, e.GetType().ToString());
+				path = System.IO.Directory.GetCurrentDirectory();
+			}
 
 			#region initialize from registry
 			Size?[] sizes = ResizeSettings.Get();
