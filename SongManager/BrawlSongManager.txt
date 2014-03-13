@@ -1,4 +1,4 @@
-﻿Brawl Song Manager 3.3 - February 13, 2014
+﻿Brawl Song Manager 3.4 - March 13, 2014
 Copyright © 2014 libertyernie
 http://lakora.us/brawl/songmanager
 
@@ -10,6 +10,11 @@ The left side of the window has a list of .BRSTM music files in the current
 directory; you can change the directory through the File menu. When you choose
 a .BRSTM file, the right side of the window will display the playback module
 from BrawlBox, allowing you to listen to the song.
+
+In the bottom-left corner is a control for modifying the Custom Song Volume
+code, which will be read from your GCT codeset if it exists. You can also use
+it to add the code to your GCT. If a warning or speaker icon appears in the
+corner of this editor bar, mouse over the icon for more information.
 
 To replace a song, drag the new .BRSTM or .WAV onto the main panel.
 To add a song, drag a .BRSTM or .WAV onto the menu and enter a filename.
@@ -42,9 +47,7 @@ running BrawlSongManager.exe from the root of your SD card.)
 
 ----------------------------------------
 
-Changes in 3.3:
-	* Song Manager now deletes temporary files upon exit
-	* You can specify a fallback directory containing Brawl's music, where
-	  BRSTMs will be loaded from if they don't exist in the current directory
-	* Song Manager now reads your GCT and looks for the Custom Song Volume code;
-	  custom song volumes will be displayed (but not applied to playback)
+Changes in 3.4:
+	* Control added to edit Custom Song Volume settings for each song
+	* You can now use "Options>Only show songs with CSV code" to see which songs have custom volumes defined (note: does not automatically refresh)
+	* Song Manager now tries to load the GCT (for the CSV code), and it will ask whether to save the GCT if you've made changes

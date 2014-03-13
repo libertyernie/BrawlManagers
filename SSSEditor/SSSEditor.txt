@@ -1,4 +1,4 @@
-﻿SSS Editor 3.3 - February 13, 2014
+﻿SSS Editor 3.4 - March 13, 2014
 Copyright © 2014 libertyernie
 http://lakora.us/brawl/ssseditor
 
@@ -109,6 +109,7 @@ where [index] is a reference to the stage/icon list below. For example, putting 
 
 -------- Changes --------
 
-Changes in 3.3:
-	* Icon is now at the top of the row, not in the middle (workaround for when
-	  the row gets really big after you delete some stages)
+Changes in 3.4:
+	* The "swap" dialog now lets you specify a hex or decimal value (and updates the other accordingly)
+	* Stages whose indices on tab 1 are >= 55 and < 86 will be color-coded orange (for index "n", the stage might get chosen on random if index n-55 is enabled)
+	* Stages whose indices are 32 through 41 (Melee slots on random stage select) will be a slightly darker green

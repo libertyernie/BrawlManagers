@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 3.3 - February 12, 2013
+﻿Brawl Stage Manager 3.3 - March 13, 2013
 Copyright © 2014 libertyernie
 http://lakora.us/brawl/stagemanager
 
@@ -89,16 +89,5 @@ the tilde (~) button on your keyboard.)
 
 ----------------------------------------
 
-New in 3.3:
-	* Textures that don't exist (solid dark red) can be added by drag-and-drop or through "Replace"
-	* "Add missing PAT0 entries" renamed to "prepare sc_selmap for expansion stages";
-	  * Also has a nice options/info dialog
-	  * You can choose to have a MenSelchrMark / MenSelmapMark for each stage, or use the Battlefield ones
-
-	* Fix importing of .tex0 files (for drag-and-drop and MenSelmapMark import)
-	* TextureConverterDialog acts as a normal window (non-modal with a taskbar button)
-	* mu_menumain export will still work if there's no info.pac
-	* Option added to load a different Custom SSS code (and SDSL codes) than the one auto-detected
-	* Typing the name [ in the stage name generator will try to open "genname.bat"
-	  or "genname.exe" with a temporary .png file path as an argument; once that
-	  program closes, Stage Manager will read from that temp file
+New in 3.4:
+	* A new dialog appears before you copy icons to sc_selcharacter2, allowing you to enter custom stage names for the random select screen
