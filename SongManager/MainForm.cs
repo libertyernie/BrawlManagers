@@ -11,6 +11,13 @@ using System.Drawing;
 
 namespace BrawlSongManager {
 	public partial class MainForm : Form {
+		public static readonly string[] GCT_PATHS = new string[] {
+			"RSBE01.gct",
+			"/data/gecko/codes/RSBE01.gct",
+			"/codes/RSBE01.gct",
+			"../../../../codes/RSBE01.gct",
+		};
+
 		/// <summary>
 		/// The list of .brstm files in the current directory.
 		/// </summary>
@@ -136,12 +143,7 @@ namespace BrawlSongManager {
 
 		private void findGCT() {
 			csv = null;
-			foreach (string file in new string[] {
-				"RSBE01.gct",
-				"/data/gecko/codes/RSBE01.gct",
-				"/codes/RSBE01.gct",
-				"../../../../codes/RSBE01.gct",
-			}) {
+			foreach (string file in GCT_PATHS) {
 				if (File.Exists(file)) {
 					csv = new CustomSongVolume(File.ReadAllBytes(file));
 					int ct = csv.Settings.Count;

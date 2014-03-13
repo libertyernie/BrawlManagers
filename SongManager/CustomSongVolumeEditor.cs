@@ -104,7 +104,16 @@ namespace BrawlSongManager {
 				nudVolume.Visible = true;
 				nudVolume.Enabled = true;
 				nudVolume.Value = 80;
-			} else if (CSV != null && CSV.Settings.ContainsKey(Song.ID)) {
+			} else if (CSV == null) {
+				this.VolumeToolTip = "No GCT file found in: " + string.Join(", ", MainForm.GCT_PATHS);
+				this.VolumeIcon = SPEAKER;
+
+				btnAdd.Visible = false;
+				lblUnknownVolume.Visible = false;
+				nudVolume.Visible = true;
+				nudVolume.Enabled = true;
+				nudVolume.Value = Song.DefaultVolume ?? 0;
+			} else if (CSV.Settings.ContainsKey(Song.ID)) {
 				this.VolumeToolTip = "Custom Song Volume code set";
 
 				btnAdd.Text = "Remove";
@@ -143,7 +152,7 @@ namespace BrawlSongManager {
 
 		private void nudVolume_ValueChanged(object sender, EventArgs e) {
 			// Don't update the CSV code if the song is unknown (in which case the number spinner acts only as a playback control)
-			if (nudVolume.Enabled && Song != null) {
+			if (nudVolume.Enabled && Song != null && CSV != null) {
 				byte oldval = CSV.Settings[Song.ID];
 				if (oldval != Value) {
 					ChangeMadeSinceCSVLoaded = true;
