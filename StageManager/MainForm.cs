@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using BrawlLib.SSBB.ResourceNodes;
 using System.IO;
 using BrawlLib.Wii.Textures;
-using BrawlStageManager.RegistryUtilities;
 using BrawlManagerLib;
 using System.Diagnostics;
 using BrawlStageManager.SingleUseDialogs;
@@ -85,47 +84,7 @@ namespace BrawlStageManager {
 		public MainForm(string path, bool useRelDescription) {
 			InitializeComponent();
 
-			try {
-				clearDefaultDirectoryToolStripMenuItem.Enabled = (DefaultDirectory.Get() != null);
-				if (path == null) path = DefaultDirectory.GetIfExists() ?? System.IO.Directory.GetCurrentDirectory();
-			} catch (Exception e) {
-				BrawlManagerLib.TextBoxDialog.ShowDialog("Exception caught: " + e.Message + "\n" + e.StackTrace, e.GetType().ToString());
-				path = System.IO.Directory.GetCurrentDirectory();
-			}
-
-			#region initialize from registry
-			Size?[] sizes = ResizeSettings.Get();
-
-			if (sizes[0] != null) {
-				portraitViewer1.prevbaseResizeTo = sizes[0];
-				prevbaseOriginalSizeToolStripMenuItem.Checked = false;
-				if (sizes[0] == new Size(88, 88)) {
-					x88ToolStripMenuItem.Checked = true;
-				} else if (sizes[0] == new Size(128, 128)) {
-					x128ToolStripMenuItem.Checked = true;
-				} else {
-					customPrevbaseSizeToolStripMenuItem.Checked = true;
-				}
-			}
-
-			if (sizes[1] != null) {
-				portraitViewer1.frontstnameResizeTo = sizes[1];
-				frontstnameOriginalSizeToolStripMenuItem.Checked = false;
-				if (sizes[1] == new Size(104, 56)) {
-					x56ToolStripMenuItem.Checked = true;
-				}
-			}
-
-			if (sizes[2] != null) {
-				portraitViewer1.selmapMarkResizeTo = sizes[2];
-				selmapMarkOriginalSizeToolStripMenuItem.Checked = false;
-				if (sizes[2] == new Size(60, 56)) {
-					x56ToolStripMenuItem1.Checked = true;
-				}
-			}
-
-			portraitViewer1.fontSettings = FontSettings.Get() ?? portraitViewer1.fontSettings;
-			#endregion
+			path = path ?? System.IO.Directory.GetCurrentDirectory();
 
 			moduleFolderLocation = "../../module";
 
@@ -188,7 +147,6 @@ namespace BrawlStageManager {
 
 			portraitViewer1.selmapMarkPreview = selmapMarkPreviewToolStripMenuItem.Checked;
 			portraitViewer1.useTextureConverter = useTextureConverterToolStripMenuItem.Checked;
-			LoadFromRegistry();
 			changeDirectory(path);
 		}
 
@@ -712,33 +670,6 @@ namespace BrawlStageManager {
 			Close();
 		}
 
-		private void saveCurrentDirectoryAsDefaultToolStripMenuItem_Click(object sender, EventArgs e) {
-			DefaultDirectory.Set(CurrentDirectory);
-			clearDefaultDirectoryToolStripMenuItem.Enabled = true;
-		}
-		private void clearDefaultDirectoryToolStripMenuItem_Click(object sender, EventArgs e) {
-			DefaultDirectory.Clear();
-			clearDefaultDirectoryToolStripMenuItem.Enabled = false;
-		}
-		private void saveAllStageManagerSettingsToolStripMenuItem_Click(object sender, EventArgs e) {
-			DefaultDirectory.Set(CurrentDirectory);
-			bool anyNotNull = ResizeSettings.WriteToRegistry(portraitViewer1);
-			string str = FontSettings.WriteToRegistry(portraitViewer1.fontSettings);
-			SaveToRegistry();
-			MessageBox.Show(
-				(str != null
-					? "The default font has been set to: " + str
-					: "The default font settings have been cleared.")
-				+ "\n"
-				+ (anyNotNull
-					? "The default texture sizes have been set in HKEY_CURRENT_USER."
-					: "The auto-resize settings have been cleared (all three set to \"Off.\")"));
-
-		}
-		private void clearAllStageManagerSettingsToolStripMenuItem_Click(object sender, EventArgs e) {
-			ClearRegistry();
-		}
-
 		private void useTextureConverterToolStripMenuItem_Click(object sender, EventArgs e) {
 			portraitViewer1.useTextureConverter = useTextureConverterToolStripMenuItem.Checked;
 		}
@@ -997,71 +928,6 @@ namespace BrawlStageManager {
 		}
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
 			TempFiles.TryToDeleteAll();
-		}
-		#endregion
-
-		#region registry <-> options menu
-		private void SaveToRegistry() {
-			new OptionsMenuSettings() {
-				UseTextureConverter = portraitViewer1.useTextureConverter,
-				RenderModels = renderModels.Checked,
-				LoadBrstms = loadbrstmsToolStripMenuItem.Checked,
-				StaticStageList = useAFixedStageListToolStripMenuItem.Checked,
-				RightPanelColor = portraitViewer1.BackColor,
-				ModuleFolderLocation = moduleFolderLocation,
-				UseFullRelNames = useFullrelNamesToolStripMenuItem.Checked,
-				SelmapMarkPreview = selmapMarkPreviewToolStripMenuItem.Checked,
-				SelmapMarkFormat = selmapMarkFormatIA4.Checked ? "IA4"
-								 : selmapMarkFormatI4.Checked ? "I4"
-								 : selmapMarkFormatAuto.Checked ? "Auto"
-								 : selmapMarkFormatCMPR.Checked ? "CMPR"
-																: "Existing",
-			}.SaveToRegistry();
-			MessageBox.Show("Registry settings saved.");
-		}
-
-		private static void set(ToolStripMenuItem item, bool value) {
-			item.Checked = !value;
-			item.PerformClick();
-		}
-
-		private void LoadFromRegistry() {
-			OptionsMenuSettings settings = OptionsMenuSettings.LoadFromRegistry();
-			if (settings == null) {
-				//MessageBox.Show("Could not load settings. They may not be present in the registry.");
-				return;
-			}
-
-			set(useTextureConverterToolStripMenuItem, settings.UseTextureConverter);
-			set(useAFixedStageListToolStripMenuItem, settings.StaticStageList);
-			set(renderModels, settings.RenderModels);
-			set(loadbrstmsToolStripMenuItem, settings.LoadBrstms);
-			portraitViewer1.BackColor = settings.RightPanelColor ?? portraitViewer1.BackColor;
-
-			{
-				moduleFolderLocation = settings.ModuleFolderLocation;
-				moduleToolStripMenuItem.Checked = (moduleFolderLocation == "../../module");
-				sameToolStripMenuItem.Checked = (moduleFolderLocation == ".");
-				if (stageInfoControl1.RelFile != null) updateRel(stageInfoControl1.RelFile.Name);
-			}
-			set(useFullrelNamesToolStripMenuItem, settings.UseFullRelNames);
-
-			set(selmapMarkPreviewToolStripMenuItem, settings.SelmapMarkPreview);
-			{
-				string s = settings.SelmapMarkFormat;
-				var menuItem = s == "IA4" ? selmapMarkFormatIA4
-							 : s == "I4" ? selmapMarkFormatI4
-							 : s == "Auto" ? selmapMarkFormatAuto
-							 : s == "CMPR" ? selmapMarkFormatCMPR
-										   : selmapMarkFormatExisting;
-				set(menuItem, true);
-			}
-		}
-
-		private void ClearRegistry() {
-			GeneralRegistry.ClearAllStageManager();
-			clearDefaultDirectoryToolStripMenuItem.Enabled = false;
-			MessageBox.Show("Registry settings for BrawlStageManager have been cleared.");
 		}
 		#endregion
 	}

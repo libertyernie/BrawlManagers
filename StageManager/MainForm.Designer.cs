@@ -51,12 +51,6 @@
 			this.exportAllMiscData80ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveInfopacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-			this.registryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.saveCurrentDirectoryAsDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.clearDefaultDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.saveAllStageManagerSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.clearAllStageManagerSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -293,7 +287,6 @@
             this.common5scselmapToolStripMenuItem,
             this.saveInfopacToolStripMenuItem,
             this.toolStripMenuItem4,
-            this.registryToolStripMenuItem,
             this.exportAllToolStripMenuItem,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -371,51 +364,6 @@
 			// 
 			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
 			this.toolStripMenuItem4.Size = new System.Drawing.Size(185, 6);
-			// 
-			// registryToolStripMenuItem
-			// 
-			this.registryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveCurrentDirectoryAsDefaultToolStripMenuItem,
-            this.clearDefaultDirectoryToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.saveAllStageManagerSettingsToolStripMenuItem,
-            this.clearAllStageManagerSettingsToolStripMenuItem});
-			this.registryToolStripMenuItem.Name = "registryToolStripMenuItem";
-			this.registryToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-			this.registryToolStripMenuItem.Text = "Registry";
-			// 
-			// saveCurrentDirectoryAsDefaultToolStripMenuItem
-			// 
-			this.saveCurrentDirectoryAsDefaultToolStripMenuItem.Name = "saveCurrentDirectoryAsDefaultToolStripMenuItem";
-			this.saveCurrentDirectoryAsDefaultToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-			this.saveCurrentDirectoryAsDefaultToolStripMenuItem.Text = "Save current directory as default";
-			this.saveCurrentDirectoryAsDefaultToolStripMenuItem.Click += new System.EventHandler(this.saveCurrentDirectoryAsDefaultToolStripMenuItem_Click);
-			// 
-			// clearDefaultDirectoryToolStripMenuItem
-			// 
-			this.clearDefaultDirectoryToolStripMenuItem.Name = "clearDefaultDirectoryToolStripMenuItem";
-			this.clearDefaultDirectoryToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-			this.clearDefaultDirectoryToolStripMenuItem.Text = "Clear default directory";
-			this.clearDefaultDirectoryToolStripMenuItem.Click += new System.EventHandler(this.clearDefaultDirectoryToolStripMenuItem_Click);
-			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(240, 6);
-			// 
-			// saveAllStageManagerSettingsToolStripMenuItem
-			// 
-			this.saveAllStageManagerSettingsToolStripMenuItem.Name = "saveAllStageManagerSettingsToolStripMenuItem";
-			this.saveAllStageManagerSettingsToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-			this.saveAllStageManagerSettingsToolStripMenuItem.Text = "Save all Stage Manager settings";
-			this.saveAllStageManagerSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveAllStageManagerSettingsToolStripMenuItem_Click);
-			// 
-			// clearAllStageManagerSettingsToolStripMenuItem
-			// 
-			this.clearAllStageManagerSettingsToolStripMenuItem.Name = "clearAllStageManagerSettingsToolStripMenuItem";
-			this.clearAllStageManagerSettingsToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-			this.clearAllStageManagerSettingsToolStripMenuItem.Text = "Clear all Stage Manager settings";
-			this.clearAllStageManagerSettingsToolStripMenuItem.Click += new System.EventHandler(this.clearAllStageManagerSettingsToolStripMenuItem_Click);
 			// 
 			// exportAllToolStripMenuItem
 			// 
@@ -1055,17 +1003,12 @@
 		private System.Windows.Forms.ToolStripMenuItem selmapMarkFormatExisting;
 		private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem listMenSelmapMarkUsageToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem registryToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem saveCurrentDirectoryAsDefaultToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem clearDefaultDirectoryToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem frontStnameGenerationFontToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator separator1;
 		private System.Windows.Forms.ToolStripSeparator separator2;
 		private System.Windows.Forms.ToolStripSeparator separator3;
 		private System.Windows.Forms.ToolStripSeparator separator4;
 		private System.Windows.Forms.ToolStripMenuItem backgroundColorToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.ToolStripMenuItem clearAllStageManagerSettingsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem updateMumenumainToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem snapshotPortraiticonToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
@@ -1083,7 +1026,6 @@
 		private BrawlManagerLib.CollapsibleSplitter collapsibleSplitter3;
 		private BrawlManagerLib.CollapsibleSplitter collapsibleSplitter4;
 		private System.Windows.Forms.ToolStripMenuItem loadbrstmsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem saveAllStageManagerSettingsToolStripMenuItem;
 		private BrawlManagerLib.SongPanel songPanel1;
 		private System.Windows.Forms.ToolStripMenuItem exportbrstmToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem deletebrstmToolStripMenuItem;
