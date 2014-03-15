@@ -107,3 +107,4 @@ UpgradeLog*.XML
 
 #Leave BrawlCostumeManager out of the repo for now - does not depend on BrawlManagerLib (yet)
 BrawlCostumeManager/
+Release Binaries
