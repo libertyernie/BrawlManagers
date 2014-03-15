@@ -87,10 +87,10 @@ namespace BrawlStageManager {
 
 			try {
 				clearDefaultDirectoryToolStripMenuItem.Enabled = (DefaultDirectory.Get() != null);
-				if (path == null) path = DefaultDirectory.GetIfExists() ?? System.IO.Directory.GetCurrentDirectory();
+				path = path ?? DefaultDirectory.GetIfExists() ?? System.IO.Directory.GetCurrentDirectory();
 			} catch (Exception e) {
 				BrawlManagerLib.TextBoxDialog.ShowDialog("Exception caught: " + e.Message + "\n" + e.StackTrace, e.GetType().ToString());
-				path = System.IO.Directory.GetCurrentDirectory();
+				path = path ?? System.IO.Directory.GetCurrentDirectory();
 			}
 
 			#region initialize from registry
