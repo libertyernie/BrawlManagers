@@ -128,8 +128,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Release copy /b "$(TargetPath)" "$(ProjectDir)..\Release Binaries\"
-if $(ConfigurationName) == Release copy /b "$(TargetDir)\BrawlLib.dll" "$(ProjectDir)..\Release Binaries\"
+    <PostBuildEvent>if $(ConfigurationName) == Release copy /b "$(TargetDir)\*.dll" "$(ProjectDir)..\Release Binaries\"
 if $(ConfigurationName) == Release copy /b "$(TargetDir)\BrawlLib.txt" "$(ProjectDir)..\Release Binaries\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
