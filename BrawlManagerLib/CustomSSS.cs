@@ -128,6 +128,8 @@ namespace BrawlManagerLib {
 				}
 			}
 
+			SongsByStage = new Dictionary<byte, Song>();
+
 			if (index < 0) {
 				MessageBox.Show("No custom SSS code found. A default code will be used.");
 				DataBefore = data.ToArray();
@@ -171,7 +173,6 @@ namespace BrawlManagerLib {
 			DataAfter = new byte[data.Length - index];
 			Array.ConstrainedCopy(data, index, DataAfter, 0, data.Length - index);
 
-            SongsByStage = new Dictionary<byte, Song>();
             for (int line = 0; line < data.Length; line += 8) {
                 if (ByteUtilities.ByteArrayEquals(data, line, SDSL_HEADER, 0, SDSL_HEADER.Length)) {
                     byte stageID = data[line + 7];
