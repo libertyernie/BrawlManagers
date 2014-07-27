@@ -244,7 +244,7 @@ namespace SSSEditor {
 {1}* 006B92A4 000000{2}
 * 066B9A58 000000{2}
 {3}* 06407AAC 000000{4}
-{5}",
+{5}".Replace("\r\n", "\n").Replace("\n", Environment.NewLine),
 			screen1.Count.ToString("X2"), ToCodeLines(screen1, definitions),
 			screen2.Count.ToString("X2"), ToCodeLines(screen2, definitions),
 			(2*definitions.Count).ToString("X2"), ToCodeLines(definitions));
