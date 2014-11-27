@@ -60,10 +60,22 @@ namespace BrawlStageManager {
 			lblCurrentFont.Text = (Settings == null)
 			? "No font selected"
 			: Settings.ToString();
+			chkCorner.Checked = Settings.Corner;
 		}
 
 		private void btnClearFont_Click(object sender, EventArgs e) {
 			Settings = null;
+		}
+
+		private void btnOkay_Click(object sender, EventArgs e) {
+			Settings.Corner = chkCorner.Checked;
+		}
+
+		private void label1_DoubleClick(object sender, EventArgs e) {
+			Settings = new NameCreatorSettings {
+				Font = new Font("Impact", 18f, FontStyle.Regular),
+				Corner = true
+			};
 		}
 	}
 }
