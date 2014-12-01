@@ -91,6 +91,11 @@ namespace SSSEditor {
 				screen2.Add(definitions[b]);
 			}
 
+			List<Control> tblStageDefinitionsControlBuffer = new List<Control>();
+			List<Control> tblSSS1ControlBuffer = new List<Control>();
+			List<Control> tblSSS2ControlBuffer = new List<Control>();
+
+			int ii = 0;
 			foreach (StagePair pair in definitions) {
 				var spc = new StagePairControl {
 					Pair = pair,
@@ -104,7 +109,9 @@ namespace SSSEditor {
 				}
 				spc.FindUsageClick += spc_FindUsageClick;
 				spc.SwapWithSelectedClick += spc_SwapWithSelectedClick;
-				tblStageDefinitions.Controls.Add(spc);
+				Console.WriteLine("()" + " " + pair);
+				tblStageDefinitionsControlBuffer.Add(spc);
+				Console.WriteLine(ii++ + " " + pair);
 			}
 
 			foreach (StagePair pair in screen1) {
@@ -115,7 +122,7 @@ namespace SSSEditor {
 				};
 				spc.FindUsageClick += spc_FindUsageClick;
 				spc.SwapWithSelectedClick += spc_SwapWithSelectedClick;
-				tblSSS1.Controls.Add(spc);
+				tblSSS1ControlBuffer.Add(spc);
 			}
 
 			foreach (StagePair pair in screen2) {
@@ -125,8 +132,12 @@ namespace SSSEditor {
 					Dock = DockStyle.Fill,
 				};
 				spc.FindUsageClick += spc_FindUsageClick;
-				tblSSS2.Controls.Add(spc);
+				tblSSS2ControlBuffer.Add(spc);
 			}
+
+			tblStageDefinitions.Controls.AddRange(tblStageDefinitionsControlBuffer.ToArray());
+			tblSSS1.Controls.AddRange(tblSSS1ControlBuffer.ToArray());
+			tblSSS2.Controls.AddRange(tblSSS2ControlBuffer.ToArray());
 		}
 
 		private void spc_FindUsageClick(StagePairControl sender) {
