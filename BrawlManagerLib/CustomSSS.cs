@@ -98,6 +98,15 @@ namespace BrawlManagerLib {
 			}
 		}
 
+		private CustomSSS(CustomSSS copyfrom, byte[] sss1, byte[] sss2, byte[] sss3) {
+			this.SongsByStage = copyfrom.SongsByStage;
+			this.sss1 = sss1;
+			this.sss2 = sss2;
+			this.sss3 = sss3;
+			this.DataBefore = copyfrom.DataBefore;
+			this.DataAfter = copyfrom.DataAfter;
+		}
+
 		private static byte[] gctheader = { 0x00, 0xd0, 0xc0, 0xde, 0x00, 0xd0, 0xc0, 0xde };
 		private static byte[] gctfooter = { 0xf0, 0, 0, 0, 0, 0, 0, 0 };
 		private void init(string[] s) {
@@ -196,6 +205,35 @@ namespace BrawlManagerLib {
 		public override string ToString() {
 			return String.Format("Custom SSS: {0}/{1} stages, from pool of {2} pairs",
 				sss1.Length, sss2.Length, sss3.Length / 2);
+		}
+
+		public CustomSSS CopyFirst30Pairs() {
+			byte[] new1 = new byte[sss1.Length];
+			byte[] new2 = new byte[sss2.Length];
+			byte[] new3 = new byte[sss3.Length + 60];
+
+			for (int i = 0; i < sss1.Length; i++) {
+				byte v = sss1[i];
+				if (v >= 56) v += 30;
+				new1[i] = v;
+			}
+			for (int i = 0; i < sss2.Length; i++) {
+				byte v = sss2[i];
+				if (v >= 56) v += 30;
+				new2[i] = v;
+			}
+
+			for (int i = 0; i < 56 * 2; i++) {
+				new3[i] = sss3[i];
+			}
+			for (int i = 0; i < 30 * 2; i++) {
+				new3[i + 112] = 02;// sss3[i];
+			}
+			for (int i = 56 * 2; i < sss3.Length; i++) {
+				new3[i + 60] = sss3[i];
+			}
+
+			return new CustomSSS(this, new1, new2, new3);
 		}
 	}
 }

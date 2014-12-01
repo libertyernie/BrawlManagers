@@ -464,5 +464,15 @@ namespace SSSEditor {
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
 			new AboutBSM(null, System.Reflection.Assembly.GetExecutingAssembly()).ShowDialog(this);
 		}
+
+		private void copyPairsToolStripMenuItem_Click(object sender, EventArgs e) {
+			if (sss.sss3.Length < 110) {
+				MessageBox.Show(this, "Less than 55 stages are currently defined.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			sss = sss.CopyFirst30Pairs();
+			ReloadData();
+		}
 	}
 }
