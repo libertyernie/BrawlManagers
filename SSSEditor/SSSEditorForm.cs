@@ -471,7 +471,7 @@ namespace SSSEditor {
 				return;
 			}
 
-			sss = sss.CopyFirst30Pairs();
+			sss = sss.Add30Pairs();
 			ReloadData();
 		}
 	}

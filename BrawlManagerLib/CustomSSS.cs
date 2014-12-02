@@ -207,7 +207,7 @@ namespace BrawlManagerLib {
 				sss1.Length, sss2.Length, sss3.Length / 2);
 		}
 
-		public CustomSSS CopyFirst30Pairs() {
+		public CustomSSS Add30Pairs() {
 			byte[] new1 = new byte[sss1.Length];
 			byte[] new2 = new byte[sss2.Length];
 			byte[] new3 = new byte[sss3.Length + 60];
