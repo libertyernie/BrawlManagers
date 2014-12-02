@@ -474,5 +474,27 @@ namespace SSSEditor {
 			sss = sss.Add30Pairs();
 			ReloadData();
 		}
+
+		private void pasteAnSSSCodeToolStripMenuItem_Click(object sender, EventArgs e) {
+			using (Form f = new Form() { Text = "Custom SSS Code" }) {
+				Button ok = new Button() {
+					Text = "OK",
+					Dock = DockStyle.Bottom,
+					DialogResult = System.Windows.Forms.DialogResult.OK
+				};
+				f.Controls.Add(ok);
+				TextBox t = new TextBox() {
+					Multiline = true,
+					Dock = DockStyle.Fill,
+					ScrollBars = ScrollBars.Vertical,
+					Font = new System.Drawing.Font("Consolas", 12),
+				};
+				f.Controls.Add(t);
+				if (f.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
+					sss = new CustomSSS(t.Lines);
+					ReloadData();
+				}
+			}
+		}
 	}
 }
