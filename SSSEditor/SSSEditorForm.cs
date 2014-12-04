@@ -63,9 +63,34 @@ namespace SSSEditor {
 			ReloadIfValidPac(pac);
 
 			FormClosed += (o, e) => TempFiles.TryToDeleteAll();
+			
+			tabControl1.Selecting += (o, e) => {
+				if (e.TabPage == tabDefinitions || e.TabPage == tabSSS1 || e.TabPage == tabSSS2) {
+					new System.Threading.Tasks.Task(() => {
+						ProgressWindow pw = new ProgressWindow();
+						StagePairControl.GlobalProgressWindow = pw;
+						pw.MaxValue = e.TabPage.Controls[0].Controls.Count;
+						pw.ShowDialog();
+					}).Start();
+				}
+			};
+
+			tabControl1.SelectedIndexChanged += (o, e) => {
+				if (StagePairControl.GlobalProgressWindow != null) {
+					StagePairControl.GlobalProgressWindow.BeginInvoke(new Action(StagePairControl.GlobalProgressWindow.Close));
+					StagePairControl.GlobalProgressWindow = null;
+				}
+			};
 		}
 
 		private void ReloadData() {
+			ProgressWindow pw = null;
+			new System.Threading.Tasks.Task(() => {
+				pw = new ProgressWindow();
+				pw.MaxValue = sss.sss1.Length + sss.sss2.Length + sss.sss3.Length/2;
+				pw.ShowDialog();
+			}).Start();
+
 			tblStageDefinitions.Controls.Clear();
 			tblSSS1.Controls.Clear();
 			tblSSS2.Controls.Clear();
@@ -91,7 +116,7 @@ namespace SSSEditor {
 				screen2.Add(definitions[b]);
 			}
 
-			int ii = 0;
+			int j = 0;
 			foreach (StagePair pair in definitions) {
 				var spc = new StagePairControl {
 					Pair = pair,
@@ -105,9 +130,8 @@ namespace SSSEditor {
 				}
 				spc.FindUsageClick += spc_FindUsageClick;
 				spc.SwapWithSelectedClick += spc_SwapWithSelectedClick;
-				Console.WriteLine("()" + " " + pair);
 				tblStageDefinitions.Controls.Add(spc);
-				Console.WriteLine(ii++ + " " + pair);
+				if (pw != null) pw.Update(++j);
 			}
 
 			foreach (StagePair pair in screen1) {
@@ -119,6 +143,7 @@ namespace SSSEditor {
 				spc.FindUsageClick += spc_FindUsageClick;
 				spc.SwapWithSelectedClick += spc_SwapWithSelectedClick;
 				tblSSS1.Controls.Add(spc);
+				if (pw != null) pw.Update(++j);
 			}
 
 			foreach (StagePair pair in screen2) {
@@ -129,7 +154,10 @@ namespace SSSEditor {
 				};
 				spc.FindUsageClick += spc_FindUsageClick;
 				tblSSS2.Controls.Add(spc);
+				if (pw != null) pw.Update(++j);
 			}
+
+			if (pw != null) pw.BeginInvoke(new Action(pw.Close));
 		}
 
 		private void spc_FindUsageClick(StagePairControl sender) {
