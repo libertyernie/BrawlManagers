@@ -225,6 +225,7 @@
   <ItemGroup>
     <EmbeddedResource Include="blockout.png" />
     <EmbeddedResource Include="border.png" />
+    <EmbeddedResource Include="blockoutpm.png" />
     <Content Include="BrawlStageManager.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

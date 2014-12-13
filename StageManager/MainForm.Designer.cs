@@ -122,6 +122,8 @@
 			this.collapsibleSplitter5 = new BrawlManagerLib.CollapsibleSplitter();
 			this.collapsibleSplitter4 = new BrawlManagerLib.CollapsibleSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
+			this.drawOverPrevbasesBrawlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.drawOverPrevbasesPM35ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
 			this.splitContainerLeft.Panel1.SuspendLayout();
 			this.splitContainerLeft.Panel2.SuspendLayout();
@@ -717,9 +719,12 @@
 			// 
 			// drawBlocksOverPrevbasesToolStripMenuItem
 			// 
+			this.drawBlocksOverPrevbasesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.drawOverPrevbasesBrawlToolStripMenuItem,
+            this.drawOverPrevbasesPM35ToolStripMenuItem});
 			this.drawBlocksOverPrevbasesToolStripMenuItem.Name = "drawBlocksOverPrevbasesToolStripMenuItem";
 			this.drawBlocksOverPrevbasesToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-			this.drawBlocksOverPrevbasesToolStripMenuItem.Text = "Draw blocks over Prevbases";
+			this.drawBlocksOverPrevbasesToolStripMenuItem.Text = "Draw solid color over Prevbase edge";
 			this.drawBlocksOverPrevbasesToolStripMenuItem.Click += new System.EventHandler(this.drawBlocksOverPrevbasesToolStripMenuItem_Click);
 			// 
 			// resizeToolStripMenuItem
@@ -977,6 +982,20 @@
 			this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
 			this.portraitViewer1.TabIndex = 2;
 			// 
+			// drawOverPrevbasesBrawlToolStripMenuItem
+			// 
+			this.drawOverPrevbasesBrawlToolStripMenuItem.Name = "drawOverPrevbasesBrawlToolStripMenuItem";
+			this.drawOverPrevbasesBrawlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.drawOverPrevbasesBrawlToolStripMenuItem.Text = "Brawl";
+			this.drawOverPrevbasesBrawlToolStripMenuItem.Click += new System.EventHandler(this.drawOverPrevbasesBrawlToolStripMenuItem_Click);
+			// 
+			// drawOverPrevbasesPM35ToolStripMenuItem
+			// 
+			this.drawOverPrevbasesPM35ToolStripMenuItem.Name = "drawOverPrevbasesPM35ToolStripMenuItem";
+			this.drawOverPrevbasesPM35ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.drawOverPrevbasesPM35ToolStripMenuItem.Text = "PM 3.5";
+			this.drawOverPrevbasesPM35ToolStripMenuItem.Click += new System.EventHandler(this.drawOverPrevbasesPM35ToolStripMenuItem_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1106,6 +1125,8 @@
 		private System.Windows.Forms.ToolStripMenuItem brawlBoxcommon5scselmapToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem loadCustomSSSToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+		private System.Windows.Forms.ToolStripMenuItem drawOverPrevbasesBrawlToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem drawOverPrevbasesPM35ToolStripMenuItem;
 
 
 

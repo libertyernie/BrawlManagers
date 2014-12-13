@@ -883,8 +883,26 @@ namespace BrawlStageManager {
 			}
 		}
 
+		private void drawOverPrevbasesBrawlToolStripMenuItem_Click(object sender, EventArgs e) {
+			var dialog = new EnterSizeDialog() {
+				SizeEntry = portraitViewer1.prevbaseResizeTo ?? new Size(176, 176)
+			};
+			if (dialog.ShowDialog() == DialogResult.OK) {
+				portraitViewer1.DrawBlocksOverPrevbases(dialog.SizeEntry);
+			}
+		}
+
+		private void drawOverPrevbasesPM35ToolStripMenuItem_Click(object sender, EventArgs e) {
+			var dialog = new EnterSizeDialog() {
+				SizeEntry = portraitViewer1.prevbaseResizeTo ?? new Size(176, 176)
+			};
+			if (dialog.ShowDialog() == DialogResult.OK) {
+				portraitViewer1.DrawBlocksOverPrevbases(dialog.SizeEntry, pm: true);
+			}
+		}
+
 		private void drawBlocksOverPrevbasesToolStripMenuItem_Click(object sender, EventArgs e) {
-			portraitViewer1.DrawBlocksOverPrevbases();
+			
 		}
 		
 		private void switchPrevbaseSize(object sender, EventArgs e) {

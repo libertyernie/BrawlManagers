@@ -809,10 +809,12 @@ namespace BrawlStageManager {
 			}
 		}
 
-		internal void DrawBlocksOverPrevbases() {
+		internal void DrawBlocksOverPrevbases(Size newSize, bool pm = false) {
 			if (sc_selmap == null) return;
 
-			Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlStageManager.blockout.png");
+			Stream stream = pm
+				? Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlStageManager.blockoutpm.png")
+				: Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlStageManager.blockout.png");
 			if (stream == null) return;
 			Image blockout = Image.FromStream(stream);
 
@@ -833,6 +835,7 @@ namespace BrawlStageManager {
 
 					TextureConverterDialog d = new TextureConverterDialog();
 					d.ImageSource = file;
+					if (image.Width > newSize.Width || image.Height > newSize.Height) d.InitialSize = newSize;
 					if (d.ShowDialog(null, node) == DialogResult.OK) {
 						node.IsDirty = true;
 						Console.WriteLine("Resized " + node);

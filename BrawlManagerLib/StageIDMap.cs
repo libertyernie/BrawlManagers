@@ -121,7 +121,7 @@ namespace BrawlManagerLib {
 				"Yoshi's Island (Melee)", "Jungle Japes", "Onett",
 				"Green Greens", "Pokemon Stadium", "Rainbow Cruise",
 				"Corneria", "Big Blue", "Brinstar", "Bridge of Eldin",
-				"Homerun", "Edit", "Heal", "Online Training",
+				"Homerun", "Edit", "Heal", "Online Practice Stage",
 				"TargetBreak"};
 			byte[] ids = {0,1,2,3,4,5,6,7,
 				8,9,11,12,13,14,19,20,21,
