@@ -249,7 +249,7 @@ namespace BrawlStageManager {
 					sb.Append(b.ToString("x2").ToLower());
 				}
 				stageInfoControl1.MD5 = sb.ToString();
-				_rootNode = NodeFactory.FromFile(null, _rootPath);
+				_rootNode = loadStagepacsToolStripMenuItem.Checked ? NodeFactory.FromFile(null, _rootPath) : null;
 			} catch (FileNotFoundException) {
 				// This might happen if you delete the file from Explorer after this program puts it in the list
 				RightControl = couldNotOpenLabel;
@@ -274,11 +274,11 @@ namespace BrawlStageManager {
 									try {
 										MDL0Node model = child as MDL0Node;
 										model.Populate();
-										model._renderBones = false;
-										model._renderPolygons = true;
-										model._renderWireframe = false;
-										model._renderVertices = false;
-										model._renderBox = false;
+										model._renderAttribs._renderBones = false;
+										model._renderAttribs._renderPolygons = true;
+										model._renderAttribs._renderWireframe = false;
+										model._renderAttribs._renderVertices = false;
+										model._renderAttribs._renderBox = false;
 										model.ApplyCHR(null, 0);
 										model.ApplySRT(null, 0);
 										if (model.TextureGroup != null) {
@@ -795,7 +795,7 @@ namespace BrawlStageManager {
 		}
 
 		private void snapshotPortraiticonToolStripMenuItem_Click(object sender, EventArgs e) {
-			Bitmap screenshot = modelPanel1.GrabScreenshot(false);
+			Bitmap screenshot = modelPanel1.GetScreenshot(false);
 
 			int size = Math.Min(screenshot.Width, screenshot.Height);
 			Bitmap square = new Bitmap(size, size);
@@ -1008,6 +1008,10 @@ namespace BrawlStageManager {
 		private void listBoxSongs_SelectedIndexChanged(object sender, EventArgs e) {
 			songPanel1.Open(new FileInfo("../../sound/strm/" + listBoxSongs.SelectedItem + ".brstm"));
 			exportbrstmToolStripMenuItem.Enabled = deletebrstmToolStripMenuItem.Enabled = songPanel1.FileOpen;
+		}
+
+		private void loadStagepacsToolStripMenuItem_Click(object sender, EventArgs e) {
+			renderModels.Enabled = loadStagepacsToolStripMenuItem.Checked;
 		}
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {

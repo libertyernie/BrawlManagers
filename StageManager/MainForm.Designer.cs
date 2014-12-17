@@ -64,6 +64,7 @@
 			this.useAFixedStageListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+			this.loadStagepacsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.renderModels = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadbrstmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -96,6 +97,8 @@
 			this.downgradeMenSelmapMarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resizeAllPrevbasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.drawBlocksOverPrevbasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.drawOverPrevbasesBrawlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.drawOverPrevbasesPM35ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.prevbaseSize = new System.Windows.Forms.ToolStripMenuItem();
 			this.prevbaseOriginalSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,8 +125,6 @@
 			this.collapsibleSplitter5 = new BrawlManagerLib.CollapsibleSplitter();
 			this.collapsibleSplitter4 = new BrawlManagerLib.CollapsibleSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
-			this.drawOverPrevbasesBrawlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.drawOverPrevbasesPM35ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
 			this.splitContainerLeft.Panel1.SuspendLayout();
 			this.splitContainerLeft.Panel2.SuspendLayout();
@@ -181,15 +182,20 @@
 			// 
 			// modelPanel1
 			// 
+			this.modelPanel1.AllowSelection = false;
+			this.modelPanel1.BackgroundImageType = BrawlLib.OpenGL.GLPanel.BGImageType.Stretch;
 			this.modelPanel1.DefaultTranslate = ((System.Vector3)(resources.GetObject("modelPanel1.DefaultTranslate")));
 			this.modelPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.modelPanel1.InitialYFactor = 100;
 			this.modelPanel1.InitialZoomFactor = 5;
+			this.modelPanel1.IsOrthographic = false;
 			this.modelPanel1.Location = new System.Drawing.Point(0, 148);
 			this.modelPanel1.Name = "modelPanel1";
+			this.modelPanel1.ProjectionChanged = false;
 			this.modelPanel1.RotationScale = 0.1F;
 			this.modelPanel1.Size = new System.Drawing.Size(311, 190);
 			this.modelPanel1.TabIndex = 2;
+			this.modelPanel1.TextOverlaysEnabled = false;
 			this.modelPanel1.TranslationScale = 0.05F;
 			this.modelPanel1.ZoomScale = 2.5F;
 			// 
@@ -440,6 +446,7 @@
             this.useAFixedStageListToolStripMenuItem,
             this.backgroundColorToolStripMenuItem,
             this.toolStripMenuItem5,
+            this.loadStagepacsToolStripMenuItem,
             this.renderModels,
             this.loadbrstmsToolStripMenuItem,
             this.separator1,
@@ -483,6 +490,16 @@
 			// 
 			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
 			this.toolStripMenuItem5.Size = new System.Drawing.Size(190, 6);
+			// 
+			// loadStagepacsToolStripMenuItem
+			// 
+			this.loadStagepacsToolStripMenuItem.Checked = true;
+			this.loadStagepacsToolStripMenuItem.CheckOnClick = true;
+			this.loadStagepacsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.loadStagepacsToolStripMenuItem.Name = "loadStagepacsToolStripMenuItem";
+			this.loadStagepacsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.loadStagepacsToolStripMenuItem.Text = "Load stage .pacs";
+			this.loadStagepacsToolStripMenuItem.Click += new System.EventHandler(this.loadStagepacsToolStripMenuItem_Click);
 			// 
 			// renderModels
 			// 
@@ -726,6 +743,20 @@
 			this.drawBlocksOverPrevbasesToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
 			this.drawBlocksOverPrevbasesToolStripMenuItem.Text = "Draw solid color over Prevbase edge";
 			this.drawBlocksOverPrevbasesToolStripMenuItem.Click += new System.EventHandler(this.drawBlocksOverPrevbasesToolStripMenuItem_Click);
+			// 
+			// drawOverPrevbasesBrawlToolStripMenuItem
+			// 
+			this.drawOverPrevbasesBrawlToolStripMenuItem.Name = "drawOverPrevbasesBrawlToolStripMenuItem";
+			this.drawOverPrevbasesBrawlToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+			this.drawOverPrevbasesBrawlToolStripMenuItem.Text = "Brawl";
+			this.drawOverPrevbasesBrawlToolStripMenuItem.Click += new System.EventHandler(this.drawOverPrevbasesBrawlToolStripMenuItem_Click);
+			// 
+			// drawOverPrevbasesPM35ToolStripMenuItem
+			// 
+			this.drawOverPrevbasesPM35ToolStripMenuItem.Name = "drawOverPrevbasesPM35ToolStripMenuItem";
+			this.drawOverPrevbasesPM35ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+			this.drawOverPrevbasesPM35ToolStripMenuItem.Text = "PM 3.5";
+			this.drawOverPrevbasesPM35ToolStripMenuItem.Click += new System.EventHandler(this.drawOverPrevbasesPM35ToolStripMenuItem_Click);
 			// 
 			// resizeToolStripMenuItem
 			// 
@@ -982,20 +1013,6 @@
 			this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
 			this.portraitViewer1.TabIndex = 2;
 			// 
-			// drawOverPrevbasesBrawlToolStripMenuItem
-			// 
-			this.drawOverPrevbasesBrawlToolStripMenuItem.Name = "drawOverPrevbasesBrawlToolStripMenuItem";
-			this.drawOverPrevbasesBrawlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.drawOverPrevbasesBrawlToolStripMenuItem.Text = "Brawl";
-			this.drawOverPrevbasesBrawlToolStripMenuItem.Click += new System.EventHandler(this.drawOverPrevbasesBrawlToolStripMenuItem_Click);
-			// 
-			// drawOverPrevbasesPM35ToolStripMenuItem
-			// 
-			this.drawOverPrevbasesPM35ToolStripMenuItem.Name = "drawOverPrevbasesPM35ToolStripMenuItem";
-			this.drawOverPrevbasesPM35ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.drawOverPrevbasesPM35ToolStripMenuItem.Text = "PM 3.5";
-			this.drawOverPrevbasesPM35ToolStripMenuItem.Click += new System.EventHandler(this.drawOverPrevbasesPM35ToolStripMenuItem_Click);
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1127,6 +1144,7 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
 		private System.Windows.Forms.ToolStripMenuItem drawOverPrevbasesBrawlToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem drawOverPrevbasesPM35ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem loadStagepacsToolStripMenuItem;
 
 
 
