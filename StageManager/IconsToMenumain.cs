@@ -21,26 +21,25 @@ namespace BrawlStageManager {
 			}
 
 			ResourceNode miscData80 = scSelmap.FindChild("MiscData[80]", false);
-			string file80 = TempFiles.Create(".brres");
-			miscData80.Export(file80);
+			miscData0.ReplaceRaw(miscData80.WorkingSource.Address, miscData80.WorkingSource.Length);
+			miscData0.SignalPropertyChange();
 
-			miscData0.Replace(file80);
 			List<ResourceNode> chrToReplace = miscData0.FindChild("AnmChr(NW4R)", false).Children;
 			foreach (ResourceNode n in chrToReplace) {
 				string file = tempFiles[n.Name];
 				n.Replace(file);
 			}
 			
-			string tempfile = TempFiles.Create(".png");
+			string xx_png = TempFiles.Create(".png");
 			ResourceNode xx = miscData0.FindChild("Textures(NW4R)/MenSelmapIcon.XX", false);
 			bool found = false;
 			if (xx != null) {
-				xx.Export(tempfile);
+				xx.Export(xx_png);
 				found = true;
 			} else {
 				Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlStageManager.XX.png");
 				if (stream != null) {
-					Image.FromStream(stream).Save(tempfile);
+					Image.FromStream(stream).Save(xx_png);
 					found = true;
 				}
 			}
@@ -51,12 +50,12 @@ namespace BrawlStageManager {
 					if (tex.Name.StartsWith("MenSelmapIcon.") && Byte.TryParse(tex.Name.Substring(14, 2), out icon_id)) {
 						byte stage_id = sss.StageForIcon(icon_id);
 						if (icon_id != 100 && (stage_id == 0x25 || stage_id > 0x33)) {
-							tex.Replace(tempfile);
+							tex.Replace(xx_png);
 						}
 					}
 				}
-				File.Delete(tempfile);
 			}
+			File.Delete(xx_png);
 		}
 	}
 }

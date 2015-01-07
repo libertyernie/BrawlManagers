@@ -822,7 +822,7 @@ namespace BrawlStageManager {
 				if (dr == DialogResult.No) return;
 			}
 			if (songPanel1.InfoLoaded) {
-				string msbintmp = TempFiles.Create();
+				string msbintmp = TempFiles.Create(".msbin");
 				songPanel1.ExportMSBin(msbintmp);
 				portraitViewer1.updateMuMenumain(msbintmp);
 			} else {
@@ -1018,7 +1018,7 @@ namespace BrawlStageManager {
 			e.Cancel = !savePacsIfNecessary();
 		}
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
-			TempFiles.TryToDeleteAll();
+			TempFiles.DeleteAll();
 		}
 		#endregion
 

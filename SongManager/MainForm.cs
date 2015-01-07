@@ -444,7 +444,7 @@ namespace BrawlSongManager {
 		}
 
 		private void closed(object sender, FormClosedEventArgs e) {
-			TempFiles.TryToDeleteAll();
+			TempFiles.DeleteAll();
 		}
 	}
 }

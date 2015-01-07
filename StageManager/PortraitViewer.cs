@@ -215,18 +215,18 @@ namespace BrawlStageManager {
 			fileSizeBar.Maximum = 1214283;
 			if (File.Exists("../../menu2/sc_selmap.pac")) {
 				common5 = null;
-				sc_selmap = fcopy("../../menu2/sc_selmap.pac");
+				sc_selmap = TempFiles.MakeTempNode("../../menu2/sc_selmap.pac");
 				_openFilePath = "../../menu2/sc_selmap.pac";
 			} else if (File.Exists("../../menu2/sc_selmap_en.pac")) {
 				common5 = null;
-				sc_selmap = fcopy("../../menu2/sc_selmap_en.pac");
+				sc_selmap = TempFiles.MakeTempNode("../../menu2/sc_selmap_en.pac");
 				_openFilePath = "../../menu2/sc_selmap_en.pac";
 			} else if (File.Exists("../../system/common5.pac")) {
-				common5 = fcopy("../../system/common5.pac");
+				common5 = TempFiles.MakeTempNode("../../system/common5.pac");
 				sc_selmap = common5.FindChild("sc_selmap_en", false);
 				_openFilePath = "../../system/common5.pac";
 			} else if (File.Exists("../../system/common5_en.pac")) {
-				common5 = fcopy("../../system/common5_en.pac");
+				common5 = TempFiles.MakeTempNode("../../system/common5_en.pac");
 				sc_selmap = common5.FindChild("sc_selmap_en", false);
 				_openFilePath = "../../system/common5_en.pac";
 			} else {
@@ -438,15 +438,6 @@ namespace BrawlStageManager {
 			return result;
 		}
 
-		private static ResourceNode fcopy(string path) {
-			FileInfo f = new FileInfo(path);
-			if (!f.Exists) throw new IOException(f.FullName + " doesn't exist");
-
-			string tempfile = TempFiles.Create();
-			File.Copy(f.FullName, tempfile, true);
-			return NodeFactory.FromFile(null, tempfile);
-		}
-
 		private bool FindMuMenumain() {
 			mu_menumain_path = null;
 			string[] lookIn = { "../../menu2/mu_menumain.pac",
@@ -481,21 +472,6 @@ namespace BrawlStageManager {
 			Bitmap toEncode = (format == WiiPixelFormat.CMPR) ? BitmapUtilities.AlphaSwap(newBitmap) : newBitmap;
 			BrawlLib.IO.FileMap tMap = TextureConverter.Get(format).EncodeTEX0Texture(toEncode, 1);
 			toReplace.ReplaceRaw(tMap);
-		}
-
-		private string resizeToTempFile(string filename, Size? resizeToArg) {
-			Size resizeTo = resizeToArg ?? Size.Empty;
-			string tempFile = TempFiles.Create();
-			using (Bitmap orig = new Bitmap(filename)) {
-				if (orig.Size.Width <= resizeTo.Width && orig.Size.Height <= resizeTo.Height) {
-					File.Copy(filename, tempFile, true);
-				} else {
-					using (Bitmap thumbnail = BitmapUtilities.Resize(orig, resizeTo)) {
-						thumbnail.Save(tempFile);
-					}
-				}
-			}
-			return tempFile;
 		}
 
 		/// <summary>
@@ -595,10 +571,10 @@ namespace BrawlStageManager {
 			} else if (sc_selmap != null) {
 				if (File.Exists("../../menu2/sc_selcharacter2.pac")) {
 					fileToSaveTo = "../../menu2/sc_selcharacter2.pac";
-					s2 = fcopy(fileToSaveTo);
+					s2 = TempFiles.MakeTempNode(fileToSaveTo);
 				} else if (File.Exists("../../menu2/sc_selcharacter2_en.pac")) {
 					fileToSaveTo = "../../menu2/sc_selcharacter2_en.pac";
-					s2 = fcopy(fileToSaveTo);
+					s2 = TempFiles.MakeTempNode(fileToSaveTo);
 				}
 			}
 
@@ -786,12 +762,13 @@ namespace BrawlStageManager {
 
 		public void updateMuMenumain(string msBinPath = null) {
 			if (DialogResult.OK == MessageBox.Show("Overwrite the current mu_menumain?", "Overwrite File", MessageBoxButtons.OKCancel)) {
-				ResourceNode mu_menumain = fcopy(mu_menumain_path);
-				IconsToMenumain.Copy(sc_selmap, mu_menumain, BestSSS);
-				if (msBinPath != null) {
-					mu_menumain.FindChild("MiscData[7]", false).Replace(msBinPath);
+				using (ResourceNode mu_menumain = TempFiles.MakeTempNode(mu_menumain_path)) {
+					IconsToMenumain.Copy(sc_selmap, mu_menumain, BestSSS);
+					if (msBinPath != null) {
+						mu_menumain.FindChild("MiscData[7]", false).Replace(msBinPath);
+					}
+					mu_menumain.Export(mu_menumain_path);
 				}
-				mu_menumain.Export(mu_menumain_path);
 
 				byte absent_stage_id = BestSSS[0x1E].Item1;
 				int sss2_count = BestSSS.sss2.Where(b => b != 0x1E).Count() + 1;

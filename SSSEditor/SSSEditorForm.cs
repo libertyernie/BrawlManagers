@@ -62,7 +62,7 @@ namespace SSSEditor {
 			sss = new CustomSSS(gct);
 			ReloadIfValidPac(pac);
 
-			FormClosed += (o, e) => TempFiles.TryToDeleteAll();
+			FormClosed += (o, e) => TempFiles.DeleteAll();
 			
 			tabControl1.Selecting += (o, e) => {
 				if (e.TabPage == tabDefinitions || e.TabPage == tabSSS1 || e.TabPage == tabSSS2) {
