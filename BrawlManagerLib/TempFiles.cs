@@ -1,16 +1,16 @@
-﻿using System;
+﻿using BrawlLib.IO;
+using BrawlLib.SSBB.ResourceNodes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace BrawlManagerLib {
 	public class TempFiles {
-		//private static Stack<string> tempFiles = new Stack<string>();
-		public static bool Printout = true;
-
 		static TempFiles() {
-			string p = Path.Combine(Path.GetTempPath(), "StageManager");
+			string p = Path.Combine(Path.GetTempPath(), "BrawlManagerLib");
 			if (Directory.Exists(p)) {
 				try {
 					Directory.Delete(p, true);
@@ -21,34 +21,46 @@ namespace BrawlManagerLib {
 			Directory.CreateDirectory(p);
 		}
 
-		public static string Create() {
-			return Create(".dat");
-		}
-
+		/// <summary>
+		/// Creates a temporary file in the BrawlManagerLib subdirectory of the system temporary folder.
+		/// This function can be used for image files. For files that can be opened as a ResourceNode, consider using the MakeTempNode function instead.
+		/// </summary>
 		public static string Create(string extension) {
 			if (!extension.StartsWith(".")) extension = "." + extension;
-			string f = Path.Combine(Path.GetTempPath(), "StageManager", Guid.NewGuid() + extension);
-			//tempFiles.Push(f);
-			if (Printout) Console.WriteLine("Returning path: " + f);
-			return f;
+			return Path.Combine(Path.GetTempPath(), "BrawlManagerLib", Guid.NewGuid() + extension);
 		}
 
-		public static void TryToDeleteAll() {
-			foreach (string s in Directory.EnumerateFiles(Path.Combine(Path.GetTempPath(), "StageManager"))) {
+		/// <summary>
+		/// Deletes all files created by the Create function (but not those created by MakeTempNode.)
+		/// </summary>
+		public static void DeleteAll() {
+			List<Exception> exceptions = new List<Exception>();
+			foreach (string s in Directory.EnumerateFiles(Path.Combine(Path.GetTempPath(), "BrawlManagerLib"))) {
 				try {
 					File.Delete(s);
 				} catch (Exception e) {
-					Console.WriteLine(s + ": " + e.Message);
+					exceptions.Add(e);
 				}
 			}
-			/*while (tempFiles.Any()) {
-				string s = tempFiles.Pop();
-				try {
-					File.Delete(s);
-				} catch (Exception e) {
-					Console.WriteLine(s + ": " + e.Message);
-				}
-			}*/
+			if (exceptions.Count == 0) {
+				Directory.Delete(Path.Combine(Path.GetTempPath(), "BrawlManagerLib"));
+			} else if (exceptions.Count == 1) {
+				throw exceptions[0];
+			} else {
+				throw new AggregateException(exceptions);
+			}
+		}
+
+		/// <summary>
+		/// Creates a ResourceNode from a temporary file using FileMap.FromTempFile. The file will be deleted when the underlying FileMap's stream is closed.
+		/// </summary>
+		public static ResourceNode MakeTempNode(string path) {
+			byte[] data = File.ReadAllBytes(path);
+
+			FileMap map = FileMap.FromTempFile(data.Length);
+			Console.WriteLine(path + " -> FromTempFile -> " + map.FilePath);
+			Marshal.Copy(data, 0, map.Address, data.Length);
+			return NodeFactory.FromSource(null, new DataSource(map));
 		}
 	}
 }
