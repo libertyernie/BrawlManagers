@@ -278,7 +278,6 @@ namespace BrawlStageManager {
 										model._renderAttribs._renderPolygons = true;
 										model._renderAttribs._renderWireframe = false;
 										model._renderAttribs._renderVertices = false;
-										model._renderAttribs._renderBox = false;
 										model.ApplyCHR(null, 0);
 										model.ApplySRT(null, 0);
 										if (model.TextureGroup != null) {
