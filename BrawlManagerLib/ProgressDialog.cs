@@ -25,12 +25,38 @@ namespace BrawlManagerLib {
 
 		public int ProgressCompletionAt {
 			get { return ProgressBar.Maximum; }
-			set { ProgressBar.Maximum = value; }
+			set { 
+				ProgressBar.Maximum = value; 
+				CheckOkButtonEnabled();
+			}
 		}
 
 		public int Progress {
 			get { return ProgressBar.Value; }
-			set { ProgressBar.Value = value; }
+			set { 
+				ProgressBar.Value = value;
+				CheckOkButtonEnabled();
+			}
 		}
+
+		public void AppendLogLine(string value) {
+			if (logTextBox.Text.Length == 0)
+				logTextBox.Text = value;
+			else
+				logTextBox.AppendText("\n" + value);
+		}
+
+		public void ClearLog() {
+			logTextBox.Clear();
+		}
+
+		private void CheckOkButtonEnabled() {
+			okButton.Enabled = Progress >= ProgressCompletionAt;
+		}
+
+		private void okButton_Click(object sender, EventArgs e) {
+			Close();
+		}
+
 	}
 }
