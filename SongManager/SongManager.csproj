@@ -86,6 +86,9 @@
     <Compile Include="ReadOnlySearchableRichTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SongExport\SongEditor.cs" />
+    <Compile Include="SongExport\SongExporter.cs" />
+    <Compile Include="SongExport\SongImporter.cs" />
     <Compile Include="SongInfo.cs" />
     <Compile Include="SongsByStage.cs" />
     <EmbeddedResource Include="CustomSongVolumeEditor.resx">

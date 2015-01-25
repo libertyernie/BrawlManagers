@@ -47,6 +47,42 @@ running BrawlSongManager.exe from the root of your SD card.)
 
 ----------------------------------------
 
+Importing and Exporting Song Files
+
+Both importing and exporting first require changing directory to an appropriate
+"SD  card". Then under the Tools menu there are options to import or export 
+song files.
+
+Export will output songs on the current SD card to the folder you choose. In 
+the directory you choose it will create a number of directories for each stage
+and inside each stage directory it will place the songs for that stage. Songs
+that do not have a custom file on the SD card will have place-holders exported
+as empty files that users can then replace. The empty files will be ignored 
+when importing.
+
+After songs have been exported, users can edit song volumes or titles, or even
+replace songs. The only requirement is that the file name format conforms to
+the format specified below. The 'game-file-name' should remain unchanged, and 
+there should only be one of each 'game-file-name'.
+
+Import will scan (recursively) in the directory you choose for *.brstm files 
+that match the file name format specified below. Any matching files will be 
+copied onto the current SD card with the appropriate "game-file-name" as the
+file name. mu_menumain.pac and info.pac will updated, and if found on the SD
+card, training_info.pac and the GCT codes will also be updated. Note that the
+stage directories are ignored when importing (they are just an aid for users). 
+
+The file name format for the files exported / imported is:
+    <game-file-name>.<volume>.<song-title>.brstm 
+Some examples of this format are:
+    W05.35.Yoshi's Island (Melee).brstm
+    Y05.0.Boss Battle Song 1.brstm
+    
+When imported, a volume of 0 will reset the volume for that song to default, 
+while volumes above 127 (the max) will be set to 127.
+
+----------------------------------------
+
 Changes in 3.4:
 	* Control added to edit Custom Song Volume settings for each song
 	* You can now use "Options>Only show songs with CSV code" to see which songs have custom volumes defined (note: does not automatically refresh)

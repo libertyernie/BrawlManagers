@@ -39,6 +39,7 @@
 			this.changeDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openFallbackDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveInfopacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveGCTCodesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadNamesFromInfopacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,12 +49,13 @@
 			this.onlyShowSongsWithCSVCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.updateMumenumainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exportMusicSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importMusicSongsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.defaultSongsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.splitContainerTop = new System.Windows.Forms.SplitContainer();
-			this.saveGCTCodesetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -208,6 +210,13 @@
 			this.saveInfopacToolStripMenuItem.Text = "Save info.pac";
 			this.saveInfopacToolStripMenuItem.Click += new System.EventHandler(this.saveInfopacToolStripMenuItem_Click);
 			// 
+			// saveGCTCodesetToolStripMenuItem
+			// 
+			this.saveGCTCodesetToolStripMenuItem.Name = "saveGCTCodesetToolStripMenuItem";
+			this.saveGCTCodesetToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+			this.saveGCTCodesetToolStripMenuItem.Text = "Save GCT codeset";
+			this.saveGCTCodesetToolStripMenuItem.Click += new System.EventHandler(this.saveGCTCodesetToolStripMenuItem_Click);
+			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -267,7 +276,9 @@
 			// toolsToolStripMenuItem
 			// 
 			this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.updateMumenumainToolStripMenuItem});
+            this.updateMumenumainToolStripMenuItem,
+            this.exportMusicSongsToolStripMenuItem,
+            this.importMusicSongsToolStripMenuItem});
 			this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
 			this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.toolsToolStripMenuItem.Text = "Tools";
@@ -278,6 +289,20 @@
 			this.updateMumenumainToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
 			this.updateMumenumainToolStripMenuItem.Text = "Update mu_menumain";
 			this.updateMumenumainToolStripMenuItem.Click += new System.EventHandler(this.updateMumenumainToolStripMenuItem_Click);
+			// 
+			// exportMusicSongsToolStripMenuItem
+			// 
+			this.exportMusicSongsToolStripMenuItem.Name = "exportMusicSongsToolStripMenuItem";
+			this.exportMusicSongsToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+			this.exportMusicSongsToolStripMenuItem.Text = "Export songs...";
+			this.exportMusicSongsToolStripMenuItem.Click += new System.EventHandler(this.exportMusicSongsToolStripMenuItem_Click);
+			// 
+			// importMusicSongsToolStripMenuItem
+			// 
+			this.importMusicSongsToolStripMenuItem.Name = "importMusicSongsToolStripMenuItem";
+			this.importMusicSongsToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+			this.importMusicSongsToolStripMenuItem.Text = "Import songs...";
+			this.importMusicSongsToolStripMenuItem.Click += new System.EventHandler(this.importMusicSongsToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -324,13 +349,6 @@
 			this.splitContainerTop.Size = new System.Drawing.Size(592, 290);
 			this.splitContainerTop.SplitterDistance = 197;
 			this.splitContainerTop.TabIndex = 0;
-			// 
-			// saveGCTCodesetToolStripMenuItem
-			// 
-			this.saveGCTCodesetToolStripMenuItem.Name = "saveGCTCodesetToolStripMenuItem";
-			this.saveGCTCodesetToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-			this.saveGCTCodesetToolStripMenuItem.Text = "Save GCT codeset";
-			this.saveGCTCodesetToolStripMenuItem.Click += new System.EventHandler(this.saveGCTCodesetToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -391,6 +409,8 @@
 		private System.Windows.Forms.ToolStripMenuItem onlyShowSongsWithCSVCodeToolStripMenuItem;
 		private CustomSongVolumeEditor customSongVolumeEditor1;
 		private System.Windows.Forms.ToolStripMenuItem saveGCTCodesetToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem exportMusicSongsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem importMusicSongsToolStripMenuItem;
 
 
 

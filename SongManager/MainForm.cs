@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using BrawlLib.SSBB.ResourceNodes;
@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using BrawlManagerLib;
 using System.Linq;
 using System.Drawing;
+using BrawlSongManager.SongExport;
 
 namespace BrawlSongManager {
 	public partial class MainForm : Form {
@@ -445,6 +446,44 @@ namespace BrawlSongManager {
 
 		private void closed(object sender, FormClosedEventArgs e) {
 			TempFiles.DeleteAll();
+		}
+
+		private void CloseCurrentResources() {
+			songPanel1.Close();
+			listBox1.SelectedIndex = -1;
+		}
+
+		private void exportMusicSongsToolStripMenuItem_Click(object sender, EventArgs eva) {
+			CloseCurrentResources();
+			FolderBrowserDialog fbd = new FolderBrowserDialog();
+			fbd.Description = "Select folder to export to:";
+			fbd.SelectedPath = CurrentDirectory;
+			if (fbd.ShowDialog() == DialogResult.OK) {
+				try {
+					SongExporter exporter = new SongExporter();
+					//exporter.ExportStageDirs = groupSongsByStageToolStripMenuItem.Checked;
+					exporter.ExportStageDirs = true;
+					exporter.Export(fbd.SelectedPath);
+				} catch (Exception exc) {
+					MessageBox.Show("Error exporting: " + exc);
+				}
+			}
+		}
+
+		private void importMusicSongsToolStripMenuItem_Click(object sender, EventArgs eva) {
+			CloseCurrentResources();
+			FolderBrowserDialog fbd = new FolderBrowserDialog();
+			fbd.Description = "Select folder to import from:";
+			fbd.SelectedPath = CurrentDirectory;
+			if (fbd.ShowDialog() == DialogResult.OK) {
+				try {
+					SongImporter importer = new SongImporter();
+					importer.Import(fbd.SelectedPath);
+				} catch (Exception exc) {
+					MessageBox.Show("Error importing: " + exc);
+				}
+			}
+			changeDirectory(CurrentDirectory);
 		}
 	}
 }
