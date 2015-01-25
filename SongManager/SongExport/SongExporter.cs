@@ -10,10 +10,10 @@ using System.Threading;
 using System.Windows.Forms;
 
 namespace BrawlSongManager.SongExport {
-	
+
 	/// <summary>
-	/// Contains logic for exporting music song files to an easily editable 
-	/// directory structure.
+	/// Contains logic for user to export music song files with a format like
+	/// {filename}.{volume}.{title}.brstm e.g. A01.80.Jungle Japes.brstm
 	/// </summary> 
 	public class SongExporter {
 
@@ -30,7 +30,6 @@ namespace BrawlSongManager.SongExport {
 		public void Export(string musicExportDir) {
 			Console.WriteLine("Exporting music from: " + musicExportDir);
 			prog.ClearLog();
-			songEditor.PrepareResources();
 
 			var confirmResult = MessageBox.Show(
 				"About to export all songs in current directory to '" 
@@ -78,8 +77,8 @@ namespace BrawlSongManager.SongExport {
 		}
 
 		private void ExportSongs(DirectoryInfo exportDir, BackgroundWorker bgw) {
+			PrepareResources();
 			object[] stageSongs = SongsByStage.FromCurrentDir;
-
 			HashSet<string> filenamesAdded = new HashSet<string>();
 			string currentDir = exportDir.FullName;
 			for (int i = 0; i < stageSongs.Length; i++) {
@@ -121,6 +120,21 @@ namespace BrawlSongManager.SongExport {
 			} else {
 				// Create an empty placeholder file.
 				File.Create(dest).Dispose();
+			}
+		}
+
+		private void PrepareResources() {
+			// Only need mu_menumain and gct for export
+			songEditor.PrepareMUM();
+			try {
+				songEditor.PrepareGCT();
+			} catch (Exception gctExc) {
+				var confirmResult = MessageBox.Show("Unable to load GCT codes 'RSBE01.gct'."
+					+ " Custom song volume data will not be exported."
+					+ "\nDo you want to continue?", "Confirm Export", MessageBoxButtons.OKCancel);
+				if (confirmResult != DialogResult.OK) {
+					throw new Exception("User cancelled due to lack of 'RSBE01.gct': " + gctExc.Message, gctExc);
+				}
 			}
 		}
 

@@ -12,13 +12,11 @@ using System.Windows.Forms;
 namespace BrawlSongManager.SongExport {
 	
 	/// <summary>
-	/// Contains logic for importing music song files from an
-	/// easily editable directory structure.
+	/// Contains logic for user to import music song files with a format like
+	/// {filename}.{volume}.{title}.brstm e.g. A01.80.Jungle Japes.brstm
 	/// </summary>
 	public class SongImporter {
 		private static readonly Regex filenameRegex = new Regex(@"(\w\d\d)\.(\d+)\.(.*)\.brstm");
-
-		public bool ExportStageDirs { get; set; }
 
 		private ProgressDialog prog;
 		private SongEditor songEditor;
@@ -35,7 +33,6 @@ namespace BrawlSongManager.SongExport {
 		public void Import(string musicImportDir) {
 			Log("Importing music from: " + musicImportDir);
 			prog.ClearLog();
-			songEditor.PrepareResources();
 
 			var importDir = new DirectoryInfo(musicImportDir);
 			FileInfo[] brstmFiles = importDir.GetFiles("*.brstm", SearchOption.AllDirectories);
@@ -88,6 +85,7 @@ namespace BrawlSongManager.SongExport {
 				if (e.Error != null) {
 					Warn("Error importing songs." + e.Error.Message);
 				} else {
+					Log("Note: it is recommended to defragment your SD card after importing songs onto it.");
 					Log("Completed import" + warnMsg + "!");
 				}
 			};
@@ -95,6 +93,7 @@ namespace BrawlSongManager.SongExport {
 		}
 
 		private void ImportSongs(FileInfo[] brstmFiles, BackgroundWorker bgw) {
+			PrepareResources();
 			for (int i = 0; i < brstmFiles.Length; i++) {
 				bgw.ReportProgress(i * 100 / brstmFiles.Length);
 				FileInfo file = brstmFiles[i];
@@ -118,6 +117,13 @@ namespace BrawlSongManager.SongExport {
 			byte fileVolume = byte.Parse(match.Groups[2].Value);
 			string title = match.Groups[3].Value;
 
+			Song defSong = songEditor.GetDefaultSong(filename);
+			Song curSong = songEditor.ReadSong(filename);
+			if (defSong == null) {
+				Log("Skipped unknown song: " + file.FullName);
+				return;
+			}
+
 			if (importedSongs.ContainsKey(filename)) {
 				string first = importedSongs[filename];
 				Warn("Song file '" + filename + "' has already been imported from '"
@@ -126,16 +132,15 @@ namespace BrawlSongManager.SongExport {
 			}
 			importedSongs.Add(filename, file.Name);
 
+			if (FileOperations.SantizeFilename(curSong.DefaultName) == title) {
+				title = curSong.DefaultName;
+			}
+
 			if (fileVolume > 127) {
 				Warn("Volume decreased to maximum of 127 for file: " + file.FullName);
 				fileVolume = 127;
 			}
 
-			Song defSong = songEditor.GetDefaultSong(filename);
-			if (defSong == null) {
-				Log("Skipped unknown song: " + file.FullName);
-				return;
-			}
 			byte? volume = fileVolume;
 			if (fileVolume == 0) {
 				Log("Ignoring 0 volume for: " + file.FullName);
@@ -148,6 +153,32 @@ namespace BrawlSongManager.SongExport {
 			songEditor.WriteSong(song);
 
 			File.Copy(file.FullName, new SongInfo(song.Filename).File.FullName, true);
+		}
+
+		private void PrepareResources() {
+			// mu_menumain and info are required, so don't catch their exceptions...
+			songEditor.PrepareMUM();
+			songEditor.PrepareINFO();
+			try {
+				songEditor.PrepareTRNG();
+			} catch (Exception trngExc) {
+				var confirmResult = MessageBox.Show("Unable to load 'training_info.pac'."
+					+ " Song title data for training mode and SSE will not be updated."
+					+ "\nDo you want to continue?", "Confirm Import", MessageBoxButtons.OKCancel);
+				if (confirmResult != DialogResult.OK) {
+					throw new Exception("User cancelled due to lack of 'training_info.pac': " + trngExc.Message, trngExc);
+				}
+			}
+			try {
+				songEditor.PrepareGCT();
+			} catch (Exception gctExc) {
+				var confirmResult = MessageBox.Show("Unable to load GCT codes 'RSBE01.gct'."
+					+ " Song volume data will not be updated."
+					+ "\nDo you want to continue?", "Confirm Import", MessageBoxButtons.OKCancel);
+				if (confirmResult != DialogResult.OK) {
+					throw new Exception("User cancelled due to lack of 'RSBE01.gct': " + gctExc.Message, gctExc);
+				}
+			}
 		}
 
 		private void Log(string message) {

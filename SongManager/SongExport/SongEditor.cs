@@ -1,4 +1,4 @@
-﻿using BrawlLib.SSBB.ResourceNodes;
+using BrawlLib.SSBB.ResourceNodes;
 using BrawlManagerLib;
 using System;
 using System.Collections.Generic;
@@ -51,7 +51,7 @@ namespace BrawlSongManager.SongExport {
 
 		}
 
-		public void PrepareResources() {
+		public void PrepareAllResources() {
 			PrepareMUM();
 			PrepareINFO();
 			PrepareTRNG();
@@ -74,23 +74,41 @@ namespace BrawlSongManager.SongExport {
 
 		public void WriteSong(Song song) {
 			if (song.InfoPacIndex.HasValue) {
-				mumMsbn._strings[song.InfoPacIndex.Value] = song.DefaultName;
-				mumMsbn.SignalPropertyChange();
-				infoMsbn._strings[song.InfoPacIndex.Value] = song.DefaultName;
-				infoMsbn.SignalPropertyChange();
-				trngMsbn._strings[song.InfoPacIndex.Value] = song.DefaultName;
-				trngMsbn.SignalPropertyChange();
+				if (mumMsbn != null) {
+					mumMsbn._strings[song.InfoPacIndex.Value] = song.DefaultName;
+					mumMsbn.SignalPropertyChange();
+				}
+				if (infoMsbn != null) {
+					infoMsbn._strings[song.InfoPacIndex.Value] = song.DefaultName;
+					infoMsbn.SignalPropertyChange();
+				}
+				if (trngMsbn != null) {
+					trngMsbn._strings[song.InfoPacIndex.Value] = song.DefaultName;
+					trngMsbn.SignalPropertyChange();
+				}
 			}
-			if (song.DefaultVolume.HasValue) {
-				gctCsv.Settings[song.ID] = song.DefaultVolume.Value;
+			if (gctCsv != null) {
+				if (song.DefaultVolume.HasValue) {
+					gctCsv.Settings[song.ID] = song.DefaultVolume.Value;
+				} else if (gctCsv.Settings.ContainsKey(song.ID)) {
+					gctCsv.Settings.Remove(song.ID);
+				}
 			}
 		}
 
 		public void SaveResources() {
-			SaveMUM();
-			SaveINFO();
-			SaveTRNG();
-			SaveGCT();
+			if (mumMsbn != null && mumPath != null) {
+				SaveMUM();
+			}
+			if (infoMsbn != null && infoPath != null) {
+				SaveINFO();
+			}
+			if (trngMsbn != null && trngPath != null) {
+				SaveTRNG();
+			}
+			if (gctCsv != null && gctPath != null) {
+				SaveGCT();
+			}
 		}
 
 		private Song UpdateSongFromFileData(Song song) {
@@ -100,51 +118,49 @@ namespace BrawlSongManager.SongExport {
 			}
 
 			byte? volume = song.DefaultVolume;
-			if (gctCsv.Settings.ContainsKey(song.ID)) {
+			if (gctCsv != null && gctCsv.Settings.ContainsKey(song.ID)) {
 				volume = gctCsv.Settings[song.ID];
 			}
 
 			return new Song(title, song.Filename, song.ID, volume, song.InfoPacIndex);
 		}
 
-		private void PrepareMUM() {
+		public void PrepareMUM() {
 			mumPath = FindFile(MUM_PATHS);
 			mumMsbn = LoadPacMsbn(mumPath, "MiscData[7]");
 		}
 
-		private void SaveMUM() {
+		public void SaveMUM() {
 			mumMsbn.Rebuild();
 			SavePacMsbn(mumMsbn, mumPath, "MiscData[7]");
 		}
 
-		private void PrepareINFO() {
+		public void PrepareINFO() {
 			infoPath = FindFile(INFO_PATHS);
 			infoMsbn = LoadPacMsbn(infoPath, "MiscData[140]");
 		}
 
-		private void SaveINFO() {
+		public void SaveINFO() {
 			infoMsbn.Rebuild();
 			SavePacMsbn(infoMsbn, infoPath, "MiscData[140]");
 		}
 
-		private void PrepareTRNG() {
+		public void PrepareTRNG() {
 			trngPath = FindFile(TRNG_PATHS);
 			trngMsbn = LoadPacMsbn(trngPath, "MiscData[140]");
 		}
 
-		private void SaveTRNG() {
+		public void SaveTRNG() {
 			trngMsbn.Rebuild();
 			SavePacMsbn(trngMsbn, trngPath, "MiscData[140]");
 		}
 
-		private void PrepareGCT() {
+		public void PrepareGCT() {
 			gctPath = FindFile(GCT_PATHS);
 			gctCsv = new CustomSongVolume(File.ReadAllBytes(gctPath));
-			int ct = gctCsv.Settings.Count;
-			Console.WriteLine("Loaded Custom Song Volume (" + ct + " settings)");
 		}
 
-		private void SaveGCT() {
+		public void SaveGCT() {
 			File.WriteAllBytes(gctPath, gctCsv.ExportGCT());
 		}
 
@@ -187,7 +203,7 @@ namespace BrawlSongManager.SongExport {
 				}
 			}
 			throw new FileNotFoundException("Could not find any file in: ['"
-				+ string.Join("','", paths) + "']");
+				+ string.Join("', '", paths) + "']");
 		}
 	}
 }
