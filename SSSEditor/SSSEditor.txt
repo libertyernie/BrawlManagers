@@ -1,5 +1,5 @@
-﻿SSS Editor 3.4 - March 13, 2014
-Copyright © 2014 libertyernie
+﻿SSS Editor 3.5 - February 2, 2015
+Copyright © 2015 libertyernie
 http://lakora.us/brawl/ssseditor
 
 SSS Editor is a .NET application for managing the Custom SSS code, on its own
@@ -11,6 +11,17 @@ would look like (4th-7th tabs).
 
 To run, the program needs a .txt or .gct file that contains the Custom SSS
 code, and a common5/sc_selmap/mu_menumain file (which will not be modified.)
+
+-------- Changes --------
+
+Changes in 3.5:
+	* Progress windows added while loading the SSS
+	* A Custom SSS code can now be pasted into the program
+	* New feature: copy stage pairs 0-29 to 55-84, and push the rest down, in
+      an attempt to work around strange bugs with the Random button. This
+	  hasn't been throughly tested.
+	* FrontStname textures appear at the correct in-game size (208x56) even if
+	  the actual image is smaller.
 
 -------- Stage Control Guide --------
 
@@ -106,11 +117,3 @@ The 41st value is reserved for the Menu icon on My Music, so its value doesn't m
 The page 1 and page 2 sections take the format:
 [index][index][index][index] [index][index][index][index] ...
 where [index] is a reference to the stage/icon list below. For example, putting "0C" here would refer to the 13th stage defined in the list (you count from 0, and 0C = 12 in decimal.)
-
--------- Changes --------
-
-Changes in 3.4:
-	* The "swap" dialog now lets you specify a hex or decimal value (and updates the other accordingly)
-	* Stages whose indices on tab 1 are >= 55 and < 86 will be color-coded orange (for index "n", the stage might get chosen on random if index n-55 is enabled)
-	* Stages whose indices are 32 through 41 (Melee slots on random stage select) will be a slightly darker green
-    * If the program can't find common5.pac or RSBE01.gct in the current directory, it will ask for another directory - you can press Cancel here to choose the 2 files separately instead

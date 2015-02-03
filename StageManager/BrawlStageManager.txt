@@ -1,5 +1,5 @@
-﻿Brawl Stage Manager 3.3 - March 13, 2013
-Copyright © 2014 libertyernie
+﻿Brawl Stage Manager 3.5 - February 2, 2015
+Copyright © 2015 libertyernie
 http://lakora.us/brawl/stagemanager
 
 Brawl Stage Manager is a program that uses BrawlLib to help you see and
@@ -7,6 +7,15 @@ organize the stages, module files, and stage portraits that are installed on
 your SD card (or in whatever folder, on whatever device, you use for Brawl
 hacks.) It can also add PAT0 entries for expansion stages (with an automated
 process) and change certain PAT0 entries (through a special dialog.)
+
+Changes in 3.5:
+	* "Draw solid color over Prevbase edge" now has a Project M 3.5 version.
+	  (This feature can erase the parts of each MenSelmapPrevbase that would
+	  normally be covered by Brawl's "scribble" in an attempt to save a bit
+	  of space in the sc_selmap file.)
+	* Loading of stage .PAC files can be turned off completely.
+
+----------------------------------------
 
 Hint: In the "change directory" dialog, select your SD card and hit OK. If
 there are no .pac files in the root of your SD card, the program should jump
@@ -86,8 +95,3 @@ All of these textures are looked up in the PAT0 entries in the common5, so
 they will match the ones you see in-game. You can edit the PAT0 entries for
 MenSelchrMark and MenSelmapMark using the Modify PAT0 button (or by pressing
 the tilde (~) button on your keyboard.)
-
-----------------------------------------
-
-New in 3.4:
-	* A new dialog appears before you copy icons to sc_selcharacter2, allowing you to enter custom stage names for the random select screen

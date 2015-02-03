@@ -1,10 +1,16 @@
-﻿Brawl Song Manager 3.4 - March 13, 2014
-Copyright © 2014 libertyernie
+﻿Brawl Song Manager 3.5 - February 2, 2015
+Copyright © 2015 libertyernie
 http://lakora.us/brawl/songmanager
 
 Brawl Song Manager is a program that uses BrawlLib to quickly view which BRSTM
 music files are installed on your SD card (or in whatever folder, on whatever
 device, you use for Brawl hacks.)
+
+Changes in 3.5:
+	* New feature: import/export all custom songs along with volume and title
+	  (see below for details)
+
+----------------------------------------
 
 The left side of the window has a list of .BRSTM music files in the current
 directory; you can change the directory through the File menu. When you choose
@@ -44,10 +50,3 @@ there are no .brstm files in the root of your SD card, the program should jump
 to /private/wii/app/RSBE/pf/sound/strm or /projectm/pf/sound/strm instead, if
 one exists. (Try using the "Start in" field in the shortcut properties, or
 running BrawlSongManager.exe from the root of your SD card.)
-
-----------------------------------------
-
-Changes in 3.4:
-	* Control added to edit Custom Song Volume settings for each song
-	* You can now use "Options>Only show songs with CSV code" to see which songs have custom volumes defined (note: does not automatically refresh)
-	* Song Manager now tries to load the GCT (for the CSV code), and it will ask whether to save the GCT if you've made changes

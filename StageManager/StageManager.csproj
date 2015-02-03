@@ -53,9 +53,9 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+    <Reference Include="BrawlLib, Version=0.21.5511.36882, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\brawltools\BrawlLib\OpenTK.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\BrawlHacks\BrawlBox\BrawlLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -258,10 +258,6 @@
     <ProjectReference Include="..\BrawlManagerLib\BrawlManagerLib.csproj">
       <Project>{b5d693d8-3952-44f9-8952-8c1af74f0634}</Project>
       <Name>BrawlManagerLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\brawltools\BrawlLib\BrawlLib.csproj">
-      <Project>{462d0bbf-ce82-405b-8848-2f91e9e14c55}</Project>
-      <Name>BrawlLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
