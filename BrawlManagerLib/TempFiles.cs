@@ -8,9 +8,16 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 namespace BrawlManagerLib {
+	public class TempFileCleanupException : AggregateException {
+		public TempFileCleanupException(IEnumerable<Exception> exceptions) 
+			: base("One or more errors occured while attempting to remove BrawlManagerLib's temporary files.", exceptions) { }
+	}
+
 	public class TempFiles {
+		public static readonly string SUBDIR = "BrawlManagerLib-" + Guid.NewGuid();
+
 		static TempFiles() {
-			string p = Path.Combine(Path.GetTempPath(), "BrawlManagerLib");
+			string p = Path.Combine(Path.GetTempPath(), SUBDIR);
 			if (Directory.Exists(p)) {
 				try {
 					Directory.Delete(p, true);
@@ -27,7 +34,7 @@ namespace BrawlManagerLib {
 		/// </summary>
 		public static string Create(string extension) {
 			if (!extension.StartsWith(".")) extension = "." + extension;
-			return Path.Combine(Path.GetTempPath(), "BrawlManagerLib", Guid.NewGuid() + extension);
+			return Path.Combine(Path.GetTempPath(), SUBDIR, Guid.NewGuid() + extension);
 		}
 
 		/// <summary>
@@ -35,19 +42,24 @@ namespace BrawlManagerLib {
 		/// </summary>
 		public static void DeleteAll() {
 			List<Exception> exceptions = new List<Exception>();
-			foreach (string s in Directory.EnumerateFiles(Path.Combine(Path.GetTempPath(), "BrawlManagerLib"))) {
+			foreach (string s in Directory.EnumerateFiles(Path.Combine(Path.GetTempPath(), SUBDIR))) {
 				try {
 					File.Delete(s);
 				} catch (Exception e) {
 					exceptions.Add(e);
 				}
 			}
+
 			if (exceptions.Count == 0) {
-				Directory.Delete(Path.Combine(Path.GetTempPath(), "BrawlManagerLib"));
-			} else if (exceptions.Count == 1) {
-				throw exceptions[0];
-			} else {
-				throw new AggregateException(exceptions);
+				try {
+					Directory.Delete(Path.Combine(Path.GetTempPath(), SUBDIR));
+				} catch (Exception e) {
+					exceptions.Add(e);
+				}
+			}
+
+			if (exceptions.Count > 0) {
+				throw new TempFileCleanupException(exceptions);
 			}
 		}
 
