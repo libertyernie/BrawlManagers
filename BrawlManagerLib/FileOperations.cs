@@ -11,8 +11,8 @@ namespace BrawlManagerLib {
 	///  A modification of David Amenta's RecycleBin code
 	/// </summary>
 	public static class FileOperations {
-		public static bool Copy(string path1, string path2, bool deleteFirst = false) {
-			if (File.Exists(path2)) {
+		public static bool Copy(string path1, string path2, bool deleteFirst = false, bool confirmOverwrite = true) {
+			if (File.Exists(path2) && confirmOverwrite) {
 				using (CopyDialog dialog = new CopyDialog(path2, path1) { Text = "Copy" }) {
 					DialogResult r = dialog.ShowDialog();
 					if (r != DialogResult.Yes) {
@@ -266,6 +266,13 @@ namespace BrawlManagerLib {
 		/// <param name="path">Location of directory or file to recycle</param>
 		public static bool Delete(string path) {
 			return Delete(path, FileOperationFlags.FOF_WANTNUKEWARNING);
+		}
+
+		public static string SantizeFilename(string filename) {
+			string invalidChars = System.Text.RegularExpressions.Regex.Escape(new string(System.IO.Path.GetInvalidFileNameChars()));
+			string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
+
+			return System.Text.RegularExpressions.Regex.Replace(filename, invalidRegStr, "_");
 		}
 	}
 }
