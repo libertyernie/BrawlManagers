@@ -15,6 +15,9 @@ code, and a common5/sc_selmap/mu_menumain file (which will not be modified.)
 -------- Changes --------
 
 Changes in 3.5.1:
+	* GCT files with no Custom SSS code will no longer be corrupted when saving
+	* SSS Editor will remove any GCT metadata saved by BrawlBox when saving
+	  (instead of leaving invalid data behind)
 	* Built against BrawlLib 0.22b (Brawlbox 0.75b)
 
 Changes in 3.5:

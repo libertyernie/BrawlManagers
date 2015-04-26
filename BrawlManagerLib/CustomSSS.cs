@@ -141,65 +141,77 @@ namespace BrawlManagerLib {
 
 			if (index < 0) {
 				MessageBox.Show("No custom SSS code found. A default code will be used.");
-				DataBefore = data.ToArray();
+				DataBefore = gctheader.ToArray();
 				sss1 = ByteUtilities.StringToByteArray("00010203 04050709 080A0B0C 0D0E0F10 11141516 1A191217 0618131D 1E1B1C00");
 				sss2 = ByteUtilities.StringToByteArray("1F202122 23242526 2728");
 				sss3 = ByteUtilities.StringToByteArray("01010202 03030404 05050606 07070808 0909330A 0B0B0C0C 0D0D0E0E 130F1410 " +
 													   "15111612 17131814 19151C16 1D171E18 1F19201A 211B221C 231D241E 251F2932 " +
 													   "15111612 2A332B34 2C352D36 2F373038 3139323A 2E3BFFFF");
-				DataAfter = new byte[0];
-				return;
+				DataAfter = data.Skip(gctheader.Length).ToArray();
+			} else {
+				int start = index;
+				DataBefore = new byte[start];
+				Array.ConstrainedCopy(data, 0, DataBefore, 0, start);
+
+				index += 14 * 8;
+				byte sss1_count = data[index - 1];
+				sss1 = new byte[sss1_count];
+				Array.ConstrainedCopy(data, index, sss1, 0, sss1_count);
+
+				index += sss1_count;
+				while (index % 8 != 0) index++;
+
+				index += 2 * 8;
+				byte sss2_count = data[index - 1];
+				sss2 = new byte[sss2_count];
+				Array.ConstrainedCopy(data, index, sss2, 0, sss2_count);
+
+				index += sss2_count;
+				while (index % 8 != 0) index++;
+
+				index += 1 * 8;
+				byte sss3_count = data[index - 1];
+				sss3 = new byte[sss3_count];
+				Array.ConstrainedCopy(data, index, sss3, 0, sss3_count);
+
+				index += sss3_count;
+				while (index % 8 != 0) index++;
+
+				DataAfter = new byte[data.Length - index];
+				Array.ConstrainedCopy(data, index, DataAfter, 0, data.Length - index);
+
+				for (int line = 0; line < data.Length; line += 8) {
+					if (ByteUtilities.ByteArrayEquals(data, line, SDSL_HEADER, 0, SDSL_HEADER.Length)) {
+						byte stageID = data[line + 7];
+						byte songID1 = data[line + 22];
+						byte songID2 = data[line + 23];
+						ushort songID = (ushort)(0x100 * songID1 + songID2);
+						Song s = (from g in SongIDMap.Songs
+								  where g.ID == songID
+								  select g).First();
+						if (SongsByStage.ContainsKey(stageID)) {
+							Console.WriteLine(String.Format("WARNING: code mapping stage {0} to song {1} will not " +
+								"take effect, since a later code maps it to song {2}", stageID, SongsByStage[stageID], s));
+							SongsByStage.Remove(stageID);
+						}
+						SongsByStage.Add(stageID, s);
+						line += 24;
+					}
+				}
 			}
 
-			int start = index;
-			DataBefore = new byte[start];
-			Array.ConstrainedCopy(data, 0, DataBefore, 0, start);
-
-			index += 14 * 8;
-			byte sss1_count = data[index - 1];
-			sss1 = new byte[sss1_count];
-			Array.ConstrainedCopy(data, index, sss1, 0, sss1_count);
-
-			index += sss1_count;
-			while (index % 8 != 0) index++;
-
-			index += 2 * 8;
-			byte sss2_count = data[index - 1];
-			sss2 = new byte[sss2_count];
-			Array.ConstrainedCopy(data, index, sss2, 0, sss2_count);
-
-			index += sss2_count;
-			while (index % 8 != 0) index++;
-
-			index += 1 * 8;
-			byte sss3_count = data[index - 1];
-			sss3 = new byte[sss3_count];
-			Array.ConstrainedCopy(data, index, sss3, 0, sss3_count);
-
-			index += sss3_count;
-			while (index % 8 != 0) index++;
-
-			DataAfter = new byte[data.Length - index];
-			Array.ConstrainedCopy(data, index, DataAfter, 0, data.Length - index);
-
-            for (int line = 0; line < data.Length; line += 8) {
-                if (ByteUtilities.ByteArrayEquals(data, line, SDSL_HEADER, 0, SDSL_HEADER.Length)) {
-                    byte stageID = data[line + 7];
-                    byte songID1 = data[line + 22];
-                    byte songID2 = data[line + 23];
-                    ushort songID = (ushort)(0x100 * songID1 + songID2);
-                    Song s = (from g in SongIDMap.Songs
-                              where g.ID == songID
-                              select g).First();
-                    if (SongsByStage.ContainsKey(stageID)) {
-                        Console.WriteLine(String.Format("WARNING: code mapping stage {0} to song {1} will not " +
-                            "take effect, since a later code maps it to song {2}", stageID, SongsByStage[stageID], s));
-                        SongsByStage.Remove(stageID);
-                    }
-                    SongsByStage.Add(stageID, s);
-                    line += 24;
-                }
-            }
+			bool footer_found = false;
+			for (int i = 0; i < DataAfter.Length; i += 8) {
+				if (footer_found) {
+					MessageBox.Show("Extra data found after GCT footer - this will be discarded if you save the GCT.");
+					DataAfter = DataAfter.Take(i).ToArray();
+					break;
+				} else {
+					if (ByteUtilities.ByteArrayEquals(DataAfter, i, gctfooter, 0, 8)) {
+						footer_found = true;
+					}
+				}
+			}
 		}
 
 		public override string ToString() {
