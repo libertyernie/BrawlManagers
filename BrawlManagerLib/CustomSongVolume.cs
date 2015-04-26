@@ -74,35 +74,47 @@ A7AC0004 2C1D7FFF
 
 			if (index < 0) {
 				Console.WriteLine("No Custom Song Volume code found. An empty code will be created.");
-				DataBefore = new byte[data.Length - 8];
-				Array.ConstrainedCopy(data, 0, DataBefore, 0, data.Length - 8);
-				DataAfter = gctfooter.ToArray();
-				return;
+
+				DataBefore = gctheader.ToArray();
+				DataAfter = data.Skip(gctheader.Length).ToArray();
+			} else {
+				int start = index;
+				DataBefore = new byte[start];
+				Array.ConstrainedCopy(data, 0, DataBefore, 0, start);
+
+				index += 9 * 8;
+				byte byte_count = data[index - 1];
+				bool found_terminator = false;
+				for (int i = 0; i < byte_count; i += 4) {
+					ushort u = (ushort)(data[index + i] * 0x100 + data[index + i + 1]);
+					if (u == 0x7FFF) {
+						if (found_terminator) throw new InvalidDataException("Two terminators");
+						found_terminator = true;
+					} else {
+						Settings.Add(u, data[index + i + 3]);
+					}
+				}
+				if (!found_terminator) throw new InvalidDataException("No terminators");
+
+				index += byte_count;
+				while (index % 8 != 0) index++;
+
+				DataAfter = new byte[data.Length - index];
+				Array.ConstrainedCopy(data, index, DataAfter, 0, data.Length - index);
 			}
 
-			int start = index;
-			DataBefore = new byte[start];
-			Array.ConstrainedCopy(data, 0, DataBefore, 0, start);
-
-			index += 9 * 8;
-			byte byte_count = data[index - 1];
-			bool found_terminator = false;
-			for (int i = 0; i < byte_count; i += 4) {
-				ushort u = (ushort)(data[index + i] * 0x100 + data[index + i + 1]);
-				if (u == 0x7FFF) {
-					if (found_terminator) throw new InvalidDataException("Two terminators");
-					found_terminator = true;
+			bool footer_found = false;
+			for (int i = 0; i < DataAfter.Length; i += 8) {
+				if (footer_found) {
+					MessageBox.Show("Extra data found after GCT footer - this will be discarded if you save the GCT.");
+					DataAfter = DataAfter.Take(i).ToArray();
+					break;
 				} else {
-					Settings.Add(u, data[index + i + 3]);
+					if (ByteUtilities.ByteArrayEquals(DataAfter, i, gctfooter, 0, 8)) {
+						footer_found = true;
+					}
 				}
 			}
-			if (!found_terminator) throw new InvalidDataException("No terminators");
-
-			index += byte_count;
-			while (index % 8 != 0) index++;
-
-			DataAfter = new byte[data.Length - index];
-			Array.ConstrainedCopy(data, index, DataAfter, 0, data.Length - index);
 		}
 
 		public override string ToString() {
