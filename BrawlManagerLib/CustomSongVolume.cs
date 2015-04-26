@@ -74,8 +74,9 @@ A7AC0004 2C1D7FFF
 
 			if (index < 0) {
 				Console.WriteLine("No Custom Song Volume code found. An empty code will be created.");
-				DataBefore = data.ToArray();
-				DataAfter = new byte[0];
+				DataBefore = new byte[data.Length - 8];
+				Array.ConstrainedCopy(data, 0, DataBefore, 0, data.Length - 8);
+				DataAfter = gctfooter.ToArray();
 				return;
 			}
 
@@ -113,6 +114,8 @@ A7AC0004 2C1D7FFF
 		}
 
 		public byte[] ExportCode() {
+			if (Settings.Count == 0) return new byte[0];
+
 			int len = 0x48 + 4*Settings.Count + 4;
 			while (len % 8 != 0) len++;
 			byte[] b = new byte[len];
