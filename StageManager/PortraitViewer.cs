@@ -160,7 +160,7 @@ namespace BrawlStageManager {
 				}
 			}
 
-			UpdateDirectory();
+			//UpdateDirectory();
 		}
 
 		#region Core public methods

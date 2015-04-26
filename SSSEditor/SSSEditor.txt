@@ -18,7 +18,10 @@ Changes in 3.5.1:
 	* GCT files with no Custom SSS code will no longer be corrupted when saving
 	* SSS Editor will remove any GCT metadata saved by BrawlBox when saving
 	  (instead of leaving invalid data behind)
+	* Progress window waits half a second to close (avoids having it appear
+	  and not go away)
 	* Built against BrawlLib 0.22b (Brawlbox 0.75b)
+	* All files compiled for x86 (32-bit)
 
 Changes in 3.5:
 	* Progress windows added while loading the SSS

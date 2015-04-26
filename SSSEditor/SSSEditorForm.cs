@@ -6,6 +6,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SSSEditor {
@@ -66,7 +68,7 @@ namespace SSSEditor {
 			
 			tabControl1.Selecting += (o, e) => {
 				if (e.TabPage == tabDefinitions || e.TabPage == tabSSS1 || e.TabPage == tabSSS2) {
-					new System.Threading.Tasks.Task(() => {
+					new Task(() => {
 						ProgressWindow pw = new ProgressWindow();
 						StagePairControl.GlobalProgressWindow = pw;
 						pw.MaxValue = e.TabPage.Controls[0].Controls.Count;
@@ -76,10 +78,13 @@ namespace SSSEditor {
 			};
 
 			tabControl1.SelectedIndexChanged += (o, e) => {
-				if (StagePairControl.GlobalProgressWindow != null) {
-					StagePairControl.GlobalProgressWindow.BeginInvoke(new Action(StagePairControl.GlobalProgressWindow.Close));
-					StagePairControl.GlobalProgressWindow = null;
-				}
+				new Task(() => {
+					Thread.Sleep(500);
+					if (StagePairControl.GlobalProgressWindow != null) {
+						StagePairControl.GlobalProgressWindow.BeginInvoke(new Action(StagePairControl.GlobalProgressWindow.Close));
+						StagePairControl.GlobalProgressWindow = null;
+					}
+				}).Start();
 			};
 		}
 

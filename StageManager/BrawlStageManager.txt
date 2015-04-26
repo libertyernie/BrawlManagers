@@ -9,7 +9,9 @@ hacks.) It can also add PAT0 entries for expansion stages (with an automated
 process) and change certain PAT0 entries (through a special dialog.)
 
 Changes in 3.5.1:
+	* common5/sc_selmap is no longer loaded twice on startup
 	* Built against BrawlLib 0.22b (Brawlbox 0.75b)
+	* All files compiled for x86 (32-bit)
 
 Changes in 3.5:
 	* "Draw solid color over Prevbase edge" now has a Project M 3.5 version.

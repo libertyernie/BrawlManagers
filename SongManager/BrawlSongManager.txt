@@ -12,6 +12,7 @@ Changes in 3.5.1:
 	* Song Manager will remove any GCT metadata saved by BrawlBox when saving
 	  (instead of leaving invalid data behind)
 	* Built against BrawlLib 0.22b (Brawlbox 0.75b)
+	* All files compiled for x86 (32-bit)
 
 Changes in 3.5:
 	* New feature: import/export all custom songs along with volume and title
