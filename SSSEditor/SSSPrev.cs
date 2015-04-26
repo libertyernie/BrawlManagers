@@ -10,11 +10,11 @@ namespace SSSEditor {
 	public partial class SSSPrev : UserControl {
 		private bool needsReload;
 
-		private BRESNode miscdata80;
+		private BRRESNode miscdata80;
 		/// <summary>
 		/// Specify a root ResourceNode to search for SSS icons in. The node used will be the BRES containing MenSelmapCursorPly.1.
 		/// </summary>
-		public BRESNode MiscData80 {
+		public BRRESNode MiscData80 {
 			set {
 				miscdata80 = value;
 				needsReload = true;

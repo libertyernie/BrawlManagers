@@ -326,7 +326,7 @@ namespace BrawlStageManager {
 		}
 
 		private void AddNewTEX0(object sender, string filename) {
-			BRESNode md80 = sc_selmap.FindChild("MiscData[80]", false) as BRESNode;
+			BRRESNode md80 = sc_selmap.FindChild("MiscData[80]", false) as BRRESNode;
 			string temp = Path.Combine(Path.GetTempPath(), GetTexInfoFor(sender).pat0.Texture + Path.GetExtension(filename));
 			File.Copy(filename, temp);
 			using (TextureConverterDialog dlg = new TextureConverterDialog()) {
@@ -372,7 +372,7 @@ namespace BrawlStageManager {
 
 		public void exportAll(string folder) {
 			if (sc_selmap != null) {
-				BRESNode bres = sc_selmap.FindChild("MiscData[80]", false) as BRESNode;
+				BRRESNode bres = sc_selmap.FindChild("MiscData[80]", false) as BRRESNode;
 				if (bres != null) {
 					bres.ExportToFolder(folder, ".png");
 				}
@@ -556,7 +556,7 @@ namespace BrawlStageManager {
 					}
 				}
 			}
-			BRESNode bres = sc_selmap.FindChild("MiscData[80]", false) as BRESNode;
+			BRRESNode bres = sc_selmap.FindChild("MiscData[80]", false) as BRRESNode;
 			TEX0Node tex0 = bres.CreateResource<TEX0Node>(name);
 			ReplaceSelmapMark(bitmap, tex0, true);
 			return true;

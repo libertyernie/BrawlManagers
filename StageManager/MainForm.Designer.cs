@@ -182,20 +182,11 @@
 			// 
 			// modelPanel1
 			// 
-			this.modelPanel1.AllowSelection = false;
-			this.modelPanel1.BackgroundImageType = BrawlLib.OpenGL.GLPanel.BGImageType.Stretch;
-			this.modelPanel1.DefaultTranslate = ((System.Vector3)(resources.GetObject("modelPanel1.DefaultTranslate")));
 			this.modelPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelPanel1.IsOrthographic = false;
 			this.modelPanel1.Location = new System.Drawing.Point(0, 148);
 			this.modelPanel1.Name = "modelPanel1";
-			this.modelPanel1.ProjectionChanged = false;
-			this.modelPanel1.RotationScale = 0.1F;
 			this.modelPanel1.Size = new System.Drawing.Size(311, 190);
 			this.modelPanel1.TabIndex = 2;
-			this.modelPanel1.TextOverlaysEnabled = false;
-			this.modelPanel1.TranslationScale = 0.05F;
-			this.modelPanel1.ZoomScale = 2.5F;
 			// 
 			// songContainerPanel
 			// 

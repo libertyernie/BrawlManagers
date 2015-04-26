@@ -1,4 +1,4 @@
-﻿SSS Editor 3.5 - February 2, 2015
+﻿SSS Editor 3.5.1 - April 26, 2015
 Copyright © 2015 libertyernie
 http://lakora.us/brawl/ssseditor
 
@@ -13,6 +13,9 @@ To run, the program needs a .txt or .gct file that contains the Custom SSS
 code, and a common5/sc_selmap/mu_menumain file (which will not be modified.)
 
 -------- Changes --------
+
+Changes in 3.5.1:
+	* Built against BrawlLib 0.22b (Brawlbox 0.75b)
 
 Changes in 3.5:
 	* Progress windows added while loading the SSS

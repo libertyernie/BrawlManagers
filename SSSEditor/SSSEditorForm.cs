@@ -12,7 +12,7 @@ namespace SSSEditor {
 	public partial class SSSEditorForm : Form {
 		// Source data
 		private CustomSSS sss;
-		private BRESNode md80;
+		private BRRESNode md80;
 
 		#region Collect data from controls
 		private List<StagePair> getDefinitions() {
@@ -204,7 +204,7 @@ namespace SSSEditor {
 		private void ReloadIfValidPac(string file, CustomSSS sssIfOtherFileValid = null) {
 			ResourceNode node = NodeFactory.FromFile(null, file);
 			ResourceNode p1icon = node.FindChild("MenSelmapCursorPly.1", true);
-			BRESNode candidate = (p1icon != null) ? p1icon.Parent.Parent as BRESNode : null;
+			BRRESNode candidate = (p1icon != null) ? p1icon.Parent.Parent as BRRESNode : null;
 			if (candidate == null) {
 				MessageBox.Show(this, "No SSS icons were found in the selected file.",
 					"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

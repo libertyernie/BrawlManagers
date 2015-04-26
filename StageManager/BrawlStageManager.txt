@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 3.5 - February 2, 2015
+﻿Brawl Stage Manager 3.5.1 - April 26, 2015
 Copyright © 2015 libertyernie
 http://lakora.us/brawl/stagemanager
 
@@ -7,6 +7,9 @@ organize the stages, module files, and stage portraits that are installed on
 your SD card (or in whatever folder, on whatever device, you use for Brawl
 hacks.) It can also add PAT0 entries for expansion stages (with an automated
 process) and change certain PAT0 entries (through a special dialog.)
+
+Changes in 3.5.1:
+	* Built against BrawlLib 0.22b (Brawlbox 0.75b)
 
 Changes in 3.5:
 	* "Draw solid color over Prevbase edge" now has a Project M 3.5 version.

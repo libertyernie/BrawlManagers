@@ -14,11 +14,11 @@ namespace SSSEditor {
 
 		private bool painted = false;
 
-		private BRESNode miscdata80;
+		private BRRESNode miscdata80;
 		/// <summary>
 		/// The MiscData[80] file to read icons from.
 		/// </summary>
-		public BRESNode MiscData80 {
+		public BRRESNode MiscData80 {
 			get {
 				return miscdata80;
 			}

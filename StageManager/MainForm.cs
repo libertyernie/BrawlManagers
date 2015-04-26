@@ -794,7 +794,7 @@ namespace BrawlStageManager {
 		}
 
 		private void snapshotPortraiticonToolStripMenuItem_Click(object sender, EventArgs e) {
-			Bitmap screenshot = modelPanel1.GetScreenshot(false);
+			Bitmap screenshot = modelPanel1.GetScreenshot(modelPanel1.ClientRectangle, false);
 
 			int size = Math.Min(screenshot.Width, screenshot.Height);
 			Bitmap square = new Bitmap(size, size);
