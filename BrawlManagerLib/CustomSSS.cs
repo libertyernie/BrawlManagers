@@ -8,12 +8,12 @@ using System.Windows.Forms;
 
 namespace BrawlManagerLib {
     /// <summary>
-    /// Allows read-write access to Custom SSS code, and read-only access to all Stage-Dependent Song Loader instances.
+    /// Allows read-only access to Custom SSS code, and read-only access to all Stage-Dependent Song Loader instances.
     /// This class will store the entire codeset, split between itself (the SSS code) and the portions before/after (in raw byte[]).
     /// </summary>
 	public class CustomSSS {
 		private static byte[] SDSL_HEADER = { 0x28, 0x70, 0x8c, 0xeb, 0x00, 0x00, 0x00 };
-		public Dictionary<byte, Song> SongsByStage { get; private set; }
+		private Dictionary<byte, Song> SongsByStage { get; set; }
 
         public byte[] sss1 { get; private set; }
 		public byte[] sss2 { get; private set; }
@@ -23,6 +23,7 @@ namespace BrawlManagerLib {
 		public byte[] DataAfter { get; private set; }
 
 		public int OtherCodesIgnoredInSameFile { get; private set; }
+		public bool IgnoredMetadata { get; private set; }
 
 		public Tuple<byte, byte> this[int index] {
 			get {
@@ -127,6 +128,7 @@ namespace BrawlManagerLib {
 		private static byte[] SSS_HEADER = ByteUtilities.StringToByteArray("046b8f5c 7c802378");
 		private void init(byte[] data) {
 			OtherCodesIgnoredInSameFile = 0;
+			IgnoredMetadata = false;
 			int index = -1;
 			for (int line = 0; line < data.Length; line += 8) {
 				if (ByteUtilities.ByteArrayEquals(data, line, SSS_HEADER, 0, SSS_HEADER.Length)) {
@@ -203,7 +205,7 @@ namespace BrawlManagerLib {
 			bool footer_found = false;
 			for (int i = 0; i < DataAfter.Length; i += 8) {
 				if (footer_found) {
-					MessageBox.Show("Extra data found after GCT footer - this will be discarded if you save the GCT.");
+					IgnoredMetadata = true;
 					DataAfter = DataAfter.Take(i).ToArray();
 					break;
 				} else {
@@ -246,6 +248,10 @@ namespace BrawlManagerLib {
 			}
 
 			return new CustomSSS(this, new1, new2, new3);
+		}
+
+		public bool TryGetValue(byte key, out Song value) {
+			return SongsByStage.TryGetValue(key, out value);
 		}
 	}
 }

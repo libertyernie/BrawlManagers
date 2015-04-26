@@ -123,8 +123,8 @@ namespace SSSEditor {
 					MiscData80 = md80,
 					Dock = DockStyle.Fill,
 				};
-				if (sss.SongsByStage.ContainsKey(pair.stage)) {
-					Song s = sss.SongsByStage[pair.stage];
+				Song s;
+				if (sss.TryGetValue(pair.stage, out s)) {
 					spc.Song = s.Filename;
 					spc.SongToolTip = s.ID.ToString("X4") + " - " + s.DefaultName;
 				}
@@ -384,6 +384,9 @@ namespace SSSEditor {
 		}
 
 		private void saveCodesetgctToolStripMenuItem_Click(object sender, EventArgs e) {
+			if (sss.IgnoredMetadata) {
+				MessageBox.Show("Extra data found after GCT footer - this will be discarded if you save the GCT.");
+			}
 			using (var dialog = new SaveFileDialog()) {
 				dialog.Filter = "Ocarina codes (*.gct)|*.gct";
 				dialog.OverwritePrompt = true;
