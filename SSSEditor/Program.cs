@@ -15,6 +15,9 @@ namespace SSSEditor {
 				: File.Exists(@"codes\RSBE01.gct") ? @"codes\RSBE01.gct"
 				: null;
 			pac = args.Length > 1 ? args[1]
+				: File.Exists(@"private\wii\app\RSBE\pf\menu2\sc_selmap.pac") ? @"private\wii\app\RSBE\pf\menu2\sc_selmap.pac"
+				: File.Exists(@"projectm\pf\menu2\sc_selmap.pac") ? @"projectm\pf\menu2\sc_selmap.pac"
+				: File.Exists(@"minusery\pf\menu2\sc_selmap.pac") ? @"minusery\pf\menu2\sc_selmap.pac"
 				: File.Exists(@"private\wii\app\RSBE\pf\system\common5.pac") ? @"private\wii\app\RSBE\pf\system\common5.pac"
 				: File.Exists(@"projectm\pf\system\common5.pac") ? @"projectm\pf\system\common5.pac"
 				: File.Exists(@"minusery\pf\system\common5.pac") ? @"minusery\pf\system\common5.pac"
