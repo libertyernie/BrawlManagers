@@ -55,9 +55,9 @@
 			// 
 			this.ddlStagePacs.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ddlStagePacs.FormattingEnabled = true;
-			this.ddlStagePacs.Location = new System.Drawing.Point(26, 0);
+			this.ddlStagePacs.Location = new System.Drawing.Point(32, 0);
 			this.ddlStagePacs.Name = "ddlStagePacs";
-			this.ddlStagePacs.Size = new System.Drawing.Size(185, 21);
+			this.ddlStagePacs.Size = new System.Drawing.Size(179, 21);
 			this.ddlStagePacs.TabIndex = 1;
 			this.ddlStagePacs.SelectedIndexChanged += new System.EventHandler(this.ddlStagePacs_SelectedIndexChanged);
 			// 
@@ -191,9 +191,9 @@
 			this.lblIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblIndex.Location = new System.Drawing.Point(0, 0);
 			this.lblIndex.Name = "lblIndex";
-			this.lblIndex.Size = new System.Drawing.Size(26, 21);
+			this.lblIndex.Size = new System.Drawing.Size(32, 21);
 			this.lblIndex.TabIndex = 9;
-			this.lblIndex.Text = "88.";
+			this.lblIndex.Text = "188.";
 			this.lblIndex.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// lblSong
@@ -212,7 +212,7 @@
 			// 
 			this.nudDefIndex.Enabled = false;
 			this.nudDefIndex.Hexadecimal = true;
-			this.nudDefIndex.Location = new System.Drawing.Point(29, 30);
+			this.nudDefIndex.Location = new System.Drawing.Point(35, 30);
 			this.nudDefIndex.Maximum = new decimal(new int[] {
             255,
             0,

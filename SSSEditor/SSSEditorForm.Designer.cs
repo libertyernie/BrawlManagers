@@ -56,31 +56,31 @@
 			this.lblYellow = new System.Windows.Forms.Label();
 			this.lblBlue = new System.Windows.Forms.Label();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabOverview = new System.Windows.Forms.TabPage();
+			this.label3 = new System.Windows.Forms.Label();
 			this.tabPreview1 = new System.Windows.Forms.TabPage();
+			this.sssPrev1 = new SSSEditor.SSSPrev();
 			this.tabPreview2 = new System.Windows.Forms.TabPage();
+			this.sssPrev2 = new SSSEditor.SSSPrev();
 			this.tabMyMusic1 = new System.Windows.Forms.TabPage();
+			this.myMusic1 = new SSSEditor.SSSPrev();
 			this.tabMyMusic2 = new System.Windows.Forms.TabPage();
+			this.myMusic2 = new SSSEditor.SSSPrev();
 			this.tblButtonRow = new System.Windows.Forms.TableLayoutPanel();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.btnDelete = new System.Windows.Forms.Button();
-			this.tabOverview = new System.Windows.Forms.TabPage();
-			this.sssPrev1 = new SSSEditor.SSSPrev();
-			this.sssPrev2 = new SSSEditor.SSSPrev();
-			this.myMusic1 = new SSSEditor.SSSPrev();
-			this.myMusic2 = new SSSEditor.SSSPrev();
-			this.label3 = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			this.tabSSS2.SuspendLayout();
 			this.tabSSS1.SuspendLayout();
 			this.tabDefinitions.SuspendLayout();
 			this.tblColorCodeKeys.SuspendLayout();
 			this.tabControl1.SuspendLayout();
+			this.tabOverview.SuspendLayout();
 			this.tabPreview1.SuspendLayout();
 			this.tabPreview2.SuspendLayout();
 			this.tabMyMusic1.SuspendLayout();
 			this.tabMyMusic2.SuspendLayout();
 			this.tblButtonRow.SuspendLayout();
-			this.tabOverview.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -333,7 +333,7 @@
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(362, 15);
 			this.label2.TabIndex = 5;
-			this.label2.Text = "Orange: overlap on random - might be chosen if (n-55) is enabled";
+			this.label2.Text = "Orange: possible overlap on random";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label1
@@ -403,6 +403,28 @@
 			this.tabControl1.Size = new System.Drawing.Size(376, 405);
 			this.tabControl1.TabIndex = 3;
 			// 
+			// tabOverview
+			// 
+			this.tabOverview.Controls.Add(this.label3);
+			this.tabOverview.Location = new System.Drawing.Point(4, 22);
+			this.tabOverview.Name = "tabOverview";
+			this.tabOverview.Size = new System.Drawing.Size(368, 379);
+			this.tabOverview.TabIndex = 7;
+			this.tabOverview.Text = "Note";
+			this.tabOverview.UseVisualStyleBackColor = true;
+			// 
+			// label3
+			// 
+			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label3.Location = new System.Drawing.Point(0, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(368, 379);
+			this.label3.TabIndex = 0;
+			this.label3.Text = "Each of the next three tabs will display a row for each stage. Because arranging " +
+    "and drawing the controls can take a long time, a progress window will be display" +
+    "ed while the tab loads.";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
 			// tabPreview1
 			// 
 			this.tabPreview1.Controls.Add(this.sssPrev1);
@@ -412,6 +434,17 @@
 			this.tabPreview1.TabIndex = 3;
 			this.tabPreview1.Text = "Preview #1";
 			this.tabPreview1.UseVisualStyleBackColor = true;
+			// 
+			// sssPrev1
+			// 
+			this.sssPrev1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.sssPrev1.IconOrder = null;
+			this.sssPrev1.Location = new System.Drawing.Point(0, 0);
+			this.sssPrev1.MyMusic = false;
+			this.sssPrev1.Name = "sssPrev1";
+			this.sssPrev1.NumIcons = 23;
+			this.sssPrev1.Size = new System.Drawing.Size(368, 379);
+			this.sssPrev1.TabIndex = 0;
 			// 
 			// tabPreview2
 			// 
@@ -423,6 +456,17 @@
 			this.tabPreview2.Text = "Preview #2";
 			this.tabPreview2.UseVisualStyleBackColor = true;
 			// 
+			// sssPrev2
+			// 
+			this.sssPrev2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.sssPrev2.IconOrder = null;
+			this.sssPrev2.Location = new System.Drawing.Point(0, 0);
+			this.sssPrev2.MyMusic = false;
+			this.sssPrev2.Name = "sssPrev2";
+			this.sssPrev2.NumIcons = 23;
+			this.sssPrev2.Size = new System.Drawing.Size(368, 379);
+			this.sssPrev2.TabIndex = 0;
+			// 
 			// tabMyMusic1
 			// 
 			this.tabMyMusic1.Controls.Add(this.myMusic1);
@@ -433,6 +477,17 @@
 			this.tabMyMusic1.Text = "My Music #1";
 			this.tabMyMusic1.UseVisualStyleBackColor = true;
 			// 
+			// myMusic1
+			// 
+			this.myMusic1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.myMusic1.IconOrder = null;
+			this.myMusic1.Location = new System.Drawing.Point(0, 0);
+			this.myMusic1.MyMusic = true;
+			this.myMusic1.Name = "myMusic1";
+			this.myMusic1.NumIcons = 23;
+			this.myMusic1.Size = new System.Drawing.Size(368, 379);
+			this.myMusic1.TabIndex = 0;
+			// 
 			// tabMyMusic2
 			// 
 			this.tabMyMusic2.Controls.Add(this.myMusic2);
@@ -442,6 +497,17 @@
 			this.tabMyMusic2.TabIndex = 6;
 			this.tabMyMusic2.Text = "My Music #2";
 			this.tabMyMusic2.UseVisualStyleBackColor = true;
+			// 
+			// myMusic2
+			// 
+			this.myMusic2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.myMusic2.IconOrder = null;
+			this.myMusic2.Location = new System.Drawing.Point(0, 0);
+			this.myMusic2.MyMusic = true;
+			this.myMusic2.Name = "myMusic2";
+			this.myMusic2.NumIcons = 23;
+			this.myMusic2.Size = new System.Drawing.Size(368, 379);
+			this.myMusic2.TabIndex = 0;
 			// 
 			// tblButtonRow
 			// 
@@ -481,72 +547,6 @@
 			this.btnDelete.UseVisualStyleBackColor = true;
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
-			// tabOverview
-			// 
-			this.tabOverview.Controls.Add(this.label3);
-			this.tabOverview.Location = new System.Drawing.Point(4, 22);
-			this.tabOverview.Name = "tabOverview";
-			this.tabOverview.Size = new System.Drawing.Size(368, 379);
-			this.tabOverview.TabIndex = 7;
-			this.tabOverview.Text = "Note";
-			this.tabOverview.UseVisualStyleBackColor = true;
-			// 
-			// sssPrev1
-			// 
-			this.sssPrev1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.sssPrev1.IconOrder = null;
-			this.sssPrev1.Location = new System.Drawing.Point(0, 0);
-			this.sssPrev1.MyMusic = false;
-			this.sssPrev1.Name = "sssPrev1";
-			this.sssPrev1.NumIcons = 23;
-			this.sssPrev1.Size = new System.Drawing.Size(368, 379);
-			this.sssPrev1.TabIndex = 0;
-			// 
-			// sssPrev2
-			// 
-			this.sssPrev2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.sssPrev2.IconOrder = null;
-			this.sssPrev2.Location = new System.Drawing.Point(0, 0);
-			this.sssPrev2.MyMusic = false;
-			this.sssPrev2.Name = "sssPrev2";
-			this.sssPrev2.NumIcons = 23;
-			this.sssPrev2.Size = new System.Drawing.Size(368, 379);
-			this.sssPrev2.TabIndex = 0;
-			// 
-			// myMusic1
-			// 
-			this.myMusic1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.myMusic1.IconOrder = null;
-			this.myMusic1.Location = new System.Drawing.Point(0, 0);
-			this.myMusic1.MyMusic = true;
-			this.myMusic1.Name = "myMusic1";
-			this.myMusic1.NumIcons = 23;
-			this.myMusic1.Size = new System.Drawing.Size(368, 379);
-			this.myMusic1.TabIndex = 0;
-			// 
-			// myMusic2
-			// 
-			this.myMusic2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.myMusic2.IconOrder = null;
-			this.myMusic2.Location = new System.Drawing.Point(0, 0);
-			this.myMusic2.MyMusic = true;
-			this.myMusic2.Name = "myMusic2";
-			this.myMusic2.NumIcons = 23;
-			this.myMusic2.Size = new System.Drawing.Size(368, 379);
-			this.myMusic2.TabIndex = 0;
-			// 
-			// label3
-			// 
-			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label3.Location = new System.Drawing.Point(0, 0);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(368, 379);
-			this.label3.TabIndex = 0;
-			this.label3.Text = "Each of the next three tabs will display a row for each stage. Because arranging " +
-    "and drawing the controls can take a long time, a progress window will be display" +
-    "ed while the tab loads.";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
 			// SSSEditorForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -567,12 +567,12 @@
 			this.tblColorCodeKeys.ResumeLayout(false);
 			this.tblColorCodeKeys.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
+			this.tabOverview.ResumeLayout(false);
 			this.tabPreview1.ResumeLayout(false);
 			this.tabPreview2.ResumeLayout(false);
 			this.tabMyMusic1.ResumeLayout(false);
 			this.tabMyMusic2.ResumeLayout(false);
 			this.tblButtonRow.ResumeLayout(false);
-			this.tabOverview.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
