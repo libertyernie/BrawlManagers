@@ -217,7 +217,7 @@ namespace BrawlStageManager {
 					relName.ForeColor = Color.Black;
 					verifyIDs();
 				} else {
-					setRelLabels(_relFile.Name, "doesn't exist", "(Brawl .rel will be used)");
+					setRelLabels(_relFile.Name, "doesn't exist", "");
 					relButton.BackColor = Control.DefaultBackColor;
 					relName.ForeColor = Color.Red;
 				}

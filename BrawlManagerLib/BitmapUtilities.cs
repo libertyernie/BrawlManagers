@@ -44,7 +44,7 @@ namespace BrawlManagerLib {
 		/// <summary>
 		/// Combines two images. The size of the second (foreground) image will be used for the final image.
 		/// </summary>
-		public static Bitmap Combine(Image bg, Image fg) {
+		public static Bitmap Combine(Bitmap bg, Image fg) {
 			int w = fg.Width, h = fg.Height;
 			Bitmap both = new Bitmap(w, h);
 			Graphics g = Graphics.FromImage(both);
@@ -70,8 +70,8 @@ namespace BrawlManagerLib {
 		/// <summary>
 		/// Makes a scaled version of an image using BrawlLib's texture converter.
 		/// </summary>
-		public static Bitmap Resize(Image orig, Size resizeTo) {
-			return TextureConverterDialog.ResizeImage(orig, resizeTo.Width, resizeTo.Height);
+		public static Bitmap Resize(Bitmap orig, Size resizeTo) {
+			return orig.Resize(resizeTo.Width, resizeTo.Height);
 		}
 
 		public static Bitmap Border(Bitmap orig, Color color, int penwidth = 1) {

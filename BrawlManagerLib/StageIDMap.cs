@@ -73,23 +73,23 @@ namespace BrawlManagerLib {
 		static StageIDMap() {
 			// static initializer
 			#region Arrays containing stage data
-			string[] relnames = {"st_custom##.rel",
-				"st_battle.rel", "st_final.rel",
-				"st_dolpic.rel", "st_mansion.rel", "st_mariopast.rel",
-				"st_kart.rel", "st_donkey.rel", "st_jungle.rel",
-				"st_pirates.rel", "st_norfair.rel", "st_orpheon.rel",
-				"st_crayon.rel", "st_halberd.rel", "st_starfox.rel",
-				"st_stadium.rel", "st_tengan.rel", "st_fzero.rel",
-				"st_ice.rel", "st_gw.rel", "st_emblem.rel",
-				"st_madein.rel", "st_earth.rel", "st_palutena.rel",
-				"st_famicom.rel", "st_newpork.rel", "st_village.rel",
-				"st_metalgear.rel", "st_greenhill.rel", "st_pictchat.rel",
-				"st_plankton.rel", "st_config.rel", "st_dxshrine.rel",
-				"st_dxyorster.rel", "st_dxgarden.rel", "st_dxonett.rel",
-				"st_dxgreens.rel", "st_dxpstadium.rel", "st_dxrcruise.rel",
-				"st_dxcorneria.rel", "st_dxbigblue.rel", "st_dxzebes.rel",
-				"st_oldin.rel", "st_homerun.rel", "st_stageedit.rel",
-				"st_heal.rel", "st_otrain.rel", "st_tbreak.rel"};
+			string[] relnames = {"st_custom##",
+				"st_battle", "st_final",
+				"st_dolpic", "st_mansion", "st_mariopast",
+				"st_kart", "st_donkey", "st_jungle",
+				"st_pirates", "st_norfair", "st_orpheon",
+				"st_crayon", "st_halberd", "st_starfox",
+				"st_stadium", "st_tengan", "st_fzero",
+				"st_ice", "st_gw", "st_emblem",
+				"st_madein", "st_earth", "st_palutena",
+				"st_famicom", "st_newpork", "st_village",
+				"st_metalgear", "st_greenhill", "st_pictchat",
+				"st_plankton", "st_config", "st_dxshrine",
+				"st_dxyorster", "st_dxgarden", "st_dxonett",
+				"st_dxgreens", "st_dxpstadium", "st_dxrcruise",
+				"st_dxcorneria", "st_dxbigblue", "st_dxzebes",
+				"st_oldin", "st_homerun", "st_stageedit",
+				"st_heal", "st_otrain", "st_tbreak"};
 			string[] pac_basenames = {"custom",
 				"battlefield", "final",
 				"dolpic", "mansion", "mariopast",
@@ -195,20 +195,24 @@ namespace BrawlManagerLib {
 		}
 
 		public static string RelNameForPac(string filename) {
+			string asl_append = "";
+			string lastsix = ("++++++" + filename).Substring(filename.Length, 6);
+			if (lastsix[0] == '_') {
+				asl_append = "_" + lastsix[1];
+			}
 			if (filename.StartsWith("STGCUSTOM", StringComparison.InvariantCultureIgnoreCase)) {
-				return "st_custom" + filename.Substring(9, 2) + ".rel";
+				return "st_custom" + filename.Substring(9, 2) + asl_append + ".rel";
 			} else {
 				var q = from s in Stages
 						where s.ContainsPac(filename)
 						select s.RelName;
 				if (q.Count() > 1) {
 					Console.WriteLine("More than one stage matches the search pattern: " + filename);
-					return q.First();
 				} else if (q.Count() < 1) {
 					Console.WriteLine("No stage matches the search pattern: " + filename);
 					return "none";
 				}
-				return q.First();
+				return q.First() + asl_append + ".rel";
 			}
 		}
 
