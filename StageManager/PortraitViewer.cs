@@ -390,9 +390,7 @@ namespace BrawlStageManager {
 				bgi = b;
 			} else {
 				Bitmap image = new Bitmap(texInfo.tex0.GetImage(0));
-				if (panel == selmap_mark && selmapMarkPreview && texInfo.tex0.Format != WiiPixelFormat.CMPR) {
-					bgi = BitmapUtilities.AlphaSwap(image);
-				} else if (panel == seriesicon && selmapMarkPreview) {
+				if (panel == seriesicon && selmapMarkPreview) {
 					bgi = BitmapUtilities.Invert(BitmapUtilities.AlphaSwap(image));
 				} else if (panel == prevbase && selmapMarkPreview && scribble != null) {
 					bgi = BitmapUtilities.ApplyMask(image, scribble);
