@@ -9,12 +9,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RazorEngine.Templating;
+using System.Drawing.Imaging;
 
 namespace SSSEditor {
 	public partial class SSSEditorForm : Form {
 		// Source data
 		private CustomSSS sss;
 		private BRRESNode md80;
+
+        private string html = "";
 
 		#region Collect data from controls
 		private List<StagePair> getDefinitions() {
@@ -161,6 +165,27 @@ namespace SSSEditor {
 				tblSSS2.Controls.Add(spc);
 				if (pw != null) pw.Update(++j);
 			}
+
+            PairListModel model = new PairListModel();
+            for (int i = 0; i < model.icons.Length; i++) {
+                var tex = new TextureContainer(md80, i);
+                if (tex.icon_tex0 != null) {
+                    using (MemoryStream ms = new MemoryStream()) {
+                        tex.icon_tex0.GetImage(0).Save(ms, ImageFormat.Png);
+                        model.icons[i] = ms.ToArray();
+                    }
+                }
+            }
+            for (int i=0; i<definitions.Count; i++) {
+                StagePair pair = definitions[i];
+                model.pairs.Add(new ModelPair {
+                    icon = pair.icon,
+                    stage = pair.stage,
+                    origId = i
+                });
+            }
+            html = webBrowser1.DocumentText = RazorEngine.Engine.Razor.RunCompile(File.ReadAllText("PairList.cshtml"), "PairList",
+                typeof(PairListModel), model);
 
 			if (pw != null) pw.BeginInvoke(new Action(pw.Close));
 		}
@@ -524,5 +549,15 @@ namespace SSSEditor {
 				}
 			}
 		}
+
+        private void exportHTMLToolStripMenuItem_Click(object sender, EventArgs e) {
+            using (SaveFileDialog d = new SaveFileDialog()) {
+                d.AddExtension = true;
+                d.Filter = "HTML files|*.htm;*.html";
+                if (d.ShowDialog() == DialogResult.OK) {
+                    File.WriteAllText(d.FileName, html);
+                }
+            }
+        }
 	}
 }

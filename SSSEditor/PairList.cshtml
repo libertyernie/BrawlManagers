@@ -1,0 +1,35 @@
+﻿@inherits SSSEditor.PairListPageBase
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>SSS Editor Demo Page</title>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        var icons = [@Raw(Model.iconsJSON)][0];
+        var stages = [@Raw(Model.stagesJSON)][0];
+
+        $(function () {
+            $("#pairDefinitions td img").each(function (i, e) {
+                var iconId = +$(e).parent().children(".iconID").val();
+                e.src = "data:image/png;base64," + icons[iconId];
+            });
+        });
+    </script>
+</head>
+<body>
+    <table id="pairDefinitions">
+        @foreach (SSSEditor.ModelPair pair in Model.pairs) {
+            <tr>
+                <td>
+                    <img width="64" height="56" />
+                    @pair.origId:
+                    <input type="number" class="stageID" value="@pair.stage" />
+                    <input type="number" class="iconID" value="@pair.icon" />
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
