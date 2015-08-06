@@ -4,6 +4,7 @@
 
 <html>
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
     <title>SSS Editor Demo Page</title>
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
@@ -11,61 +12,106 @@
 
         $(function () {
             $("#pairDefinitions img.icon").each(function (i, e) {
-                var iconId = +$(e).parents("tr").find("input.iconID").val();
+                var iconId = parseInt($(e).parents(".stageRow").find(".iconIDDisplay").text(), 16);
                 e.src = "data:image/png;base64," + icons[iconId];
             });
 
+            if ("documentMode" in document) $("#documentMode").text(document.documentMode);
+
             $("input.iconID").change(function () {
-                var iconId = parseInt($(this).val(), 16);
-                $(this).parents("tr").find("img.icon").attr("src", "data:image/png;base64," + icons[iconId]);
+                var iconId = +$(this).val();
+                var str = iconId.toString(16);
+                if (str.length == 1) str = "0" + str;
+                $(this).parents(".stageRow").find(".iconIDDisplay").text(str);
+
+                $(this).parents(".stageRow").find("img.icon").attr("src", "data:image/png;base64," + icons[iconId]);
             });
 
             $("input.stageID").change(function () {
-                var stageId = parseInt($(this).val(), 16);
-                $(this).parents("tr").find("select.stagename").val(stageId);
+                var stageId = +$(this).val();
+                var str = stageId.toString(16);
+                if (str.length == 1) str = "0" + str;
+                $(this).parents(".stageRow").find(".stageIDDisplay").text(str);
+
+                $(this).parents(".stageRow").find("select.stagename").val(stageId);
             });
 
             $("select.stagename").change(function () {
-                var stageId = $(this).val();
-                var str = (+stageId).toString(16);
+                var stageId = +$(this).val();
+                var str = stageId.toString(16);
                 if (str.length == 1) str = "0" + str;
-                $(this).parents("tr").find("input.stageID").val(str);
+                $(this).parents(".stageRow").find(".stageIDDisplay").text(str);
+
+                $(this).parents(".stageRow").find("input.stageID").val(stageId);
             });
         });
     </script>
     <style type="text/css">
-        .stageID, .iconID {
+        .stageRow {
+            background-color: lightgray;
+            border: 1px outset white;
+            overflow: auto;
+            margin-bottom: 8px;
+            padding: 2px;
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10pt;
+            line-height: 26px;
+        }
+
+        .stageRow img.icon {
+            float: left;
+            margin-right: 2px;
+        }
+
+        .stageRow .index {
+            font-weight: bold;
+        }
+
+        .stageIDDisplay, .iconIDDisplay {
+            font-family: monospace;
+        }
+
+        input.iconID, input.stageID, input.defIndex {
             width: 48px;
+        }
+
+        input.up, input.down {
+            width: 22px;
+            height: 22px;
         }
     </style>
 </head>
 <body>
-    <table id="pairDefinitions">
-        @{
-            int index = 0;
-        }
+    <div id="pairDefinitions">
+        @{ int index = 0; }
         @foreach (SSSEditor.ModelPair pair in Model.pairs) {
-            <tr>
-                <td>
-                    <img width="64" height="56" class="icon" />
-                </td>
-                <td>
-                    <span class="index">@(index++).</span>
-                    <select class="stagename">
-                        @foreach (BrawlManagerLib.StageIDMap.Stage stage in BrawlManagerLib.StageIDMap.Stages) {
-                            if (stage.ID == pair.stage) {
-                                <option label="@stage.PacBasename" value="@stage.ID" selected></option>
-                            } else {
-                                <option label="@stage.PacBasename" value="@stage.ID"></option>
-                            }
+            <div class="stageRow" id="defOrig@(index)">
+                <img width="64" height="56" class="icon" />
+                <span class="index">@index.</span>
+                <select class="stagename">
+                    @foreach (BrawlManagerLib.StageIDMap.Stage stage in BrawlManagerLib.StageIDMap.Stages) {
+                        if (stage.ID == pair.stage) {
+                            <option label="@stage" value="@stage.ID" selected></option>
+                        } else {
+                            <option label="@stage" value="@stage.ID"></option>
                         }
-                    </select>
-                    <br />
-                    <input class="stageID" value="@pair.stage.ToString("X2")" />
-                    <input class="iconID" value="@pair.icon.ToString("X2")" />
-                </td>
-            </tr>
+                    }
+                </select>
+                <br />
+                <input class="defIndex" value="@index" disabled />
+                <!--<input class="stageID" value="@pair.stage" type="number" />-->
+                <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
+                <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
+                <input class="iconID" value="@pair.icon" type="number" />
+                <input class="up" value="^" type="button" />
+                <input class="down" value="v" type="button" />
+            </div>
+            index++;
         }
-    </table>
+    </div>
+    <p>
+        Document mode: <span id="documentMode"></span>
+    </p>
 </body>
 </html>

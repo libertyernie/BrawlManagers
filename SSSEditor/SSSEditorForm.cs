@@ -91,10 +91,6 @@ namespace SSSEditor {
 					}
 				}).Start();
 			};
-
-			webBrowser1.StatusTextChanged += (o, e) => {
-				System.Console.WriteLine(webBrowser1.StatusText);
-			};
 		}
 
 		private void ReloadData() {
