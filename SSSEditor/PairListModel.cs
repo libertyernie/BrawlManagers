@@ -4,6 +4,7 @@ using RazorEngine.Templating;
 using RazorEngine.Text;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -26,20 +27,14 @@ namespace SSSEditor {
     }
 
     public class PairListModel {
-        public Dictionary<string, StageIDMap.Stage> stages { get; set; }
+        public ReadOnlyCollection<StageIDMap.Stage> stages { get; set; }
         public byte[][] icons { get; set; }
         public List<ModelPair> pairs { get; set; }
 
         public PairListModel() {
             icons = new byte[256][];
             pairs = new List<ModelPair>();
-            stages = StageIDMap.Stages.ToDictionary(s => s.ID.ToString(), s => s);
-        }
-
-        public string stagesJSON {
-            get {
-                return JsonConvert.SerializeObject(stages);
-            }
+			stages = StageIDMap.Stages;
         }
 
         public string iconsJSON {

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RazorEngine.Templating;
 using System.Drawing.Imaging;
+using System.Reflection;
 
 namespace SSSEditor {
 	public partial class SSSEditorForm : Form {
@@ -89,6 +90,10 @@ namespace SSSEditor {
 						StagePairControl.GlobalProgressWindow = null;
 					}
 				}).Start();
+			};
+
+			webBrowser1.StatusTextChanged += (o, e) => {
+				System.Console.WriteLine(webBrowser1.StatusText);
 			};
 		}
 
@@ -184,8 +189,15 @@ namespace SSSEditor {
                     origId = i
                 });
             }
-            html = webBrowser1.DocumentText = RazorEngine.Engine.Razor.RunCompile(File.ReadAllText("PairList.cshtml"), "PairList",
-                typeof(PairListModel), model);
+
+			Assembly a = Assembly.GetAssembly(this.GetType());
+			string[] ssd = a.GetManifestResourceNames();
+			using (Stream stream = a.GetManifestResourceStream("SSSEditor.PairList.cshtml")) {
+				using (StreamReader reader = new StreamReader(stream)) {
+					html = webBrowser1.DocumentText = RazorEngine.Engine.Razor.RunCompile(reader.ReadToEnd(), "PairList",
+						typeof(PairListModel), model);
+				}
+			}
 
 			if (pw != null) pw.BeginInvoke(new Action(pw.Close));
 		}
