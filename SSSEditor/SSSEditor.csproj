@@ -153,6 +153,7 @@
     <Content Include="downarr.png" />
     <None Include="stageicon.png" />
     <Content Include="icon.ico" />
+    <EmbeddedResource Include="jquery.min.js" />
     <Content Include="SSSEditor.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

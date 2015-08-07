@@ -5,7 +5,9 @@ using RazorEngine.Text;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace SSSEditor {
@@ -42,6 +44,24 @@ namespace SSSEditor {
                 return JsonConvert.SerializeObject(icons);
             }
         }
+
+		public static string JQuery {
+			get {
+				Assembly a = Assembly.GetAssembly(typeof(PairListModel));
+				string[] ssd = a.GetManifestResourceNames();
+				using (Stream stream = a.GetManifestResourceStream("SSSEditor.jquery.min.js")) {
+					using (StreamReader reader = new StreamReader(stream)) {
+						return reader.ReadToEnd();
+					}
+				}
+			}
+		}
+
+		public static ReadOnlyCollection<KeyValuePair<byte, string>> StagesByID {
+			get {
+				return StageIDMap.StagesByID;
+			}
+		}
     }
 
     public class ModelPair {

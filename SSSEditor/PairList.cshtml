@@ -1,4 +1,5 @@
-﻿@inherits SSSEditor.PairListPageBase
+﻿@using SSSEditor
+@inherits PairListPageBase
 
 <!DOCTYPE html>
 
@@ -6,8 +7,9 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=7" />
     <title>SSS Editor Demo Page</title>
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
+        @Raw(PairListModel.JQuery)
+
         var icons = [@Raw(Model.iconsJSON)][0];
 
         $(function () {
@@ -58,6 +60,8 @@
                     previous.find(".indexDisplay").text(index);
                     previous.find("input.defIndex").val(index);
                 }
+
+                $(this).focus();
             });
 
             $("input.down").click(function () {
@@ -73,6 +77,8 @@
                     next.find(".indexDisplay").text(index);
                     next.find("input.defIndex").val(index);
                 }
+
+                $(this).focus();
             });
         });
     </script>
@@ -115,12 +121,12 @@
 <body>
     <div id="pairDefinitions">
         @{ int index = 0; }
-        @foreach (SSSEditor.ModelPair pair in Model.pairs) {
+        @foreach (ModelPair pair in Model.pairs) {
             <div class="stageRow" id="defOrig@(index)">
                 <img width="64" height="56" class="icon" />
                 <span class="indexDisplay">@index.</span>
                 <select class="stagename">
-                    @foreach (KeyValuePair<byte, string> kvpair in BrawlManagerLib.StageIDMap.StagesByID) {
+                    @foreach (KeyValuePair<byte, string> kvpair in PairListModel.StagesByID) {
                         if (kvpair.Key == pair.stage) {
                             <option label="@kvpair.Value" value="@kvpair.Key" selected></option>
                         } else {
