@@ -44,6 +44,36 @@
 
                 $(this).parents(".stageRow").find("input.stageID").val(stageId);
             });
+
+            $("input.up").click(function () {
+                var row = $(this).parents(".stageRow");
+                var previous = row.prev();
+
+                if (previous.length > 0) {
+                    var previousIndex = +previous.find("input.defIndex").val();
+                    var index = +row.find("input.defIndex").val();
+                    row.insertBefore(previous);
+                    row.find(".indexDisplay").text(previousIndex);
+                    row.find("input.defIndex").val(previousIndex);
+                    previous.find(".indexDisplay").text(index);
+                    previous.find("input.defIndex").val(index);
+                }
+            });
+
+            $("input.down").click(function () {
+                var row = $(this).parents(".stageRow");
+                var next = row.next();
+
+                if (next.length > 0) {
+                    var nextIndex = +next.find("input.defIndex").val();
+                    var index = +row.find("input.defIndex").val();
+                    row.insertAfter(next);
+                    row.find(".indexDisplay").text(nextIndex);
+                    row.find("input.defIndex").val(nextIndex);
+                    next.find(".indexDisplay").text(index);
+                    next.find("input.defIndex").val(index);
+                }
+            });
         });
     </script>
     <style type="text/css">
@@ -64,7 +94,7 @@
             margin-right: 2px;
         }
 
-        .stageRow .index {
+        .stageRow .indexDisplay {
             font-weight: bold;
         }
 
@@ -88,13 +118,13 @@
         @foreach (SSSEditor.ModelPair pair in Model.pairs) {
             <div class="stageRow" id="defOrig@(index)">
                 <img width="64" height="56" class="icon" />
-                <span class="index">@index.</span>
+                <span class="indexDisplay">@index.</span>
                 <select class="stagename">
-                    @foreach (BrawlManagerLib.StageIDMap.Stage stage in BrawlManagerLib.StageIDMap.Stages) {
-                        if (stage.ID == pair.stage) {
-                            <option label="@stage" value="@stage.ID" selected></option>
+                    @foreach (KeyValuePair<byte, string> kvpair in BrawlManagerLib.StageIDMap.StagesByID) {
+                        if (kvpair.Key == pair.stage) {
+                            <option label="@kvpair.Value" value="@kvpair.Key" selected></option>
                         } else {
-                            <option label="@stage" value="@stage.ID"></option>
+                            <option label="@kvpair.Value" value="@kvpair.Key"></option>
                         }
                     }
                 </select>
