@@ -58,21 +58,20 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabOverview = new System.Windows.Forms.TabPage();
 			this.label3 = new System.Windows.Forms.Label();
-			this.tabPreview1 = new System.Windows.Forms.TabPage();
-			this.tabPreview2 = new System.Windows.Forms.TabPage();
-			this.tabMyMusic1 = new System.Windows.Forms.TabPage();
-			this.tabMyMusic2 = new System.Windows.Forms.TabPage();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-			this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-			this.exportHTMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.tabPreview1 = new System.Windows.Forms.TabPage();
+			this.sssPrev1 = new SSSEditor.SSSPrev();
+			this.tabPreview2 = new System.Windows.Forms.TabPage();
+			this.sssPrev2 = new SSSEditor.SSSPrev();
+			this.tabMyMusic1 = new System.Windows.Forms.TabPage();
+			this.myMusic1 = new SSSEditor.SSSPrev();
+			this.tabMyMusic2 = new System.Windows.Forms.TabPage();
+			this.myMusic2 = new SSSEditor.SSSPrev();
 			this.tblButtonRow = new System.Windows.Forms.TableLayoutPanel();
 			this.btnAdd = new System.Windows.Forms.Button();
 			this.btnDelete = new System.Windows.Forms.Button();
-			this.sssPrev1 = new SSSEditor.SSSPrev();
-			this.sssPrev2 = new SSSEditor.SSSPrev();
-			this.myMusic1 = new SSSEditor.SSSPrev();
-			this.myMusic2 = new SSSEditor.SSSPrev();
+			this.exportHTMLToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.tabSSS2.SuspendLayout();
 			this.tabSSS1.SuspendLayout();
@@ -80,12 +79,11 @@
 			this.tblColorCodeKeys.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabOverview.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			this.tabPreview1.SuspendLayout();
 			this.tabPreview2.SuspendLayout();
 			this.tabMyMusic1.SuspendLayout();
 			this.tabMyMusic2.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			this.menuStrip2.SuspendLayout();
 			this.tblButtonRow.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -107,6 +105,7 @@
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
+            this.exportHTMLToolStripMenuItem1,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -122,7 +121,7 @@
             this.toolStripMenuItem1,
             this.openSDCardRootToolStripMenuItem});
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.openToolStripMenuItem.Text = "Open";
 			// 
 			// openCodesetgcttxtToolStripMenuItem
@@ -169,7 +168,7 @@
             this.saveCodesetgctToolStripMenuItem,
             this.saveSSSCodeOnlytxtToolStripMenuItem});
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveToolStripMenuItem.Text = "Save";
 			// 
 			// saveCodesetgctToolStripMenuItem
@@ -189,7 +188,7 @@
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -432,50 +431,9 @@
     "ed while the tab loads.";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// tabPreview1
-			// 
-			this.tabPreview1.Controls.Add(this.sssPrev1);
-			this.tabPreview1.Location = new System.Drawing.Point(4, 22);
-			this.tabPreview1.Name = "tabPreview1";
-			this.tabPreview1.Size = new System.Drawing.Size(368, 379);
-			this.tabPreview1.TabIndex = 3;
-			this.tabPreview1.Text = "Preview #1";
-			this.tabPreview1.UseVisualStyleBackColor = true;
-			// 
-			// tabPreview2
-			// 
-			this.tabPreview2.Controls.Add(this.sssPrev2);
-			this.tabPreview2.Location = new System.Drawing.Point(4, 22);
-			this.tabPreview2.Name = "tabPreview2";
-			this.tabPreview2.Size = new System.Drawing.Size(368, 379);
-			this.tabPreview2.TabIndex = 4;
-			this.tabPreview2.Text = "Preview #2";
-			this.tabPreview2.UseVisualStyleBackColor = true;
-			// 
-			// tabMyMusic1
-			// 
-			this.tabMyMusic1.Controls.Add(this.myMusic1);
-			this.tabMyMusic1.Location = new System.Drawing.Point(4, 22);
-			this.tabMyMusic1.Name = "tabMyMusic1";
-			this.tabMyMusic1.Size = new System.Drawing.Size(368, 379);
-			this.tabMyMusic1.TabIndex = 5;
-			this.tabMyMusic1.Text = "My Music #1";
-			this.tabMyMusic1.UseVisualStyleBackColor = true;
-			// 
-			// tabMyMusic2
-			// 
-			this.tabMyMusic2.Controls.Add(this.myMusic2);
-			this.tabMyMusic2.Location = new System.Drawing.Point(4, 22);
-			this.tabMyMusic2.Name = "tabMyMusic2";
-			this.tabMyMusic2.Size = new System.Drawing.Size(368, 379);
-			this.tabMyMusic2.TabIndex = 6;
-			this.tabMyMusic2.Text = "My Music #2";
-			this.tabMyMusic2.UseVisualStyleBackColor = true;
-			// 
 			// tabPage1
 			// 
 			this.tabPage1.Controls.Add(this.webBrowser1);
-			this.tabPage1.Controls.Add(this.menuStrip2);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -487,28 +445,95 @@
 			// webBrowser1
 			// 
 			this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.webBrowser1.Location = new System.Drawing.Point(3, 27);
+			this.webBrowser1.Location = new System.Drawing.Point(3, 3);
 			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(362, 349);
+			this.webBrowser1.Size = new System.Drawing.Size(362, 373);
 			this.webBrowser1.TabIndex = 0;
 			// 
-			// menuStrip2
+			// tabPreview1
 			// 
-			this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportHTMLToolStripMenuItem});
-			this.menuStrip2.Location = new System.Drawing.Point(3, 3);
-			this.menuStrip2.Name = "menuStrip2";
-			this.menuStrip2.Size = new System.Drawing.Size(362, 24);
-			this.menuStrip2.TabIndex = 1;
-			this.menuStrip2.Text = "menuStrip2";
+			this.tabPreview1.Controls.Add(this.sssPrev1);
+			this.tabPreview1.Location = new System.Drawing.Point(4, 22);
+			this.tabPreview1.Name = "tabPreview1";
+			this.tabPreview1.Size = new System.Drawing.Size(368, 379);
+			this.tabPreview1.TabIndex = 3;
+			this.tabPreview1.Text = "Preview #1";
+			this.tabPreview1.UseVisualStyleBackColor = true;
 			// 
-			// exportHTMLToolStripMenuItem
+			// sssPrev1
 			// 
-			this.exportHTMLToolStripMenuItem.Name = "exportHTMLToolStripMenuItem";
-			this.exportHTMLToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-			this.exportHTMLToolStripMenuItem.Text = "Export HTML";
-			this.exportHTMLToolStripMenuItem.Click += new System.EventHandler(this.exportHTMLToolStripMenuItem_Click);
+			this.sssPrev1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.sssPrev1.IconOrder = null;
+			this.sssPrev1.Location = new System.Drawing.Point(0, 0);
+			this.sssPrev1.MyMusic = false;
+			this.sssPrev1.Name = "sssPrev1";
+			this.sssPrev1.NumIcons = 23;
+			this.sssPrev1.Size = new System.Drawing.Size(368, 379);
+			this.sssPrev1.TabIndex = 0;
+			// 
+			// tabPreview2
+			// 
+			this.tabPreview2.Controls.Add(this.sssPrev2);
+			this.tabPreview2.Location = new System.Drawing.Point(4, 22);
+			this.tabPreview2.Name = "tabPreview2";
+			this.tabPreview2.Size = new System.Drawing.Size(368, 379);
+			this.tabPreview2.TabIndex = 4;
+			this.tabPreview2.Text = "Preview #2";
+			this.tabPreview2.UseVisualStyleBackColor = true;
+			// 
+			// sssPrev2
+			// 
+			this.sssPrev2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.sssPrev2.IconOrder = null;
+			this.sssPrev2.Location = new System.Drawing.Point(0, 0);
+			this.sssPrev2.MyMusic = false;
+			this.sssPrev2.Name = "sssPrev2";
+			this.sssPrev2.NumIcons = 23;
+			this.sssPrev2.Size = new System.Drawing.Size(368, 379);
+			this.sssPrev2.TabIndex = 0;
+			// 
+			// tabMyMusic1
+			// 
+			this.tabMyMusic1.Controls.Add(this.myMusic1);
+			this.tabMyMusic1.Location = new System.Drawing.Point(4, 22);
+			this.tabMyMusic1.Name = "tabMyMusic1";
+			this.tabMyMusic1.Size = new System.Drawing.Size(368, 379);
+			this.tabMyMusic1.TabIndex = 5;
+			this.tabMyMusic1.Text = "My Music #1";
+			this.tabMyMusic1.UseVisualStyleBackColor = true;
+			// 
+			// myMusic1
+			// 
+			this.myMusic1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.myMusic1.IconOrder = null;
+			this.myMusic1.Location = new System.Drawing.Point(0, 0);
+			this.myMusic1.MyMusic = true;
+			this.myMusic1.Name = "myMusic1";
+			this.myMusic1.NumIcons = 23;
+			this.myMusic1.Size = new System.Drawing.Size(368, 379);
+			this.myMusic1.TabIndex = 0;
+			// 
+			// tabMyMusic2
+			// 
+			this.tabMyMusic2.Controls.Add(this.myMusic2);
+			this.tabMyMusic2.Location = new System.Drawing.Point(4, 22);
+			this.tabMyMusic2.Name = "tabMyMusic2";
+			this.tabMyMusic2.Size = new System.Drawing.Size(368, 379);
+			this.tabMyMusic2.TabIndex = 6;
+			this.tabMyMusic2.Text = "My Music #2";
+			this.tabMyMusic2.UseVisualStyleBackColor = true;
+			// 
+			// myMusic2
+			// 
+			this.myMusic2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.myMusic2.IconOrder = null;
+			this.myMusic2.Location = new System.Drawing.Point(0, 0);
+			this.myMusic2.MyMusic = true;
+			this.myMusic2.Name = "myMusic2";
+			this.myMusic2.NumIcons = 23;
+			this.myMusic2.Size = new System.Drawing.Size(368, 379);
+			this.myMusic2.TabIndex = 0;
 			// 
 			// tblButtonRow
 			// 
@@ -548,49 +573,12 @@
 			this.btnDelete.UseVisualStyleBackColor = true;
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
-			// sssPrev1
+			// exportHTMLToolStripMenuItem1
 			// 
-			this.sssPrev1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.sssPrev1.IconOrder = null;
-			this.sssPrev1.Location = new System.Drawing.Point(0, 0);
-			this.sssPrev1.MyMusic = false;
-			this.sssPrev1.Name = "sssPrev1";
-			this.sssPrev1.NumIcons = 23;
-			this.sssPrev1.Size = new System.Drawing.Size(368, 379);
-			this.sssPrev1.TabIndex = 0;
-			// 
-			// sssPrev2
-			// 
-			this.sssPrev2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.sssPrev2.IconOrder = null;
-			this.sssPrev2.Location = new System.Drawing.Point(0, 0);
-			this.sssPrev2.MyMusic = false;
-			this.sssPrev2.Name = "sssPrev2";
-			this.sssPrev2.NumIcons = 23;
-			this.sssPrev2.Size = new System.Drawing.Size(368, 379);
-			this.sssPrev2.TabIndex = 0;
-			// 
-			// myMusic1
-			// 
-			this.myMusic1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.myMusic1.IconOrder = null;
-			this.myMusic1.Location = new System.Drawing.Point(0, 0);
-			this.myMusic1.MyMusic = true;
-			this.myMusic1.Name = "myMusic1";
-			this.myMusic1.NumIcons = 23;
-			this.myMusic1.Size = new System.Drawing.Size(368, 379);
-			this.myMusic1.TabIndex = 0;
-			// 
-			// myMusic2
-			// 
-			this.myMusic2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.myMusic2.IconOrder = null;
-			this.myMusic2.Location = new System.Drawing.Point(0, 0);
-			this.myMusic2.MyMusic = true;
-			this.myMusic2.Name = "myMusic2";
-			this.myMusic2.NumIcons = 23;
-			this.myMusic2.Size = new System.Drawing.Size(368, 379);
-			this.myMusic2.TabIndex = 0;
+			this.exportHTMLToolStripMenuItem1.Name = "exportHTMLToolStripMenuItem1";
+			this.exportHTMLToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+			this.exportHTMLToolStripMenuItem1.Text = "E&xport HTML";
+			this.exportHTMLToolStripMenuItem1.Click += new System.EventHandler(this.exportHTMLToolStripMenuItem1_Click);
 			// 
 			// SSSEditorForm
 			// 
@@ -613,14 +601,11 @@
 			this.tblColorCodeKeys.PerformLayout();
 			this.tabControl1.ResumeLayout(false);
 			this.tabOverview.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			this.tabPreview1.ResumeLayout(false);
 			this.tabPreview2.ResumeLayout(false);
 			this.tabMyMusic1.ResumeLayout(false);
 			this.tabMyMusic2.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
-			this.tabPage1.PerformLayout();
-			this.menuStrip2.ResumeLayout(false);
-			this.menuStrip2.PerformLayout();
 			this.tblButtonRow.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -675,9 +660,8 @@
 		private System.Windows.Forms.TabPage tabOverview;
 		private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem exportHTMLToolStripMenuItem;
+		private System.Windows.Forms.WebBrowser webBrowser1;
+		private System.Windows.Forms.ToolStripMenuItem exportHTMLToolStripMenuItem1;
 	}
 }
 

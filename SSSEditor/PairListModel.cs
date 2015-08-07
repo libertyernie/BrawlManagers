@@ -32,6 +32,8 @@ namespace SSSEditor {
         public ReadOnlyCollection<StageIDMap.Stage> stages { get; set; }
         public byte[][] icons { get; set; }
         public List<ModelPair> pairs { get; set; }
+		public byte[] screen1 { get; set; }
+		public byte[] screen2 { get; set; }
 
         public PairListModel() {
             icons = new byte[256][];

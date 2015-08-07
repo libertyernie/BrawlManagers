@@ -185,6 +185,8 @@ namespace SSSEditor {
                     origId = i
                 });
             }
+			model.screen1 = sss.sss1;
+			model.screen2 = sss.sss2;
 
 			Assembly a = Assembly.GetAssembly(this.GetType());
 			string[] ssd = a.GetManifestResourceNames();
@@ -558,14 +560,14 @@ namespace SSSEditor {
 			}
 		}
 
-        private void exportHTMLToolStripMenuItem_Click(object sender, EventArgs e) {
-            using (SaveFileDialog d = new SaveFileDialog()) {
-                d.AddExtension = true;
-                d.Filter = "HTML files|*.htm;*.html";
-                if (d.ShowDialog() == DialogResult.OK) {
-                    File.WriteAllText(d.FileName, html);
-                }
-            }
-        }
+		private void exportHTMLToolStripMenuItem1_Click(object sender, EventArgs e) {
+			using (SaveFileDialog d = new SaveFileDialog()) {
+				d.AddExtension = true;
+				d.Filter = "HTML files|*.htm;*.html";
+				if (d.ShowDialog() == DialogResult.OK) {
+					File.WriteAllText(d.FileName, html);
+				}
+			}
+		}
 	}
 }

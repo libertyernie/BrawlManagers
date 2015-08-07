@@ -5,12 +5,24 @@
 
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <title>SSS Editor Demo Page</title>
     <script type="text/javascript">
         @Raw(PairListModel.JQuery)
 
         var icons = [@Raw(Model.iconsJSON)][0];
+
+        function getStageOrder() {
+            return JSON.stringify({
+                definitions: $("#pairDefinitions .stageRow").map(function () {
+                    return {
+                        origIndex: +$("input.defIndex", this).val(),
+                        order: +$("select.stagename", this).val(),
+                        icon: +$("input.iconID", this).val()
+                    };
+                }).get()
+            });
+        }
 
         $(function () {
             $("#pairDefinitions img.icon").each(function (i, e) {
@@ -83,6 +95,23 @@
         });
     </script>
     <style type="text/css">
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10pt;
+        }
+
+        .column {
+            display: inline-block;
+            width: 300px;
+            vertical-align: top;
+        }
+
+        .columnHeader {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
         .stageRow {
             background-color: lightgray;
             border: 1px outset white;
@@ -90,8 +119,6 @@
             margin-bottom: 8px;
             padding: 2px;
 
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 10pt;
             line-height: 26px;
         }
 
@@ -119,32 +146,64 @@
     </style>
 </head>
 <body>
-    <div id="pairDefinitions">
-        @{ int index = 0; }
-        @foreach (ModelPair pair in Model.pairs) {
-            <div class="stageRow" id="defOrig@(index)">
-                <img width="64" height="56" class="icon" />
-                <span class="indexDisplay">@index.</span>
-                <select class="stagename">
-                    @foreach (KeyValuePair<byte, string> kvpair in PairListModel.StagesByID) {
-                        if (kvpair.Key == pair.stage) {
-                            <option label="@kvpair.Value" value="@kvpair.Key" selected></option>
-                        } else {
-                            <option label="@kvpair.Value" value="@kvpair.Key"></option>
+    <div class="column">
+        <div class="columnHeader">Stage/Icon Pairs</div>
+        <div id="pairDefinitions">
+            @for (int i = 0; i < Model.pairs.Count; i++) {
+                ModelPair pair = Model.pairs[i];
+                <div class="stageRow" id="defOrig@(i)">
+                    <img width="64" height="56" class="icon" />
+                    <span class="indexDisplay">@i.</span>
+                    <select class="stagename">
+                        @foreach (KeyValuePair<byte, string> kvpair in PairListModel.StagesByID) {
+                            if (kvpair.Key == pair.stage) {
+                                <option label="@kvpair.Value" value="@kvpair.Key" selected></option>
+                            } else {
+                                <option label="@kvpair.Value" value="@kvpair.Key"></option>
+                            }
                         }
-                    }
-                </select>
-                <br />
-                <input class="defIndex" value="@index" disabled />
-                <!--<input class="stageID" value="@pair.stage" type="number" />-->
-                <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
-                <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
-                <input class="iconID" value="@pair.icon" type="number" />
-                <input class="up" value="^" type="button" />
-                <input class="down" value="v" type="button" />
-            </div>
-            index++;
-        }
+                    </select>
+                    <br />
+                    <input class="defIndex" value="@i" disabled />
+                    <!--<input class="stageID" value="@pair.stage" type="number" />-->
+                    <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
+                    <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
+                    <input class="iconID" value="@pair.icon" type="number" />
+                    <input class="up" value="^" type="button" />
+                    <input class="down" value="v" type="button" />
+                </div>
+            }
+        </div>
+    </div>
+    <div class="column">
+        <div class="columnHeader">Page 1 / Brawl</div>
+        <div id="screen1">
+            @for (int i = 0; i < Model.screen1.Length; i++) {
+                int defID = Model.screen1[i];
+                ModelPair pair = Model.pairs[defID];
+                <div class="stageRow" id="defOrig@(i)">
+                    <img width="64" height="56" class="icon" />
+                    <span class="indexDisplay">@i.</span>
+                    <select class="stagename" disabled>
+                        @foreach (KeyValuePair<byte, string> kvpair in PairListModel.StagesByID) {
+                            if (kvpair.Key == pair.stage) {
+                                <option label="@kvpair.Value" value="@kvpair.Key" selected></option>
+                            } else {
+                                <option label="@kvpair.Value" value="@kvpair.Key"></option>
+                            }
+                        }
+                    </select>
+                    <br />
+                    <input class="defIndex" value="@i" />
+                    <!--<input class="stageID" value="@pair.stage" type="number" />-->
+                    <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
+                    <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
+                    <input class="iconID" value="@pair.icon" type="number" disabled />
+                    <input class="up" value="^" type="button" />
+                    <input class="down" value="v" type="button" />
+                </div>
+            }
+        </div>
     </div>
     <p>
         Document mode: <span id="documentMode"></span>
