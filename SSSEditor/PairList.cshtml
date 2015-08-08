@@ -24,39 +24,56 @@
             });
         }
 
+        var stage_options = "";
+        @foreach (KeyValuePair<byte, string> kvpair in PairListModel.StagesByID) {
+            <text>stage_options += "<option value='@kvpair.Key'>@kvpair.Value</option>";</text>
+        }
+
         $(function () {
-            $("#pairDefinitions img.icon").each(function (i, e) {
-                var iconId = parseInt($(e).parents(".stageRow").find(".iconIDDisplay").text(), 16);
-                e.src = "data:image/png;base64," + icons[iconId];
+            $("select.stagename").html(stage_options);
+
+            $(".stageRow").each(function (i, e) {
+                var stageId = parseInt($(".stageIDDisplay", e).text(), 16);
+                var iconId = parseInt($(".iconIDDisplay", e).text(), 16);
+                $("img.icon", e).attr("src", "data:image/png;base64," + icons[iconId]);
+                $("select.stagename", e).val(stageId);
             });
 
             if ("documentMode" in document) $("#documentMode").text(document.documentMode);
 
             $("input.iconID").change(function () {
+                var defOrigClassName = $(this).parents(".stageRow")[0].className.match(/defOrig[^ ]*/)[0];
+
                 var iconId = +$(this).val();
                 var str = iconId.toString(16);
                 if (str.length == 1) str = "0" + str;
-                $(this).parents(".stageRow").find(".iconIDDisplay").text(str);
+                $("." + defOrigClassName + " .iconIDDisplay").text(str);
 
-                $(this).parents(".stageRow").find("img.icon").attr("src", "data:image/png;base64," + icons[iconId]);
+                $("." + defOrigClassName + " img.icon").attr("src", "data:image/png;base64," + icons[iconId]);
             });
 
             $("input.stageID").change(function () {
+                var defOrigClassName = $(this).parents(".stageRow")[0].className.match(/defOrig[^ ]*/)[0];
+
                 var stageId = +$(this).val();
                 var str = stageId.toString(16);
                 if (str.length == 1) str = "0" + str;
-                $(this).parents(".stageRow").find(".stageIDDisplay").text(str);
+                $("." + defOrigClassName + " .stageIDDisplay").text(str);
 
-                $(this).parents(".stageRow").find("select.stagename").val(stageId);
+                $("." + defOrigClassName + " .stageRow").find("input.stageID").val(stageId);
+                $("." + defOrigClassName + " select.stagename").val(stageId);
             });
 
             $("select.stagename").change(function () {
+                var defOrigClassName = $(this).parents(".stageRow")[0].className.match(/defOrig[^ ]*/)[0];
+
                 var stageId = +$(this).val();
                 var str = stageId.toString(16);
                 if (str.length == 1) str = "0" + str;
-                $(this).parents(".stageRow").find(".stageIDDisplay").text(str);
+                $("." + defOrigClassName + " .stageIDDisplay").text(str);
 
-                $(this).parents(".stageRow").find("input.stageID").val(stageId);
+                $("." + defOrigClassName + " .stageRow").find("input.stageID").val(stageId);
+                $("." + defOrigClassName + " select.stagename").val(stageId);
             });
 
             $("input.up").click(function () {
@@ -151,18 +168,10 @@
         <div id="pairDefinitions">
             @for (int i = 0; i < Model.pairs.Count; i++) {
                 ModelPair pair = Model.pairs[i];
-                <div class="stageRow" id="defOrig@(i)">
+                <div class="stageRow defOrig@(i)">
                     <img width="64" height="56" class="icon" />
                     <span class="indexDisplay">@i.</span>
-                    <select class="stagename">
-                        @foreach (KeyValuePair<byte, string> kvpair in PairListModel.StagesByID) {
-                            if (kvpair.Key == pair.stage) {
-                                <option label="@kvpair.Value" value="@kvpair.Key" selected></option>
-                            } else {
-                                <option label="@kvpair.Value" value="@kvpair.Key"></option>
-                            }
-                        }
-                    </select>
+                    <select class="stagename"></select>
                     <br />
                     <input class="defIndex" value="@i" disabled />
                     <!--<input class="stageID" value="@pair.stage" type="number" />-->
@@ -181,18 +190,10 @@
             @for (int i = 0; i < Model.screen1.Length; i++) {
                 int defID = Model.screen1[i];
                 ModelPair pair = Model.pairs[defID];
-                <div class="stageRow" id="defOrig@(i)">
+                <div class="stageRow defOrig@(i)">
                     <img width="64" height="56" class="icon" />
                     <span class="indexDisplay">@i.</span>
-                    <select class="stagename" disabled>
-                        @foreach (KeyValuePair<byte, string> kvpair in PairListModel.StagesByID) {
-                            if (kvpair.Key == pair.stage) {
-                                <option label="@kvpair.Value" value="@kvpair.Key" selected></option>
-                            } else {
-                                <option label="@kvpair.Value" value="@kvpair.Key"></option>
-                            }
-                        }
-                    </select>
+                    <select class="stagename" disabled></select>
                     <br />
                     <input class="defIndex" value="@i" />
                     <!--<input class="stageID" value="@pair.stage" type="number" />-->
