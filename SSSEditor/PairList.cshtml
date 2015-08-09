@@ -112,9 +112,9 @@
                 var row = $(this).parents(".stageRow");
                 var defClassName = row[0].className.match(/def[^ ]*/)[0];
                 var previous = row.prev();
-                var previousDefClassName = previous[0].className.match(/def[^ ]*/)[0];
 
                 if (previous.length > 0) {
+                    var previousDefClassName = previous[0].className.match(/def[^ ]*/)[0];
                     row.insertBefore(previous);
                     if (row.parents("#pairDefinitions").length > 0) {
                         // First column - swap input-box values for these rows, and rows in other columns
@@ -137,9 +137,9 @@
                 var row = $(this).parents(".stageRow");
                 var defClassName = row[0].className.match(/def[^ ]*/)[0];
                 var next = row.next();
-                var nextDefClassName = next[0].className.match(/def[^ ]*/)[0];
 
                 if (next.length > 0) {
+                    var nextDefClassName = next[0].className.match(/def[^ ]*/)[0];
                     row.insertAfter(next);
                     if (row.parents("#pairDefinitions").length > 0) {
                         // First column - swap input-box values for these rows, and rows in other columns
@@ -225,19 +225,7 @@
 		.columns {
 			box-sizing: border-box;
 			height: 100%;
-			padding: 8px 8px 76px 8px;
-		}
-		
-		.footer {
-			background-color: white;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			height: 67px;
-            overflow-y: auto;
-
-            border-top: 1px dashed black;
+			padding: 8px;
 		}
 
         .column {
@@ -245,7 +233,7 @@
             display: inline-block;
             vertical-align: top;
 			
-			margin: 4px 4px 64px 4px;
+			margin: 4px;
             border: 2px outset white;
 			
 			box-sizing: border-box;
@@ -402,11 +390,6 @@
                 <input type="button" class="add" value="Add (+)" />
             </div>
         </div>
-    </div>
-    <div class="footer">
-        <div style="background-color: red; color: white">Stages with a red bar on the side will never be chosen on random, unless you use the Enable Random Expansion Stages code.</div>
-        <div style="background-color: orange">Stages with an orange bar might be chosen on random, depending on what non-expansion stages are enabled, unless you use the Enable Random Expansion Stages code.</div>
-        <div style="background-color: yellow">Stages with a yellow bar will be missing from My Music.</div>
     </div>
 </body>
 </html>

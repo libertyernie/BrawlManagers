@@ -284,7 +284,7 @@
 			this.tabMyMusic2.Controls.Add(this.myMusic2);
 			this.tabMyMusic2.Location = new System.Drawing.Point(4, 22);
 			this.tabMyMusic2.Name = "tabMyMusic2";
-			this.tabMyMusic2.Size = new System.Drawing.Size(1176, 379);
+			this.tabMyMusic2.Size = new System.Drawing.Size(1176, 479);
 			this.tabMyMusic2.TabIndex = 6;
 			this.tabMyMusic2.Text = "My Music #2";
 			this.tabMyMusic2.UseVisualStyleBackColor = true;
@@ -294,7 +294,7 @@
 			this.tabMyMusic1.Controls.Add(this.myMusic1);
 			this.tabMyMusic1.Location = new System.Drawing.Point(4, 22);
 			this.tabMyMusic1.Name = "tabMyMusic1";
-			this.tabMyMusic1.Size = new System.Drawing.Size(1176, 379);
+			this.tabMyMusic1.Size = new System.Drawing.Size(1176, 479);
 			this.tabMyMusic1.TabIndex = 5;
 			this.tabMyMusic1.Text = "My Music #1";
 			this.tabMyMusic1.UseVisualStyleBackColor = true;
@@ -304,7 +304,7 @@
 			this.tabPreview2.Controls.Add(this.sssPrev2);
 			this.tabPreview2.Location = new System.Drawing.Point(4, 22);
 			this.tabPreview2.Name = "tabPreview2";
-			this.tabPreview2.Size = new System.Drawing.Size(1176, 379);
+			this.tabPreview2.Size = new System.Drawing.Size(1176, 479);
 			this.tabPreview2.TabIndex = 4;
 			this.tabPreview2.Text = "Preview #2";
 			this.tabPreview2.UseVisualStyleBackColor = true;
@@ -314,7 +314,7 @@
 			this.tabPreview1.Controls.Add(this.sssPrev1);
 			this.tabPreview1.Location = new System.Drawing.Point(4, 22);
 			this.tabPreview1.Name = "tabPreview1";
-			this.tabPreview1.Size = new System.Drawing.Size(1176, 379);
+			this.tabPreview1.Size = new System.Drawing.Size(1176, 479);
 			this.tabPreview1.TabIndex = 3;
 			this.tabPreview1.Text = "Preview #1";
 			this.tabPreview1.UseVisualStyleBackColor = true;
@@ -324,7 +324,7 @@
 			this.tabSSS2.Controls.Add(this.tblSSS2);
 			this.tabSSS2.Location = new System.Drawing.Point(4, 22);
 			this.tabSSS2.Name = "tabSSS2";
-			this.tabSSS2.Size = new System.Drawing.Size(1176, 379);
+			this.tabSSS2.Size = new System.Drawing.Size(1176, 479);
 			this.tabSSS2.TabIndex = 2;
 			this.tabSSS2.Text = "SSS #2";
 			this.tabSSS2.UseVisualStyleBackColor = true;
@@ -339,7 +339,7 @@
 			this.tblSSS2.Name = "tblSSS2";
 			this.tblSSS2.RowCount = 1;
 			this.tblSSS2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tblSSS2.Size = new System.Drawing.Size(1176, 379);
+			this.tblSSS2.Size = new System.Drawing.Size(1176, 479);
 			this.tblSSS2.TabIndex = 3;
 			// 
 			// tabSSS1
@@ -347,7 +347,7 @@
 			this.tabSSS1.Controls.Add(this.tblSSS1);
 			this.tabSSS1.Location = new System.Drawing.Point(4, 22);
 			this.tabSSS1.Name = "tabSSS1";
-			this.tabSSS1.Size = new System.Drawing.Size(1176, 379);
+			this.tabSSS1.Size = new System.Drawing.Size(1176, 479);
 			this.tabSSS1.TabIndex = 1;
 			this.tabSSS1.Text = "SSS #1";
 			this.tabSSS1.UseVisualStyleBackColor = true;
@@ -362,16 +362,15 @@
 			this.tblSSS1.Name = "tblSSS1";
 			this.tblSSS1.RowCount = 1;
 			this.tblSSS1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tblSSS1.Size = new System.Drawing.Size(1176, 379);
+			this.tblSSS1.Size = new System.Drawing.Size(1176, 479);
 			this.tblSSS1.TabIndex = 2;
 			// 
 			// tabDefinitions
 			// 
 			this.tabDefinitions.Controls.Add(this.tblStageDefinitions);
-			this.tabDefinitions.Controls.Add(this.tblColorCodeKeys);
 			this.tabDefinitions.Location = new System.Drawing.Point(4, 22);
 			this.tabDefinitions.Name = "tabDefinitions";
-			this.tabDefinitions.Size = new System.Drawing.Size(1176, 379);
+			this.tabDefinitions.Size = new System.Drawing.Size(1176, 479);
 			this.tabDefinitions.TabIndex = 0;
 			this.tabDefinitions.Text = "Stage/Icon Pairs";
 			this.tabDefinitions.UseVisualStyleBackColor = true;
@@ -386,7 +385,7 @@
 			this.tblColorCodeKeys.Controls.Add(this.lblYellow, 0, 1);
 			this.tblColorCodeKeys.Controls.Add(this.lblBlue, 0, 0);
 			this.tblColorCodeKeys.Dock = System.Windows.Forms.DockStyle.Top;
-			this.tblColorCodeKeys.Location = new System.Drawing.Point(0, 0);
+			this.tblColorCodeKeys.Location = new System.Drawing.Point(3, 3);
 			this.tblColorCodeKeys.Name = "tblColorCodeKeys";
 			this.tblColorCodeKeys.RowCount = 4;
 			this.tblColorCodeKeys.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0002F));
@@ -395,7 +394,7 @@
 			this.tblColorCodeKeys.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.9997F));
 			this.tblColorCodeKeys.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.9997F));
 			this.tblColorCodeKeys.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tblColorCodeKeys.Size = new System.Drawing.Size(1176, 80);
+			this.tblColorCodeKeys.Size = new System.Drawing.Size(1170, 80);
 			this.tblColorCodeKeys.TabIndex = 2;
 			// 
 			// lblBlue
@@ -466,16 +465,17 @@
 			this.tblStageDefinitions.ColumnCount = 1;
 			this.tblStageDefinitions.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tblStageDefinitions.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tblStageDefinitions.Location = new System.Drawing.Point(0, 80);
+			this.tblStageDefinitions.Location = new System.Drawing.Point(0, 0);
 			this.tblStageDefinitions.Name = "tblStageDefinitions";
 			this.tblStageDefinitions.RowCount = 1;
 			this.tblStageDefinitions.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tblStageDefinitions.Size = new System.Drawing.Size(1176, 299);
+			this.tblStageDefinitions.Size = new System.Drawing.Size(1176, 479);
 			this.tblStageDefinitions.TabIndex = 1;
 			// 
 			// tabPage1
 			// 
 			this.tabPage1.Controls.Add(this.webBrowser1);
+			this.tabPage1.Controls.Add(this.tblColorCodeKeys);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -487,10 +487,10 @@
 			// webBrowser1
 			// 
 			this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.webBrowser1.Location = new System.Drawing.Point(3, 3);
+			this.webBrowser1.Location = new System.Drawing.Point(3, 83);
 			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(1170, 473);
+			this.webBrowser1.Size = new System.Drawing.Size(1170, 393);
 			this.webBrowser1.TabIndex = 0;
 			// 
 			// tabControl1
@@ -518,7 +518,7 @@
 			this.sssPrev1.MyMusic = false;
 			this.sssPrev1.Name = "sssPrev1";
 			this.sssPrev1.NumIcons = 23;
-			this.sssPrev1.Size = new System.Drawing.Size(1176, 379);
+			this.sssPrev1.Size = new System.Drawing.Size(1176, 479);
 			this.sssPrev1.TabIndex = 0;
 			// 
 			// sssPrev2
@@ -529,7 +529,7 @@
 			this.sssPrev2.MyMusic = false;
 			this.sssPrev2.Name = "sssPrev2";
 			this.sssPrev2.NumIcons = 23;
-			this.sssPrev2.Size = new System.Drawing.Size(1176, 379);
+			this.sssPrev2.Size = new System.Drawing.Size(1176, 479);
 			this.sssPrev2.TabIndex = 0;
 			// 
 			// myMusic1
@@ -540,7 +540,7 @@
 			this.myMusic1.MyMusic = true;
 			this.myMusic1.Name = "myMusic1";
 			this.myMusic1.NumIcons = 23;
-			this.myMusic1.Size = new System.Drawing.Size(1176, 379);
+			this.myMusic1.Size = new System.Drawing.Size(1176, 479);
 			this.myMusic1.TabIndex = 0;
 			// 
 			// myMusic2
@@ -551,7 +551,7 @@
 			this.myMusic2.MyMusic = true;
 			this.myMusic2.Name = "myMusic2";
 			this.myMusic2.NumIcons = 23;
-			this.myMusic2.Size = new System.Drawing.Size(1176, 379);
+			this.myMusic2.Size = new System.Drawing.Size(1176, 479);
 			this.myMusic2.TabIndex = 0;
 			// 
 			// SSSEditorForm
