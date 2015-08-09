@@ -12,6 +12,8 @@
 
         var icons = [@Raw(Model.iconsJSON)][0];
 
+        var newRowsAdded = 0;
+
         function getStageOrder() {
             return JSON.stringify({
                 definitions: $("#pairDefinitions .stageRow").map(function () {
@@ -22,6 +24,14 @@
                     };
                 }).get()
             });
+        }
+
+        function getColorForIndex(index) {
+            return index == 0x1E ? "yellow"
+                : index < 0x1F ? "green"
+                : index < 0x29 ? "darkgreen"
+                : index >= 55 ? "orange"
+                : "red";
         }
 
         var stage_options = "";
@@ -39,7 +49,9 @@
                 $("select.stagename", e).val(stageId);
             });
 
-            if ("documentMode" in document) $("#documentMode").text(document.documentMode);
+            $("#pairDefinitions .stageRow").each(function (i, e) {
+                $(".colorCode", e).css("background-color", getColorForIndex(i));
+            });
 
             $("input.iconID").change(function () {
                 var iconId = +$(this).val();
@@ -105,12 +117,13 @@
                 if (previous.length > 0) {
                     row.insertBefore(previous);
                     if (row.parents("#pairDefinitions").length > 0) {
-                        // First column
+                        // First column - swap input-box values for these rows, and rows in other columns
                         var previousIndex = +previous.find("input.defIndex").val();
                         var index = +row.find("input.defIndex").val();
                         $("." + defClassName + " input.defIndex").val(previousIndex);
                         $("." + previousDefClassName + " input.defIndex").val(index);
                     }
+                    // Swap index display for these rows only
                     var previousIndexStr = previous.find(".indexDisplay").text();
                     var indexStr = row.find(".indexDisplay").text();
                     row.find(".indexDisplay").text(previousIndexStr);
@@ -129,12 +142,16 @@
                 if (next.length > 0) {
                     row.insertAfter(next);
                     if (row.parents("#pairDefinitions").length > 0) {
-                        // First column
+                        // First column - swap input-box values for these rows, and rows in other columns
                         var nextIndex = +next.find("input.defIndex").val();
                         var index = +row.find("input.defIndex").val();
                         $("." + defClassName + " input.defIndex").val(nextIndex);
                         $("." + nextDefClassName + " input.defIndex").val(index);
+                        // Update color codes
+                        row.find(".colorCode").css("background-color", getColorForIndex(nextIndex));
+                        next.find(".colorCode").css("background-color", getColorForIndex(index));
                     }
+                    // Swap index display for these rows only
                     var nextIndexStr = next.find(".indexDisplay").text();
                     var indexStr = row.find(".indexDisplay").text();
                     row.find(".indexDisplay").text(nextIndexStr);
@@ -147,22 +164,39 @@
             $("input.delete").click(function () {
                 if (confirm("Are you sure you want to delete this entry?")) {
                     var row = $(this).parents(".stageRow");
-                    var defClassName = row[0].className.match(/def[^ ]*/)[0];
+
+                    var isFirstColumn = row.parents("#pairDefinitions").length > 0
 
                     var index = +row.find(".indexDisplay").text();
                     for (var next = row.next() ; next.length == 1; next = next.next()) {
+                        // Change index display
                         next.find(".indexDisplay").text(index + ".");
-                        if (next.parents("#pairDefinitions").length > 0) {
-                            // First column
+                        if (isFirstColumn) {
+                            // Change input-box value to match (update for all columns)
                             var nextDefClassName = next[0].className.match(/def[^ ]*/)[0];
                             $("." + nextDefClassName + " input.defIndex").val(index);
+                            // Update color code
+                            next.find(".colorCode").css("background-color", getColorForIndex(index));
                         }
                         index++;
                     }
 
+                    if (isFirstColumn) {
+                        // Update any abandoned entries in second/third columns to point to top first-column entry instead
+                        var defClassName = row[0].className.match(/def[^ ]*/)[0];
+                        $("." + defClassName + " input.defIndex:enabled").val(0).change();
+                    }
                     row.remove();
-                    $("." + defClassName + " input.defIndex:enabled").val(0).change();
                 }
+            });
+
+            $("input.add").click(function () {
+                var rowContainer = $(this).parents(".column").find(".main");
+                var row = rowContainer.children().eq(0);
+                var newRow = $("<div class='stageRow'></div>")
+                newRow.addClass("defOrigNew" + (++newRowsAdded));
+                newRow.html(row.html());
+                rowContainer.append(newRow);
             });
         });
     </script>
@@ -180,7 +214,7 @@
 		.columns {
 			box-sizing: border-box;
 			height: 100%;
-			padding: 8px 8px 40px 8px;
+			padding: 8px 8px 76px 8px;
 		}
 		
 		.footer {
@@ -189,8 +223,8 @@
 			bottom: 0;
 			left: 0;
 			width: 100%;
-			height: 28px;
-			line-height: 28px;
+			height: 67px;
+            overflow-y: auto;
 
             border-top: 1px dashed black;
 		}
@@ -200,12 +234,12 @@
             display: inline-block;
             vertical-align: top;
 			
-			margin: 4px 4px 32px 4px;
+			margin: 4px 4px 64px 4px;
             border: 2px outset white;
 			
 			box-sizing: border-box;
 			height: 100%;
-			padding-bottom: 64px;
+			padding-bottom: 68px;
         }
 
         .columnHeader {
@@ -238,6 +272,12 @@
             line-height: 26px;
         }
 
+        .stageRow .colorCode {
+            float: left;
+            width: 8px;
+            height: 56px;
+        }
+
         .stageRow img.icon {
             float: left;
             margin-right: 2px;
@@ -258,7 +298,7 @@
         }
 
         input.iconID, input.stageID, input.defIndex {
-            width: 48px;
+            width: 40px;
         }
 
         .stageRow input.up, .stageRow input.down, .stageRow input.delete {
@@ -279,6 +319,7 @@
                 @for (int i = 0; i < Model.pairs.Count; i++) {
                     ModelPair pair = Model.pairs[i];
                     <div class="stageRow def@(i)">
+                        <div class="colorCode"></div>
                         <img width="64" height="56" class="icon" />
                         <span class="indexDisplay">@i.</span>
                         <select class="stagename"></select>
@@ -352,7 +393,9 @@
         </div>
     </div>
     <div class="footer">
-        SSS Editor &mdash; using document mode: <span id="documentMode"></span>
+        <div style="background-color: red; color: white">Stages with a red bar on the side will never be chosen on random, unless you use the Enable Random Expansion Stages code.</div>
+        <div style="background-color: orange">Stages with an orange bar might be chosen on random, depending on what non-expansion stages are enabled, unless you use the Enable Random Expansion Stages code.</div>
+        <div style="background-color: yellow">Stages with a yellow bar will be missing from My Music.</div>
     </div>
 </body>
 </html>
