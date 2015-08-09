@@ -143,6 +143,27 @@
 
                 $(this).focus();
             });
+
+            $("input.delete").click(function () {
+                if (confirm("Are you sure you want to delete this entry?")) {
+                    var row = $(this).parents(".stageRow");
+                    var defClassName = row[0].className.match(/def[^ ]*/)[0];
+
+                    var index = +row.find(".indexDisplay").text();
+                    for (var next = row.next() ; next.length == 1; next = next.next()) {
+                        next.find(".indexDisplay").text(index + ".");
+                        if (next.parents("#pairDefinitions").length > 0) {
+                            // First column
+                            var nextDefClassName = next[0].className.match(/def[^ ]*/)[0];
+                            $("." + nextDefClassName + " input.defIndex").val(index);
+                        }
+                        index++;
+                    }
+
+                    row.remove();
+                    $("." + defClassName + " input.defIndex:enabled").val(0).change();
+                }
+            });
         });
     </script>
     <style type="text/css">
@@ -163,19 +184,24 @@
 		}
 		
 		.footer {
-			position: absolute;
+			background-color: white;
+			position: fixed;
 			bottom: 0;
 			left: 0;
-			
-			line-height: 32px;
+			width: 100%;
+			height: 28px;
+			line-height: 28px;
+
+            border-top: 1px dashed black;
 		}
 
         .column {
-            width: 350px;
+            width: 370px;
             display: inline-block;
             vertical-align: top;
 			
-            border: 1px outset white;
+			margin: 4px 4px 32px 4px;
+            border: 2px outset white;
 			
 			box-sizing: border-box;
 			height: 100%;
@@ -197,12 +223,16 @@
 			text-align: center;
 			line-height: 32px;
 		}
+		
+		.column > .buttons > input {
+			width: 50%;
+		}
 
         .stageRow {
             background-color: lightgray;
             border: 1px outset white;
             overflow: auto;
-            margin-bottom: 8px;
+            margin: 8px;
             padding: 2px;
 
             line-height: 26px;
@@ -215,7 +245,13 @@
 
         .stageRow .indexDisplay {
             font-weight: bold;
-        }
+			display: inline-block;
+			width: 16px;
+		}
+
+        .stageRow select.stagename {
+			width: 168px;
+		}
 
         .stageIDDisplay, .iconIDDisplay {
             font-family: monospace;
@@ -225,9 +261,13 @@
             width: 48px;
         }
 
-        input.up, input.down {
+        .stageRow input.up, .stageRow input.down, .stageRow input.delete {
             width: 22px;
             height: 22px;
+        }
+
+        .stageRow input.delete {
+            float: right;
         }
     </style>
 </head>
@@ -242,6 +282,7 @@
                         <img width="64" height="56" class="icon" />
                         <span class="indexDisplay">@i.</span>
                         <select class="stagename"></select>
+                        <input type="button" class="delete" value="x" />
                         <br />
                         <input class="defIndex" value="@i" disabled />
                         <input class="stageID" value="@pair.stage" type="number" />
@@ -254,7 +295,7 @@
                 }
             </div>
             <div class="buttons">
-                buttons
+                <input type="button" class="add" value="Add (+)" />
             </div>
         </div>
         <div class="column">
@@ -267,6 +308,7 @@
                         <img width="64" height="56" class="icon" />
                         <span class="indexDisplay">@i.</span>
                         <select class="stagename" disabled></select>
+                        <input type="button" class="delete" value="x" />
                         <br />
                         <input class="defIndex" value="@defID" />
                         <input class="stageID" value="@pair.stage" type="number" disabled />
@@ -277,6 +319,9 @@
                         <input class="down" value="v" type="button" />
                     </div>
                 }
+            </div>
+            <div class="buttons">
+                <input type="button" class="add" value="Add (+)" />
             </div>
         </div>
         <div class="column">
@@ -289,6 +334,7 @@
                         <img width="64" height="56" class="icon" />
                         <span class="indexDisplay">@i.</span>
                         <select class="stagename" disabled></select>
+                        <input type="button" class="delete" value="x" />
                         <br />
                         <input class="defIndex" value="@defID" />
                         <input class="stageID" value="@pair.stage" type="number" disabled />
@@ -299,6 +345,9 @@
                         <input class="down" value="v" type="button" />
                     </div>
                 }
+            </div>
+            <div class="buttons">
+                <input type="button" class="add" value="Add (+)" />
             </div>
         </div>
     </div>
