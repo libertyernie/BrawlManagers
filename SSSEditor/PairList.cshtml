@@ -98,16 +98,23 @@
 
             $("input.up").click(function () {
                 var row = $(this).parents(".stageRow");
+                var defClassName = row[0].className.match(/def[^ ]*/)[0];
                 var previous = row.prev();
+                var previousDefClassName = previous[0].className.match(/def[^ ]*/)[0];
 
                 if (previous.length > 0) {
-                    var previousIndex = +previous.find("input.defIndex").val();
-                    var index = +row.find("input.defIndex").val();
                     row.insertBefore(previous);
-                    row.find(".indexDisplay").text(previousIndex);
-                    row.find("input.defIndex").val(previousIndex);
-                    previous.find(".indexDisplay").text(index);
-                    previous.find("input.defIndex").val(index);
+                    if (row.parents("#pairDefinitions").length > 0) {
+                        // First column
+                        var previousIndex = +previous.find("input.defIndex").val();
+                        var index = +row.find("input.defIndex").val();
+                        $("." + defClassName + " input.defIndex").val(previousIndex);
+                        $("." + previousDefClassName + " input.defIndex").val(index);
+                    }
+                    var previousIndexStr = previous.find(".indexDisplay").text();
+                    var indexStr = row.find(".indexDisplay").text();
+                    row.find(".indexDisplay").text(previousIndexStr);
+                    previous.find(".indexDisplay").text(indexStr);
                 }
 
                 $(this).focus();
@@ -115,16 +122,23 @@
 
             $("input.down").click(function () {
                 var row = $(this).parents(".stageRow");
+                var defClassName = row[0].className.match(/def[^ ]*/)[0];
                 var next = row.next();
+                var nextDefClassName = next[0].className.match(/def[^ ]*/)[0];
 
                 if (next.length > 0) {
-                    var nextIndex = +next.find("input.defIndex").val();
-                    var index = +row.find("input.defIndex").val();
                     row.insertAfter(next);
-                    row.find(".indexDisplay").text(nextIndex);
-                    row.find("input.defIndex").val(nextIndex);
-                    next.find(".indexDisplay").text(index);
-                    next.find("input.defIndex").val(index);
+                    if (row.parents("#pairDefinitions").length > 0) {
+                        // First column
+                        var nextIndex = +next.find("input.defIndex").val();
+                        var index = +row.find("input.defIndex").val();
+                        $("." + defClassName + " input.defIndex").val(nextIndex);
+                        $("." + nextDefClassName + " input.defIndex").val(index);
+                    }
+                    var nextIndexStr = next.find(".indexDisplay").text();
+                    var indexStr = row.find(".indexDisplay").text();
+                    row.find(".indexDisplay").text(nextIndexStr);
+                    next.find(".indexDisplay").text(indexStr);
                 }
 
                 $(this).focus();
