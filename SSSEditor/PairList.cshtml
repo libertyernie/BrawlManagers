@@ -42,38 +42,58 @@
             if ("documentMode" in document) $("#documentMode").text(document.documentMode);
 
             $("input.iconID").change(function () {
-                var defOrigClassName = $(this).parents(".stageRow")[0].className.match(/defOrig[^ ]*/)[0];
-
                 var iconId = +$(this).val();
+
                 var str = iconId.toString(16);
                 if (str.length == 1) str = "0" + str;
-                $("." + defOrigClassName + " .iconIDDisplay").text(str);
 
-                $("." + defOrigClassName + " img.icon").attr("src", "data:image/png;base64," + icons[iconId]);
+                var defClassName = $(this).parents(".stageRow")[0].className.match(/def[^ ]*/)[0];
+                $("." + defClassName + " img.icon").attr("src", "data:image/png;base64," + icons[iconId]);
+                $("." + defClassName + " .iconIDDisplay").text(str);
+                $("." + defClassName + " input.iconID").val(iconId);
             });
 
-            $("input.stageID").change(function () {
-                var defOrigClassName = $(this).parents(".stageRow")[0].className.match(/defOrig[^ ]*/)[0];
-
+            $("input.stageID, select.stagename").change(function () {
                 var stageId = +$(this).val();
+
                 var str = stageId.toString(16);
                 if (str.length == 1) str = "0" + str;
-                $("." + defOrigClassName + " .stageIDDisplay").text(str);
 
-                $("." + defOrigClassName + " .stageRow").find("input.stageID").val(stageId);
-                $("." + defOrigClassName + " select.stagename").val(stageId);
+                var defClassName = $(this).parents(".stageRow")[0].className.match(/def[^ ]*/)[0];
+                $("." + defClassName + " .stageIDDisplay").text(str);
+                $("." + defClassName + " input.stageID").val(stageId);
+                $("." + defClassName + " select.stagename").val(stageId);
             });
 
-            $("select.stagename").change(function () {
-                var defOrigClassName = $(this).parents(".stageRow")[0].className.match(/defOrig[^ ]*/)[0];
+            $("input.defIndex").change(function () {
+                var defId = +$(this).val();
+                var defRow = $("#pairDefinitions .stageRow").eq(defId);
 
-                var stageId = +$(this).val();
-                var str = stageId.toString(16);
-                if (str.length == 1) str = "0" + str;
-                $("." + defOrigClassName + " .stageIDDisplay").text(str);
+                var thisRow = $(this).parents(".stageRow");
 
-                $("." + defOrigClassName + " .stageRow").find("input.stageID").val(stageId);
-                $("." + defOrigClassName + " select.stagename").val(stageId);
+                // Untie from old first-column entry (if tied to any)
+                var oldDefClassNameMatch = thisRow[0].className.match(/def[^ ]*/);
+                if (oldDefClassNameMatch) thisRow.removeClass(oldDefClassNameMatch[0]);
+
+                if (defRow.length == 0) {
+                    thisRow.find("img.icon").attr("src", "");
+                    thisRow.find("input.iconID").val("");
+                    thisRow.find(".iconIDDisplay").text("xx");
+                    thisRow.find(".stageIDDisplay").text("xx");
+                    thisRow.find("input.stageID").val("");
+                    thisRow.find("select.stagename").val("");
+                } else {
+                    thisRow.find("img.icon").attr("src", defRow.find("img.icon").attr("src"));
+                    thisRow.find("input.iconID").val(defRow.find("input.iconID").val());
+                    thisRow.find(".iconIDDisplay").text(defRow.find(".iconIDDisplay").text());
+                    thisRow.find(".stageIDDisplay").text(defRow.find(".stageIDDisplay").text());
+                    thisRow.find("input.stageID").val(defRow.find("input.stageID").val());
+                    thisRow.find("select.stagename").val(defRow.find("select.stagename").val());
+
+                    // Tie to corresponding first-column entry
+                    var newDefClassName = defRow[0].className.match(/def[^ ]*/)[0];
+                    thisRow.addClass(newDefClassName);
+                }
             });
 
             $("input.up").click(function () {
@@ -168,13 +188,13 @@
         <div id="pairDefinitions">
             @for (int i = 0; i < Model.pairs.Count; i++) {
                 ModelPair pair = Model.pairs[i];
-                <div class="stageRow defOrig@(i)">
+                <div class="stageRow def@(i)">
                     <img width="64" height="56" class="icon" />
                     <span class="indexDisplay">@i.</span>
                     <select class="stagename"></select>
                     <br />
                     <input class="defIndex" value="@i" disabled />
-                    <!--<input class="stageID" value="@pair.stage" type="number" />-->
+                    <input class="stageID" value="@pair.stage" type="number" />
                     <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
                     <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
                     <input class="iconID" value="@pair.icon" type="number" />
@@ -190,13 +210,35 @@
             @for (int i = 0; i < Model.screen1.Length; i++) {
                 int defID = Model.screen1[i];
                 ModelPair pair = Model.pairs[defID];
-                <div class="stageRow defOrig@(i)">
+                <div class="stageRow def@(defID)">
                     <img width="64" height="56" class="icon" />
                     <span class="indexDisplay">@i.</span>
                     <select class="stagename" disabled></select>
                     <br />
-                    <input class="defIndex" value="@i" />
-                    <!--<input class="stageID" value="@pair.stage" type="number" />-->
+                    <input class="defIndex" value="@defID" />
+                    <input class="stageID" value="@pair.stage" type="number" disabled />
+                    <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
+                    <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
+                    <input class="iconID" value="@pair.icon" type="number" disabled />
+                    <input class="up" value="^" type="button" />
+                    <input class="down" value="v" type="button" />
+                </div>
+            }
+        </div>
+    </div>
+    <div class="column">
+        <div class="columnHeader">Page 2 / Melee</div>
+        <div id="screen2">
+            @for (int i = 0; i < Model.screen2.Length; i++) {
+                int defID = Model.screen2[i];
+                ModelPair pair = Model.pairs[defID];
+                <div class="stageRow def@(defID)">
+                    <img width="64" height="56" class="icon" />
+                    <span class="indexDisplay">@i.</span>
+                    <select class="stagename" disabled></select>
+                    <br />
+                    <input class="defIndex" value="@defID" />
+                    <input class="stageID" value="@pair.stage" type="number" disabled />
                     <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
                     <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
                     <input class="iconID" value="@pair.icon" type="number" disabled />
