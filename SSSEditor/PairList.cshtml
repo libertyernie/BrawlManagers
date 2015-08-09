@@ -132,22 +132,57 @@
         });
     </script>
     <style type="text/css">
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+	
         body {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 10pt;
         }
+		
+		.columns {
+			box-sizing: border-box;
+			height: 100%;
+			padding: 8px 8px 40px 8px;
+		}
+		
+		.footer {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			
+			line-height: 32px;
+		}
 
         .column {
+            width: 350px;
             display: inline-block;
-            width: 300px;
             vertical-align: top;
+			
+            border: 1px outset white;
+			
+			box-sizing: border-box;
+			height: 100%;
+			padding-bottom: 64px;
         }
 
         .columnHeader {
             text-align: center;
             font-weight: bold;
-            margin-bottom: 8px;
+			line-height: 32px;
         }
+
+        .column > .main {
+            height: 100%;
+            overflow-y: scroll;
+        }
+		
+		.column > .buttons {
+			text-align: center;
+			line-height: 32px;
+		}
 
         .stageRow {
             background-color: lightgray;
@@ -183,73 +218,78 @@
     </style>
 </head>
 <body>
-    <div class="column">
-        <div class="columnHeader">Stage/Icon Pairs</div>
-        <div id="pairDefinitions">
-            @for (int i = 0; i < Model.pairs.Count; i++) {
-                ModelPair pair = Model.pairs[i];
-                <div class="stageRow def@(i)">
-                    <img width="64" height="56" class="icon" />
-                    <span class="indexDisplay">@i.</span>
-                    <select class="stagename"></select>
-                    <br />
-                    <input class="defIndex" value="@i" disabled />
-                    <input class="stageID" value="@pair.stage" type="number" />
-                    <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
-                    <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
-                    <input class="iconID" value="@pair.icon" type="number" />
-                    <input class="up" value="^" type="button" />
-                    <input class="down" value="v" type="button" />
-                </div>
-            }
+    <div class="columns">
+        <div class="column">
+            <div class="columnHeader">Stage/Icon Pairs</div>
+            <div id="pairDefinitions" class="main">
+                @for (int i = 0; i < Model.pairs.Count; i++) {
+                    ModelPair pair = Model.pairs[i];
+                    <div class="stageRow def@(i)">
+                        <img width="64" height="56" class="icon" />
+                        <span class="indexDisplay">@i.</span>
+                        <select class="stagename"></select>
+                        <br />
+                        <input class="defIndex" value="@i" disabled />
+                        <input class="stageID" value="@pair.stage" type="number" />
+                        <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
+                        <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
+                        <input class="iconID" value="@pair.icon" type="number" />
+                        <input class="up" value="^" type="button" />
+                        <input class="down" value="v" type="button" />
+                    </div>
+                }
+            </div>
+            <div class="buttons">
+                buttons
+            </div>
+        </div>
+        <div class="column">
+            <div class="columnHeader">Page 1 / Brawl</div>
+            <div id="screen1" class="main">
+                @for (int i = 0; i < Model.screen1.Length; i++) {
+                    int defID = Model.screen1[i];
+                    ModelPair pair = Model.pairs[defID];
+                    <div class="stageRow def@(defID)">
+                        <img width="64" height="56" class="icon" />
+                        <span class="indexDisplay">@i.</span>
+                        <select class="stagename" disabled></select>
+                        <br />
+                        <input class="defIndex" value="@defID" />
+                        <input class="stageID" value="@pair.stage" type="number" disabled />
+                        <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
+                        <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
+                        <input class="iconID" value="@pair.icon" type="number" disabled />
+                        <input class="up" value="^" type="button" />
+                        <input class="down" value="v" type="button" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="column">
+            <div class="columnHeader">Page 2 / Melee</div>
+            <div id="screen2" class="main">
+                @for (int i = 0; i < Model.screen2.Length; i++) {
+                    int defID = Model.screen2[i];
+                    ModelPair pair = Model.pairs[defID];
+                    <div class="stageRow def@(defID)">
+                        <img width="64" height="56" class="icon" />
+                        <span class="indexDisplay">@i.</span>
+                        <select class="stagename" disabled></select>
+                        <br />
+                        <input class="defIndex" value="@defID" />
+                        <input class="stageID" value="@pair.stage" type="number" disabled />
+                        <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
+                        <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
+                        <input class="iconID" value="@pair.icon" type="number" disabled />
+                        <input class="up" value="^" type="button" />
+                        <input class="down" value="v" type="button" />
+                    </div>
+                }
+            </div>
         </div>
     </div>
-    <div class="column">
-        <div class="columnHeader">Page 1 / Brawl</div>
-        <div id="screen1">
-            @for (int i = 0; i < Model.screen1.Length; i++) {
-                int defID = Model.screen1[i];
-                ModelPair pair = Model.pairs[defID];
-                <div class="stageRow def@(defID)">
-                    <img width="64" height="56" class="icon" />
-                    <span class="indexDisplay">@i.</span>
-                    <select class="stagename" disabled></select>
-                    <br />
-                    <input class="defIndex" value="@defID" />
-                    <input class="stageID" value="@pair.stage" type="number" disabled />
-                    <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
-                    <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
-                    <input class="iconID" value="@pair.icon" type="number" disabled />
-                    <input class="up" value="^" type="button" />
-                    <input class="down" value="v" type="button" />
-                </div>
-            }
-        </div>
+    <div class="footer">
+        SSS Editor &mdash; using document mode: <span id="documentMode"></span>
     </div>
-    <div class="column">
-        <div class="columnHeader">Page 2 / Melee</div>
-        <div id="screen2">
-            @for (int i = 0; i < Model.screen2.Length; i++) {
-                int defID = Model.screen2[i];
-                ModelPair pair = Model.pairs[defID];
-                <div class="stageRow def@(defID)">
-                    <img width="64" height="56" class="icon" />
-                    <span class="indexDisplay">@i.</span>
-                    <select class="stagename" disabled></select>
-                    <br />
-                    <input class="defIndex" value="@defID" />
-                    <input class="stageID" value="@pair.stage" type="number" disabled />
-                    <span class="stageIDDisplay">@pair.stage.ToString("X2")</span>
-                    <span class="iconIDDisplay">@pair.icon.ToString("X2")</span>
-                    <input class="iconID" value="@pair.icon" type="number" disabled />
-                    <input class="up" value="^" type="button" />
-                    <input class="down" value="v" type="button" />
-                </div>
-            }
-        </div>
-    </div>
-    <p>
-        Document mode: <span id="documentMode"></span>
-    </p>
 </body>
 </html>
