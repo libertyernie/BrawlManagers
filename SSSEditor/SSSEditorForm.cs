@@ -31,20 +31,20 @@ namespace SSSEditor {
 			}
 			return definitions;
 		}
-		private List<StagePair> getScreen1() {
-			List<StagePair> screen1 = new List<StagePair>();
+		private List<int> getScreen1() {
+			List<int> screen1 = new List<int>();
 			foreach (Control c in tblSSS1.Controls) {
 				if (c is StagePairControl) {
-					screen1.Add(((StagePairControl)c).Pair);
+					screen1.Add((int)((StagePairControl)c).NUDDefValue);
 				}
 			}
 			return screen1;
 		}
-		private List<StagePair> getScreen2() {
-			List<StagePair> screen2 = new List<StagePair>();
+		private List<int> getScreen2() {
+			List<int> screen2 = new List<int>();
 			foreach (Control c in tblSSS2.Controls) {
 				if (c is StagePairControl) {
-					screen2.Add(((StagePairControl)c).Pair);
+					screen2.Add((int)((StagePairControl)c).NUDDefValue);
 				}
 			}
 			return screen2;
@@ -202,18 +202,20 @@ namespace SSSEditor {
 
 		private void spc_FindUsageClick(StagePairControl sender) {
 			StagePair pair = sender.Pair;
+			List<StagePair> definitions = getDefinitions();
+
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("SSS #1:");
-			List<StagePair> screen1 = getScreen1();
+			List<int> screen1 = getScreen1();
 			for (int i=0; i<screen1.Count; i++) {
-				if (screen1[i] == pair) {
+				if (definitions[screen1[i]] == pair) {
 					sb.AppendLine(i.ToString());
 				}
 			}
 			sb.AppendLine("SSS #2:");
-			List<StagePair> screen2 = getScreen2();
+			List<int> screen2 = getScreen2();
 			for (int i = 0; i < screen2.Count; i++) {
-				if (screen2[i] == pair) {
+				if (definitions[screen2[i]] == pair) {
 					sb.AppendLine(i.ToString());
 				}
 			}
@@ -257,12 +259,9 @@ namespace SSSEditor {
 		}
 
 		#region Conversion to code text
-		private string ToCodeLines(List<StagePair> list, List<StagePair> definitions) {
+		private string ToCodeLines(List<int> list) {
 			StringBuilder sb = new StringBuilder();
-			string[] s = (from sp in list
-						  select definitions.Contains(sp)
-						  ? definitions.IndexOf(sp).ToString("X2")
-						  : "__").ToArray();
+			string[] s = list.Select(i => i.ToString("X2")).ToArray();
 			for (int i = 0; i < s.Length; i += 8) {
 				sb.Append("* ");
 				for (int j = i; j < i + 4; j++) {
@@ -295,8 +294,8 @@ namespace SSSEditor {
 
 		public string ToCode() {
 			List<StagePair> definitions = getDefinitions();
-			List<StagePair> screen1 = getScreen1();
-			List<StagePair> screen2 = getScreen2();
+			List<int> screen1 = getScreen1();
+			List<int> screen2 = getScreen2();
 			return String.Format(
 @"* 046B8F5C 7C802378
 * 046B8F64 7C6300AE
@@ -316,8 +315,8 @@ namespace SSSEditor {
 * 066B9A58 000000{2}
 {3}* 06407AAC 000000{4}
 {5}".Replace("\r\n", "\n").Replace("\n", Environment.NewLine),
-			screen1.Count.ToString("X2"), ToCodeLines(screen1, definitions),
-			screen2.Count.ToString("X2"), ToCodeLines(screen2, definitions),
+			screen1.Count.ToString("X2"), ToCodeLines(screen1),
+			screen2.Count.ToString("X2"), ToCodeLines(screen2),
 			(2*definitions.Count).ToString("X2"), ToCodeLines(definitions));
 		}
 		#endregion
@@ -342,23 +341,23 @@ namespace SSSEditor {
 				sssPrev1.MiscData80 = this.md80;
 				sssPrev1.NumIcons = tblSSS1.Controls.Count;
 				sssPrev1.IconOrder = (from p in getScreen1()
-									  select p.icon).ToArray();
+									  select definitions[p].icon).ToArray();
 			} else if (tabControl1.SelectedTab == tabPreview2) {
 				sssPrev2.MiscData80 = this.md80;
 				sssPrev2.NumIcons = tblSSS2.Controls.Count;
 				sssPrev2.IconOrder = (from p in getScreen2()
-									  select p.icon).ToArray();
+									  select definitions[p].icon).ToArray();
 			} else if (tabControl1.SelectedTab == tabMyMusic1) {
 				myMusic1.MiscData80 = this.md80;
 				myMusic1.IconOrder = (from p in getScreen1()
-									  where p != definitions[0x1E]
-									  select p.icon).ToArray();
+									  where p != 0x1E
+									  select definitions[p].icon).ToArray();
 				myMusic1.NumIcons = myMusic1.IconOrder.Length;
 			} else if (tabControl1.SelectedTab == tabMyMusic2) {
 				myMusic2.MiscData80 = this.md80;
 				myMusic2.IconOrder = (from p in getScreen2()
-									  where p != definitions[0x1E]
-									  select p.icon).Concat(
+									  where p != 0x1E
+									  select definitions[p].icon).Concat(
 									  from b in new byte[] {0x64}
 									  select b).ToArray();
 				myMusic2.NumIcons = myMusic2.IconOrder.Length;
