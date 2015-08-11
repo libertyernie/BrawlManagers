@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using RazorEngine.Templating;
 using System.Drawing.Imaging;
 using System.Reflection;
+using Newtonsoft.Json;
 
 namespace SSSEditor {
 	public partial class SSSEditorForm : Form {
@@ -23,31 +24,13 @@ namespace SSSEditor {
 
 		#region Collect data from controls
 		private List<StagePair> getDefinitions() {
-			List<StagePair> definitions = new List<StagePair>();
-			foreach (Control c in tblStageDefinitions.Controls) {
-				if (c is StagePairControl) {
-					definitions.Add(((StagePairControl)c).Pair);
-				}
-			}
-			return definitions;
+			return JsonConvert.DeserializeObject<List<StagePair>>((string)webBrowser1.Document.InvokeScript("getDefinitions"));
 		}
 		private List<int> getScreen1() {
-			List<int> screen1 = new List<int>();
-			foreach (Control c in tblSSS1.Controls) {
-				if (c is StagePairControl) {
-					screen1.Add((int)((StagePairControl)c).NUDDefValue);
-				}
-			}
-			return screen1;
+			return JsonConvert.DeserializeObject<List<int>>((string)webBrowser1.Document.InvokeScript("getScreen1"));
 		}
 		private List<int> getScreen2() {
-			List<int> screen2 = new List<int>();
-			foreach (Control c in tblSSS2.Controls) {
-				if (c is StagePairControl) {
-					screen2.Add((int)((StagePairControl)c).NUDDefValue);
-				}
-			}
-			return screen2;
+			return JsonConvert.DeserializeObject<List<int>>((string)webBrowser1.Document.InvokeScript("getScreen2"));
 		}
 		#endregion
 
@@ -70,17 +53,6 @@ namespace SSSEditor {
 			ReloadIfValidPac(pac);
 
 			FormClosed += (o, e) => TempFiles.DeleteAll();
-			
-			tabControl1.Selecting += (o, e) => {
-				if (e.TabPage == tabDefinitions || e.TabPage == tabSSS1 || e.TabPage == tabSSS2) {
-					new Task(() => {
-						ProgressWindow pw = new ProgressWindow();
-						StagePairControl.GlobalProgressWindow = pw;
-						pw.MaxValue = e.TabPage.Controls[0].Controls.Count;
-						pw.ShowDialog();
-					}).Start();
-				}
-			};
 
 			tabControl1.SelectedIndexChanged += (o, e) => {
 				new Task(() => {
@@ -101,10 +73,6 @@ namespace SSSEditor {
 				pw.ShowDialog();
 			}).Start();
 
-			tblStageDefinitions.Controls.Clear();
-			tblSSS1.Controls.Clear();
-			tblSSS2.Controls.Clear();
-
 			if (sss.OtherCodesIgnoredInSameFile > 0) {
 				MessageBox.Show(this, "More than one Custom SSS code found in the codeset. All but the last one will be ignored.",
 					this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -124,47 +92,6 @@ namespace SSSEditor {
 			}
 			foreach (byte b in sss.sss2) {
 				screen2.Add(definitions[b]);
-			}
-
-			int j = 0;
-			foreach (StagePair pair in definitions) {
-				var spc = new StagePairControl {
-					Pair = pair,
-					MiscData80 = md80,
-					Dock = DockStyle.Fill,
-				};
-				Song s;
-				if (sss.TryGetValue(pair.stage, out s)) {
-					spc.Song = s.Filename;
-					spc.SongToolTip = s.ID.ToString("X4") + " - " + s.DefaultName;
-				}
-				spc.FindUsageClick += spc_FindUsageClick;
-				spc.SwapWithSelectedClick += spc_SwapWithSelectedClick;
-				tblStageDefinitions.Controls.Add(spc);
-				if (pw != null) pw.Update(++j);
-			}
-
-			foreach (StagePair pair in screen1) {
-				var spc = new FixedStagePairControl(tblStageDefinitions) {
-					Pair = pair,
-					MiscData80 = md80,
-					Dock = DockStyle.Fill,
-				};
-				spc.FindUsageClick += spc_FindUsageClick;
-				spc.SwapWithSelectedClick += spc_SwapWithSelectedClick;
-				tblSSS1.Controls.Add(spc);
-				if (pw != null) pw.Update(++j);
-			}
-
-			foreach (StagePair pair in screen2) {
-				var spc = new FixedStagePairControl(tblStageDefinitions) {
-					Pair = pair,
-					MiscData80 = md80,
-					Dock = DockStyle.Fill,
-				};
-				spc.FindUsageClick += spc_FindUsageClick;
-				tblSSS2.Controls.Add(spc);
-				if (pw != null) pw.Update(++j);
 			}
 
             PairListModel model = new PairListModel();
@@ -323,30 +250,16 @@ namespace SSSEditor {
 
 		void tabControl1_SelectedIndexChanged(object sender, EventArgs e) {
 			List<StagePair> definitions = getDefinitions();
-			if (tabControl1.SelectedTab == tabSSS1) {
-				foreach (Control c in tblSSS1.Controls) {
-					if (c is FixedStagePairControl) {
-						var f = ((FixedStagePairControl)c);
-						((FixedStagePairControl)c).NUDDefValue = definitions.IndexOf(f.Pair);
-					}
-				}
-			} else if (tabControl1.SelectedTab == tabSSS2) {
-				foreach (Control c in tblSSS2.Controls) {
-					if (c is FixedStagePairControl) {
-						var f = ((FixedStagePairControl)c);
-						((FixedStagePairControl)c).NUDDefValue = definitions.IndexOf(f.Pair);
-					}
-				}
-			} else if (tabControl1.SelectedTab == tabPreview1) {
+			if (tabControl1.SelectedTab == tabPreview1) {
 				sssPrev1.MiscData80 = this.md80;
-				sssPrev1.NumIcons = tblSSS1.Controls.Count;
 				sssPrev1.IconOrder = (from p in getScreen1()
 									  select definitions[p].icon).ToArray();
+				sssPrev1.NumIcons = sssPrev1.IconOrder.Length;
 			} else if (tabControl1.SelectedTab == tabPreview2) {
 				sssPrev2.MiscData80 = this.md80;
-				sssPrev2.NumIcons = tblSSS2.Controls.Count;
 				sssPrev2.IconOrder = (from p in getScreen2()
 									  select definitions[p].icon).ToArray();
+				sssPrev2.NumIcons = sssPrev2.IconOrder.Length;
 			} else if (tabControl1.SelectedTab == tabMyMusic1) {
 				myMusic1.MiscData80 = this.md80;
 				myMusic1.IconOrder = (from p in getScreen1()
@@ -466,29 +379,6 @@ namespace SSSEditor {
 				};
 				f.Controls.Add(t);
 				f.ShowDialog(this);
-			}
-		}
-
-		private void highlightUnusedPairsToolStripMenuItem_Click(object sender, EventArgs e) {
-			List<StagePair> screens = new List<StagePair>();
-			foreach (Control c in tblSSS1.Controls) {
-				if (c is StagePairControl) {
-					screens.Add(((StagePairControl)c).Pair);
-				}
-			}
-			foreach (Control c in tblSSS2.Controls) {
-				if (c is StagePairControl) {
-					screens.Add(((StagePairControl)c).Pair);
-				}
-			}
-
-			foreach (Control c in tblStageDefinitions.Controls) {
-				if (c is StagePairControl) {
-					var s = (StagePairControl)c;
-					if (!screens.Contains(s.Pair)) {
-						s.BackColor = Color.LightBlue;
-					}
-				}
 			}
 		}
 

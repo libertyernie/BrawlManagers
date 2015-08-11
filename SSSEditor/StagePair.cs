@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SSSEditor {
 	public class StagePair {
-		public byte stage;
-		public byte icon;
+		public byte stage { get; set; }
+		public byte icon { get; set; }
 		public override string ToString() {
 			return "[0x" + stage.ToString("X2") + ", " + icon.ToString("D2") + "]";
 		}

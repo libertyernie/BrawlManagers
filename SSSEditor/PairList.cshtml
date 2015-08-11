@@ -14,16 +14,25 @@
 
         var newRowsAdded = 0;
 
-        function getStageOrder() {
-            return JSON.stringify({
-                definitions: $("#pairDefinitions .stageRow").map(function () {
-                    return {
-                        origIndex: +$("input.defIndex", this).val(),
-                        order: +$("select.stagename", this).val(),
-                        icon: +$("input.iconID", this).val()
-                    };
-                }).get()
-            });
+        function getDefinitions() {
+            return JSON.stringify($("#pairDefinitions .stageRow").map(function () {
+                return {
+                    stage: +$("select.stagename", this).val(),
+                    icon: +$("input.iconID", this).val()
+                };
+            }).get());
+        }
+
+        function getScreen1() {
+            return JSON.stringify($("#screen1 .stageRow").map(function () {
+                return +$("input.defIndex", this).val()
+            }).get());
+        }
+
+        function getScreen2() {
+            return JSON.stringify($("#screen2 .stageRow").map(function () {
+                return +$("input.defIndex", this).val()
+            }).get());
         }
 
         function getColorForIndex(index) {
