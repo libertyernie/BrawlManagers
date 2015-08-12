@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrawlManagerLib", "BrawlManagerLib\BrawlManagerLib.csproj", "{B5D693D8-3952-44F9-8952-8C1AF74F0634}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrawlCostumeManager", "..\BrawlCostumeManager\BrawlCostumeManager.csproj", "{2E981767-915A-412B-A069-10AA5F423EBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrawlCostumeManager", "CostumeManager\BrawlCostumeManager.csproj", "{2E981767-915A-412B-A069-10AA5F423EBD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SongManager", "SongManager\SongManager.csproj", "{B2BE7A35-376E-4D62-96FA-DB400B958D05}"
 EndProject
