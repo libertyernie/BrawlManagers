@@ -176,5 +176,14 @@ namespace BrawlManagerLib {
 			g.DrawImage(fg, 1, 1);
 			return both;
 		}
+
+		public static bool HasSolidCorners(Bitmap newBitmap) {
+			int w = newBitmap.Width;
+			int h = newBitmap.Height;
+			return newBitmap.GetPixel(0, 0).A == 255
+				&& newBitmap.GetPixel(w - 1, 0).A == 255
+				&& newBitmap.GetPixel(0, h - 1).A == 255
+				&& newBitmap.GetPixel(w - 1, h - 1).A == 255;
+		}
 	}
 }

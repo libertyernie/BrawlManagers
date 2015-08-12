@@ -452,7 +452,7 @@ namespace BrawlStageManager {
 		}
 
 		/// <summary>
-		/// Replace the MenSelmapMark texture in toReplace with the image in newBitmap, flipping the channels if CMPR is chosen.
+		/// Replace the MenSelmapMark texture in toReplace with the image in newBitmap, flipping the channels if the image has solid black in all four corners.
 		/// </summary>
 		/// <param name="newBitmap">The new texture to use</param>
 		/// <param name="toReplace">The TEX0 to insert the texture in</param>
@@ -467,7 +467,7 @@ namespace BrawlStageManager {
 					? WiiPixelFormat.IA4
 					: WiiPixelFormat.I4;
 			Console.WriteLine(format);
-			Bitmap toEncode = (format == WiiPixelFormat.CMPR) ? BitmapUtilities.AlphaSwap(newBitmap) : newBitmap;
+			Bitmap toEncode = BitmapUtilities.HasSolidCorners(newBitmap) ? BitmapUtilities.AlphaSwap(newBitmap) : newBitmap;
 			BrawlLib.IO.FileMap tMap = TextureConverter.Get(format).EncodeTEX0Texture(toEncode, 1);
 			toReplace.ReplaceRaw(tMap);
 		}
@@ -543,9 +543,12 @@ namespace BrawlStageManager {
 				NodeFactory.FromFile(null, path).Export(tmp);
 			}
 			Bitmap bitmap = new Bitmap(tmp ?? path);
+			if (BitmapUtilities.HasSolidCorners(bitmap)) {
+				bitmap = BitmapUtilities.AlphaSwap(bitmap);
+			}
 			string name = Path.GetFileNameWithoutExtension(path);
 			if (ask) {
-				using (var nameDialog = new AskNameDialog(BitmapUtilities.AlphaSwap(bitmap))) {
+				using (var nameDialog = new AskNameDialog(bitmap)) {
 					nameDialog.Text = name;
 					if (nameDialog.ShowDialog() != DialogResult.OK) {
 						return false;
