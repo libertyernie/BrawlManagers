@@ -67,6 +67,9 @@
       <DependentUpon>AboutBSM.cs</DependentUpon>
     </Compile>
     <Compile Include="BitmapUtilities.cs" />
+    <Compile Include="BrawlSplitter.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CollapsibleSplitter.cs">
       <SubType>Component</SubType>
     </Compile>
