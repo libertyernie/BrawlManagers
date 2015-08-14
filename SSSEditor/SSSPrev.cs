@@ -97,7 +97,7 @@ namespace SSSEditor {
 
 			for (int i = 1; i <= _numIcons; i++) {
 				entry = chr0.FindChild("pos" + i.ToString("D2"), false) as CHR0EntryNode;
-				CHRAnimationFrame frame = entry.GetAnimFrame(_numIcons + OFFSET);
+				CHRAnimationFrame frame = entry.GetAnimFrame(_numIcons + OFFSET, true);
 				float x = (BRAWLWIDTH / 2 + frame.Translation._x + offset._x) / BRAWLWIDTH;
 				float y = (BRAWLHEIGHT / 2 - frame.Translation._y - offset._y) / BRAWLHEIGHT;
 				float w = 6.4f * (frame.Scale._x) / BRAWLWIDTH;
@@ -116,7 +116,7 @@ namespace SSSEditor {
 			if (nexttex0 != null) {
 				float NEXTOFFSET = 10.8f;
 				entry = chr0.FindChild("pos" + (_numIcons + 1).ToString("D2"), false) as CHR0EntryNode;
-				CHRAnimationFrame frame2 = entry.GetAnimFrame(_numIcons + OFFSET);
+				CHRAnimationFrame frame2 = entry.GetAnimFrame(_numIcons + OFFSET, true);
 				float x2 = (BRAWLWIDTH / 2 + frame2.Translation._x - NEXTOFFSET) / BRAWLWIDTH;
 				float y2 = (BRAWLHEIGHT / 2 - frame2.Translation._y) / BRAWLHEIGHT;
 				float w2 = 14.4f * (frame2.Scale._x) / BRAWLWIDTH;
