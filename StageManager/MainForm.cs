@@ -951,10 +951,6 @@ namespace BrawlStageManager {
 			new AboutBSM(null, System.Reflection.Assembly.GetExecutingAssembly()).ShowDialog(this);
 		}
 
-		private void brawlBoxToolStripMenuItem_Click(object sender, EventArgs e) {
-			
-		}
-
 		private void brawlBoxStageToolStripMenuItem_Click(object sender, EventArgs e) {
 			string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 			if (File.Exists(exeDir + "/BrawlBox.exe")) {

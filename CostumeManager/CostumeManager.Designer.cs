@@ -23,11 +23,10 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listBox2 = new System.Windows.Forms.ListBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.copyToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToOtherPacpcsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -338,16 +337,16 @@
             // modelManager1
             // 
             this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.modelManager1.Location = new System.Drawing.Point(217, 25);
+            this.modelManager1.Location = new System.Drawing.Point(214, 25);
             this.modelManager1.ModelPreviewSize = null;
             this.modelManager1.Name = "modelManager1";
-            this.modelManager1.Size = new System.Drawing.Size(183, 381);
+            this.modelManager1.Size = new System.Drawing.Size(192, 381);
             this.modelManager1.TabIndex = 1;
             // 
             // cssPortraitViewer1
             // 
             this.cssPortraitViewer1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.cssPortraitViewer1.Location = new System.Drawing.Point(411, 25);
+            this.cssPortraitViewer1.Location = new System.Drawing.Point(414, 25);
             this.cssPortraitViewer1.Name = "cssPortraitViewer1";
             this.cssPortraitViewer1.NamePortraitPreview = false;
             this.cssPortraitViewer1.Size = new System.Drawing.Size(128, 381);
@@ -358,7 +357,7 @@
             this.brawlSplitter3.ControlToHide = this.splitContainer2;
             this.brawlSplitter3.Location = new System.Drawing.Point(206, 25);
             this.brawlSplitter3.Name = "brawlSplitter3";
-            this.brawlSplitter3.Size = new System.Drawing.Size(11, 381);
+            this.brawlSplitter3.Size = new System.Drawing.Size(8, 381);
             this.brawlSplitter3.TabIndex = 11;
             this.brawlSplitter3.TabStop = false;
             // 
@@ -367,9 +366,9 @@
             this.brawlSplitter1.AllowResizing = false;
             this.brawlSplitter1.ControlToHide = this.cssPortraitViewer1;
             this.brawlSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.brawlSplitter1.Location = new System.Drawing.Point(400, 25);
+            this.brawlSplitter1.Location = new System.Drawing.Point(406, 25);
             this.brawlSplitter1.Name = "brawlSplitter1";
-            this.brawlSplitter1.Size = new System.Drawing.Size(11, 381);
+            this.brawlSplitter1.Size = new System.Drawing.Size(8, 381);
             this.brawlSplitter1.TabIndex = 9;
             this.brawlSplitter1.TabStop = false;
             // 
@@ -378,9 +377,9 @@
             this.brawlSplitter2.AllowResizing = false;
             this.brawlSplitter2.ControlToHide = this.otherPVsFlowLayoutPanel;
             this.brawlSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.brawlSplitter2.Location = new System.Drawing.Point(539, 25);
+            this.brawlSplitter2.Location = new System.Drawing.Point(542, 25);
             this.brawlSplitter2.Name = "brawlSplitter2";
-            this.brawlSplitter2.Size = new System.Drawing.Size(11, 381);
+            this.brawlSplitter2.Size = new System.Drawing.Size(8, 381);
             this.brawlSplitter2.TabIndex = 10;
             this.brawlSplitter2.TabStop = false;
             // 
