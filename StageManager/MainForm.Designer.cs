@@ -33,7 +33,6 @@
             this.clbTextures = new System.Windows.Forms.CheckedListBox();
             this.modelPanel1 = new System.Windows.Forms.ModelPanel();
             this.songContainerPanel = new System.Windows.Forms.Panel();
-            this.songPanel1 = new BrawlManagerLib.SongPanel();
             this.listBoxSongs = new System.Windows.Forms.ListBox();
             this.songContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.msBinPanel = new System.Windows.Forms.Panel();
@@ -120,13 +119,14 @@
             this.brawlBoxStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brawlBoxcommon5scselmapToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.brawlSplitter5 = new BrawlManagerLib.BrawlSplitter();
+            this.brawlSplitter4 = new BrawlManagerLib.BrawlSplitter();
             this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
+            this.brawlSplitter3 = new BrawlManagerLib.BrawlSplitter();
+            this.songPanel1 = new BrawlManagerLib.SongPanel();
             this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
             this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
             this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
-            this.brawlSplitter3 = new BrawlManagerLib.BrawlSplitter();
-            this.brawlSplitter4 = new BrawlManagerLib.BrawlSplitter();
-            this.brawlSplitter5 = new BrawlManagerLib.BrawlSplitter();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
             this.splitContainerLeft.Panel1.SuspendLayout();
             this.splitContainerLeft.Panel2.SuspendLayout();
@@ -218,16 +218,6 @@
             this.songContainerPanel.Size = new System.Drawing.Size(307, 131);
             this.songContainerPanel.TabIndex = 7;
             this.songContainerPanel.Visible = false;
-            // 
-            // songPanel1
-            // 
-            this.songPanel1.AllowDrop = true;
-            this.songPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.songPanel1.Location = new System.Drawing.Point(46, 0);
-            this.songPanel1.MinimumSize = new System.Drawing.Size(0, 131);
-            this.songPanel1.Name = "songPanel1";
-            this.songPanel1.Size = new System.Drawing.Size(261, 131);
-            this.songPanel1.TabIndex = 6;
             // 
             // listBoxSongs
             // 
@@ -923,6 +913,26 @@
             this.panel2.Size = new System.Drawing.Size(307, 477);
             this.panel2.TabIndex = 8;
             // 
+            // brawlSplitter5
+            // 
+            this.brawlSplitter5.ControlToHide = this.msBinPanel;
+            this.brawlSplitter5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.brawlSplitter5.Location = new System.Drawing.Point(0, 142);
+            this.brawlSplitter5.Name = "brawlSplitter5";
+            this.brawlSplitter5.Size = new System.Drawing.Size(307, 10);
+            this.brawlSplitter5.TabIndex = 2;
+            this.brawlSplitter5.TabStop = false;
+            // 
+            // brawlSplitter4
+            // 
+            this.brawlSplitter4.ControlToHide = this.stageInfoControl1;
+            this.brawlSplitter4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.brawlSplitter4.Location = new System.Drawing.Point(0, 56);
+            this.brawlSplitter4.Name = "brawlSplitter4";
+            this.brawlSplitter4.Size = new System.Drawing.Size(307, 10);
+            this.brawlSplitter4.TabIndex = 1;
+            this.brawlSplitter4.TabStop = false;
+            // 
             // stageInfoControl1
             // 
             this.stageInfoControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -932,6 +942,26 @@
             this.stageInfoControl1.Size = new System.Drawing.Size(307, 56);
             this.stageInfoControl1.TabIndex = 0;
             this.stageInfoControl1.UseRelDescription = false;
+            // 
+            // brawlSplitter3
+            // 
+            this.brawlSplitter3.ControlToHide = this.songContainerPanel;
+            this.brawlSplitter3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.brawlSplitter3.Location = new System.Drawing.Point(0, 336);
+            this.brawlSplitter3.Name = "brawlSplitter3";
+            this.brawlSplitter3.Size = new System.Drawing.Size(307, 10);
+            this.brawlSplitter3.TabIndex = 0;
+            this.brawlSplitter3.TabStop = false;
+            // 
+            // songPanel1
+            // 
+            this.songPanel1.AllowDrop = true;
+            this.songPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.songPanel1.Location = new System.Drawing.Point(46, 0);
+            this.songPanel1.MinimumSize = new System.Drawing.Size(0, 131);
+            this.songPanel1.Name = "songPanel1";
+            this.songPanel1.Size = new System.Drawing.Size(261, 131);
+            this.songPanel1.TabIndex = 6;
             // 
             // brawlSplitter1
             // 
@@ -961,36 +991,6 @@
             this.portraitViewer1.Name = "portraitViewer1";
             this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
             this.portraitViewer1.TabIndex = 2;
-            // 
-            // brawlSplitter3
-            // 
-            this.brawlSplitter3.ControlToHide = this.songContainerPanel;
-            this.brawlSplitter3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.brawlSplitter3.Location = new System.Drawing.Point(0, 336);
-            this.brawlSplitter3.Name = "brawlSplitter3";
-            this.brawlSplitter3.Size = new System.Drawing.Size(307, 10);
-            this.brawlSplitter3.TabIndex = 0;
-            this.brawlSplitter3.TabStop = false;
-            // 
-            // brawlSplitter4
-            // 
-            this.brawlSplitter4.ControlToHide = this.stageInfoControl1;
-            this.brawlSplitter4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.brawlSplitter4.Location = new System.Drawing.Point(0, 56);
-            this.brawlSplitter4.Name = "brawlSplitter4";
-            this.brawlSplitter4.Size = new System.Drawing.Size(307, 10);
-            this.brawlSplitter4.TabIndex = 1;
-            this.brawlSplitter4.TabStop = false;
-            // 
-            // brawlSplitter5
-            // 
-            this.brawlSplitter5.ControlToHide = this.msBinPanel;
-            this.brawlSplitter5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.brawlSplitter5.Location = new System.Drawing.Point(0, 142);
-            this.brawlSplitter5.Name = "brawlSplitter5";
-            this.brawlSplitter5.Size = new System.Drawing.Size(307, 10);
-            this.brawlSplitter5.TabIndex = 2;
-            this.brawlSplitter5.TabStop = false;
             // 
             // MainForm
             // 

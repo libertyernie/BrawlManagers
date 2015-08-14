@@ -59,7 +59,6 @@ namespace BrawlSongManager {
 			if (D.GetType().GetProperty("HideMDL0Errors") != null) {
 				D.GetType().InvokeMember("HideMDL0Errors", System.Reflection.BindingFlags.SetProperty, null, D, new object[] { true });
 			}
-			var Q = new BrawlManagerLib.CollapsibleSplitter();
 		}
 
 		private static string BSMHelp() {

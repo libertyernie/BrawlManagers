@@ -64,7 +64,7 @@ namespace BrawlSongManager {
 				return pictureBox1.BackgroundImage;
 			}
 			set {
-				pictureBox1.BackgroundImage = value == null ? value : BitmapUtilities.Resize(value, pictureBox1.Size);
+				pictureBox1.BackgroundImage = value == null ? value : BitmapUtilities.Resize((Bitmap)value, pictureBox1.Size);
 			}
 		}
 

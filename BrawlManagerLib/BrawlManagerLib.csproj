@@ -70,9 +70,6 @@
     <Compile Include="BrawlSplitter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CollapsibleSplitter.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CustomSongVolume.cs" />
     <Compile Include="CustomSSS.cs" />
     <Compile Include="ProgressDialog.cs">

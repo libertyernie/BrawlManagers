@@ -19,10 +19,18 @@ namespace BrawlManagerLib {
         [Bindable(true), DefaultValue(typeof(Color), "ControlLightLight"), Description("The color of the seperator on either side of the button")]
         public Color SeparatorColorLight { get; set; }
 
+        [Bindable(true), DefaultValue(0.5), Description("The maximum proportion (out of 1.0) of the length of the splitter taken up by the button")]
+        public double MaxProportion { get; set; }
+
+        [Bindable(true), DefaultValue(64), Description("Tne length of the button. Ignored if Proportion is not null")]
+        public int ButtonLength { get; set; }
+
         public BrawlSplitter() {
             SeparatorColorDark = SystemColors.ControlDark;
             SeparatorColorLight = SystemColors.ControlLightLight;
             Height = 11;
+            MaxProportion = 0.5;
+            ButtonLength = 64;
 
             Button = new Button() {
                 Cursor = Cursors.Default,
@@ -81,16 +89,30 @@ namespace BrawlManagerLib {
         void BrawlSplitter_Resize(object sender, EventArgs e) {
             if (this.Width > this.Height) {
                 // wide
-                Button.Width = this.Width / 2;
-                Button.Height = this.Height;
-                Button.Top = 0;
-                Button.Left = 1 * this.Width / 4;
+                if (this.Width * MaxProportion < ButtonLength) {
+                    Button.Width = (int)(this.Width * MaxProportion);
+                    Button.Height = this.Height;
+                    Button.Top = 0;
+                    Button.Left = (int)(this.Width * (1.0 - MaxProportion) / 2);
+                } else {
+                    Button.Width = ButtonLength;
+                    Button.Height = this.Height;
+                    Button.Top = 0;
+                    Button.Left = (this.Width - ButtonLength) / 2;
+                }
             } else if (this.Width < this.Height) {
                 // tall
-                Button.Width = this.Width;
-                Button.Height = this.Height / 2;
-                Button.Top = 1 * this.Height / 4;
-                Button.Left = 0;
+                if (this.Height * MaxProportion < ButtonLength) {
+                    Button.Width = this.Width;
+                    Button.Height = (int)(this.Height * MaxProportion);
+                    Button.Top = (int)(this.Height * (1.0 - MaxProportion) / 2);
+                    Button.Left = 0;
+                } else {
+                    Button.Width = this.Width;
+                    Button.Height = ButtonLength;
+                    Button.Top = (this.Height - ButtonLength) / 2;
+                    Button.Left = 0;
+                }
             } else {
                 // square
                 Button.Width = this.Width;
