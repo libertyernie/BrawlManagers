@@ -88,6 +88,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PairListModel.cs" />
+    <Compile Include="Resources.cs" />
     <Compile Include="SSSEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +151,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="About.html" />
     <Content Include="downarr.png" />
     <None Include="stageicon.png" />
     <Content Include="icon.ico" />

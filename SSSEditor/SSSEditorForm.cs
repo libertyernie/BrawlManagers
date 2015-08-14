@@ -11,14 +11,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RazorEngine.Templating;
 using System.Drawing.Imaging;
-using System.Reflection;
 using Newtonsoft.Json;
 
 namespace SSSEditor {
 	public partial class SSSEditorForm : Form {
 		// Source data
 		private CustomSSS sss;
-		private BRRESNode md80;
+        private BRRESNode md80;
 
         private string html = "";
 
@@ -47,7 +46,7 @@ namespace SSSEditor {
 				Console.WriteLine(e.StackTrace);
 			}
 
-			tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
 
 			sss = new CustomSSS(gct);
 			ReloadIfValidPac(pac);
@@ -66,13 +65,6 @@ namespace SSSEditor {
 		}
 
 		private void ReloadData() {
-			ProgressWindow pw = null;
-			new System.Threading.Tasks.Task(() => {
-				pw = new ProgressWindow();
-				pw.MaxValue = sss.sss1.Length + sss.sss2.Length + sss.sss3.Length/2;
-				pw.ShowDialog();
-			}).Start();
-
 			if (sss.OtherCodesIgnoredInSameFile > 0) {
 				MessageBox.Show(this, "More than one Custom SSS code found in the codeset. All but the last one will be ignored.",
 					this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -115,16 +107,7 @@ namespace SSSEditor {
 			model.screen1 = sss.sss1;
 			model.screen2 = sss.sss2;
 
-			Assembly a = Assembly.GetAssembly(this.GetType());
-			string[] ssd = a.GetManifestResourceNames();
-			using (Stream stream = a.GetManifestResourceStream("SSSEditor.PairList.cshtml")) {
-				using (StreamReader reader = new StreamReader(stream)) {
-					html = webBrowser1.DocumentText = RazorEngine.Engine.Razor.RunCompile(reader.ReadToEnd(), "PairList",
-						typeof(PairListModel), model);
-				}
-			}
-
-			if (pw != null) pw.BeginInvoke(new Action(pw.Close));
+            html = webBrowser1.DocumentText = RazorEngine.Engine.Razor.RunCompile(Resources.PairList, "PairList", typeof(PairListModel), model);
 		}
 
 		private void spc_FindUsageClick(StagePairControl sender) {
@@ -414,7 +397,17 @@ namespace SSSEditor {
 		}
 
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
-			new AboutBSM(null, System.Reflection.Assembly.GetExecutingAssembly()).ShowDialog(this);
+            using (Form f = new Form()) {
+                using (WebBrowser w = new WebBrowser()) {
+                    w.Dock = DockStyle.Fill;
+                    f.Controls.Add(w);
+                    w.DocumentText = Resources.About;
+                    f.Text = "About SSS Editor";
+                    f.Width = 600;
+                    f.Height = 400;
+                    f.ShowDialog();
+                }
+            }
 		}
 
 		private void copyPairsToolStripMenuItem_Click(object sender, EventArgs e) {
