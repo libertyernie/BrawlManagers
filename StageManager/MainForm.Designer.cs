@@ -974,6 +974,7 @@
             // 
             // brawlSplitter2
             // 
+            this.brawlSplitter2.AllowResizing = false;
             this.brawlSplitter2.ControlToHide = this.portraitViewer1;
             this.brawlSplitter2.Dock = System.Windows.Forms.DockStyle.Right;
             this.brawlSplitter2.Location = new System.Drawing.Point(461, 24);

@@ -25,12 +25,18 @@ namespace BrawlManagerLib {
         [Bindable(true), DefaultValue(64), Description("Tne length of the button. Ignored if Proportion is not null")]
         public int ButtonLength { get; set; }
 
+        private Cursor OldCursor;
+
+        [Bindable(true), DefaultValue(true), Description("Whether the splitter can be moved")]
+        public bool AllowResizing { get; set; }
+
         public BrawlSplitter() {
             SeparatorColorDark = SystemColors.ControlDark;
             SeparatorColorLight = SystemColors.ControlLightLight;
             Height = 11;
             MaxProportion = 0.5;
             ButtonLength = 64;
+            AllowResizing = true;
 
             Button = new Button() {
                 Cursor = Cursors.Default,
@@ -38,9 +44,23 @@ namespace BrawlManagerLib {
             };
             this.Controls.Add(Button);
 
+            this.MouseEnter += BrawlSplitter_MouseEnter;
+
             this.Resize += BrawlSplitter_Resize;
             this.Button.Click += Button_Click;
             this.Button.Paint += Button_Paint;
+        }
+
+        void BrawlSplitter_MouseEnter(object sender, EventArgs e) {
+            if (!AllowResizing) {
+                MinSize = this.SplitPosition;
+                MinExtra = this.Parent.Width - this.SplitPosition;
+                OldCursor = Cursor;
+                Cursor = Cursors.Default;
+            } else if (OldCursor != null) {
+                Cursor = OldCursor;
+                OldCursor = null;
+            }
         }
 
         void Button_Paint(object sender, PaintEventArgs e) {
@@ -51,7 +71,7 @@ namespace BrawlManagerLib {
                     int bottom = (Button.Height / 2) + 2;
                     int left = (Button.Width / 2) - 4;
                     int right = (Button.Width / 2) + 4;
-                    if (ControlToHide.Visible ^ (Dock == DockStyle.Top || Dock == DockStyle.Left)) {
+                    if (ControlToHide.Visible ^ (Dock == DockStyle.Bottom || Dock == DockStyle.Left)) {
                         e.Graphics.FillPolygon(brush, new Point[] {
                             new Point(Button.Width / 2, top),
                             new Point(left, bottom),
@@ -69,7 +89,7 @@ namespace BrawlManagerLib {
                     int bottom = (Button.Height / 2) + 4;
                     int left = (Button.Width / 2) - 2;
                     int right = (Button.Width / 2) + 2;
-                    if (ControlToHide.Visible ^ (Dock == DockStyle.Top || Dock == DockStyle.Left)) {
+                    if (ControlToHide.Visible ^ (Dock == DockStyle.Bottom || Dock == DockStyle.Left)) {
                         e.Graphics.FillPolygon(brush, new Point[] {
                             new Point(right, Button.Height / 2),
                             new Point(left, top),
