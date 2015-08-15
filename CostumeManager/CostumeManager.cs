@@ -27,7 +27,7 @@ namespace BrawlCostumeManager {
 			try {
 				Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 			} catch (Exception) {}
-			portraitViewers = new List<PortraitViewer> {cssPortraitViewer1, resultPortraitViewer1, battlePortraitViewer1};
+			portraitViewers = new List<PortraitViewer> {cssPortraitViewer1, resultPortraitViewer1, battlePortraitViewer1, infoStockIconViewer1};
 
 			if (!new DirectoryInfo("fighter").Exists) {
 				if (new DirectoryInfo("/private/wii/app/RSBE/pf/fighter").Exists) {

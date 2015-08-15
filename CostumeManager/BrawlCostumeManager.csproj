@@ -70,7 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KirbyCopy.cs" />
-    <Compile Include="Portrait Viewers\CostumeNumberLabel.cs" />
+    <Compile Include="Portrait Viewers\CostumeNumberLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Portrait Viewers\InfoStockIconViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Portrait Viewers\PortraitViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -109,6 +114,9 @@
     <EmbeddedResource Include="CostumeManager.resx">
       <DependentUpon>CostumeManager.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portrait Viewers\InfoStockIconViewer.resx">
+      <DependentUpon>InfoStockIconViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Portrait Viewers\CSSPortraitViewer.resx">
       <DependentUpon>CSSPortraitViewer.cs</DependentUpon>
