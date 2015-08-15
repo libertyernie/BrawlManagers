@@ -121,12 +121,12 @@
 			this.brawlBoxcommon5scselmapToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.brawlSplitter5 = new BrawlManagerLib.BrawlSplitter();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.brawlSplitter3 = new BrawlManagerLib.BrawlSplitter();
 			this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
 			this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
-			this.panel1 = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
 			this.splitContainerLeft.Panel1.SuspendLayout();
 			this.splitContainerLeft.Panel2.SuspendLayout();
@@ -188,25 +188,25 @@
 			modelPanelViewport1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(213)))), ((int)(((byte)(204)))), ((int)(((byte)(187)))));
 			modelPanelViewport1.BackgroundImage = null;
 			modelPanelViewport1.BackgroundImageType = BrawlLib.OpenGL.BGImageType.Stretch;
-			glCamera1.Aspect = 0.8988439F;
+			glCamera1.Aspect = 1.727778F;
 			glCamera1.FarDepth = 200000F;
-			glCamera1.Height = 346F;
+			glCamera1.Height = 180F;
 			glCamera1.NearDepth = 1F;
 			glCamera1.Orthographic = false;
 			glCamera1.VerticalFieldOfView = 45F;
 			glCamera1.Width = 311F;
 			modelPanelViewport1.Camera = glCamera1;
 			modelPanelViewport1.Enabled = true;
-			modelPanelViewport1.Region = new System.Drawing.Rectangle(0, 0, 311, 346);
+			modelPanelViewport1.Region = new System.Drawing.Rectangle(0, 0, 311, 180);
 			modelPanelViewport1.RotationScale = 0.4F;
 			modelPanelViewport1.TranslationScale = 0.05F;
 			modelPanelViewport1.ViewType = BrawlLib.OpenGL.ViewportProjection.Perspective;
 			modelPanelViewport1.ZoomScale = 2.5F;
 			this.modelPanel1.CurrentViewport = modelPanelViewport1;
 			this.modelPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelPanel1.Location = new System.Drawing.Point(0, 0);
+			this.modelPanel1.Location = new System.Drawing.Point(0, 158);
 			this.modelPanel1.Name = "modelPanel1";
-			this.modelPanel1.Size = new System.Drawing.Size(311, 346);
+			this.modelPanel1.Size = new System.Drawing.Size(311, 180);
 			this.modelPanel1.TabIndex = 2;
 			// 
 			// songContainerPanel
@@ -910,10 +910,10 @@
 			// 
 			// panel2
 			// 
+			this.panel2.Controls.Add(this.modelPanel1);
 			this.panel2.Controls.Add(this.brawlSplitter5);
 			this.panel2.Controls.Add(this.panel1);
 			this.panel2.Controls.Add(this.brawlSplitter3);
-			this.panel2.Controls.Add(this.modelPanel1);
 			this.panel2.Controls.Add(this.songContainerPanel);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(152, 24);
@@ -930,6 +930,16 @@
 			this.brawlSplitter5.Size = new System.Drawing.Size(311, 8);
 			this.brawlSplitter5.TabIndex = 2;
 			this.brawlSplitter5.TabStop = false;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.msBinPanel);
+			this.panel1.Controls.Add(this.stageInfoControl1);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(311, 150);
+			this.panel1.TabIndex = 8;
 			// 
 			// stageInfoControl1
 			// 
@@ -980,16 +990,6 @@
 			this.portraitViewer1.Name = "portraitViewer1";
 			this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
 			this.portraitViewer1.TabIndex = 2;
-			// 
-			// panel1
-			// 
-			this.panel1.Controls.Add(this.msBinPanel);
-			this.panel1.Controls.Add(this.stageInfoControl1);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(311, 150);
-			this.panel1.TabIndex = 8;
 			// 
 			// MainForm
 			// 
