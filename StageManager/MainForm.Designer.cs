@@ -119,11 +119,12 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.brawlSplitter5 = new BrawlManagerLib.BrawlSplitter();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.brawlSplitter3 = new BrawlManagerLib.BrawlSplitter();
 			this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
-			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
+			this.x96ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
 			this.splitContainerLeft.Panel1.SuspendLayout();
 			this.splitContainerLeft.Panel2.SuspendLayout();
@@ -758,6 +759,7 @@
 			this.prevbaseSize.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.prevbaseOriginalSizeToolStripMenuItem,
             this.x128ToolStripMenuItem,
+            this.x96ToolStripMenuItem,
             this.x88ToolStripMenuItem,
             this.customPrevbaseSizeToolStripMenuItem});
 			this.prevbaseSize.Name = "prevbaseSize";
@@ -769,25 +771,25 @@
 			this.prevbaseOriginalSizeToolStripMenuItem.Checked = true;
 			this.prevbaseOriginalSizeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.prevbaseOriginalSizeToolStripMenuItem.Name = "prevbaseOriginalSizeToolStripMenuItem";
-			this.prevbaseOriginalSizeToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.prevbaseOriginalSizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.prevbaseOriginalSizeToolStripMenuItem.Text = "Off";
 			// 
 			// x128ToolStripMenuItem
 			// 
 			this.x128ToolStripMenuItem.Name = "x128ToolStripMenuItem";
-			this.x128ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.x128ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.x128ToolStripMenuItem.Text = "128x128";
 			// 
 			// x88ToolStripMenuItem
 			// 
 			this.x88ToolStripMenuItem.Name = "x88ToolStripMenuItem";
-			this.x88ToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.x88ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.x88ToolStripMenuItem.Text = "88x88";
 			// 
 			// customPrevbaseSizeToolStripMenuItem
 			// 
 			this.customPrevbaseSizeToolStripMenuItem.Name = "customPrevbaseSizeToolStripMenuItem";
-			this.customPrevbaseSizeToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+			this.customPrevbaseSizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.customPrevbaseSizeToolStripMenuItem.Text = "Custom...";
 			// 
 			// frontstnameSizeToolStripMenuItem
@@ -916,6 +918,16 @@
 			this.panel1.Size = new System.Drawing.Size(311, 150);
 			this.panel1.TabIndex = 8;
 			// 
+			// stageInfoControl1
+			// 
+			this.stageInfoControl1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.stageInfoControl1.Location = new System.Drawing.Point(0, 0);
+			this.stageInfoControl1.Name = "stageInfoControl1";
+			this.stageInfoControl1.RelFile = null;
+			this.stageInfoControl1.Size = new System.Drawing.Size(311, 56);
+			this.stageInfoControl1.TabIndex = 0;
+			this.stageInfoControl1.UseRelDescription = false;
+			// 
 			// brawlSplitter3
 			// 
 			this.brawlSplitter3.ControlToHide = this.songContainerPanel;
@@ -934,16 +946,6 @@
 			this.brawlSplitter1.Size = new System.Drawing.Size(8, 477);
 			this.brawlSplitter1.TabIndex = 8;
 			this.brawlSplitter1.TabStop = false;
-			// 
-			// stageInfoControl1
-			// 
-			this.stageInfoControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.stageInfoControl1.Location = new System.Drawing.Point(0, 0);
-			this.stageInfoControl1.Name = "stageInfoControl1";
-			this.stageInfoControl1.RelFile = null;
-			this.stageInfoControl1.Size = new System.Drawing.Size(311, 56);
-			this.stageInfoControl1.TabIndex = 0;
-			this.stageInfoControl1.UseRelDescription = false;
 			// 
 			// brawlSplitter2
 			// 
@@ -965,6 +967,13 @@
 			this.portraitViewer1.Name = "portraitViewer1";
 			this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
 			this.portraitViewer1.TabIndex = 2;
+			// 
+			// x96ToolStripMenuItem
+			// 
+			this.x96ToolStripMenuItem.Name = "x96ToolStripMenuItem";
+			this.x96ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.x96ToolStripMenuItem.Text = "96x96";
+			this.x96ToolStripMenuItem.Click += new System.EventHandler(this.switchPrevbaseSize);
 			// 
 			// MainForm
 			// 
@@ -1096,6 +1105,7 @@
         private BrawlManagerLib.BrawlSplitter brawlSplitter3;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.ToolStripMenuItem differentrelsForAlternateStagesPM36ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem x96ToolStripMenuItem;
 
 
 
