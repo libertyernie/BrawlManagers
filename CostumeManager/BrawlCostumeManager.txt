@@ -1,21 +1,13 @@
-Brawl Costume Manager 3.5.1 - April 26, 2015
+Brawl Costume Manager 3.6 - August 15, 2015
 Copyright © 2015 libertyernie
 http://lakora.us/brawl/costumemanager
 
 --------
 
-Changes in 3.5.1:
-	* Built against BrawlLib 0.22b (Brawlbox 0.75b)
-	* All files compiled for x86 (32-bit)
-
-Changes in 3.5:
-	* Potrait mappings have been added for Project M 3.5
-	* If a costume is not present in the internal portrait mapping (Brawl or
-	  Project M), "guess" at the right portrait by using the costume file number
-	* A label in the right sidebar shows the costume index for the selected
-	  color (a yellow background means the program is guessing)
-
-NOTE: this program requires BrawlManagerLib.dll to run.
+Changes in 3.6:
+  * There is now an area near the lower-right corner to edit the stock icons
+    in Project M's info.pac.
+  * A new collapsible splitter is used in Stage Manager and Costume Manager.
 
 --------
 

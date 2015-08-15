@@ -1,4 +1,4 @@
-﻿Brawl Song Manager 3.5.1 - April 26, 2015
+﻿Brawl Song Manager 3.6 - August 15, 2015
 Copyright © 2015 libertyernie
 http://lakora.us/brawl/songmanager
 
@@ -6,17 +6,7 @@ Brawl Song Manager is a program that uses BrawlLib to quickly view which BRSTM
 music files are installed on your SD card (or in whatever folder, on whatever
 device, you use for Brawl hacks.)
 
-Changes in 3.5.1:
-	* GCT files with no Custom Song Volume code will no longer be corrupted
-	  when saving
-	* Song Manager will remove any GCT metadata saved by BrawlBox when saving
-	  (instead of leaving invalid data behind)
-	* Built against BrawlLib 0.22b (Brawlbox 0.75b)
-	* All files compiled for x86 (32-bit)
-
-Changes in 3.5:
-	* New feature: import/export all custom songs along with volume and title
-	  (see below for details)
+There are no major changes in version 3.6.
 
 ----------------------------------------
 

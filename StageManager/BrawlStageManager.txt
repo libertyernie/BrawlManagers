@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 3.5.1 - April 26, 2015
+﻿Brawl Stage Manager 3.6 - August 15, 2015
 Copyright © 2015 libertyernie
 http://lakora.us/brawl/stagemanager
 
@@ -8,33 +8,45 @@ your SD card (or in whatever folder, on whatever device, you use for Brawl
 hacks.) It can also add PAT0 entries for expansion stages (with an automated
 process) and change certain PAT0 entries (through a special dialog.)
 
-Changes in 3.5.1:
-	* common5/sc_selmap is no longer loaded twice on startup
-	* Built against BrawlLib 0.22b (Brawlbox 0.75b)
-	* All files compiled for x86 (32-bit)
-
-Changes in 3.5:
-	* "Draw solid color over Prevbase edge" now has a Project M 3.5 version.
-	  (This feature can erase the parts of each MenSelmapPrevbase that would
-	  normally be covered by Brawl's "scribble" in an attempt to save a bit
-	  of space in the sc_selmap file.)
-	* Loading of stage .PAC files can be turned off completely.
+Changes in 3.6:
+  * BrawlLib has switched the white and alpha channels in IA4 textures to
+    match how they show up on the stage select screen - this means when
+	importing or exporting a MenSelmapMark, it will look as it does in-game
+	instead of having black around the edges and transparency in the middle.
+	* If you have old MenSelmapMark images, turn off "Use Texture Converter" and
+	  Stage Manager will convert them for you.
+  * There is now an option (enabled by default) to look for .rel filenames in
+    a way corresponding to Project M's alternate stage loader, e.g.
+	st_crayon_Z.rel.
+  * Alternate stages (e.g. STGFINAL_Z.PAC) are now included when "List stages
+    in SSS order" is turned on.
+  * You can now drag and drop a PNG or GIF image onto the "PM 3.6 top" or
+    "PM 3.6 alt" boxes to use it as the main or alternate stage image in the
+	Project M 3.6 stage select preview.
+  * The default border for the icon border replacer has been fixed.
+  * 96x96 is now an option for prevbase auto-resize.
+  * A new collapsible splitter is used in Stage Manager and Costume Manager.
+  * "Convert MenSelmapMarks to CMPR" and "Draw blocks over prevbases" have
+    been removed - I didn't think they were worth the trouble. Let me know
+	if you want them put back in.
 
 ----------------------------------------
 
 Hint: In the "change directory" dialog, select your SD card and hit OK. If
 there are no .pac files in the root of your SD card, the program should jump
-to /private/wii/app/RSBE/pf/stage/melee instead, if it exists. (Try using the
-"Start in" field in the shortcut properties.) You can also run
-BrawlStageManager.exe from the root of your SD card for the same effect.
+to /private/wii/app/RSBE/pf/stage/melee or /projectm/pf/stage/melee instead,
+if it exists. (Try using the "Start in" field in the shortcut properties.)
+You can also run BrawlStageManager.exe from the root of your SD card for the
+same effect.
 
 KEYBOARD SHORTCUTS:
 PageUp:				Go up one stage (focus does not need to be on the stage list)
 PageDown:			Go down one stage (focus does not need to be on the stage list)
 Tilde (~):			Display PAT0 modification dialog
 Left bracket ([):	Replace border around icon (4-pixel margin) with pixels from
-					border.png in application folder
-Right bracket (]):	Generate a new FrontStname using a custom font
+					border.png in application folder, or one that comes with Stage
+					Manager if no border.png exists
+Right bracket (]):	Generate a new FrontStname using a configurable font
 
 -------- Notes --------
 
@@ -100,3 +112,7 @@ All of these textures are looked up in the PAT0 entries in the common5, so
 they will match the ones you see in-game. You can edit the PAT0 entries for
 MenSelchrMark and MenSelmapMark using the Modify PAT0 button (or by pressing
 the tilde (~) button on your keyboard.)
+
+Project M 3.6 splits the stage preview (MenSelmapPrevbase) into two parts; you
+can replace these parts individually by dragging and dropping a PNG or GIF
+file onto the "PM 3.6 top" or "PM 3.6 alt" boxes.
