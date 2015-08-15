@@ -51,6 +51,12 @@
         }
 
         $(function () {
+            if (navigator.userAgent.indexOf("MSIE") >= 0) {
+                if (!("documentMode" in document) || document.documentMode < 8) {
+                    alert("SSS Editor requires Internet Explorer 8 or higher.");
+                    return;
+                }
+            }
             $("select.stagename").html(stage_options);
 
             $(".stageRow").each(function (i, e) {
