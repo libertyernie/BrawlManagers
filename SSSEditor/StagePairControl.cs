@@ -7,8 +7,6 @@ using BrawlManagerLib;
 namespace SSSEditor {
 	public delegate void SPCEvent(StagePairControl sender);
 	public partial class StagePairControl : UserControl {
-		public static ProgressWindow GlobalProgressWindow;
-
 		public event SPCEvent FindUsageClick;
 		public event SPCEvent SwapWithSelectedClick;
 
@@ -153,10 +151,6 @@ namespace SSSEditor {
             ddlStagePacs.Resize += (o, e) =>
             {
                 if (!ddlStagePacs.Focused) ddlStagePacs.SelectionLength = 0;
-				if (painted == false && GlobalProgressWindow != null) {
-					painted = true;
-					GlobalProgressWindow.Update(GlobalProgressWindow.CurrentValue + 1);
-				}
             };
 			ddlStagePacs.LostFocus += (o, e) => {
 				if (ddlStagePacs.SelectedIndex == -1) {

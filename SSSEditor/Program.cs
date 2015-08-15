@@ -41,38 +41,6 @@ namespace SSSEditor {
 
 			findFiles(args);
 
-			if (gct == null && pac == null) {
-				using (var dialog = new FolderBrowserDialog()) {
-					dialog.Description = "Select the SD card root in the tree below.\n" +
-						"To choose RSBE01.gct and common5.pac separately instead, press Cancel.";
-					if (dialog.ShowDialog() == DialogResult.OK) {
-						Environment.CurrentDirectory = dialog.SelectedPath;
-						findFiles(null);
-					}
-				}
-			}
-
-			if (gct == null) using (var dialog = new OpenFileDialog()) {
-				dialog.Title = "Open GCT codeset";
-				dialog.Filter = "Ocarina codes (*.gct, *.txt)|*.gct;*.txt";
-				dialog.Multiselect = false;
-				if (dialog.ShowDialog() == DialogResult.OK) {
-					gct = dialog.FileName;
-				} else {
-					return;
-				}
-			}
-			if (pac == null) using (var dialog = new OpenFileDialog()) {
-				dialog.Title = "Open stage icon file (common5)";
-				dialog.Filter = "Brawl data files (*.pac, *.brres)|*.pac;*.brres";
-				dialog.Multiselect = false;
-				if (dialog.ShowDialog() == DialogResult.OK) {
-					pac = dialog.FileName;
-				} else {
-					return;
-				}
-			}
-
 			Application.Run(new SSSEditorForm(gct, pac));
 		}
 

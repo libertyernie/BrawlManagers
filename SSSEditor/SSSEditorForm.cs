@@ -48,20 +48,18 @@ namespace SSSEditor {
 
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
 
-			sss = new CustomSSS(gct);
-			ReloadIfValidPac(pac);
+			sss = gct != null
+				? new CustomSSS(gct)
+				: new CustomSSS();
+
+			if (pac != null) {
+				ReloadIfValidPac(pac);
+			} else {
+				md80 = new BRRESNode();
+				ReloadData();
+			}
 
 			FormClosed += (o, e) => TempFiles.DeleteAll();
-
-			tabControl1.SelectedIndexChanged += (o, e) => {
-				new Task(() => {
-					Thread.Sleep(500);
-					if (StagePairControl.GlobalProgressWindow != null) {
-						StagePairControl.GlobalProgressWindow.BeginInvoke(new Action(StagePairControl.GlobalProgressWindow.Close));
-						StagePairControl.GlobalProgressWindow = null;
-					}
-				}).Start();
-			};
 		}
 
 		private void ReloadData() {

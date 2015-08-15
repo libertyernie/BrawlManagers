@@ -89,6 +89,7 @@ namespace SSSEditor {
 		private void ReloadIcons() {
 			if (miscdata80 == null) return;
 			CHR0Node chr0 = miscdata80.FindChild("AnmChr(NW4R)/MenSelmapPos_TopN__" + (MyMusic ? "1" : "0"), false) as CHR0Node;
+			if (chr0 == null) return;
 
 			icons = new Tuple<Image, RectangleF>[_numIcons + 1];
 
