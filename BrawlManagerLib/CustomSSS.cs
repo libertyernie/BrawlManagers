@@ -225,35 +225,6 @@ namespace BrawlManagerLib {
 				sss1.Length, sss2.Length, sss3.Length / 2);
 		}
 
-		public CustomSSS Add30Pairs() {
-			byte[] new1 = new byte[sss1.Length];
-			byte[] new2 = new byte[sss2.Length];
-			byte[] new3 = new byte[sss3.Length + 60];
-
-			for (int i = 0; i < sss1.Length; i++) {
-				byte v = sss1[i];
-				if (v >= 56) v += 30;
-				new1[i] = v;
-			}
-			for (int i = 0; i < sss2.Length; i++) {
-				byte v = sss2[i];
-				if (v >= 56) v += 30;
-				new2[i] = v;
-			}
-
-			for (int i = 0; i < 56 * 2; i++) {
-				new3[i] = sss3[i];
-			}
-			for (int i = 0; i < 30 * 2; i++) {
-				new3[i + 112] = 02;// sss3[i];
-			}
-			for (int i = 56 * 2; i < sss3.Length; i++) {
-				new3[i + 60] = sss3[i];
-			}
-
-			return new CustomSSS(this, new1, new2, new3);
-		}
-
 		public bool TryGetValue(byte key, out Song value) {
 			return SongsByStage.TryGetValue(key, out value);
 		}

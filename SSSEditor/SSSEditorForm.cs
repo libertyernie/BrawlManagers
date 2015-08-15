@@ -108,49 +108,6 @@ namespace SSSEditor {
             html = webBrowser1.DocumentText = RazorEngine.Engine.Razor.RunCompile(Resources.PairList, "PairList", typeof(PairListModel), model);
 		}
 
-		private void spc_FindUsageClick(StagePairControl sender) {
-			StagePair pair = sender.Pair;
-			List<StagePair> definitions = getDefinitions();
-
-			StringBuilder sb = new StringBuilder();
-			sb.AppendLine("SSS #1:");
-			List<int> screen1 = getScreen1();
-			for (int i=0; i<screen1.Count; i++) {
-				if (definitions[screen1[i]] == pair) {
-					sb.AppendLine(i.ToString());
-				}
-			}
-			sb.AppendLine("SSS #2:");
-			List<int> screen2 = getScreen2();
-			for (int i = 0; i < screen2.Count; i++) {
-				if (definitions[screen2[i]] == pair) {
-					sb.AppendLine(i.ToString());
-				}
-			}
-			MessageBox.Show(sb.ToString());
-		}
-
-		private void spc_SwapWithSelectedClick(StagePairControl sender) {
-			AskSwapDialog dialog = new AskSwapDialog();
-			Control tbl = tabControl1.SelectedTab.Controls[0];
-			foreach (Control c in tbl.Controls) {
-				if (c is StagePairControl && c != sender) {
-					StagePairControl spc = (StagePairControl)c;
-					dialog.Add(spc);
-				}
-			}
-			if (dialog.ShowDialog(this) == DialogResult.OK) {
-				int index1 = tbl.Controls.GetChildIndex(sender);
-				int index2 = tbl.Controls.GetChildIndex(dialog.Selected);
-				tbl.Controls.SetChildIndex(sender, index2);
-				tbl.Controls.SetChildIndex(dialog.Selected, index1);
-			} foreach (Control c in tbl.Controls) {
-				if (c is StagePairControl) {
-					((StagePairControl)c).Recolor();
-				}
-			}
-		}
-
 		private void ReloadIfValidPac(string file, CustomSSS sssIfOtherFileValid = null) {
 			ResourceNode node = NodeFactory.FromFile(null, file);
 			ResourceNode p1icon = node.FindChild("MenSelmapCursorPly.1", true);
@@ -363,36 +320,6 @@ namespace SSSEditor {
 			}
 		}
 
-		private void btnAdd_Click(object sender, EventArgs e) {
-			TableLayoutPanel table = tabControl1.SelectedTab.Controls[0] as TableLayoutPanel;
-			if (table != null) {
-				StagePairControl fallback = null;
-				foreach (Control c in table.Controls) {
-					if (c is StagePairControl) {
-						fallback = (StagePairControl)c;
-						if (fallback.Checked) {
-							fallback.Insert();
-							return;
-						}
-					}
-				}
-				if (fallback != null) {
-					fallback.Insert();
-				}
-			}
-		}
-
-		private void btnDelete_Click(object sender, EventArgs e) {
-			TableLayoutPanel table = tabControl1.SelectedTab.Controls[0] as TableLayoutPanel;
-			if (table != null) {
-				foreach (Control c in table.Controls) {
-					if (c is StagePairControl && ((StagePairControl)c).Checked) {
-						((StagePairControl)c).Delete();
-						return;
-					}
-				}
-			}
-		}
 
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
             using (Form f = new Form()) {
@@ -406,16 +333,6 @@ namespace SSSEditor {
                     f.ShowDialog();
                 }
             }
-		}
-
-		private void copyPairsToolStripMenuItem_Click(object sender, EventArgs e) {
-			if (sss.sss3.Length < 110) {
-				MessageBox.Show(this, "Less than 55 stages are currently defined.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			sss = sss.Add30Pairs();
-			ReloadData();
 		}
 
 		private void pasteAnSSSCodeToolStripMenuItem_Click(object sender, EventArgs e) {

@@ -39,13 +39,8 @@
 			this.exportHTMLToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.viewCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.copyPairsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.tblButtonRow = new System.Windows.Forms.TableLayoutPanel();
-			this.btnAdd = new System.Windows.Forms.Button();
-			this.btnDelete = new System.Windows.Forms.Button();
 			this.tabMyMusic2 = new System.Windows.Forms.TabPage();
 			this.myMusic2 = new SSSEditor.SSSPrev();
 			this.tabMyMusic1 = new System.Windows.Forms.TabPage();
@@ -64,7 +59,6 @@
 			this.webBrowser1 = new System.Windows.Forms.WebBrowser();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.menuStrip1.SuspendLayout();
-			this.tblButtonRow.SuspendLayout();
 			this.tabMyMusic2.SuspendLayout();
 			this.tabMyMusic1.SuspendLayout();
 			this.tabPreview2.SuspendLayout();
@@ -79,7 +73,6 @@
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.viewCodeToolStripMenuItem,
-            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
@@ -193,21 +186,6 @@
 			this.viewCodeToolStripMenuItem.Text = "View code";
 			this.viewCodeToolStripMenuItem.Click += new System.EventHandler(this.viewCodeToolStripMenuItem_Click);
 			// 
-			// toolsToolStripMenuItem
-			// 
-			this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyPairsToolStripMenuItem});
-			this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-			this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-			this.toolsToolStripMenuItem.Text = "Tools";
-			// 
-			// copyPairsToolStripMenuItem
-			// 
-			this.copyPairsToolStripMenuItem.Name = "copyPairsToolStripMenuItem";
-			this.copyPairsToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-			this.copyPairsToolStripMenuItem.Text = "Copy pairs 0-29 to 55-84";
-			this.copyPairsToolStripMenuItem.Click += new System.EventHandler(this.copyPairsToolStripMenuItem_Click);
-			// 
 			// helpToolStripMenuItem
 			// 
 			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -219,47 +197,9 @@
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.aboutToolStripMenuItem.Text = "About";
 			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-			// 
-			// tblButtonRow
-			// 
-			this.tblButtonRow.ColumnCount = 2;
-			this.tblButtonRow.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tblButtonRow.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tblButtonRow.Controls.Add(this.btnAdd, 0, 0);
-			this.tblButtonRow.Controls.Add(this.btnDelete, 1, 0);
-			this.tblButtonRow.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.tblButtonRow.Location = new System.Drawing.Point(0, 529);
-			this.tblButtonRow.Name = "tblButtonRow";
-			this.tblButtonRow.RowCount = 1;
-			this.tblButtonRow.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tblButtonRow.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-			this.tblButtonRow.Size = new System.Drawing.Size(1184, 32);
-			this.tblButtonRow.TabIndex = 0;
-			// 
-			// btnAdd
-			// 
-			this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnAdd.Location = new System.Drawing.Point(3, 3);
-			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(586, 26);
-			this.btnAdd.TabIndex = 0;
-			this.btnAdd.Text = "Add (Ctrl+N)";
-			this.btnAdd.UseVisualStyleBackColor = true;
-			this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-			// 
-			// btnDelete
-			// 
-			this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.btnDelete.Location = new System.Drawing.Point(595, 3);
-			this.btnDelete.Name = "btnDelete";
-			this.btnDelete.Size = new System.Drawing.Size(586, 26);
-			this.btnDelete.TabIndex = 1;
-			this.btnDelete.Text = "Delete (Ctrl+Del)";
-			this.btnDelete.UseVisualStyleBackColor = true;
-			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
 			// tabMyMusic2
 			// 
@@ -436,7 +376,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(1176, 479);
+			this.tabPage1.Size = new System.Drawing.Size(1176, 511);
 			this.tabPage1.TabIndex = 8;
 			this.tabPage1.Text = "Editor";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -447,7 +387,7 @@
 			this.webBrowser1.Location = new System.Drawing.Point(3, 83);
 			this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
 			this.webBrowser1.Name = "webBrowser1";
-			this.webBrowser1.Size = new System.Drawing.Size(1170, 393);
+			this.webBrowser1.Size = new System.Drawing.Size(1170, 425);
 			this.webBrowser1.TabIndex = 0;
 			// 
 			// tabControl1
@@ -461,7 +401,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 24);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(1184, 505);
+			this.tabControl1.Size = new System.Drawing.Size(1184, 537);
 			this.tabControl1.TabIndex = 3;
 			// 
 			// SSSEditorForm
@@ -470,7 +410,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1184, 561);
 			this.Controls.Add(this.tabControl1);
-			this.Controls.Add(this.tblButtonRow);
 			this.Controls.Add(this.menuStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
@@ -478,7 +417,6 @@
 			this.Text = "SSS Editor";
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			this.tblButtonRow.ResumeLayout(false);
 			this.tabMyMusic2.ResumeLayout(false);
 			this.tabMyMusic1.ResumeLayout(false);
 			this.tabPreview2.ResumeLayout(false);
@@ -506,13 +444,8 @@
 		private System.Windows.Forms.ToolStripMenuItem saveSSSCodeOnlytxtToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem viewCodeToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-		private System.Windows.Forms.TableLayoutPanel tblButtonRow;
-		private System.Windows.Forms.Button btnAdd;
-		private System.Windows.Forms.Button btnDelete;
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem copyPairsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem pasteAnSSSCodeToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem exportHTMLToolStripMenuItem1;

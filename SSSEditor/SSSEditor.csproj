@@ -78,15 +78,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AskSwapDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AskSwapDialog.Designer.cs">
-      <DependentUpon>AskSwapDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FixedStagePairControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="PairListModel.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="SSSEditorForm.cs">
@@ -104,18 +95,9 @@
       <DependentUpon>SSSPrev.cs</DependentUpon>
     </Compile>
     <Compile Include="StagePair.cs" />
-    <Compile Include="StagePairControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="StagePairControl.Designer.cs">
-      <DependentUpon>StagePairControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="UpDownKeyAwareRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="AskSwapDialog.resx">
-      <DependentUpon>AskSwapDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SSSEditorForm.resx">
       <DependentUpon>SSSEditorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,9 +113,6 @@
     </Compile>
     <EmbeddedResource Include="SSSPrev.resx">
       <DependentUpon>SSSPrev.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StagePairControl.resx">
-      <DependentUpon>StagePairControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <EmbeddedResource Include="PairList.cshtml" />
