@@ -21,11 +21,6 @@ namespace BrawlStageManager {
 			tex0.ReplaceRaw(tMap);
 		}
 
-		public static void ReplaceWithCMPR(this TEX0Node tex0, Bitmap bmp) {
-			FileMap tMap = TextureConverter.Get(WiiPixelFormat.CMPR).EncodeTEX0Texture(bmp, tex0.LevelOfDetail);
-			tex0.ReplaceRaw(tMap);
-		}
-
 		public static string ToSizeString(this TEX0Node tex0) {
 			if (tex0 == null) return "null";
 			return tex0.Width + "x" + tex0.Height;

@@ -33,6 +33,7 @@
 			this.clbTextures = new System.Windows.Forms.CheckedListBox();
 			this.modelPanel1 = new System.Windows.Forms.ModelPanel();
 			this.songContainerPanel = new System.Windows.Forms.Panel();
+			this.songPanel1 = new BrawlManagerLib.SongPanel();
 			this.listBoxSongs = new System.Windows.Forms.ListBox();
 			this.songContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.msBinPanel = new System.Windows.Forms.Panel();
@@ -73,6 +74,7 @@
 			this.sameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.moduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.useFullrelNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.separator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.selmapMarkPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.selmapMarkFormat = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,11 +97,7 @@
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.addmissingPAT0EntriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
-			this.downgradeMenSelmapMarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resizeAllPrevbasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.drawBlocksOverPrevbasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.drawOverPrevbasesBrawlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.drawOverPrevbasesPM35ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.prevbaseSize = new System.Windows.Forms.ToolStripMenuItem();
 			this.prevbaseOriginalSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,11 +117,9 @@
 			this.brawlBoxStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.brawlBoxcommon5scselmapToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.differentrelsForAlternateStagesPM36ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.brawlSplitter5 = new BrawlManagerLib.BrawlSplitter();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.brawlSplitter3 = new BrawlManagerLib.BrawlSplitter();
-			this.songPanel1 = new BrawlManagerLib.SongPanel();
 			this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
 			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
@@ -220,6 +216,16 @@
 			this.songContainerPanel.Size = new System.Drawing.Size(311, 131);
 			this.songContainerPanel.TabIndex = 7;
 			this.songContainerPanel.Visible = false;
+			// 
+			// songPanel1
+			// 
+			this.songPanel1.AllowDrop = true;
+			this.songPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.songPanel1.Location = new System.Drawing.Point(46, 0);
+			this.songPanel1.MinimumSize = new System.Drawing.Size(0, 131);
+			this.songPanel1.Name = "songPanel1";
+			this.songPanel1.Size = new System.Drawing.Size(265, 131);
+			this.songPanel1.TabIndex = 6;
 			// 
 			// listBoxSongs
 			// 
@@ -561,6 +567,16 @@
 			this.useFullrelNamesToolStripMenuItem.Text = "Use full .rel names";
 			this.useFullrelNamesToolStripMenuItem.Click += new System.EventHandler(this.useFullrelNamesToolStripMenuItem_Click);
 			// 
+			// differentrelsForAlternateStagesPM36ToolStripMenuItem
+			// 
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Checked = true;
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.CheckOnClick = true;
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Name = "differentrelsForAlternateStagesPM36ToolStripMenuItem";
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Text = "Different .rels for alternate stages (PM 3.6)";
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Click += new System.EventHandler(this.differentrelsForAlternateStagesPM36ToolStripMenuItem_Click);
+			// 
 			// separator2
 			// 
 			this.separator2.Name = "separator2";
@@ -646,9 +662,7 @@
             this.toolStripMenuItem1,
             this.addmissingPAT0EntriesToolStripMenuItem,
             this.toolStripMenuItem6,
-            this.downgradeMenSelmapMarksToolStripMenuItem,
-            this.resizeAllPrevbasesToolStripMenuItem,
-            this.drawBlocksOverPrevbasesToolStripMenuItem});
+            this.resizeAllPrevbasesToolStripMenuItem});
 			this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
 			this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.toolsToolStripMenuItem.Text = "Tools";
@@ -656,109 +670,78 @@
 			// snapshotPortraiticonToolStripMenuItem
 			// 
 			this.snapshotPortraiticonToolStripMenuItem.Name = "snapshotPortraiticonToolStripMenuItem";
-			this.snapshotPortraiticonToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+			this.snapshotPortraiticonToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
 			this.snapshotPortraiticonToolStripMenuItem.Text = "Snapshot -> portrait/icon";
 			this.snapshotPortraiticonToolStripMenuItem.Click += new System.EventHandler(this.snapshotPortraiticonToolStripMenuItem_Click);
 			// 
 			// repaintIconBorderToolStripMenuItem
 			// 
 			this.repaintIconBorderToolStripMenuItem.Name = "repaintIconBorderToolStripMenuItem";
-			this.repaintIconBorderToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+			this.repaintIconBorderToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
 			this.repaintIconBorderToolStripMenuItem.Text = "Repaint icon border ([)";
 			this.repaintIconBorderToolStripMenuItem.Click += new System.EventHandler(this.repaintIconBorderToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem2
 			// 
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(280, 6);
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(278, 6);
 			// 
 			// updateMumenumainToolStripMenuItem
 			// 
 			this.updateMumenumainToolStripMenuItem.Name = "updateMumenumainToolStripMenuItem";
-			this.updateMumenumainToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+			this.updateMumenumainToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
 			this.updateMumenumainToolStripMenuItem.Text = "Update mu_menumain";
 			this.updateMumenumainToolStripMenuItem.Click += new System.EventHandler(this.updateMumenumainToolStripMenuItem_Click);
 			// 
 			// updateScselcharacter2ToolStripMenuItem
 			// 
 			this.updateScselcharacter2ToolStripMenuItem.Name = "updateScselcharacter2ToolStripMenuItem";
-			this.updateScselcharacter2ToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+			this.updateScselcharacter2ToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
 			this.updateScselcharacter2ToolStripMenuItem.Text = "Update stage pics in sc_selcharacter2";
 			this.updateScselcharacter2ToolStripMenuItem.Click += new System.EventHandler(this.updateScselcharacter2ToolStripMenuItem_Click);
 			// 
 			// separator4
 			// 
 			this.separator4.Name = "separator4";
-			this.separator4.Size = new System.Drawing.Size(280, 6);
+			this.separator4.Size = new System.Drawing.Size(278, 6);
 			// 
 			// addMenSelmapMarksToolStripMenuItem
 			// 
 			this.addMenSelmapMarksToolStripMenuItem.Name = "addMenSelmapMarksToolStripMenuItem";
-			this.addMenSelmapMarksToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+			this.addMenSelmapMarksToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
 			this.addMenSelmapMarksToolStripMenuItem.Text = "Add SelmapMarks/SelchrMarks";
 			this.addMenSelmapMarksToolStripMenuItem.Click += new System.EventHandler(this.addMenSelmapMarksToolStripMenuItem_Click);
 			// 
 			// listMenSelmapMarkUsageToolStripMenuItem
 			// 
 			this.listMenSelmapMarkUsageToolStripMenuItem.Name = "listMenSelmapMarkUsageToolStripMenuItem";
-			this.listMenSelmapMarkUsageToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+			this.listMenSelmapMarkUsageToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
 			this.listMenSelmapMarkUsageToolStripMenuItem.Text = "List MenSelmapMark usage";
 			this.listMenSelmapMarkUsageToolStripMenuItem.Click += new System.EventHandler(this.listMenSelmapMarkUsageToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(280, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(278, 6);
 			// 
 			// addmissingPAT0EntriesToolStripMenuItem
 			// 
 			this.addmissingPAT0EntriesToolStripMenuItem.Name = "addmissingPAT0EntriesToolStripMenuItem";
-			this.addmissingPAT0EntriesToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+			this.addmissingPAT0EntriesToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
 			this.addmissingPAT0EntriesToolStripMenuItem.Text = "Prepare sc_selmap for expansion stages";
 			this.addmissingPAT0EntriesToolStripMenuItem.Click += new System.EventHandler(this.addmissingPAT0EntriesToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem6
 			// 
 			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-			this.toolStripMenuItem6.Size = new System.Drawing.Size(280, 6);
-			// 
-			// downgradeMenSelmapMarksToolStripMenuItem
-			// 
-			this.downgradeMenSelmapMarksToolStripMenuItem.Name = "downgradeMenSelmapMarksToolStripMenuItem";
-			this.downgradeMenSelmapMarksToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-			this.downgradeMenSelmapMarksToolStripMenuItem.Text = "Downgrade MenSelmapMarks to CMPR";
-			this.downgradeMenSelmapMarksToolStripMenuItem.Click += new System.EventHandler(this.downgradeMenSelmapMarksToolStripMenuItem_Click);
+			this.toolStripMenuItem6.Size = new System.Drawing.Size(278, 6);
 			// 
 			// resizeAllPrevbasesToolStripMenuItem
 			// 
 			this.resizeAllPrevbasesToolStripMenuItem.Name = "resizeAllPrevbasesToolStripMenuItem";
-			this.resizeAllPrevbasesToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+			this.resizeAllPrevbasesToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
 			this.resizeAllPrevbasesToolStripMenuItem.Text = "Resize all Prevbases";
 			this.resizeAllPrevbasesToolStripMenuItem.Click += new System.EventHandler(this.resizeAllPrevbasesToolStripMenuItem_Click);
-			// 
-			// drawBlocksOverPrevbasesToolStripMenuItem
-			// 
-			this.drawBlocksOverPrevbasesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.drawOverPrevbasesBrawlToolStripMenuItem,
-            this.drawOverPrevbasesPM35ToolStripMenuItem});
-			this.drawBlocksOverPrevbasesToolStripMenuItem.Name = "drawBlocksOverPrevbasesToolStripMenuItem";
-			this.drawBlocksOverPrevbasesToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
-			this.drawBlocksOverPrevbasesToolStripMenuItem.Text = "Draw solid color over Prevbase edge";
-			this.drawBlocksOverPrevbasesToolStripMenuItem.Click += new System.EventHandler(this.drawBlocksOverPrevbasesToolStripMenuItem_Click);
-			// 
-			// drawOverPrevbasesBrawlToolStripMenuItem
-			// 
-			this.drawOverPrevbasesBrawlToolStripMenuItem.Name = "drawOverPrevbasesBrawlToolStripMenuItem";
-			this.drawOverPrevbasesBrawlToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-			this.drawOverPrevbasesBrawlToolStripMenuItem.Text = "Brawl";
-			this.drawOverPrevbasesBrawlToolStripMenuItem.Click += new System.EventHandler(this.drawOverPrevbasesBrawlToolStripMenuItem_Click);
-			// 
-			// drawOverPrevbasesPM35ToolStripMenuItem
-			// 
-			this.drawOverPrevbasesPM35ToolStripMenuItem.Name = "drawOverPrevbasesPM35ToolStripMenuItem";
-			this.drawOverPrevbasesPM35ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-			this.drawOverPrevbasesPM35ToolStripMenuItem.Text = "PM 3.5";
-			this.drawOverPrevbasesPM35ToolStripMenuItem.Click += new System.EventHandler(this.drawOverPrevbasesPM35ToolStripMenuItem_Click);
 			// 
 			// resizeToolStripMenuItem
 			// 
@@ -913,26 +896,6 @@
 			this.panel2.Size = new System.Drawing.Size(311, 477);
 			this.panel2.TabIndex = 8;
 			// 
-			// panel1
-			// 
-			this.panel1.Controls.Add(this.msBinPanel);
-			this.panel1.Controls.Add(this.stageInfoControl1);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(311, 150);
-			this.panel1.TabIndex = 8;
-			// 
-			// differentrelsForAlternateStagesPM36ToolStripMenuItem
-			// 
-			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Checked = true;
-			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.CheckOnClick = true;
-			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Name = "differentrelsForAlternateStagesPM36ToolStripMenuItem";
-			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
-			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Text = "Different .rels for alternate stages (PM 3.6)";
-			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Click += new System.EventHandler(this.differentrelsForAlternateStagesPM36ToolStripMenuItem_Click);
-			// 
 			// brawlSplitter5
 			// 
 			this.brawlSplitter5.ControlToHide = this.panel1;
@@ -943,6 +906,16 @@
 			this.brawlSplitter5.TabIndex = 2;
 			this.brawlSplitter5.TabStop = false;
 			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.msBinPanel);
+			this.panel1.Controls.Add(this.stageInfoControl1);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(0, 0);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(311, 150);
+			this.panel1.TabIndex = 8;
+			// 
 			// brawlSplitter3
 			// 
 			this.brawlSplitter3.ControlToHide = this.songContainerPanel;
@@ -952,16 +925,6 @@
 			this.brawlSplitter3.Size = new System.Drawing.Size(311, 8);
 			this.brawlSplitter3.TabIndex = 0;
 			this.brawlSplitter3.TabStop = false;
-			// 
-			// songPanel1
-			// 
-			this.songPanel1.AllowDrop = true;
-			this.songPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.songPanel1.Location = new System.Drawing.Point(46, 0);
-			this.songPanel1.MinimumSize = new System.Drawing.Size(0, 131);
-			this.songPanel1.Name = "songPanel1";
-			this.songPanel1.Size = new System.Drawing.Size(265, 131);
-			this.songPanel1.TabIndex = 6;
 			// 
 			// brawlSplitter1
 			// 
@@ -1073,7 +1036,6 @@
 		private System.Windows.Forms.ToolStripMenuItem updateScselcharacter2ToolStripMenuItem;
 		private System.Windows.Forms.ContextMenuStrip stageContextMenu;
 		private System.Windows.Forms.ToolStripMenuItem exportpacrelToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem downgradeMenSelmapMarksToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem selmapMarkFormat;
 		private System.Windows.Forms.ToolStripMenuItem selmapMarkFormatIA4;
 		private System.Windows.Forms.ToolStripMenuItem selmapMarkFormatI4;
@@ -1121,15 +1083,12 @@
 		private System.Windows.Forms.ToolStripMenuItem saveInfopacToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem common5scselmapToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exportAllMiscData80ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem drawBlocksOverPrevbasesToolStripMenuItem;
         private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.ToolStripMenuItem brawlBoxToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem brawlBoxStageToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem brawlBoxcommon5scselmapToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem loadCustomSSSToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
-		private System.Windows.Forms.ToolStripMenuItem drawOverPrevbasesBrawlToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem drawOverPrevbasesPM35ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem loadStagepacsToolStripMenuItem;
         private BrawlManagerLib.BrawlSplitter brawlSplitter1;
         private BrawlManagerLib.BrawlSplitter brawlSplitter2;

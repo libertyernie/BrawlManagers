@@ -712,16 +712,6 @@ namespace BrawlStageManager {
 			fontSettings = NameCreator.selectFont(fontSettings) ?? fontSettings;
 		}
 
-		public void DowngradeMenSelmapMark(int i) {
-			TextureContainer texs = get_icons(i);
-			if (texs == null || texs.selmap_mark.tex0 == null) return;
-			TEX0Node tex0 = texs.selmap_mark.tex0;
-			if (tex0.Format != WiiPixelFormat.IA4) return;
-
-			tex0.ReplaceWithCMPR(BitmapUtilities.AlphaSwap(tex0.GetImage(0)));
-			UpdateImage();
-		}
-
 		public string MenSelmapMarkUsageReport() {
 			Dictionary<string, int> dict = new Dictionary<string, int>();
 			string pathToPAT0TextureNode = "MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnamelogoM";
@@ -784,49 +774,6 @@ namespace BrawlStageManager {
 					(msBinPath != null ? "(Song titles copied too.) " : "") +
 					(AutoSSS == null ? "Without a Custom SSS code, " : "Based on your current SSS code, ") +
 					absent + " will be missing; and Menu will be added to the end of screen 2." + warn);
-			}
-		}
-
-		internal void DrawBlocksOverPrevbases(Size newSize, bool pm = false) {
-			if (sc_selmap == null) return;
-
-			Stream stream = pm
-				? Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlStageManager.blockoutpm.png")
-				: Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlStageManager.blockout.png");
-			if (stream == null) return;
-			Image blockout = Image.FromStream(stream);
-
-			var prevbases = from c in sc_selmap.FindChild("MiscData[80]/Textures(NW4R)", false).Children
-							where c is TEX0Node && c.Name.Contains("MenSelmapPrevbase")
-							select (TEX0Node)c;
-			int i = 0;
-			foreach (TEX0Node node in prevbases) {
-				Bitmap image = node.GetImage(0);
-				if (image.Width <= 4 && image.Height <= 4) {
-					continue;
-				}
-
-				string file = TempFiles.Create(".png");
-				image = BitmapUtilities.Combine(image, new Bitmap(blockout, image.Size));
-				if (useTextureConverter) {
-					image.Save(file);
-
-					TextureConverterDialog d = new TextureConverterDialog();
-					d.ImageSource = file;
-					if (image.Width > newSize.Width || image.Height > newSize.Height) d.InitialSize = newSize;
-					if (d.ShowDialog(null, node) == DialogResult.OK) {
-						node.IsDirty = true;
-						Console.WriteLine("Resized " + node);
-						i++;
-					} else if (MessageBox.Show(this, "Stop resizing textures here?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
-						break;
-					}
-				} else {
-					image.Save(file);
-					node.Replace(file);
-					Console.WriteLine("Resized " + node);
-					i++;
-				}
 			}
 		}
 

@@ -878,15 +878,6 @@ namespace BrawlStageManager {
 				MessageBox.Show("Save the common5/sc_selmap file and restart the program for the changes to take effect.");
 			}
 		}
-		private void downgradeMenSelmapMarksToolStripMenuItem_Click(object sender, EventArgs e) {
-			if (MessageBox.Show(this, "Are you sure you want to convert all IA4 MenSelmapMarks currently in use to CMPR?" +
-			"This should cut their filesize in half.", "Confirm", MessageBoxButtons.OKCancel) == DialogResult.OK) {
-				foreach (FileInfo f in listBox1.Items) {
-					int i = portraitViewer1.BestSSS.IconForStage(StageIDMap.StageIDForPac(f.Name));
-					portraitViewer1.DowngradeMenSelmapMark(i);
-				}
-			}
-		}
 		private void resizeAllPrevbasesToolStripMenuItem_Click(object sender, EventArgs e) {
 			var dialog = new EnterSizeDialog() {
 				SizeEntry = portraitViewer1.prevbaseResizeTo ?? new Size(176, 176)
@@ -894,28 +885,6 @@ namespace BrawlStageManager {
 			if (dialog.ShowDialog() == DialogResult.OK) {
 				portraitViewer1.ResizeAllPrevbases(dialog.SizeEntry);
 			}
-		}
-
-		private void drawOverPrevbasesBrawlToolStripMenuItem_Click(object sender, EventArgs e) {
-			var dialog = new EnterSizeDialog() {
-				SizeEntry = portraitViewer1.prevbaseResizeTo ?? new Size(176, 176)
-			};
-			if (dialog.ShowDialog() == DialogResult.OK) {
-				portraitViewer1.DrawBlocksOverPrevbases(dialog.SizeEntry);
-			}
-		}
-
-		private void drawOverPrevbasesPM35ToolStripMenuItem_Click(object sender, EventArgs e) {
-			var dialog = new EnterSizeDialog() {
-				SizeEntry = portraitViewer1.prevbaseResizeTo ?? new Size(176, 176)
-			};
-			if (dialog.ShowDialog() == DialogResult.OK) {
-				portraitViewer1.DrawBlocksOverPrevbases(dialog.SizeEntry, pm: true);
-			}
-		}
-
-		private void drawBlocksOverPrevbasesToolStripMenuItem_Click(object sender, EventArgs e) {
-			
 		}
 		
 		private void switchPrevbaseSize(object sender, EventArgs e) {
