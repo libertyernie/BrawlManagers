@@ -9,9 +9,15 @@ using System.Windows.Forms;
 
 namespace BrawlStageManager.SingleUseDialogs {
 	public partial class BatchAddPAT0Dialog : Form {
-		public bool UseSameMarksForAll {
+		public bool UseSameSelchrMarksForAll {
 			get {
 				return radioCopyFromPrevious.Checked;
+			}
+		}
+
+		public bool UseSameSelmapMarksForAll {
+			get {
+				return radioCopyFromPrevious.Checked || radioNewSelchrSameSelmap.Checked;
 			}
 		}
 

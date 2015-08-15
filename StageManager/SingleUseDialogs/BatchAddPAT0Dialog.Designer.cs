@@ -29,11 +29,12 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.radioOneEach = new System.Windows.Forms.RadioButton();
-			this.radioCopyFromPrevious = new System.Windows.Forms.RadioButton();
 			this.label6 = new System.Windows.Forms.Label();
 			this.OK = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
+			this.radioCopyFromPrevious = new System.Windows.Forms.RadioButton();
 			this.lblVSeparator = new System.Windows.Forms.Label();
+			this.radioNewSelchrSameSelmap = new System.Windows.Forms.RadioButton();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -97,21 +98,11 @@
 			this.radioOneEach.Text = "One for each stage\r\n(e.g. MenSelchrMark.32)";
 			this.radioOneEach.UseVisualStyleBackColor = true;
 			// 
-			// radioCopyFromPrevious
-			// 
-			this.radioCopyFromPrevious.AutoSize = true;
-			this.radioCopyFromPrevious.Location = new System.Drawing.Point(164, 178);
-			this.radioCopyFromPrevious.Name = "radioCopyFromPrevious";
-			this.radioCopyFromPrevious.Size = new System.Drawing.Size(141, 30);
-			this.radioCopyFromPrevious.TabIndex = 6;
-			this.radioCopyFromPrevious.TabStop = true;
-			this.radioCopyFromPrevious.Text = "Use MenSelchrMark.20\r\nand MenSelmapMark.01";
-			this.radioCopyFromPrevious.UseVisualStyleBackColor = true;
-			// 
 			// label6
 			// 
+			this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(12, 211);
+			this.label6.Location = new System.Drawing.Point(12, 247);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(198, 13);
 			this.label6.TabIndex = 7;
@@ -119,8 +110,9 @@
 			// 
 			// OK
 			// 
+			this.OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.OK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.OK.Location = new System.Drawing.Point(247, 226);
+			this.OK.Location = new System.Drawing.Point(247, 262);
 			this.OK.Name = "OK";
 			this.OK.Size = new System.Drawing.Size(75, 23);
 			this.OK.TabIndex = 9;
@@ -129,22 +121,46 @@
 			// 
 			// btnCancel
 			// 
+			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(166, 226);
+			this.btnCancel.Location = new System.Drawing.Point(166, 262);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 8;
 			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
 			// 
+			// radioCopyFromPrevious
+			// 
+			this.radioCopyFromPrevious.AutoSize = true;
+			this.radioCopyFromPrevious.Location = new System.Drawing.Point(164, 178);
+			this.radioCopyFromPrevious.Name = "radioCopyFromPrevious";
+			this.radioCopyFromPrevious.Size = new System.Drawing.Size(169, 30);
+			this.radioCopyFromPrevious.TabIndex = 6;
+			this.radioCopyFromPrevious.TabStop = true;
+			this.radioCopyFromPrevious.Text = "Use MenSelchrMark.20\r\nand MenSelmapMark.01 for all";
+			this.radioCopyFromPrevious.UseVisualStyleBackColor = true;
+			// 
 			// lblVSeparator
 			// 
+			this.lblVSeparator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.lblVSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.lblVSeparator.Location = new System.Drawing.Point(152, 47);
 			this.lblVSeparator.Name = "lblVSeparator";
-			this.lblVSeparator.Size = new System.Drawing.Size(3, 161);
+			this.lblVSeparator.Size = new System.Drawing.Size(3, 197);
 			this.lblVSeparator.TabIndex = 10;
-			this.lblVSeparator.Text = "label7";
+			// 
+			// radioNewSelchrSameSelmap
+			// 
+			this.radioNewSelchrSameSelmap.AutoSize = true;
+			this.radioNewSelchrSameSelmap.Location = new System.Drawing.Point(164, 214);
+			this.radioNewSelchrSameSelmap.Name = "radioNewSelchrSameSelmap";
+			this.radioNewSelchrSameSelmap.Size = new System.Drawing.Size(168, 30);
+			this.radioNewSelchrSameSelmap.TabIndex = 11;
+			this.radioNewSelchrSameSelmap.TabStop = true;
+			this.radioNewSelchrSameSelmap.Text = "One MenSelchrMark for each;\r\nuse MenSelmapMark.01 for all";
+			this.radioNewSelchrSameSelmap.UseVisualStyleBackColor = true;
 			// 
 			// BatchAddPAT0Dialog
 			// 
@@ -152,7 +168,8 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(334, 261);
+			this.ClientSize = new System.Drawing.Size(334, 297);
+			this.Controls.Add(this.radioNewSelchrSameSelmap);
 			this.Controls.Add(this.lblVSeparator);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.OK);
@@ -179,10 +196,11 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.RadioButton radioOneEach;
-		private System.Windows.Forms.RadioButton radioCopyFromPrevious;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button OK;
 		private System.Windows.Forms.Button btnCancel;
+		private System.Windows.Forms.RadioButton radioCopyFromPrevious;
 		private System.Windows.Forms.Label lblVSeparator;
+		private System.Windows.Forms.RadioButton radioNewSelchrSameSelmap;
 	}
 }

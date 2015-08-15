@@ -145,8 +145,8 @@ namespace BrawlManagerLib {
 
 			SongsByStage = new Dictionary<byte, Song>();
 
-			if (index < 0 && data.Length > 0) {
-				MessageBox.Show("No custom SSS code found. A default code will be used.");
+			if (index < 0) {
+				if (data.Length > 0) MessageBox.Show("No custom SSS code found. A default code will be used.");
 				DataBefore = gctheader.ToArray();
 				sss1 = ByteUtilities.StringToByteArray("00010203 04050709 080A0B0C 0D0E0F10 11141516 1A191217 0618131D 1E1B1C");
 				sss2 = ByteUtilities.StringToByteArray("1F202122 23242526 2728");

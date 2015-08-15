@@ -870,9 +870,9 @@ namespace BrawlStageManager {
 			if (dialog.ShowDialog(this) == DialogResult.OK) {
 				//TODO ask if they want different MenSelchrMark or MenSelmapMark for each stage
 				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnamelogoM",
-					dialog.UseSameMarksForAll ? "MenSelmapMark.01" : null);
+					dialog.UseSameSelmapMarksForAll ? "MenSelmapMark.01" : null);
 				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/lambert113",
-					dialog.UseSameMarksForAll ? "MenSelchrMark.20" : null);
+					dialog.UseSameSelchrMarksForAll ? "MenSelchrMark.20" : null);
 				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/basebgM");
 				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameM");
 				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameshadowM");
