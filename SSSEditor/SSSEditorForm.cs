@@ -85,15 +85,21 @@ namespace SSSEditor {
 			}
 
             PairListModel model = new PairListModel();
-            for (int i = 0; i < model.icons.Length; i++) {
-                var tex = new TextureContainer(md80, i);
-                if (tex.icon_tex0 != null) {
-                    using (MemoryStream ms = new MemoryStream()) {
-                        tex.icon_tex0.GetImage(0).Save(ms, ImageFormat.Png);
-                        model.icons[i] = ms.ToArray();
-                    }
-                }
-            }
+			for (int i = 0; i < model.songsByStage.Length; i++) {
+				Song s;
+				model.songsByStage[i] = sss.TryGetSong((byte)i, out s)
+					? s
+					: null;
+			}
+			for (int i = 0; i < model.icons.Length; i++) {
+				var tex = new TextureContainer(md80, i);
+				if (tex.icon_tex0 != null) {
+					using (MemoryStream ms = new MemoryStream()) {
+						tex.icon_tex0.GetImage(0).Save(ms, ImageFormat.Png);
+						model.icons[i] = ms.ToArray();
+					}
+				}
+			}
             for (int i=0; i<definitions.Count; i++) {
                 StagePair pair = definitions[i];
                 model.pairs.Add(new ModelPair {

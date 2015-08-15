@@ -225,7 +225,7 @@ namespace BrawlManagerLib {
 				sss1.Length, sss2.Length, sss3.Length / 2);
 		}
 
-		public bool TryGetValue(byte key, out Song value) {
+		public bool TryGetSong(byte key, out Song value) {
 			return SongsByStage.TryGetValue(key, out value);
 		}
 	}

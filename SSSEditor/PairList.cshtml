@@ -12,6 +12,8 @@
 
         var icons = [@Raw(Model.iconsJSON)][0];
 
+        var songsByStage = [@Raw(Model.songsByStageJSON)][0];
+
         var newRowsAdded = 0;
 
         function getDefinitions() {
@@ -56,6 +58,9 @@
                 var iconId = parseInt($(".iconIDDisplay", e).text(), 16);
                 $("img.icon", e).attr("src", "data:image/png;base64," + icons[iconId]);
                 $("select.stagename", e).val(stageId);
+                if (songsByStage[stageId]) {
+                    $(".songFilename", e).text(songsByStage[stageId].Filename);
+                }
             });
 
             $("#pairDefinitions .stageRow").each(function (i, e) {
@@ -84,6 +89,7 @@
                 $("." + defClassName + " .stageIDDisplay").text(str);
                 $("." + defClassName + " input.stageID").val(stageId);
                 $("." + defClassName + " select.stagename").val(stageId);
+                $("." + defClassName + " .songFilename").text(songsByStage[stageId] ? songsByStage[stageId].Filename : "");
             });
 
             $(".columns").on("change", "input.defIndex", function () {
@@ -110,6 +116,7 @@
                     thisRow.find(".stageIDDisplay").text(defRow.find(".stageIDDisplay").text());
                     thisRow.find("input.stageID").val(defRow.find("input.stageID").val());
                     thisRow.find("select.stagename").val(defRow.find("select.stagename").val());
+                    thisRow.find(".songFilename").text(defRow.find(".songFilename").text());
 
                     // Tie to corresponding first-column entry
                     var newDefClassName = defRow[0].className.match(/def[^ ]*/)[0];
@@ -331,6 +338,7 @@
                         <img width="64" height="56" class="icon" />
                         <span class="indexDisplay">@i.</span>
                         <select class="stagename"></select>
+                        <span class="songFilename"></span>
                         <input type="button" class="delete" value="x" />
                         <br />
                         <input class="defIndex" value="@i" disabled />
@@ -357,6 +365,7 @@
                         <img width="64" height="56" class="icon" />
                         <span class="indexDisplay">@i.</span>
                         <select class="stagename" disabled></select>
+                        <span class="songFilename"></span>
                         <input type="button" class="delete" value="x" />
                         <br />
                         <input class="defIndex" value="@defID" />
@@ -383,6 +392,7 @@
                         <img width="64" height="56" class="icon" />
                         <span class="indexDisplay">@i.</span>
                         <select class="stagename" disabled></select>
+                        <span class="songFilename"></span>
                         <input type="button" class="delete" value="x" />
                         <br />
                         <input class="defIndex" value="@defID" />

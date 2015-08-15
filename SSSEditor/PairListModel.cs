@@ -30,13 +30,15 @@ namespace SSSEditor {
 
     public class PairListModel {
         public ReadOnlyCollection<StageIDMap.Stage> stages { get; set; }
-        public byte[][] icons { get; set; }
+		public byte[][] icons { get; set; }
+		public Song[] songsByStage { get; set; }
         public List<ModelPair> pairs { get; set; }
 		public byte[] screen1 { get; set; }
 		public byte[] screen2 { get; set; }
 
         public PairListModel() {
             icons = new byte[256][];
+			songsByStage = new Song[256];
             pairs = new List<ModelPair>();
 			stages = StageIDMap.Stages;
         }
@@ -47,12 +49,18 @@ namespace SSSEditor {
             }
         }
 
+		public string songsByStageJSON {
+			get {
+				return JsonConvert.SerializeObject(songsByStage);
+			}
+		}
+
 		public static ReadOnlyCollection<KeyValuePair<byte, string>> StagesByID {
 			get {
 				return StageIDMap.StagesByID;
 			}
 		}
-    }
+	}
 
     public class ModelPair {
         public int origId { get; set; }
