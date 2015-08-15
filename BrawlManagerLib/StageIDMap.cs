@@ -194,11 +194,13 @@ namespace BrawlManagerLib {
 			}
 		}
 
-		public static string RelNameForPac(string filename) {
+		public static string RelNameForPac(string filename, bool differentForAlternateStage) {
 			string asl_append = "";
-			string lastsix = ("++++++" + filename).Substring(filename.Length, 6);
-			if (lastsix[0] == '_') {
-				asl_append = "_" + lastsix[1];
+			if (differentForAlternateStage) {
+				string lastsix = ("++++++" + filename).Substring(filename.Length, 6);
+				if (lastsix[0] == '_') {
+					asl_append = "_" + lastsix[1];
+				}
 			}
 			if (filename.StartsWith("STGCUSTOM", StringComparison.InvariantCultureIgnoreCase)) {
 				return "st_custom" + filename.Substring(9, 2) + asl_append + ".rel";

@@ -33,7 +33,6 @@
 			this.clbTextures = new System.Windows.Forms.CheckedListBox();
 			this.modelPanel1 = new System.Windows.Forms.ModelPanel();
 			this.songContainerPanel = new System.Windows.Forms.Panel();
-			this.songPanel1 = new BrawlManagerLib.SongPanel();
 			this.listBoxSongs = new System.Windows.Forms.ListBox();
 			this.songContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.msBinPanel = new System.Windows.Forms.Panel();
@@ -120,11 +119,13 @@
 			this.brawlBoxStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.brawlBoxcommon5scselmapToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.brawlSplitter5 = new BrawlManagerLib.BrawlSplitter();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.brawlSplitter5 = new BrawlManagerLib.BrawlSplitter();
 			this.brawlSplitter3 = new BrawlManagerLib.BrawlSplitter();
+			this.songPanel1 = new BrawlManagerLib.SongPanel();
 			this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
+			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
@@ -219,16 +220,6 @@
 			this.songContainerPanel.Size = new System.Drawing.Size(311, 131);
 			this.songContainerPanel.TabIndex = 7;
 			this.songContainerPanel.Visible = false;
-			// 
-			// songPanel1
-			// 
-			this.songPanel1.AllowDrop = true;
-			this.songPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.songPanel1.Location = new System.Drawing.Point(46, 0);
-			this.songPanel1.MinimumSize = new System.Drawing.Size(0, 131);
-			this.songPanel1.Name = "songPanel1";
-			this.songPanel1.Size = new System.Drawing.Size(265, 131);
-			this.songPanel1.TabIndex = 6;
 			// 
 			// listBoxSongs
 			// 
@@ -462,6 +453,7 @@
             this.separator1,
             this.moduleFileDirectoryToolStripMenuItem,
             this.useFullrelNamesToolStripMenuItem,
+            this.differentrelsForAlternateStagesPM36ToolStripMenuItem,
             this.separator2,
             this.selmapMarkPreviewToolStripMenuItem,
             this.selmapMarkFormat,
@@ -477,7 +469,7 @@
 			this.useTextureConverterToolStripMenuItem.CheckOnClick = true;
 			this.useTextureConverterToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.useTextureConverterToolStripMenuItem.Name = "useTextureConverterToolStripMenuItem";
-			this.useTextureConverterToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.useTextureConverterToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.useTextureConverterToolStripMenuItem.Text = "Use Texture Converter";
 			this.useTextureConverterToolStripMenuItem.Click += new System.EventHandler(this.useTextureConverterToolStripMenuItem_Click);
 			// 
@@ -485,21 +477,21 @@
 			// 
 			this.useAFixedStageListToolStripMenuItem.CheckOnClick = true;
 			this.useAFixedStageListToolStripMenuItem.Name = "useAFixedStageListToolStripMenuItem";
-			this.useAFixedStageListToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.useAFixedStageListToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.useAFixedStageListToolStripMenuItem.Text = "List stages in SSS order";
 			this.useAFixedStageListToolStripMenuItem.Click += new System.EventHandler(this.useAFixedStageListToolStripMenuItem_Click);
 			// 
 			// backgroundColorToolStripMenuItem
 			// 
 			this.backgroundColorToolStripMenuItem.Name = "backgroundColorToolStripMenuItem";
-			this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.backgroundColorToolStripMenuItem.Text = "Right panel BG color...";
 			this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem5
 			// 
 			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-			this.toolStripMenuItem5.Size = new System.Drawing.Size(190, 6);
+			this.toolStripMenuItem5.Size = new System.Drawing.Size(291, 6);
 			// 
 			// loadStagepacsToolStripMenuItem
 			// 
@@ -507,7 +499,7 @@
 			this.loadStagepacsToolStripMenuItem.CheckOnClick = true;
 			this.loadStagepacsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.loadStagepacsToolStripMenuItem.Name = "loadStagepacsToolStripMenuItem";
-			this.loadStagepacsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.loadStagepacsToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.loadStagepacsToolStripMenuItem.Text = "Load stage .pacs";
 			this.loadStagepacsToolStripMenuItem.Click += new System.EventHandler(this.loadStagepacsToolStripMenuItem_Click);
 			// 
@@ -517,7 +509,7 @@
 			this.renderModels.CheckOnClick = true;
 			this.renderModels.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.renderModels.Name = "renderModels";
-			this.renderModels.Size = new System.Drawing.Size(193, 22);
+			this.renderModels.Size = new System.Drawing.Size(294, 22);
 			this.renderModels.Text = "Render models";
 			// 
 			// loadbrstmsToolStripMenuItem
@@ -526,13 +518,13 @@
 			this.loadbrstmsToolStripMenuItem.CheckOnClick = true;
 			this.loadbrstmsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.loadbrstmsToolStripMenuItem.Name = "loadbrstmsToolStripMenuItem";
-			this.loadbrstmsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.loadbrstmsToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.loadbrstmsToolStripMenuItem.Text = "Load .brstms";
 			// 
 			// separator1
 			// 
 			this.separator1.Name = "separator1";
-			this.separator1.Size = new System.Drawing.Size(190, 6);
+			this.separator1.Size = new System.Drawing.Size(291, 6);
 			// 
 			// moduleFileDirectoryToolStripMenuItem
 			// 
@@ -540,7 +532,7 @@
             this.sameToolStripMenuItem,
             this.moduleToolStripMenuItem});
 			this.moduleFileDirectoryToolStripMenuItem.Name = "moduleFileDirectoryToolStripMenuItem";
-			this.moduleFileDirectoryToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.moduleFileDirectoryToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.moduleFileDirectoryToolStripMenuItem.Text = "Module file directory";
 			// 
 			// sameToolStripMenuItem
@@ -565,14 +557,14 @@
 			this.useFullrelNamesToolStripMenuItem.CheckOnClick = true;
 			this.useFullrelNamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.useFullrelNamesToolStripMenuItem.Name = "useFullrelNamesToolStripMenuItem";
-			this.useFullrelNamesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.useFullrelNamesToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.useFullrelNamesToolStripMenuItem.Text = "Use full .rel names";
 			this.useFullrelNamesToolStripMenuItem.Click += new System.EventHandler(this.useFullrelNamesToolStripMenuItem_Click);
 			// 
 			// separator2
 			// 
 			this.separator2.Name = "separator2";
-			this.separator2.Size = new System.Drawing.Size(190, 6);
+			this.separator2.Size = new System.Drawing.Size(291, 6);
 			// 
 			// selmapMarkPreviewToolStripMenuItem
 			// 
@@ -580,7 +572,7 @@
 			this.selmapMarkPreviewToolStripMenuItem.CheckOnClick = true;
 			this.selmapMarkPreviewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.selmapMarkPreviewToolStripMenuItem.Name = "selmapMarkPreviewToolStripMenuItem";
-			this.selmapMarkPreviewToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.selmapMarkPreviewToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.selmapMarkPreviewToolStripMenuItem.Text = "Portrait previews";
 			this.selmapMarkPreviewToolStripMenuItem.Click += new System.EventHandler(this.selmapMarkPreviewToolStripMenuItem_Click);
 			// 
@@ -593,7 +585,7 @@
             this.selmapMarkFormatCMPR,
             this.selmapMarkFormatExisting});
 			this.selmapMarkFormat.Name = "selmapMarkFormat";
-			this.selmapMarkFormat.Size = new System.Drawing.Size(193, 22);
+			this.selmapMarkFormat.Size = new System.Drawing.Size(294, 22);
 			this.selmapMarkFormat.Text = "SelmapMark format";
 			// 
 			// selmapMarkFormatIA4
@@ -631,12 +623,12 @@
 			// separator3
 			// 
 			this.separator3.Name = "separator3";
-			this.separator3.Size = new System.Drawing.Size(190, 6);
+			this.separator3.Size = new System.Drawing.Size(291, 6);
 			// 
 			// frontStnameGenerationFontToolStripMenuItem
 			// 
 			this.frontStnameGenerationFontToolStripMenuItem.Name = "frontStnameGenerationFontToolStripMenuItem";
-			this.frontStnameGenerationFontToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+			this.frontStnameGenerationFontToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.frontStnameGenerationFontToolStripMenuItem.Text = "FrontStname font...";
 			this.frontStnameGenerationFontToolStripMenuItem.Click += new System.EventHandler(this.frontStnameGenerationFontToolStripMenuItem_Click);
 			// 
@@ -921,16 +913,6 @@
 			this.panel2.Size = new System.Drawing.Size(311, 477);
 			this.panel2.TabIndex = 8;
 			// 
-			// brawlSplitter5
-			// 
-			this.brawlSplitter5.ControlToHide = this.panel1;
-			this.brawlSplitter5.Dock = System.Windows.Forms.DockStyle.Top;
-			this.brawlSplitter5.Location = new System.Drawing.Point(0, 150);
-			this.brawlSplitter5.Name = "brawlSplitter5";
-			this.brawlSplitter5.Size = new System.Drawing.Size(311, 8);
-			this.brawlSplitter5.TabIndex = 2;
-			this.brawlSplitter5.TabStop = false;
-			// 
 			// panel1
 			// 
 			this.panel1.Controls.Add(this.msBinPanel);
@@ -941,15 +923,25 @@
 			this.panel1.Size = new System.Drawing.Size(311, 150);
 			this.panel1.TabIndex = 8;
 			// 
-			// stageInfoControl1
+			// differentrelsForAlternateStagesPM36ToolStripMenuItem
 			// 
-			this.stageInfoControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.stageInfoControl1.Location = new System.Drawing.Point(0, 0);
-			this.stageInfoControl1.Name = "stageInfoControl1";
-			this.stageInfoControl1.RelFile = null;
-			this.stageInfoControl1.Size = new System.Drawing.Size(311, 56);
-			this.stageInfoControl1.TabIndex = 0;
-			this.stageInfoControl1.UseRelDescription = false;
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Checked = true;
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.CheckOnClick = true;
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Name = "differentrelsForAlternateStagesPM36ToolStripMenuItem";
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Text = "Different .rels for alternate stages (PM 3.6)";
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Click += new System.EventHandler(this.differentrelsForAlternateStagesPM36ToolStripMenuItem_Click);
+			// 
+			// brawlSplitter5
+			// 
+			this.brawlSplitter5.ControlToHide = this.panel1;
+			this.brawlSplitter5.Dock = System.Windows.Forms.DockStyle.Top;
+			this.brawlSplitter5.Location = new System.Drawing.Point(0, 150);
+			this.brawlSplitter5.Name = "brawlSplitter5";
+			this.brawlSplitter5.Size = new System.Drawing.Size(311, 8);
+			this.brawlSplitter5.TabIndex = 2;
+			this.brawlSplitter5.TabStop = false;
 			// 
 			// brawlSplitter3
 			// 
@@ -961,6 +953,16 @@
 			this.brawlSplitter3.TabIndex = 0;
 			this.brawlSplitter3.TabStop = false;
 			// 
+			// songPanel1
+			// 
+			this.songPanel1.AllowDrop = true;
+			this.songPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.songPanel1.Location = new System.Drawing.Point(46, 0);
+			this.songPanel1.MinimumSize = new System.Drawing.Size(0, 131);
+			this.songPanel1.Name = "songPanel1";
+			this.songPanel1.Size = new System.Drawing.Size(265, 131);
+			this.songPanel1.TabIndex = 6;
+			// 
 			// brawlSplitter1
 			// 
 			this.brawlSplitter1.ControlToHide = this.splitContainerLeft;
@@ -969,6 +971,16 @@
 			this.brawlSplitter1.Size = new System.Drawing.Size(8, 477);
 			this.brawlSplitter1.TabIndex = 8;
 			this.brawlSplitter1.TabStop = false;
+			// 
+			// stageInfoControl1
+			// 
+			this.stageInfoControl1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.stageInfoControl1.Location = new System.Drawing.Point(0, 0);
+			this.stageInfoControl1.Name = "stageInfoControl1";
+			this.stageInfoControl1.RelFile = null;
+			this.stageInfoControl1.Size = new System.Drawing.Size(311, 56);
+			this.stageInfoControl1.TabIndex = 0;
+			this.stageInfoControl1.UseRelDescription = false;
 			// 
 			// brawlSplitter2
 			// 
@@ -1124,6 +1136,7 @@
 		private BrawlManagerLib.BrawlSplitter brawlSplitter5;
         private BrawlManagerLib.BrawlSplitter brawlSplitter3;
 		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.ToolStripMenuItem differentrelsForAlternateStagesPM36ToolStripMenuItem;
 
 
 

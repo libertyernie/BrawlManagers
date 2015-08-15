@@ -229,6 +229,12 @@ namespace BrawlStageManager {
 			if (filename.StartsWith("st_custom")) {
 				return 0;
 			}
+
+			int L = filename.Length;
+			if (filename[L - 6] == '_') {
+				filename = filename.Substring(0, L - 6) + ".rel";
+			}
+
 			foreach (StageModuleConverter.Stage s in StageModuleConverter.StageList) {
 				if (s.Filename == filename) {
 					return s.ID;
@@ -283,7 +289,7 @@ namespace BrawlStageManager {
 				relButton.Visible = false;
 			} else {
 				relName.ForeColor = Color.Red;
-				relInfo.Text = " (mismatch with filename)";
+				relInfo.Text = " (over ID " + currentID + ", should be " + idealID + ")";
 				relButton.Visible = true;
 			}
 		}

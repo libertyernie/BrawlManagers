@@ -83,6 +83,7 @@
 			this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(3);
 			this.flowLayoutPanel2.Size = new System.Drawing.Size(300, 100);
 			this.flowLayoutPanel2.TabIndex = 0;
+			this.flowLayoutPanel2.WrapContents = false;
 			// 
 			// relFilename
 			// 
@@ -137,6 +138,7 @@
 			this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(300, 100);
 			this.flowLayoutPanel1.TabIndex = 0;
+			this.flowLayoutPanel1.WrapContents = false;
 			// 
 			// stageFilename
 			// 

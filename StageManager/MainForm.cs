@@ -236,7 +236,7 @@ namespace BrawlStageManager {
 			_rootPath = fi.FullName;
 			if (renderModels.Checked) modelPanel1.ClearAll();
 
-			string relname = StageIDMap.RelNameForPac(fi.Name);
+			string relname = StageIDMap.RelNameForPac(fi.Name, differentrelsForAlternateStagesPM36ToolStripMenuItem.Checked);
 			updateRel(relname);
 
 			try {
@@ -564,7 +564,7 @@ namespace BrawlStageManager {
 			}
 			string p = readNameFromPac(f);
 			FileOperations.Copy(f.FullName, thisdir + "/" + p);
-			string relname = StageIDMap.RelNameForPac(f.Name);
+			string relname = StageIDMap.RelNameForPac(f.Name, differentrelsForAlternateStagesPM36ToolStripMenuItem.Checked);
 			FileInfo rel = new FileInfo("../../module/" + relname);
 			if (rel.Exists) FileOperations.Copy(rel.FullName, thisdir + "/st.rel");
 
@@ -772,6 +772,14 @@ namespace BrawlStageManager {
 		}
 		private void useFullrelNamesToolStripMenuItem_Click(object sender, EventArgs e) {
 			stageInfoControl1.UseRelDescription = useFullrelNamesToolStripMenuItem.Checked;
+		}
+
+		private void differentrelsForAlternateStagesPM36ToolStripMenuItem_Click(object sender, EventArgs e) {
+			FileInfo fi = (FileInfo)listBox1.SelectedItem;
+			if (fi != null) {
+				string relname = StageIDMap.RelNameForPac(fi.Name, differentrelsForAlternateStagesPM36ToolStripMenuItem.Checked);
+				updateRel(relname);
+			}
 		}
 		private void selmapMarkPreviewToolStripMenuItem_Click(object sender, EventArgs e) {
 			portraitViewer1.selmapMarkPreview = selmapMarkPreviewToolStripMenuItem.Checked;
