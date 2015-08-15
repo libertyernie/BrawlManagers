@@ -38,8 +38,12 @@
 			this.fileSizeBar = new System.Windows.Forms.ProgressBar();
 			this.fileSizeLabel = new System.Windows.Forms.Label();
 			this.modifyPAT0 = new System.Windows.Forms.Button();
+			this.lblPMTop = new System.Windows.Forms.Label();
+			this.lblPMAlt = new System.Windows.Forms.Label();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.flowLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -65,6 +69,7 @@
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.Controls.Add(this.prevbase);
+			this.flowLayoutPanel1.Controls.Add(this.panel1);
 			this.flowLayoutPanel1.Controls.Add(this.icon);
 			this.flowLayoutPanel1.Controls.Add(this.tableLayoutPanel1);
 			this.flowLayoutPanel1.Controls.Add(this.frontstname);
@@ -193,6 +198,43 @@
 			this.modifyPAT0.UseVisualStyleBackColor = true;
 			this.modifyPAT0.Click += new System.EventHandler(this.modifyPAT0_Click);
 			// 
+			// lblPMTop
+			// 
+			this.lblPMTop.AllowDrop = true;
+			this.lblPMTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.lblPMTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.lblPMTop.Location = new System.Drawing.Point(0, 0);
+			this.lblPMTop.Name = "lblPMTop";
+			this.lblPMTop.Size = new System.Drawing.Size(28, 48);
+			this.lblPMTop.TabIndex = 12;
+			this.lblPMTop.Text = "PM 3.6 Top";
+			this.lblPMTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblPMTop.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblPMTop_DragDrop);
+			this.lblPMTop.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblPMTop_DragEnter);
+			// 
+			// lblPMAlt
+			// 
+			this.lblPMAlt.AllowDrop = true;
+			this.lblPMAlt.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.lblPMAlt.Dock = System.Windows.Forms.DockStyle.Top;
+			this.lblPMAlt.Location = new System.Drawing.Point(0, 48);
+			this.lblPMAlt.Name = "lblPMAlt";
+			this.lblPMAlt.Size = new System.Drawing.Size(28, 48);
+			this.lblPMAlt.TabIndex = 13;
+			this.lblPMAlt.Text = "PM 3.6 Alt";
+			this.lblPMAlt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblPMAlt.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblPMAlt_DragDrop);
+			this.lblPMAlt.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblPMAlt_DragEnter);
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.lblPMAlt);
+			this.panel1.Controls.Add(this.lblPMTop);
+			this.panel1.Location = new System.Drawing.Point(179, 3);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(28, 100);
+			this.panel1.TabIndex = 14;
+			// 
 			// PortraitViewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,6 +244,7 @@
 			this.Size = new System.Drawing.Size(210, 500);
 			this.flowLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -222,5 +265,8 @@
 		private System.Windows.Forms.Button btnGenerateName;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.Label lblIconTex;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Label lblPMAlt;
+		private System.Windows.Forms.Label lblPMTop;
 	}
 }

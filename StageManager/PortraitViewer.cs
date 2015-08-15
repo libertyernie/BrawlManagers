@@ -11,6 +11,7 @@ using BrawlManagerLib;
 using System.Reflection;
 using System.Diagnostics;
 using BrawlStageManager.SingleUseDialogs;
+using System.Threading.Tasks;
 
 namespace BrawlStageManager {
 	public partial class PortraitViewer : UserControl {
@@ -839,6 +840,80 @@ namespace BrawlStageManager {
 				new System.Threading.ThreadStart(() => {
 					Replace(sender, s);
 				}).BeginInvoke(null, null);
+			}
+		}
+
+		private void lblPMTop_DragEnter(object sender, DragEventArgs e) {
+			if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
+				string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
+				if (s.Length == 1) { // Can only drag and drop one file
+					string filename = s[0].ToLower();
+					if (filename.EndsWith(".png") || filename.EndsWith(".gif")) {
+						e.Effect = DragDropEffects.Copy;
+					}
+				}
+			}
+		}
+
+		private void lblPMTop_DragDrop(object sender, DragEventArgs e) {
+			if (e.Effect == DragDropEffects.Copy) {
+				string s = (e.Data.GetData(DataFormats.FileDrop) as string[])[0];
+				new Task(() => {
+					Bitmap existing = GetTexInfoFor(prevbase).tex0.GetImage(0);
+					Image newBitmap = Bitmap.FromFile(s);
+					Bitmap upperPortion = new Bitmap(176, 103);
+					using (Graphics g = Graphics.FromImage(upperPortion)) {
+						int height = (int)(((double)newBitmap.Height / newBitmap.Width) * 176);
+						int offset = (103 - height) / 2;
+						g.DrawImage(newBitmap, 0, offset, 176, height);
+					}
+					Bitmap canvas = new Bitmap(176, 176);
+					using (Graphics g = Graphics.FromImage(canvas)) {
+						g.DrawImage(existing, 0, 0, 176, 176);
+						g.DrawImage(upperPortion, 0, 23, 176, 103);
+						g.FillRectangle(Brushes.Black, 0, 0, 176, 23);
+					}
+					string temp = TempFiles.Create(".png");
+					canvas.Save(temp);
+					Replace(prevbase, temp);
+				}).Start();
+			}
+		}
+
+		private void lblPMAlt_DragEnter(object sender, DragEventArgs e) {
+			if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
+				string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
+				if (s.Length == 1) { // Can only drag and drop one file
+					string filename = s[0].ToLower();
+					if (filename.EndsWith(".png") || filename.EndsWith(".gif")) {
+						e.Effect = DragDropEffects.Copy;
+					}
+				}
+			}
+		}
+
+		private void lblPMAlt_DragDrop(object sender, DragEventArgs e) {
+			if (e.Effect == DragDropEffects.Copy) {
+				string s = (e.Data.GetData(DataFormats.FileDrop) as string[])[0];
+				new Task(() => {
+					Bitmap existing = GetTexInfoFor(prevbase).tex0.GetImage(0);
+					Image newBitmap = Bitmap.FromFile(s);
+					Bitmap lowerPortion = new Bitmap(106, 24);
+					using (Graphics g = Graphics.FromImage(lowerPortion)) {
+						int height = (int)(((double)newBitmap.Height / newBitmap.Width) * 106);
+						int offset = (24 - height) / 2;
+						g.DrawImage(newBitmap, 0, offset, 106, height);
+					}
+					Bitmap canvas = new Bitmap(176, 176);
+					using (Graphics g = Graphics.FromImage(canvas)) {
+						g.DrawImage(existing, 0, 0, 176, 176);
+						g.FillRectangle(Brushes.Black, 0, 126, 176, 50);
+						g.DrawImage(lowerPortion, 52, 131, 106, 24);
+					}
+					string temp = TempFiles.Create(".png");
+					canvas.Save(temp);
+					Replace(prevbase, temp);
+				}).Start();
 			}
 		}
 
