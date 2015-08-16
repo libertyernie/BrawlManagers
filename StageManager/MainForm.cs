@@ -806,13 +806,13 @@ namespace BrawlStageManager {
 			BatchAddPAT0Dialog dialog = new BatchAddPAT0Dialog();
 			if (dialog.ShowDialog(this) == DialogResult.OK) {
 				//TODO ask if they want different MenSelchrMark or MenSelmapMark for each stage
+				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameshadowM");
 				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnamelogoM",
 					dialog.UseSameSelmapMarksForAll ? "MenSelmapMark.01" : null);
+				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameM");
 				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/lambert113",
 					dialog.UseSameSelchrMarksForAll ? "MenSelchrMark.20" : null);
 				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/basebgM");
-				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameM");
-				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnameshadowM");
 				portraitViewer1.AddPAT0("MiscData[80]/AnmTexPat(NW4R)/MenSelmapIcon/iconM");
 				MessageBox.Show("Save the common5/sc_selmap file and restart the program for the changes to take effect.");
 			}

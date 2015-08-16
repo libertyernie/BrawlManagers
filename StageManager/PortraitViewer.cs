@@ -517,7 +517,7 @@ namespace BrawlStageManager {
 			basename = basename.Substring(0, basename.LastIndexOf('.'));
 
 			Func<int, string> getTexStringByIconNumber = iconNum => {
-				if (iconNum < 32 || (iconNum >= 50 && iconNum < 60)) {
+				if (iconNum < 32 || (iconNum >= 50 && iconNum <= 60)) {
 					string previousTexture = null;
 					foreach (var entry in entries) {
 						if (entry.Item2 > iconNum) break;

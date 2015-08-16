@@ -15,8 +15,10 @@ namespace BrawlManagerLib {
 		public Texture prevbase;
 		public Texture icon;
 		public Texture frontstname;
+		public Texture frontstname_shadow;
 		public Texture seriesicon;
 		public Texture selmap_mark;
+		public Texture line;
 
 		#region Backwards-compatibility - depreciated
 		public TEX0Node prevbase_tex0 { get { return prevbase.ForThisFrameIndex ? prevbase.tex0 : null; } }
@@ -58,9 +60,11 @@ namespace BrawlManagerLib {
 
 			populate(out prevbase, "MenSelmapPreview/basebgM");
 			populate(out icon, "MenSelmapIcon/iconM");
-			populate(out frontstname, "MenSelmapPreview/pasted__stnameM"); // the name shadow has a separate pat0 list
+			populate(out frontstname, "MenSelmapPreview/pasted__stnameM");
+			populate(out frontstname_shadow, "MenSelmapPreview/pasted__stnameshadowM");
 			populate(out seriesicon, "MenSelmapPreview/lambert113");
 			populate(out selmap_mark, "MenSelmapPreview/pasted__stnamelogoM");
+			populate(out line, "MenSelmapPreview/base_vertexcolorM1");
 		}
 
 		private void populate(out Texture tex, string path) {
