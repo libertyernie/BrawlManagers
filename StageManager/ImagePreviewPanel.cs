@@ -144,7 +144,11 @@ namespace BrawlStageManager {
 			Bitmap newIcon = new Bitmap(64, 56);
 			for (int y = 0; y < 56; y++) {
 				for (int x = 0; x < 64; x++) {
-					newIcon.SetPixel(x, y, (mask[x, y] ? icon : border).GetPixel(x, y));
+					try {
+						newIcon.SetPixel(x, y, (mask[x, y] ? icon : border).GetPixel(x, y));
+					} catch (Exception e) {
+						MessageBox.Show(e.Message + Environment.NewLine + e.StackTrace);
+					}
 				}
 			}
 

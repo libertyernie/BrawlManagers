@@ -328,7 +328,9 @@ namespace BrawlStageManager {
 
 		private void AddNewTEX0(object sender, string filename) {
 			BRRESNode md80 = sc_selmap.FindChild("MiscData[80]", false) as BRRESNode;
-			string temp = Path.Combine(Path.GetTempPath(), GetTexInfoFor(sender).pat0.Texture + Path.GetExtension(filename));
+			string dir = Path.Combine(Path.GetTempPath(), "BrawlStageManager-newimage-" + Guid.NewGuid());
+			Directory.CreateDirectory(dir);
+			string temp = Path.Combine(dir, GetTexInfoFor(sender).pat0.Texture + Path.GetExtension(filename));
 			File.Copy(filename, temp);
 			using (TextureConverterDialog dlg = new TextureConverterDialog()) {
 				dlg.ImageSource = temp;
@@ -351,7 +353,7 @@ namespace BrawlStageManager {
 					UpdateImage();
 				}
 			}
-			File.Delete(temp);
+			Directory.Delete(dir, true);
 		}
 
 		public void save() {
@@ -497,9 +499,15 @@ namespace BrawlStageManager {
 				return;
 			}
 
+			string texToCopyName = null;
 			List<Tuple<string, float>> entries = new List<Tuple<string, float>>();
 			foreach (var entry in childrenList) {
+				if (entry.Texture == null) {
+					MessageBox.Show("BrawlLib cannot read PAT0 texture name(s) from " + pathToPAT0TextureNode);
+					return;
+				}
 				entries.Add(new Tuple<string, float>(entry.Texture, entry.FrameIndex));
+				if (entry.FrameIndex == 1) texToCopyName = entry.Texture;
 				if (entry.FrameIndex != 0) tn.RemoveChild(entry);
 			}
 
@@ -508,9 +516,21 @@ namespace BrawlStageManager {
 							   select e.Item1).First();
 			basename = basename.Substring(0, basename.LastIndexOf('.'));
 
+			Func<int, string> getTexStringByIconNumber = iconNum => {
+				if (iconNum < 32 || (iconNum >= 50 && iconNum < 60)) {
+					string previousTexture = null;
+					foreach (var entry in entries) {
+						if (entry.Item2 > iconNum) break;
+						previousTexture = entry.Item1;
+					}
+					return previousTexture;
+				} else {
+					return defaultName ?? basename + "." + iconNum.ToString("D2");
+				}
+			};
+
 			for (int i = 1; i < 80; i++) {
-				string texname =
-					defaultName ?? basename + "." + i.ToString("D2");
+				string texname = getTexStringByIconNumber(i);
 				var entry = new PAT0TextureEntryNode();
 				tn.AddChild(entry);
 				entry.FrameIndex = i;
@@ -531,6 +551,40 @@ namespace BrawlStageManager {
 				entry.Texture = tuple.Item1;
 				if (icon) {
 					entry.Palette = entry.Texture;
+				}
+			}
+
+			ResourceNode brres = tn;
+			while (brres != null && !(brres is BRRESNode)) {
+				brres = brres.Parent;
+			}
+
+			if (brres != null) {
+				var folder = brres.FindChild("Textures(NW4R)", false);
+				TEX0Node texToCopy = texToCopyName == null
+					? null
+					: folder.FindChild(texToCopyName, false) as TEX0Node;
+				PLT0Node pltToCopy = texToCopyName == null
+					? null
+					: brres.FindChild("Palettes(NW4R)", false).FindChild(texToCopyName, false) as PLT0Node;
+
+				foreach (ResourceNode c in tn.Children) {
+					PAT0TextureEntryNode p = c as PAT0TextureEntryNode;
+					if (p == null) continue;
+
+					var texture = folder.FindChild(p.Texture, false);
+					if (texture == null) {
+						if (texToCopy != null) {
+							TEX0Node tex0 = ((BRRESNode)brres).CreateResource<TEX0Node>(p.Texture);
+							tex0.ReplaceRaw(texToCopy.WorkingUncompressed.Address, texToCopy.WorkingUncompressed.Length);
+						}
+						if (pltToCopy != null) {
+							PLT0Node plt0 = ((BRRESNode)brres).CreateResource<PLT0Node>(p.Texture);
+							plt0.ReplaceRaw(pltToCopy.WorkingUncompressed.Address, pltToCopy.WorkingUncompressed.Length);
+						}
+					} else if (texture.Index == 1) {
+						texToCopy = texture as TEX0Node;
+					}
 				}
 			}
 		}

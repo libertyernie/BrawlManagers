@@ -95,7 +95,7 @@
 			this.radioOneEach.Size = new System.Drawing.Size(142, 30);
 			this.radioOneEach.TabIndex = 5;
 			this.radioOneEach.TabStop = true;
-			this.radioOneEach.Text = "One for each stage\r\n(e.g. MenSelchrMark.32)";
+			this.radioOneEach.Text = "One for each new stage\r\n(e.g. MenSelchrMark.32)";
 			this.radioOneEach.UseVisualStyleBackColor = true;
 			// 
 			// label6
