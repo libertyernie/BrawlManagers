@@ -122,7 +122,6 @@
       <DependentUpon>EnterSizeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="IconsToMenumain.cs" />
-    <Compile Include="RegistryUtilities\DefaultDirectory.cs" />
     <Compile Include="ImagePreviewPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -155,10 +154,6 @@
     <Compile Include="ListControl.Designer.cs">
       <DependentUpon>ListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistryUtilities\FontSettings.cs" />
-    <Compile Include="RegistryUtilities\GeneralRegistry.cs" />
-    <Compile Include="RegistryUtilities\OptionsMenuSettings.cs" />
-    <Compile Include="RegistryUtilities\ResizeSettings.cs" />
     <Compile Include="SongsByStageID.cs" />
     <Compile Include="StageInfoControl.cs">
       <SubType>UserControl</SubType>
@@ -275,9 +270,6 @@
       <Project>{b5d693d8-3952-44f9-8952-8c1af74f0634}</Project>
       <Name>BrawlManagerLib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
