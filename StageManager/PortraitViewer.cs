@@ -517,7 +517,7 @@ namespace BrawlStageManager {
 			basename = basename.Substring(0, basename.LastIndexOf('.'));
 
 			Func<int, string> getTexStringByIconNumber = iconNum => {
-				if (iconNum < 32 || (iconNum >= 50 && iconNum <= 60)) {
+				if (iconNum < 32 || (iconNum >= 50 && iconNum <= 60) || iconNum == 80) {
 					string previousTexture = null;
 					foreach (var entry in entries) {
 						if (entry.Item2 > iconNum) break;
@@ -529,7 +529,7 @@ namespace BrawlStageManager {
 				}
 			};
 
-			for (int i = 1; i < 80; i++) {
+			for (int i = 1; i <= 80; i++) {
 				string texname = getTexStringByIconNumber(i);
 				var entry = new PAT0TextureEntryNode();
 				tn.AddChild(entry);
@@ -541,7 +541,7 @@ namespace BrawlStageManager {
 			}
 
 			var moreThan79query = from e in entries
-								  where e.Item2 >= 80
+								  where e.Item2 > 80
 								  orderby e.Item2 ascending
 								  select e;
 			foreach (var tuple in moreThan79query) {
