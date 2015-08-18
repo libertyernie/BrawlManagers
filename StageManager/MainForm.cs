@@ -589,8 +589,8 @@ namespace BrawlStageManager {
 		private void deletepacrelToolStripMenuItem_Click(object sender, EventArgs e) {
 			_rootNode.Dispose();
 			_rootNode = null;
-			FileOperations.Delete(stageInfoControl1.RelFile.FullName);
-			FileOperations.Delete((listBox1.SelectedItem as FileInfo).FullName);
+			if (stageInfoControl1.RelFile != null) FileOperations.Delete(stageInfoControl1.RelFile.FullName);
+			if (listBox1.SelectedItem as FileInfo != null) FileOperations.Delete(((FileInfo)listBox1.SelectedItem).FullName);
 			ReloadDirectory();
 		}
 		private void exportbrstmToolStripMenuItem_Click(object sender, EventArgs e) {
