@@ -362,12 +362,13 @@ namespace BrawlStageManager {
 
 			if (useAFixedStageListToolStripMenuItem.Checked) {
 				List<string> pacNames = StageIDMap.PacFilesBySSSOrder(portraitViewer1.BestSSS);
-				List<string> pacNames2 = new List<string>(pacNames.Count);
-				foreach (string name in pacNames) {
-					pacNames2.Add(name);
-					pacNames2.AddRange(Directory.EnumerateFiles(".", name.Replace(".pac", "_*")).Select(s => s.Replace(".\\", "")));
+				for (int i = 0; i < pacNames.Count; i++) {
+					string name = pacNames[i];
+					foreach (string s in Directory.EnumerateFiles(".", name.Replace(".pac", "_*")).Select(s => s.Replace(".\\", ""))) {
+						pacNames.Insert(++i, s);
+					}
 				}
-				pacFiles = pacNames2.OrderBy(s => s).Select(s => new FileInfo(s)).ToArray();
+				pacFiles = pacNames.Select(s => new FileInfo(s)).ToArray();
 			} else {
 				Array.Sort(pacFiles, delegate(FileInfo f1, FileInfo f2) {
 					return f1.Name.ToLower().CompareTo(f2.Name.ToLower()); // Sort by filename, case-insensitive
