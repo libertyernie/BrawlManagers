@@ -6,7 +6,7 @@ using System.Text;
 namespace BrawlManagerLib.ReadOnly {
 	public class AlternateStageLoaderData {
 		public class AlternateStageDefinition {
-			public int RandomCount { get; set; }
+			public IEnumerable<Alternate> Random { get; set; }
 			public IEnumerable<Alternate> ButtonActivated { get; set; }
 		}
 
@@ -61,8 +61,17 @@ namespace BrawlManagerLib.ReadOnly {
 							index += 8;
 						}
 
+						List<Alternate> random = new List<Alternate>();
+						for (int j = 0; j < randomCount; j++) {
+							char letter = (char)('A' + j);
+							random.Add(new Alternate {
+								Letter = letter,
+								ButtonMask = 0
+							});
+						}
+
 						AlternatesByStage.Add(new string(name), new AlternateStageDefinition {
-							RandomCount = randomCount,
+							Random = random,
 							ButtonActivated = buttonActivated
 						});
 					}
@@ -74,10 +83,6 @@ namespace BrawlManagerLib.ReadOnly {
 		public bool TryGetDefinition(string key, out AlternateStageDefinition value) {
 			key = (key + "    ").Substring(0, 4).ToUpperInvariant();
 			return AlternatesByStage.TryGetValue(key, out value);
-		}
-
-		public override string ToString() {
-			return string.Join(", ", AlternatesByStage.Select(p => p.Key + ": " + p.Value.RandomCount + "r " + string.Join("; ", p.Value.ButtonActivated.Select(a => a.ButtonMask + " " + a.Letter))));
 		}
 	}
 }

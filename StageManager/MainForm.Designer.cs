@@ -320,7 +320,7 @@
 			// 
 			this.loadCustomSSSToolStripMenuItem.Name = "loadCustomSSSToolStripMenuItem";
 			this.loadCustomSSSToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-			this.loadCustomSSSToolStripMenuItem.Text = "Load custom SSS";
+			this.loadCustomSSSToolStripMenuItem.Text = "Manually load GCT codeset";
 			this.loadCustomSSSToolStripMenuItem.Click += new System.EventHandler(this.loadCustomSSSToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem3
@@ -424,7 +424,7 @@
 			this.useTextureConverterToolStripMenuItem.CheckOnClick = true;
 			this.useTextureConverterToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.useTextureConverterToolStripMenuItem.Name = "useTextureConverterToolStripMenuItem";
-			this.useTextureConverterToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.useTextureConverterToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
 			this.useTextureConverterToolStripMenuItem.Text = "Use Texture Converter";
 			this.useTextureConverterToolStripMenuItem.Click += new System.EventHandler(this.useTextureConverterToolStripMenuItem_Click);
 			// 
@@ -432,21 +432,21 @@
 			// 
 			this.useAFixedStageListToolStripMenuItem.CheckOnClick = true;
 			this.useAFixedStageListToolStripMenuItem.Name = "useAFixedStageListToolStripMenuItem";
-			this.useAFixedStageListToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
-			this.useAFixedStageListToolStripMenuItem.Text = "List stages in SSS order";
+			this.useAFixedStageListToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
+			this.useAFixedStageListToolStripMenuItem.Text = "List all stages (using Custom SSS + ASL if any)";
 			this.useAFixedStageListToolStripMenuItem.Click += new System.EventHandler(this.useAFixedStageListToolStripMenuItem_Click);
 			// 
 			// backgroundColorToolStripMenuItem
 			// 
 			this.backgroundColorToolStripMenuItem.Name = "backgroundColorToolStripMenuItem";
-			this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.backgroundColorToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
 			this.backgroundColorToolStripMenuItem.Text = "Right panel BG color...";
 			this.backgroundColorToolStripMenuItem.Click += new System.EventHandler(this.backgroundColorToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem5
 			// 
 			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-			this.toolStripMenuItem5.Size = new System.Drawing.Size(291, 6);
+			this.toolStripMenuItem5.Size = new System.Drawing.Size(312, 6);
 			// 
 			// loadStagepacsToolStripMenuItem
 			// 
@@ -454,7 +454,7 @@
 			this.loadStagepacsToolStripMenuItem.CheckOnClick = true;
 			this.loadStagepacsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.loadStagepacsToolStripMenuItem.Name = "loadStagepacsToolStripMenuItem";
-			this.loadStagepacsToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.loadStagepacsToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
 			this.loadStagepacsToolStripMenuItem.Text = "Load stage .pacs";
 			this.loadStagepacsToolStripMenuItem.Click += new System.EventHandler(this.loadStagepacsToolStripMenuItem_Click);
 			// 
@@ -464,7 +464,7 @@
 			this.renderModels.CheckOnClick = true;
 			this.renderModels.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.renderModels.Name = "renderModels";
-			this.renderModels.Size = new System.Drawing.Size(294, 22);
+			this.renderModels.Size = new System.Drawing.Size(315, 22);
 			this.renderModels.Text = "Render models";
 			// 
 			// loadbrstmsToolStripMenuItem
@@ -473,13 +473,13 @@
 			this.loadbrstmsToolStripMenuItem.CheckOnClick = true;
 			this.loadbrstmsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.loadbrstmsToolStripMenuItem.Name = "loadbrstmsToolStripMenuItem";
-			this.loadbrstmsToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.loadbrstmsToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
 			this.loadbrstmsToolStripMenuItem.Text = "Load .brstms";
 			// 
 			// separator1
 			// 
 			this.separator1.Name = "separator1";
-			this.separator1.Size = new System.Drawing.Size(291, 6);
+			this.separator1.Size = new System.Drawing.Size(312, 6);
 			// 
 			// moduleFileDirectoryToolStripMenuItem
 			// 
@@ -487,7 +487,7 @@
             this.sameToolStripMenuItem,
             this.moduleToolStripMenuItem});
 			this.moduleFileDirectoryToolStripMenuItem.Name = "moduleFileDirectoryToolStripMenuItem";
-			this.moduleFileDirectoryToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.moduleFileDirectoryToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
 			this.moduleFileDirectoryToolStripMenuItem.Text = "Module file directory";
 			// 
 			// sameToolStripMenuItem
@@ -512,7 +512,7 @@
 			this.useFullrelNamesToolStripMenuItem.CheckOnClick = true;
 			this.useFullrelNamesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.useFullrelNamesToolStripMenuItem.Name = "useFullrelNamesToolStripMenuItem";
-			this.useFullrelNamesToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.useFullrelNamesToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
 			this.useFullrelNamesToolStripMenuItem.Text = "Use full .rel names";
 			this.useFullrelNamesToolStripMenuItem.Click += new System.EventHandler(this.useFullrelNamesToolStripMenuItem_Click);
 			// 
@@ -522,14 +522,14 @@
 			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.CheckOnClick = true;
 			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Name = "differentrelsForAlternateStagesPM36ToolStripMenuItem";
-			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
 			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Text = "Different .rels for alternate stages (PM 3.6)";
 			this.differentrelsForAlternateStagesPM36ToolStripMenuItem.Click += new System.EventHandler(this.differentrelsForAlternateStagesPM36ToolStripMenuItem_Click);
 			// 
 			// separator2
 			// 
 			this.separator2.Name = "separator2";
-			this.separator2.Size = new System.Drawing.Size(291, 6);
+			this.separator2.Size = new System.Drawing.Size(312, 6);
 			// 
 			// selmapMarkPreviewToolStripMenuItem
 			// 
@@ -537,7 +537,7 @@
 			this.selmapMarkPreviewToolStripMenuItem.CheckOnClick = true;
 			this.selmapMarkPreviewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.selmapMarkPreviewToolStripMenuItem.Name = "selmapMarkPreviewToolStripMenuItem";
-			this.selmapMarkPreviewToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.selmapMarkPreviewToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
 			this.selmapMarkPreviewToolStripMenuItem.Text = "Portrait previews";
 			this.selmapMarkPreviewToolStripMenuItem.Click += new System.EventHandler(this.selmapMarkPreviewToolStripMenuItem_Click);
 			// 
@@ -550,7 +550,7 @@
             this.selmapMarkFormatCMPR,
             this.selmapMarkFormatExisting});
 			this.selmapMarkFormat.Name = "selmapMarkFormat";
-			this.selmapMarkFormat.Size = new System.Drawing.Size(294, 22);
+			this.selmapMarkFormat.Size = new System.Drawing.Size(315, 22);
 			this.selmapMarkFormat.Text = "SelmapMark format";
 			// 
 			// selmapMarkFormatIA4
@@ -588,12 +588,12 @@
 			// separator3
 			// 
 			this.separator3.Name = "separator3";
-			this.separator3.Size = new System.Drawing.Size(291, 6);
+			this.separator3.Size = new System.Drawing.Size(312, 6);
 			// 
 			// frontStnameGenerationFontToolStripMenuItem
 			// 
 			this.frontStnameGenerationFontToolStripMenuItem.Name = "frontStnameGenerationFontToolStripMenuItem";
-			this.frontStnameGenerationFontToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+			this.frontStnameGenerationFontToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
 			this.frontStnameGenerationFontToolStripMenuItem.Text = "FrontStname font...";
 			this.frontStnameGenerationFontToolStripMenuItem.Click += new System.EventHandler(this.frontStnameGenerationFontToolStripMenuItem_Click);
 			// 

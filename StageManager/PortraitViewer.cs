@@ -80,18 +80,27 @@ namespace BrawlStageManager {
 		#endregion
 
 		#region Custom SSS
-		public CustomSSSCodeset DefaultSSS, _autoSSS;
+		public CustomSSSCodeset DefaultSSS, _autoSSS, _manualSSS;
 		public CustomSSSCodeset AutoSSS {
 			get {
 				return _autoSSS;
 			} set {
 				_autoSSS = value;
-				label1.Text = value == null ? "No custom SSS loaded" : "Loaded " + AutoSSS;
+				label1.Text = (ManualSSS ?? AutoSSS) != null ? "Loaded " + BestSSS : "No custom SSS loaded";
+			}
+		}
+		public CustomSSSCodeset ManualSSS {
+			get {
+				return _manualSSS;
+			}
+			set {
+				_manualSSS = value;
+				label1.Text = (ManualSSS ?? AutoSSS) != null ? "Loaded " + BestSSS : "No custom SSS loaded";
 			}
 		}
 		public CustomSSSCodeset BestSSS {
 			get {
-				return AutoSSS ?? DefaultSSS;
+				return ManualSSS ?? AutoSSS ?? DefaultSSS;
 			}
 		}
 		#endregion
@@ -251,10 +260,10 @@ namespace BrawlStageManager {
 			while (directory != null) {
 				Console.WriteLine(directory);
 				if (File.Exists(directory.FullName + "/data/gecko/codes/RSBE01.gct")) {
-					AutoSSS = new CustomSSS(File.ReadAllBytes(directory.FullName + "/data/gecko/codes/RSBE01.gct"));
+					AutoSSS = new CustomSSSCodeset(File.ReadAllBytes(directory.FullName + "/data/gecko/codes/RSBE01.gct"));
 					break;
 				} else if (File.Exists(directory.FullName + "/codes/RSBE01.gct")) {
-					AutoSSS = new CustomSSS(File.ReadAllBytes(directory.FullName + "/codes/RSBE01.gct"));
+					AutoSSS = new CustomSSSCodeset(File.ReadAllBytes(directory.FullName + "/codes/RSBE01.gct"));
 					break;
 				}
 				directory = directory.Parent;
@@ -263,7 +272,8 @@ namespace BrawlStageManager {
 
 		public void LoadCustomSSS(string file) {
 			if (File.Exists(file)) {
-				AutoSSS = new CustomSSSCodeset(file);
+				ManualSSS = new CustomSSSCodeset(file);
+				MessageBox.Show("You will need to quit and restart this program if you want to go back to loading the GCT codeset automatically.");
 			}
 		}
 
