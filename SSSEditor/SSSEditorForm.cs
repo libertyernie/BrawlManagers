@@ -281,7 +281,7 @@ namespace SSSEditor {
 
 		private void saveCodesetgctToolStripMenuItem_Click(object sender, EventArgs e) {
 			if (sss.IgnoredMetadata) {
-				MessageBox.Show("Extra data found after GCT footer - this will be discarded if you save the GCT.");
+				MessageBox.Show("Warning: extra data was found after the GCT footer (probably code titles placed there by BrawlBox) and will be discarded if you continue to save.");
 			}
 			using (var dialog = new SaveFileDialog()) {
 				dialog.Filter = "Ocarina codes (*.gct)|*.gct";
