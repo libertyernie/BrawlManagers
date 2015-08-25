@@ -372,7 +372,7 @@ namespace BrawlStageManager {
 				for (int i = 0; i < pacNames.Count; i++) {
 					string name = pacNames[i];
 					BrawlManagerLib.ReadOnly.AlternateStageLoaderData.AlternateStageDefinition def;
-					if (portraitViewer1.BestSSS.AlternateStageLoaderData.TryGetDefinition(name.Substring(3), out def)) {
+					if (portraitViewer1.BestSSS.AlternateStageLoaderData.TryGetDefinition(name, out def)) {
 						string without_ext = name.Substring(0, name.Length - 4);
 						foreach (char letter in def.ButtonActivated.Concat(def.Random).Select(a => a.Letter).Distinct()) {
 							pacNames.Insert(++i, without_ext + "_" + letter + ".pac");

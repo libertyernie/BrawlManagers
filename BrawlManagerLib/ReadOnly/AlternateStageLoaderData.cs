@@ -41,10 +41,14 @@ namespace BrawlManagerLib.ReadOnly {
 						name[0] = (char)data[index];
 						name[1] = (char)data[index+1];
 						name[2] = (char)data[index+2];
-						name[3] = (char)data[index+3];
+						name[3] = (char)data[index + 3];
+						if (name[0] == '\0') throw new Exception("Invalid stage name in alternate stage loader data: " + string.Join("", name.Select(c => ((int)c).ToString("X2"))));
+						Console.WriteLine(new string(name) + " " + data[index + 3].ToString("X2"));
 
 						int buttonActivatedCount = data[index + 4];
+						if (buttonActivatedCount > 26) throw new Exception("There are more than 26 button activated alternate stages for stage " + new string(name) + ". This is probably incorrect.");
 						int randomCount = data[index + 5];
+						if (randomCount > 26) throw new Exception("There are more than 26 random alternate stages for stage " + new string(name) + ". This is probably incorrect.");
 
 						index += 8;
 
@@ -81,7 +85,19 @@ namespace BrawlManagerLib.ReadOnly {
 		}
 
 		public bool TryGetDefinition(string key, out AlternateStageDefinition value) {
-			key = (key + "    ").Substring(0, 4).ToUpperInvariant();
+			// remove "STG" at start
+			if (key.StartsWith("stg", StringComparison.InvariantCultureIgnoreCase)) key = key.Substring(3);
+			// remove extension
+			int index = key.IndexOf('.');
+			if (index >= 0) key = key.Substring(0, index);
+
+			if (key.Length > 4) key = key.Substring(0, 4);
+			key = key.ToUpperInvariant();
+
+			// Special handling is needed for short stage names.
+			if (key == "ICE") key = "ICE\x0e"; // Thank you Project M
+			// Not sure about GW yet
+
 			return AlternatesByStage.TryGetValue(key, out value);
 		}
 	}
