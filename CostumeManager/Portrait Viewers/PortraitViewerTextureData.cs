@@ -48,7 +48,7 @@ namespace BrawlCostumeManager {
 		public Panel Panel {
 			get {
 				if (_panel == null) {
-					_panel = new Panel() { Size = Size, AllowDrop = true, Margin = Padding.Empty };
+					_panel = new Panel() { Size = Size, AllowDrop = true, Margin = Padding.Empty, BackgroundImageLayout = ImageLayout.Stretch };
 					_panel.DragEnter += _panel_DragEnter;
 					_panel.DragDrop += _panel_DragDrop;
 					_panel.ContextMenuStrip = new ContextMenuStrip();

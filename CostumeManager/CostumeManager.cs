@@ -332,5 +332,14 @@ namespace BrawlCostumeManager {
 				KirbyCopy.Copy(kirby, hat);
 			}
 		}
+
+		private void use16ptFontToolStripMenuItem_Click(object sender, EventArgs e) {
+			float? size = use16ptFontToolStripMenuItem.Checked
+				? 16f
+				: (float?)null;
+
+			this.Font = new Font(this.Font.FontFamily, size ?? 8.25f, this.Font.Style);
+			toolStrip1.Font = new Font(toolStrip1.Font.FontFamily, size ?? 9f, toolStrip1.Font.Style);
+		}
 	}
 }

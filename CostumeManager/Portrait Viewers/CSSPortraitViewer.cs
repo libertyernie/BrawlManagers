@@ -37,8 +37,7 @@ namespace BrawlCostumeManager {
 		/// <summary>
 		/// The common5 currently being used. If using sc_selcharacter.pac instead, this will be null.
 		/// </summary>
-        private ResourceNode common5;
-        private FlowLayoutPanel flowLayoutPanel1;
+		private ResourceNode common5;
         private Label label1;
         private FlowLayoutPanel additionalTexturesPanel;
         private Button saveButton;
@@ -160,36 +159,14 @@ namespace BrawlCostumeManager {
 
         private void InitializeComponent()
         {
-			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.additionalTexturesPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.label1 = new System.Windows.Forms.Label();
+			this.additionalTexturesPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.saveButton = new System.Windows.Forms.Button();
-			this.flowLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// flowLayoutPanel1
-			// 
-			this.flowLayoutPanel1.Controls.Add(this.label1);
-			this.flowLayoutPanel1.Controls.Add(this.additionalTexturesPanel);
-			this.flowLayoutPanel1.Controls.Add(this.saveButton);
-			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(128, 326);
-			this.flowLayoutPanel1.TabIndex = 0;
-			// 
-			// additionalTexturesPanel
-			// 
-			this.additionalTexturesPanel.AutoSize = true;
-			this.additionalTexturesPanel.Location = new System.Drawing.Point(0, 40);
-			this.additionalTexturesPanel.Margin = new System.Windows.Forms.Padding(0);
-			this.additionalTexturesPanel.Name = "additionalTexturesPanel";
-			this.additionalTexturesPanel.Size = new System.Drawing.Size(0, 0);
-			this.additionalTexturesPanel.TabIndex = 1;
 			// 
 			// label1
 			// 
+			this.label1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.label1.Location = new System.Drawing.Point(0, 0);
 			this.label1.Margin = new System.Windows.Forms.Padding(0);
 			this.label1.Name = "label1";
@@ -197,8 +174,19 @@ namespace BrawlCostumeManager {
 			this.label1.TabIndex = 0;
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// additionalTexturesPanel
+			// 
+			this.additionalTexturesPanel.AutoSize = true;
+			this.additionalTexturesPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.additionalTexturesPanel.Location = new System.Drawing.Point(0, 40);
+			this.additionalTexturesPanel.Margin = new System.Windows.Forms.Padding(0);
+			this.additionalTexturesPanel.Name = "additionalTexturesPanel";
+			this.additionalTexturesPanel.Size = new System.Drawing.Size(128, 0);
+			this.additionalTexturesPanel.TabIndex = 1;
+			// 
 			// saveButton
 			// 
+			this.saveButton.Dock = System.Windows.Forms.DockStyle.Top;
 			this.saveButton.Location = new System.Drawing.Point(0, 40);
 			this.saveButton.Margin = new System.Windows.Forms.Padding(0);
 			this.saveButton.Name = "saveButton";
@@ -210,12 +198,13 @@ namespace BrawlCostumeManager {
 			// 
 			// CSSPortraitViewer
 			// 
-			this.Controls.Add(this.flowLayoutPanel1);
+			this.Controls.Add(this.saveButton);
+			this.Controls.Add(this.additionalTexturesPanel);
+			this.Controls.Add(this.label1);
 			this.Name = "CSSPortraitViewer";
 			this.Size = new System.Drawing.Size(128, 326);
-			this.flowLayoutPanel1.ResumeLayout(false);
-			this.flowLayoutPanel1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 	}

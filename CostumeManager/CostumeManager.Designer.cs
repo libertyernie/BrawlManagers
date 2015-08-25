@@ -24,6 +24,7 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CostumeManager));
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.listBox2 = new System.Windows.Forms.ListBox();
@@ -33,6 +34,7 @@
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.changeDirectory = new System.Windows.Forms.ToolStripButton();
+			this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.screenshotPortraitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.updateSSSStockIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,16 +52,17 @@
 			this.backgroundColorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.otherPVsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-			this.costumeNumberLabel = new BrawlCostumeManager.CostumeNumberLabel();
-			this.battlePortraitViewer1 = new BrawlCostumeManager.BattleSinglePortraitViewer();
-			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultSinglePortraitViewer();
 			this.brawlSplitter3 = new BrawlManagerLib.BrawlSplitter();
 			this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
 			this.globalPVsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+			this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
+			this.modelManager1 = new BrawlCostumeManager.ModelManager();
 			this.cssPortraitViewer1 = new BrawlCostumeManager.CSSPortraitViewer();
 			this.infoStockIconViewer1 = new BrawlCostumeManager.InfoStockIconViewer();
-			this.modelManager1 = new BrawlCostumeManager.ModelManager();
-			this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
+			this.costumeNumberLabel = new BrawlCostumeManager.CostumeNumberLabel();
+			this.battlePortraitViewer1 = new BrawlCostumeManager.BattleSinglePortraitViewer();
+			this.resultPortraitViewer1 = new BrawlCostumeManager.ResultSinglePortraitViewer();
+			this.use16ptFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
@@ -144,6 +147,7 @@
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeDirectory,
+            this.toolStripDropDownButton3,
             this.toolStripDropDownButton2,
             this.toolStripDropDownButton1,
             this.toolStripButton1});
@@ -161,6 +165,17 @@
 			this.changeDirectory.Size = new System.Drawing.Size(103, 22);
 			this.changeDirectory.Text = "Change Directory";
 			this.changeDirectory.Click += new System.EventHandler(this.changeDirectory_Click);
+			// 
+			// toolStripDropDownButton3
+			// 
+			this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.use16ptFontToolStripMenuItem});
+			this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
+			this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
+			this.toolStripDropDownButton3.Size = new System.Drawing.Size(45, 22);
+			this.toolStripDropDownButton3.Text = "View";
 			// 
 			// toolStripDropDownButton2
 			// 
@@ -315,29 +330,6 @@
 			this.otherPVsFlowLayoutPanel.Size = new System.Drawing.Size(134, 381);
 			this.otherPVsFlowLayoutPanel.TabIndex = 7;
 			// 
-			// costumeNumberLabel
-			// 
-			this.costumeNumberLabel.Location = new System.Drawing.Point(3, 0);
-			this.costumeNumberLabel.Name = "costumeNumberLabel";
-			this.costumeNumberLabel.Size = new System.Drawing.Size(128, 20);
-			this.costumeNumberLabel.TabIndex = 6;
-			this.costumeNumberLabel.Text = "No costume selected";
-			this.costumeNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// battlePortraitViewer1
-			// 
-			this.battlePortraitViewer1.Location = new System.Drawing.Point(3, 23);
-			this.battlePortraitViewer1.Name = "battlePortraitViewer1";
-			this.battlePortraitViewer1.Size = new System.Drawing.Size(128, 120);
-			this.battlePortraitViewer1.TabIndex = 5;
-			// 
-			// resultPortraitViewer1
-			// 
-			this.resultPortraitViewer1.Location = new System.Drawing.Point(3, 149);
-			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
-			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 224);
-			this.resultPortraitViewer1.TabIndex = 4;
-			// 
 			// brawlSplitter3
 			// 
 			this.brawlSplitter3.ControlToHide = this.splitContainer2;
@@ -370,6 +362,26 @@
 			this.globalPVsFlowLayoutPanel.Size = new System.Drawing.Size(134, 381);
 			this.globalPVsFlowLayoutPanel.TabIndex = 13;
 			// 
+			// brawlSplitter1
+			// 
+			this.brawlSplitter1.AllowResizing = false;
+			this.brawlSplitter1.ControlToHide = this.globalPVsFlowLayoutPanel;
+			this.brawlSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
+			this.brawlSplitter1.Location = new System.Drawing.Point(400, 25);
+			this.brawlSplitter1.Name = "brawlSplitter1";
+			this.brawlSplitter1.Size = new System.Drawing.Size(8, 381);
+			this.brawlSplitter1.TabIndex = 9;
+			this.brawlSplitter1.TabStop = false;
+			// 
+			// modelManager1
+			// 
+			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.modelManager1.Location = new System.Drawing.Point(214, 25);
+			this.modelManager1.ModelPreviewSize = null;
+			this.modelManager1.Name = "modelManager1";
+			this.modelManager1.Size = new System.Drawing.Size(186, 381);
+			this.modelManager1.TabIndex = 1;
+			// 
 			// cssPortraitViewer1
 			// 
 			this.cssPortraitViewer1.Location = new System.Drawing.Point(3, 3);
@@ -385,25 +397,36 @@
 			this.infoStockIconViewer1.Size = new System.Drawing.Size(128, 40);
 			this.infoStockIconViewer1.TabIndex = 12;
 			// 
-			// modelManager1
+			// costumeNumberLabel
 			// 
-			this.modelManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.modelManager1.Location = new System.Drawing.Point(214, 25);
-			this.modelManager1.ModelPreviewSize = null;
-			this.modelManager1.Name = "modelManager1";
-			this.modelManager1.Size = new System.Drawing.Size(186, 381);
-			this.modelManager1.TabIndex = 1;
+			this.costumeNumberLabel.Location = new System.Drawing.Point(3, 0);
+			this.costumeNumberLabel.Name = "costumeNumberLabel";
+			this.costumeNumberLabel.Size = new System.Drawing.Size(128, 20);
+			this.costumeNumberLabel.TabIndex = 6;
+			this.costumeNumberLabel.Text = "No costume selected";
+			this.costumeNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// brawlSplitter1
+			// battlePortraitViewer1
 			// 
-			this.brawlSplitter1.AllowResizing = false;
-			this.brawlSplitter1.ControlToHide = this.globalPVsFlowLayoutPanel;
-			this.brawlSplitter1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.brawlSplitter1.Location = new System.Drawing.Point(400, 25);
-			this.brawlSplitter1.Name = "brawlSplitter1";
-			this.brawlSplitter1.Size = new System.Drawing.Size(8, 381);
-			this.brawlSplitter1.TabIndex = 9;
-			this.brawlSplitter1.TabStop = false;
+			this.battlePortraitViewer1.Location = new System.Drawing.Point(3, 23);
+			this.battlePortraitViewer1.Name = "battlePortraitViewer1";
+			this.battlePortraitViewer1.Size = new System.Drawing.Size(128, 120);
+			this.battlePortraitViewer1.TabIndex = 5;
+			// 
+			// resultPortraitViewer1
+			// 
+			this.resultPortraitViewer1.Location = new System.Drawing.Point(3, 149);
+			this.resultPortraitViewer1.Name = "resultPortraitViewer1";
+			this.resultPortraitViewer1.Size = new System.Drawing.Size(128, 224);
+			this.resultPortraitViewer1.TabIndex = 4;
+			// 
+			// use16ptFontToolStripMenuItem
+			// 
+			this.use16ptFontToolStripMenuItem.CheckOnClick = true;
+			this.use16ptFontToolStripMenuItem.Name = "use16ptFontToolStripMenuItem";
+			this.use16ptFontToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.use16ptFontToolStripMenuItem.Text = "Use 16pt font";
+			this.use16ptFontToolStripMenuItem.Click += new System.EventHandler(this.use16ptFontToolStripMenuItem_Click);
 			// 
 			// CostumeManager
 			// 
@@ -472,5 +495,7 @@
         private BrawlManagerLib.BrawlSplitter brawlSplitter3;
 		private InfoStockIconViewer infoStockIconViewer1;
 		private System.Windows.Forms.FlowLayoutPanel globalPVsFlowLayoutPanel;
+		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
+		private System.Windows.Forms.ToolStripMenuItem use16ptFontToolStripMenuItem;
 	}
 }

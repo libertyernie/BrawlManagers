@@ -119,6 +119,8 @@
 			this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
 			this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
+			this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.use16ptFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
 			this.splitContainerLeft.Panel1.SuspendLayout();
 			this.splitContainerLeft.Panel2.SuspendLayout();
@@ -280,6 +282,7 @@
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.optionsToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.resizeToolStripMenuItem,
@@ -924,6 +927,22 @@
 			this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
 			this.portraitViewer1.TabIndex = 2;
 			// 
+			// viewToolStripMenuItem
+			// 
+			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.use16ptFontToolStripMenuItem});
+			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+			this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+			this.viewToolStripMenuItem.Text = "View";
+			// 
+			// use16ptFontToolStripMenuItem
+			// 
+			this.use16ptFontToolStripMenuItem.CheckOnClick = true;
+			this.use16ptFontToolStripMenuItem.Name = "use16ptFontToolStripMenuItem";
+			this.use16ptFontToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.use16ptFontToolStripMenuItem.Text = "Use 16pt font";
+			this.use16ptFontToolStripMenuItem.Click += new System.EventHandler(this.use16ptFontToolStripMenuItem_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1049,6 +1068,8 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.ToolStripMenuItem differentrelsForAlternateStagesPM36ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem x96ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem use16ptFontToolStripMenuItem;
 
 
 

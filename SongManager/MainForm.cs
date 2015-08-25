@@ -485,5 +485,14 @@ namespace BrawlSongManager {
 			}
 			changeDirectory(CurrentDirectory);
 		}
+
+		private void use16ptFontToolStripMenuItem_Click(object sender, EventArgs e) {
+			float? size = use16ptFontToolStripMenuItem.Checked
+				? 16f
+				: (float?)null;
+
+			this.Font = new Font(this.Font.FontFamily, size ?? 8.25f, this.Font.Style);
+			menuStrip1.Font = new Font(menuStrip1.Font.FontFamily, size ?? 9f, menuStrip1.Font.Style);
+		}
 	}
 }

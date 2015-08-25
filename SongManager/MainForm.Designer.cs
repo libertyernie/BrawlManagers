@@ -56,6 +56,8 @@
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.splitContainerTop = new System.Windows.Forms.SplitContainer();
+			this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.use16ptFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -131,6 +133,7 @@
 			// 
 			// customSongVolumeEditor1
 			// 
+			this.customSongVolumeEditor1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.customSongVolumeEditor1.CSV = null;
 			this.customSongVolumeEditor1.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.customSongVolumeEditor1.Location = new System.Drawing.Point(0, 269);
@@ -167,6 +170,7 @@
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.optionsToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem,
@@ -350,6 +354,22 @@
 			this.splitContainerTop.SplitterDistance = 197;
 			this.splitContainerTop.TabIndex = 0;
 			// 
+			// viewToolStripMenuItem
+			// 
+			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.use16ptFontToolStripMenuItem});
+			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+			this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+			this.viewToolStripMenuItem.Text = "View";
+			// 
+			// use16ptFontToolStripMenuItem
+			// 
+			this.use16ptFontToolStripMenuItem.CheckOnClick = true;
+			this.use16ptFontToolStripMenuItem.Name = "use16ptFontToolStripMenuItem";
+			this.use16ptFontToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.use16ptFontToolStripMenuItem.Text = "Use 16pt font";
+			this.use16ptFontToolStripMenuItem.Click += new System.EventHandler(this.use16ptFontToolStripMenuItem_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,6 +431,8 @@
 		private System.Windows.Forms.ToolStripMenuItem saveGCTCodesetToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exportMusicSongsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem importMusicSongsToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem use16ptFontToolStripMenuItem;
 
 
 

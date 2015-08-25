@@ -78,8 +78,7 @@ namespace BrawlCostumeManager {
 			// 
 			// additionalTexturesPanel
 			// 
-			this.additionalTexturesPanel.AutoSize = true;
-			this.additionalTexturesPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.additionalTexturesPanel.Dock = System.Windows.Forms.DockStyle.Left;
 			this.additionalTexturesPanel.Location = new System.Drawing.Point(0, 0);
 			this.additionalTexturesPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.additionalTexturesPanel.Name = "additionalTexturesPanel";
@@ -88,7 +87,7 @@ namespace BrawlCostumeManager {
 			// 
 			// saveButton
 			// 
-			this.saveButton.Dock = System.Windows.Forms.DockStyle.Right;
+			this.saveButton.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.saveButton.Location = new System.Drawing.Point(72, 0);
 			this.saveButton.Margin = new System.Windows.Forms.Padding(0);
 			this.saveButton.Name = "saveButton";
@@ -100,12 +99,11 @@ namespace BrawlCostumeManager {
 			// 
 			// InfoStockIconViewer
 			// 
-			this.Controls.Add(this.additionalTexturesPanel);
 			this.Controls.Add(this.saveButton);
+			this.Controls.Add(this.additionalTexturesPanel);
 			this.Name = "InfoStockIconViewer";
 			this.Size = new System.Drawing.Size(128, 48);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 	}
