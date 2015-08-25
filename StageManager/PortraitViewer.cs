@@ -80,8 +80,8 @@ namespace BrawlStageManager {
 		#endregion
 
 		#region Custom SSS
-		public CustomSSS DefaultSSS, _autoSSS;
-		public CustomSSS AutoSSS {
+		public CustomSSSCodeset DefaultSSS, _autoSSS;
+		public CustomSSSCodeset AutoSSS {
 			get {
 				return _autoSSS;
 			} set {
@@ -89,7 +89,7 @@ namespace BrawlStageManager {
 				label1.Text = value == null ? "No custom SSS loaded" : "Loaded " + AutoSSS;
 			}
 		}
-		public CustomSSS BestSSS {
+		public CustomSSSCodeset BestSSS {
 			get {
 				return AutoSSS ?? DefaultSSS;
 			}
@@ -148,7 +148,7 @@ namespace BrawlStageManager {
 * 5A455B46 5C475D48
 * 5E495F4A 604B614C
 * 624D634E 644F0000";
-			DefaultSSS = new CustomSSS(s.Split('\n'));
+			DefaultSSS = new CustomSSSCodeset(s.Split('\n'));
 			#endregion
 
 			_iconNum = -1;
@@ -253,7 +253,7 @@ namespace BrawlStageManager {
 				"/codes/RSBE01.gct",
 			}) {
 				if (File.Exists(file)) {
-					AutoSSS = new CustomSSS(File.ReadAllBytes(file));
+					AutoSSS = new CustomSSSCodeset(File.ReadAllBytes(file));
 					break;
 				}
 			}
@@ -261,7 +261,7 @@ namespace BrawlStageManager {
 
 		public void LoadCustomSSS(string file) {
 			if (File.Exists(file)) {
-				AutoSSS = new CustomSSS(file);
+				AutoSSS = new CustomSSSCodeset(file);
 			}
 		}
 

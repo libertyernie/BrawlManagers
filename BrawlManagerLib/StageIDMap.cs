@@ -145,7 +145,7 @@ namespace BrawlManagerLib {
 			StagesByID = byID.AsReadOnly();
 		}
 
-		public static List<string> PacFilesBySSSOrder(CustomSSS sss) {
+		public static List<string> PacFilesBySSSOrder(CustomSSSCodeset sss) {
 			List<string> list = new List<string>();
 			foreach (int stage_id in sss.StageIDsInOrder) {
 				if (stage_id >= 0x40) {

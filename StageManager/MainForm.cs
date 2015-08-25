@@ -287,7 +287,7 @@ namespace BrawlStageManager {
 				songPanel1.Close();
 			} else {
 				Song song;
-				if (portraitViewer1.BestSSS.TryGetSong((byte)stage_id, out song)) {
+				if (portraitViewer1.BestSSS.SongLoaders.TryGetSong((byte)stage_id, out song)) {
 					songContainerPanel.Visible = true;
 					listBoxSongs.Items.Add(new SongListItem("../../sound/strm/" + song.Filename + ".brstm"));
 					listBoxSongs.SelectedIndex = 0;
@@ -360,12 +360,23 @@ namespace BrawlStageManager {
 				}
 			}
 
+			stageInfoControl1.setStageLabels("", "", "");
+			stageInfoControl1.RelFile = null;
+
+			Console.WriteLine(songPanel1.findInfoFile());
+
+			portraitViewer1.UpdateDirectory();
+
 			if (useAFixedStageListToolStripMenuItem.Checked) {
 				List<string> pacNames = StageIDMap.PacFilesBySSSOrder(portraitViewer1.BestSSS);
 				for (int i = 0; i < pacNames.Count; i++) {
 					string name = pacNames[i];
-					foreach (string s in Directory.EnumerateFiles(".", name.Replace(".pac", "_*")).Select(s => s.Replace(".\\", ""))) {
-						pacNames.Insert(++i, s);
+					BrawlManagerLib.ReadOnly.AlternateStageLoaderData.AlternateStageDefinition def;
+					if (portraitViewer1.BestSSS.AlternateStageLoaderData.TryGetDefinition(name.Substring(3, 4), out def)) {
+						string without_ext = name.Substring(0, name.Length - 4);
+						foreach (char letter in def.ButtonActivated.Select(a => a.Letter).Distinct()) {
+							pacNames.Insert(++i, without_ext + "_" + letter + ".pac");
+						}
 					}
 				}
 				pacFiles = pacNames.Select(s => new FileInfo(s)).ToArray();
@@ -377,13 +388,6 @@ namespace BrawlStageManager {
 			listBox1.Items.Clear();
 			listBox1.Items.AddRange(pacFiles);
 			listBox1.Refresh();
-
-			stageInfoControl1.setStageLabels("", "", "");
-			stageInfoControl1.RelFile = null;
-
-			Console.WriteLine(songPanel1.findInfoFile());
-
-			portraitViewer1.UpdateDirectory();
 
 			if (portraitViewer1.BestSSS.OtherCodesIgnoredInSameFile > 0) {
 				MessageBox.Show(this, "More than one Custom SSS code found in the codeset. All but the last one will be ignored.",
@@ -536,7 +540,7 @@ namespace BrawlStageManager {
 			portraitViewer1.ExportImages(portraitViewer1.BestSSS.IconForStage(StageIDMap.StageIDForPac(f.Name)), thisdir);
 
 			Song song;
-			portraitViewer1.BestSSS.TryGetSong((byte)StageIDMap.StageIDForPac(f.Name), out song);
+			portraitViewer1.BestSSS.SongLoaders.TryGetSong((byte)StageIDMap.StageIDForPac(f.Name), out song);
 			if (song == null) SongsByStageID.ForPac(f.Name);
 
 			if (song != null && File.Exists("../../sound/strm/" + song.Filename + ".brstm")) {

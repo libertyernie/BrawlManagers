@@ -10,7 +10,7 @@ using System.Text;
 
 namespace BrawlStageManager {
 	public static class IconsToMenumain {
-		public static void Copy(ResourceNode scSelmap, ResourceNode muMenumain, CustomSSS sss) {
+		public static void Copy(ResourceNode scSelmap, ResourceNode muMenumain, CustomSSSCodeset sss) {
 			ResourceNode miscData0 = muMenumain.FindChild("MiscData[0]", false);
 			List<ResourceNode> chrToKeep = miscData0.FindChild("AnmChr(NW4R)", false).Children;
 			Dictionary<string, string> tempFiles = new Dictionary<string, string>(chrToKeep.Count);

@@ -71,7 +71,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomSongVolume.cs" />
-    <Compile Include="CustomSSS.cs" />
+    <Compile Include="CustomSSSCodeset.cs" />
     <Compile Include="ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +83,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ReadOnly\AlternateStageLoaderData.cs" />
     <Compile Include="Songs\Song.cs" />
     <Compile Include="ByteUtilities.cs" />
     <Compile Include="CopyDialog.cs">
@@ -109,6 +110,7 @@
     <Compile Include="Songs\SongPanel.Designer.cs">
       <DependentUpon>SongPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReadOnly\StageDependentSongLoader.cs" />
     <Compile Include="StageIDMap.cs" />
     <Compile Include="TempFiles.cs" />
     <Compile Include="TextBoxDialog.cs">

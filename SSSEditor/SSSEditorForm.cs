@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 namespace SSSEditor {
 	public partial class SSSEditorForm : Form {
 		// Source data
-		private CustomSSS sss;
+		private CustomSSSCodeset sss;
         private BRRESNode md80;
 
         private string html = "";
@@ -49,8 +49,8 @@ namespace SSSEditor {
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
 
 			sss = gct != null
-				? new CustomSSS(gct)
-				: new CustomSSS();
+				? new CustomSSSCodeset(gct)
+				: new CustomSSSCodeset();
 
 			if (pac != null) {
 				ReloadIfValidPac(pac);
@@ -87,7 +87,7 @@ namespace SSSEditor {
             PairListModel model = new PairListModel();
 			for (int i = 0; i < model.songsByStage.Length; i++) {
 				Song s;
-				model.songsByStage[i] = sss.TryGetSong((byte)i, out s)
+				model.songsByStage[i] = sss.SongLoaders.TryGetSong((byte)i, out s)
 					? s
 					: null;
 			}
@@ -114,7 +114,7 @@ namespace SSSEditor {
             html = webBrowser1.DocumentText = RazorEngine.Engine.Razor.RunCompile(Resources.PairList, "PairList", typeof(PairListModel), model);
 		}
 
-		private void ReloadIfValidPac(string file, CustomSSS sssIfOtherFileValid = null) {
+		private void ReloadIfValidPac(string file, CustomSSSCodeset sssIfOtherFileValid = null) {
 			ResourceNode node = NodeFactory.FromFile(null, file);
 			ResourceNode p1icon = node.FindChild("MenSelmapCursorPly.1", true);
 			BRRESNode candidate = (p1icon != null) ? p1icon.Parent.Parent as BRRESNode : null;
@@ -226,7 +226,7 @@ namespace SSSEditor {
 				dialog.Filter = "Ocarina codes (*.gct, *.txt)|*.gct;*.txt";
 				dialog.Multiselect = false;
 				if (dialog.ShowDialog() == DialogResult.OK) {
-					sss = new CustomSSS(dialog.FileName);
+					sss = new CustomSSSCodeset(dialog.FileName);
 					ReloadData();
 				}
 			}
@@ -245,14 +245,14 @@ namespace SSSEditor {
 		private void openSDCardRootToolStripMenuItem_Click(object sender, EventArgs e) {
 			using (var dialog = new FolderBrowserDialog()) {
 				if (dialog.ShowDialog() == DialogResult.OK) {
-					CustomSSS candidateSSS;
+					CustomSSSCodeset candidateSSS;
 
 					if (File.Exists(dialog.SelectedPath + "/codes/RSBE01.gct")) {
-						candidateSSS = new CustomSSS(dialog.SelectedPath + "/codes/RSBE01.gct");
+						candidateSSS = new CustomSSSCodeset(dialog.SelectedPath + "/codes/RSBE01.gct");
 					} else if (File.Exists(dialog.SelectedPath + "/data/gecko/codes/RSBE01.gct")) {
-						candidateSSS = new CustomSSS(dialog.SelectedPath + "/data/gecko/codes/RSBE01.gct");
+						candidateSSS = new CustomSSSCodeset(dialog.SelectedPath + "/data/gecko/codes/RSBE01.gct");
 					} else if (File.Exists(dialog.SelectedPath + "/RSBE01.gct")) {
-						candidateSSS = new CustomSSS(dialog.SelectedPath + "/RSBE01.gct");
+						candidateSSS = new CustomSSSCodeset(dialog.SelectedPath + "/RSBE01.gct");
 					} else {
 						MessageBox.Show(this, "Could not find codes/RSBE01.gct or data/gecko/codes/RSBE01.gct.",
 							"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -281,7 +281,7 @@ namespace SSSEditor {
 
 		private void saveCodesetgctToolStripMenuItem_Click(object sender, EventArgs e) {
 			if (sss.IgnoredMetadata) {
-				MessageBox.Show("Extra data found after GCT footer - this will be discarded if you save the GCT.");
+				MessageBox.Show("Warning: extra data was found after the GCT footer (probably code titles placed there by BrawlBox) and will be discarded if you continue to save.");
 			}
 			using (var dialog = new SaveFileDialog()) {
 				dialog.Filter = "Ocarina codes (*.gct)|*.gct";
@@ -357,7 +357,7 @@ namespace SSSEditor {
 				};
 				f.Controls.Add(t);
 				if (f.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
-					sss = new CustomSSS(t.Lines);
+					sss = new CustomSSSCodeset(t.Lines);
 					ReloadData();
 				}
 			}
