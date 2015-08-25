@@ -150,7 +150,6 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="COPYING.txt" />
     <Content Include="icon.ico" />
     <Content Include="BrawlCostumeManager.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
