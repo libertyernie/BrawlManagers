@@ -6,8 +6,6 @@ Brawl Song Manager is a program that uses BrawlLib to quickly view which BRSTM
 music files are installed on your SD card (or in whatever folder, on whatever
 device, you use for Brawl hacks.)
 
-There are no major changes in version 3.6.
-
 ----------------------------------------
 
 The left side of the window has a list of .BRSTM music files in the current

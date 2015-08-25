@@ -18,17 +18,24 @@ Changes in 3.6:
   * There is now an option (enabled by default) to look for .rel filenames in
     a way corresponding to Project M's alternate stage loader, e.g.
 	st_crayon_Z.rel.
-  * Alternate stages (e.g. STGFINAL_Z.PAC) are now included when "List stages
-    in SSS order" is turned on.
+  * "List stages in SSS order" has been renamed to "Use stage list from GCT
+    codeset (SSS+ASL)". It will show you all stage .PACs made available by the
+	Custom SSS code in your GCT (if any), along with all alternates defined for
+	those stages by the Alternate Stage Loader code (if any).
   * You can now drag and drop a PNG or GIF image onto the "PM 3.6 top" or
     "PM 3.6 alt" boxes to use it as the main or alternate stage image in the
 	Project M 3.6 stage select preview.
   * The default border for the icon border replacer has been fixed.
   * 96x96 is now an option for prevbase auto-resize.
   * A new collapsible splitter is used in Stage Manager and Costume Manager.
+  * The "Prepare sc_selmap for expansion stages" function has been fixed.
+  * Stage Manager will now look for "codes/RSBE01.gct" and
+	"data/gecko/codes/RSBE01.gct" recursively, up to the root of the drive.
   * "Convert MenSelmapMarks to CMPR" and "Draw blocks over prevbases" have
     been removed - I didn't think they were worth the trouble. Let me know
 	if you want them put back in.
+  * The ability to save settings to the registry has also been removed, for
+    similar reasons.
 
 ----------------------------------------
 
