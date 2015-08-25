@@ -37,7 +37,7 @@ namespace BrawlSongManager {
 		}
 
 		private string FallbackDirectory;
-		private CustomSongVolume csv;
+		private CustomSongVolumeCodeset csv;
 		private string csvPath; // used only for save function
 
 		private enum ListType {
@@ -146,7 +146,7 @@ namespace BrawlSongManager {
 			csv = null;
 			foreach (string file in GCT_PATHS) {
 				if (File.Exists(file)) {
-					csv = new CustomSongVolume(File.ReadAllBytes(file));
+					csv = new CustomSongVolumeCodeset(File.ReadAllBytes(file));
 					int ct = csv.Settings.Count;
 					Console.WriteLine("Loaded Custom Song Volume (" + ct + " settings)");
 					csvPath = file;

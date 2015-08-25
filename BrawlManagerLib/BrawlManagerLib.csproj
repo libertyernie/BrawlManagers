@@ -70,8 +70,9 @@
     <Compile Include="BrawlSplitter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CustomSongVolume.cs" />
-    <Compile Include="CustomSSSCodeset.cs" />
+    <Compile Include="GCT\ReadWrite\CustomSongVolumeCodeset.cs" />
+    <Compile Include="GCT\AlternateStageEntry.cs" />
+    <Compile Include="GCT\ReadWrite\CustomSSSCodeset.cs" />
     <Compile Include="ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,7 +84,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ReadOnly\AlternateStageLoaderData.cs" />
+    <Compile Include="GCT\ReadOnly\AlternateStageLoaderData.cs" />
     <Compile Include="Songs\Song.cs" />
     <Compile Include="ByteUtilities.cs" />
     <Compile Include="CopyDialog.cs">
@@ -110,7 +111,7 @@
     <Compile Include="Songs\SongPanel.Designer.cs">
       <DependentUpon>SongPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReadOnly\StageDependentSongLoader.cs" />
+    <Compile Include="GCT\ReadOnly\StageDependentSongLoader.cs" />
     <Compile Include="StageIDMap.cs" />
     <Compile Include="TempFiles.cs" />
     <Compile Include="TextBoxDialog.cs">

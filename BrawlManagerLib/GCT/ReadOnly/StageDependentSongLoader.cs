@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BrawlManagerLib.ReadOnly {
+namespace BrawlManagerLib {
 	/// <summary>
 	/// Allows read-only access to all Stage-Dependent Song Loader instances in a GCT codeset.
 	/// </summary>

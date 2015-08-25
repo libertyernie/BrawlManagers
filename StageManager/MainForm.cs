@@ -371,7 +371,7 @@ namespace BrawlStageManager {
 				List<string> pacNames = StageIDMap.PacFilesBySSSOrder(portraitViewer1.BestSSS);
 				for (int i = 0; i < pacNames.Count; i++) {
 					string name = pacNames[i];
-					BrawlManagerLib.ReadOnly.AlternateStageLoaderData.AlternateStageDefinition def;
+					AlternateStageEntry def;
 					if (portraitViewer1.BestSSS.AlternateStageLoaderData.TryGetDefinition(name, out def)) {
 						string without_ext = name.Substring(0, name.Length - 4);
 						foreach (char letter in def.ButtonActivated.Concat(def.Random).Select(a => a.Letter).Distinct()) {

@@ -13,8 +13,8 @@ namespace BrawlSongManager {
 
 		public bool ChangeMadeSinceCSVLoaded {get; private set;}
 
-		private CustomSongVolume _csv;
-		public CustomSongVolume CSV {
+		private CustomSongVolumeCodeset _csv;
+		public CustomSongVolumeCodeset CSV {
 			get {
 				return _csv;
 			}

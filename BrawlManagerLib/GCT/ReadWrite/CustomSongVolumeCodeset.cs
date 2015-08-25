@@ -13,21 +13,21 @@ namespace BrawlManagerLib {
 	/// Allows read-write access to Custom Song Volume code.
 	/// This class will store the entire codeset, split between itself (the CSV code) and the portions before/after (in raw byte[]).
 	/// </summary>
-	public class CustomSongVolume {
+	public class CustomSongVolumeCodeset {
 		public byte[] DataBefore { get; private set; } // Contains the GCT header
 		public byte[] DataAfter { get; private set; } // Contains the GCT footer
 
 		public Dictionary<ushort, byte> Settings { get; private set; }
 
-		public CustomSongVolume(string[] s) {
+		public CustomSongVolumeCodeset(string[] s) {
 			init(s);
 		}
 
-		public CustomSongVolume(byte[] data) {
+		public CustomSongVolumeCodeset(byte[] data) {
 			init(data);
 		}
 
-		public CustomSongVolume(string filename) {
+		public CustomSongVolumeCodeset(string filename) {
 			if (filename.EndsWith("gct", StringComparison.InvariantCultureIgnoreCase)) {
 				init(File.ReadAllBytes(filename));
 			} else {

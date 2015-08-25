@@ -13,7 +13,7 @@ namespace BrawlSongManager {
 		public SongInfo(string s) {
 			File = new FileInfo(s + ".brstm");
 		}
-		public SongInfo(ushort id, CustomSongVolume csv) {
+		public SongInfo(ushort id, CustomSongVolumeCodeset csv) {
 			string s = (from b in SongIDMap.Songs
 						where b.ID == id
 						select b.Filename).FirstOrDefault() ?? id.ToString("X4");
@@ -25,7 +25,7 @@ namespace BrawlSongManager {
 		public FileInfo File { get; private set; }
 
 		private ushort ID;
-		private CustomSongVolume CSV;
+		private CustomSongVolumeCodeset CSV;
 
 		public override string ToString() {
 			string s = File.Name;

@@ -45,7 +45,7 @@ namespace BrawlSongManager.SongExport {
 
 		// Volume Details
 		private string gctPath;
-		private CustomSongVolume gctCsv;
+		private CustomSongVolumeCodeset gctCsv;
 
 		public SongEditor() {
 
@@ -157,7 +157,7 @@ namespace BrawlSongManager.SongExport {
 
 		public void PrepareGCT() {
 			gctPath = FindFile(GCT_PATHS);
-			gctCsv = new CustomSongVolume(File.ReadAllBytes(gctPath));
+			gctCsv = new CustomSongVolumeCodeset(File.ReadAllBytes(gctPath));
 		}
 
 		public void SaveGCT() {
