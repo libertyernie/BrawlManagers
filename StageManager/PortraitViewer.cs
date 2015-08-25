@@ -247,15 +247,17 @@ namespace BrawlStageManager {
 
 			// Find and load GCT, if it exists
 			AutoSSS = null;
-			foreach (string file in new string[] {
-				"RSBE01.gct",
-				"/data/gecko/codes/RSBE01.gct",
-				"/codes/RSBE01.gct",
-			}) {
-				if (File.Exists(file)) {
-					AutoSSS = new CustomSSSCodeset(File.ReadAllBytes(file));
+			DirectoryInfo directory = new DirectoryInfo(Environment.CurrentDirectory);
+			while (directory != null) {
+				Console.WriteLine(directory);
+				if (File.Exists(directory.FullName + "/data/gecko/codes/RSBE01.gct")) {
+					AutoSSS = new CustomSSS(File.ReadAllBytes(directory.FullName + "/data/gecko/codes/RSBE01.gct"));
+					break;
+				} else if (File.Exists(directory.FullName + "/codes/RSBE01.gct")) {
+					AutoSSS = new CustomSSS(File.ReadAllBytes(directory.FullName + "/codes/RSBE01.gct"));
 					break;
 				}
+				directory = directory.Parent;
 			}
 		}
 
