@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 3.6 - August 15, 2015
+﻿Brawl Stage Manager 3.6 - August 28, 2015
 Copyright © 2015 libertyernie
 http://lakora.us/brawl/stagemanager
 
@@ -31,6 +31,9 @@ Changes in 3.6:
   * The "Prepare sc_selmap for expansion stages" function has been fixed.
   * Stage Manager will now look for "codes/RSBE01.gct" and
 	"data/gecko/codes/RSBE01.gct" recursively, up to the root of the drive.
+  * An option has been added in the View menu to make the window larger by
+    changing the font size to 16pt.
+Removed features:
   * "Convert MenSelmapMarks to CMPR" and "Draw blocks over prevbases" have
     been removed - I didn't think they were worth the trouble. Let me know
 	if you want them put back in.

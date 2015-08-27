@@ -1,4 +1,4 @@
-Brawl Costume Manager 3.6 - August 15, 2015
+Brawl Costume Manager 3.6 - August 28, 2015
 Copyright © 2015 libertyernie
 http://lakora.us/brawl/costumemanager
 
@@ -8,6 +8,8 @@ Changes in 3.6:
   * There is now an area near the lower-right corner to edit the stock icons
     in Project M's info.pac.
   * A new collapsible splitter is used in Stage Manager and Costume Manager.
+  * An option has been added in the View menu to make the window larger by
+    changing the font size to 16pt.
 
 --------
 
