@@ -244,22 +244,24 @@ namespace BrawlSongManager {
 
 		public void dragDrop(object sender, DragEventArgs e) {
 			string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
-			string filepath = s[0].ToLower();
-			if (sender == listBox1) {
-				using (NameDialog nd = new NameDialog()) {
-					nd.EntryText = s[0].Substring(s[0].LastIndexOf('\\') + 1); // Textbox on the dialog ("Text" is already used by C#)
-					if (nd.ShowDialog(this) == DialogResult.OK) {
-						if (!nd.EntryText.ToLower().EndsWith(".brstm")) {
-							nd.EntryText += ".brstm"; // Force .brstm extension so it shows up in the list
+			this.BeginInvoke(new Action(() => {
+				string filepath = s[0].ToLower();
+				if (sender == listBox1) {
+					using (NameDialog nd = new NameDialog()) {
+						nd.EntryText = s[0].Substring(s[0].LastIndexOf('\\') + 1); // Textbox on the dialog ("Text" is already used by C#)
+						if (nd.ShowDialog(this) == DialogResult.OK) {
+							if (!nd.EntryText.ToLower().EndsWith(".brstm")) {
+								nd.EntryText += ".brstm"; // Force .brstm extension so it shows up in the list
+							}
+							if (string.Equals(nd.EntryText, Path.GetFileName(songPanel1.RootPath), StringComparison.InvariantCultureIgnoreCase)) {
+								songPanel1.Close(); // in case the file is already open
+							}
+							SongPanel.copyBrstm(filepath, CurrentDirectory + "\\" + nd.EntryText);
+							refreshDirectory();
 						}
-						if (string.Equals(nd.EntryText, Path.GetFileName(songPanel1.RootPath), StringComparison.InvariantCultureIgnoreCase)) {
-							songPanel1.Close(); // in case the file is already open
-						}
-						SongPanel.copyBrstm(filepath, CurrentDirectory + "\\" + nd.EntryText);
-						refreshDirectory();
 					}
 				}
-			}
+			}));
 		}
 
 		/// <summary>

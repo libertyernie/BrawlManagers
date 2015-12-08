@@ -224,8 +224,10 @@ namespace BrawlManagerLib {
 
 		private void SongPanel_DragDrop(object sender, DragEventArgs e) {
 			string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
-			string filepath = s[0].ToLower();
-			Replace(filepath);
+			this.BeginInvoke(new Action(() => {
+				string filepath = s[0].ToLower();
+				Replace(filepath);
+			}));
 		}
 
 		/// <summary>

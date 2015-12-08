@@ -137,7 +137,10 @@ namespace BrawlCostumeManager {
 
 		void _panel_DragDrop(object sender, DragEventArgs e) {
 			if (e.Effect == DragDropEffects.Copy) {
-				Replace((e.Data.GetData(DataFormats.FileDrop) as string[])[0], false);
+				string filename = (e.Data.GetData(DataFormats.FileDrop) as string[])[0];
+				_panel.BeginInvoke(new Action(() => {
+					Replace(filename, false);
+				}));
 			}
 		}
 

@@ -418,36 +418,38 @@ namespace BrawlStageManager {
 
 		public void dragDrop(object sender, DragEventArgs e) {
 			string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
-			string filepath = s[0].ToLower();
-			string name;
-			if (sender == listBox1) {
-				NameDialog nd = new NameDialog();
-				nd.Text = "Enter Filename"; // Titlebar
-				nd.EntryText = s[0].Substring(s[0].LastIndexOf('\\')+1); // Textbox on the dialog ("Text" is already used by C#)
-				nd.LabelText = "Enter the filename to copy to (with or without the .pac extension):";
-				if (nd.ShowDialog(this) == DialogResult.OK) {
-					if (!nd.EntryText.ToLower().EndsWith(".pac")) {
-						nd.EntryText += ".pac"; // Force .pac extension so it shows up in the list
+			this.BeginInvoke(new Action(() => {
+				string filepath = s[0].ToLower();
+				string name;
+				if (sender == listBox1) {
+					NameDialog nd = new NameDialog();
+					nd.Text = "Enter Filename"; // Titlebar
+					nd.EntryText = s[0].Substring(s[0].LastIndexOf('\\')+1); // Textbox on the dialog ("Text" is already used by C#)
+					nd.LabelText = "Enter the filename to copy to (with or without the .pac extension):";
+					if (nd.ShowDialog(this) == DialogResult.OK) {
+						if (!nd.EntryText.ToLower().EndsWith(".pac")) {
+							nd.EntryText += ".pac"; // Force .pac extension so it shows up in the list
+						}
+						if (FileOperations.Copy(filepath, CurrentDirectory + "\\" + nd.EntryText)) { // Use FileOperations (calls Windows shell -> asks for confirmation to overwrite)
+							MessageBox.Show(this, "File copied.");
+							ReloadDirectory();
+						}
 					}
-					if (FileOperations.Copy(filepath, CurrentDirectory + "\\" + nd.EntryText)) { // Use FileOperations (calls Windows shell -> asks for confirmation to overwrite)
-						MessageBox.Show(this, "File copied.");
-						ReloadDirectory();
+				} else if (_rootPath != null) {
+					name = new FileInfo(_rootPath).Name;
+					if (_rootNode != null) {
+						_rootNode.Dispose(); _rootNode = null; // Close the file before overwriting it!
 					}
+					if (filepath.EndsWith(".pac")) {
+						FileOperations.Copy(filepath, CurrentDirectory + "\\" + name);
+					} else if (filepath.EndsWith(".rel")) {
+						FileOperations.Copy(filepath, stageInfoControl1.RelFile.FullName);
+					} else if (Directory.Exists(filepath)) {
+						importDir(filepath);
+					}
+					listBox1_SelectedIndexChanged(null, null);
 				}
-			} else if (_rootPath != null) {
-				name = new FileInfo(_rootPath).Name;
-				if (_rootNode != null) {
-					_rootNode.Dispose(); _rootNode = null; // Close the file before overwriting it!
-				}
-				if (filepath.EndsWith(".pac")) {
-					FileOperations.Copy(filepath, CurrentDirectory + "\\" + name);
-				} else if (filepath.EndsWith(".rel")) {
-					FileOperations.Copy(filepath, stageInfoControl1.RelFile.FullName);
-				} else if (Directory.Exists(filepath)) {
-					importDir(filepath);
-				}
-				listBox1_SelectedIndexChanged(null, null);
-			}
+			}));
 		}
 		#endregion
 

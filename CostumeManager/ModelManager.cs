@@ -74,41 +74,43 @@ namespace BrawlCostumeManager {
 		void modelPanel1_DragDrop(object sender, DragEventArgs e) {
 			if (e.Effect == DragDropEffects.Copy) {
 				string newpath = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
-				using (ResourceNode newroot = NodeFactory.FromFile(null, newpath)) {
-					if (newroot is ARCNode) {
-						string basePath = _path;
-						if (Path.HasExtension(basePath)) {
-							basePath = basePath.Substring(0, basePath.LastIndexOf('.'));
-						}
-						FileInfo pac = new FileInfo(basePath + ".pac");
-						FileInfo pcs = new FileInfo(basePath + ".pcs");
+				this.BeginInvoke(new Action(() => {
+					using (ResourceNode newroot = NodeFactory.FromFile(null, newpath)) {
+						if (newroot is ARCNode) {
+							string basePath = _path;
+							if (Path.HasExtension(basePath)) {
+								basePath = basePath.Substring(0, basePath.LastIndexOf('.'));
+							}
+							FileInfo pac = new FileInfo(basePath + ".pac");
+							FileInfo pcs = new FileInfo(basePath + ".pcs");
 
-						bool cont = true;
-						if (pac.Exists || pcs.Exists) {
-							cont = (DialogResult.OK == MessageBox.Show(
-								"Replace " + pac.Name + "/" + pcs.Name + "?",
-								"Overwrite?",
-								MessageBoxButtons.OKCancel));
-						}
-						if (!cont) return;
+							bool cont = true;
+							if (pac.Exists || pcs.Exists) {
+								cont = (DialogResult.OK == MessageBox.Show(
+									"Replace " + pac.Name + "/" + pcs.Name + "?",
+									"Overwrite?",
+									MessageBoxButtons.OKCancel));
+							}
+							if (!cont) return;
 
-						if (_root != null) {
-							_root.Dispose();
-							_root = null;
-						}
-						pac.Directory.Create();
-						(newroot as ARCNode).ExportPAC(pac.FullName);
-						(newroot as ARCNode).ExportPCS(pcs.FullName);
+							if (_root != null) {
+								_root.Dispose();
+								_root = null;
+							}
+							pac.Directory.Create();
+							(newroot as ARCNode).ExportPAC(pac.FullName);
+							(newroot as ARCNode).ExportPCS(pcs.FullName);
 
-						if (ParentForm is CostumeManager) {
-							(ParentForm as CostumeManager).updateCostumeSelectionPane();
-						}
+							if (ParentForm is CostumeManager) {
+								(ParentForm as CostumeManager).updateCostumeSelectionPane();
+							}
 
-						LoadFile(_path);
-					} else {
-						MessageBox.Show("Invalid format: root node is not an ARC archive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							LoadFile(_path);
+						} else {
+							MessageBox.Show("Invalid format: root node is not an ARC archive.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						}
 					}
-				}
+				}));
 			}
 		}
 
