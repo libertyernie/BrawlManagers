@@ -187,9 +187,12 @@ namespace BrawlCostumeManager {
 			model.ApplySRT(null, 0);
 
 			if (UseExceptions) foreach (string texname in TexturesToDisable) {
-				MDL0TextureNode tex = model.TextureGroup.FindChild(texname, false) as MDL0TextureNode;
-				if (tex != null) {
-					tex.Enabled = false;
+				ResourceNode textureGroup = model.TextureGroup;
+				if (textureGroup != null) {
+					MDL0TextureNode tex = textureGroup.FindChild(texname, false) as MDL0TextureNode;
+					if (tex != null) {
+						tex.Enabled = false;
+					}
 				}
 			}
 
