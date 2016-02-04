@@ -23,14 +23,18 @@ namespace BrawlManagerLib {
 					ushort songID = (ushort)(0x100 * songID1 + songID2);
 					Song s = (from g in SongIDMap.Songs
 							  where g.ID == songID
-							  select g).First();
-					if (SongsByStage.ContainsKey(stageID)) {
-						Console.WriteLine(String.Format("WARNING: code mapping stage {0} to song {1} will not " +
-							"take effect, since a later code maps it to song {2}", stageID, SongsByStage[stageID], s));
-						SongsByStage.Remove(stageID);
+							  select g).FirstOrDefault();
+					if (s != null) {
+						if (SongsByStage.ContainsKey(stageID)) {
+							Console.WriteLine(String.Format("WARNING: code mapping stage {0} to song {1} will not " +
+								"take effect, since a later code maps it to song {2}", stageID, SongsByStage[stageID], s));
+							SongsByStage.Remove(stageID);
+						}
+						SongsByStage.Add(stageID, s);
+						line += 24;
+					} else {
+						Console.WriteLine("Unknown song ID " + songID.ToString("X4") + " - not currently supported.");
 					}
-					SongsByStage.Add(stageID, s);
-					line += 24;
 				}
 			}
 		}
