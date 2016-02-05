@@ -18,6 +18,17 @@ namespace BrawlManagerLib {
 		private MSBinNode info, info_training;
 		private string _currentFile, _currentTrainingFile;
 
+		public class SongIndexEntry {
+			public ushort ID;
+			public int Index;
+
+			public SongIndexEntry(SndBgmTitleEntryNode node) {
+				this.ID = (ushort)(int)node.ID;
+				this.Index = node.Index;
+			}
+		}
+		private List<SongIndexEntry> common2_titledata;
+
 		private bool updateTextColor;
 		private string TextBoxText {
 			set {
@@ -77,7 +88,7 @@ namespace BrawlManagerLib {
 		}
 
 		/// <summary>
-		/// This function finds the new info.pac. It should be called whenever you change the working directory.
+		/// This function finds the new info.pac and common2.pac. It should be called whenever you change the working directory.
 		/// It also clears the list of edited ("dirty") strings, and records the current names (for the "restore" button).
 		/// </summary>
 		public String findInfoFile() {
@@ -85,8 +96,27 @@ namespace BrawlManagerLib {
 
 			info = info_training = null;
 			_currentFile = _currentTrainingFile = null;
+			common2_titledata = new List<SongIndexEntry>(0);
 
 			string tempfile = Path.GetTempFileName();
+			string[] sndBgmTitleDataPaths = { "..\\..\\system\\common2.pac", "..\\..\\system\\common2_en.pac", "..\\common2.pac" };
+			foreach (string relativepath in sndBgmTitleDataPaths) {
+				string s = Path.GetFullPath(relativepath);
+				if (new FileInfo(s).Exists) {
+					File.Copy(s, tempfile, true);
+					using (var node = NodeFactory.FromFile(null, tempfile)) {
+						foreach (ResourceNode child in node.Children) {
+							if (child is SndBgmTitleDataNode) {
+								common2_titledata = child.Children.Select(n => new SongIndexEntry((SndBgmTitleEntryNode)n)).ToList();
+								break;
+							}
+						}
+					}
+				}
+				if (common2_titledata.Count > 0) break;
+			}
+
+			tempfile = Path.GetTempFileName();
 			if (new FileInfo("MiscData[140].msbin").Exists) {
 				_currentFile = "MiscData[140].msbin";
 				File.Copy("MiscData[140].msbin", tempfile, true);
@@ -205,12 +235,19 @@ namespace BrawlManagerLib {
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
-			TextBoxText = (from s in SongIDMap.Songs
-						   where s.InfoPacIndex == _index
-						   select s.DefaultName).First();
+			var titleEntry = common2_titledata.FirstOrDefault(c => c.Index == _index);
+			TextBoxText = titleEntry == null
+				? "Title index not found in MiscDat[13] in common2"
+				: (from s in SongIDMap.Songs
+					where s.ID == titleEntry.ID
+					select s.DefaultName).First();
 			updateNodeString();
 			modifiedStringIndices.Add(_index);
 			refreshColor();
+		}
+
+		public int GetInfoPacIndex(ushort id) {
+			return common2_titledata.Where(c => c.ID == id).Select(c => c.Index).DefaultIfEmpty(-1).First();
 		}
 
 		public void ExportMSBin(string path) {

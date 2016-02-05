@@ -7,12 +7,29 @@ namespace BrawlManagerLib {
 	public static class SongIDMap {
 		public static IEnumerable<Song> Songs {
 			get {
-				return from s in arr
-					   select s;
+				return allSongs;
 			}
 		}
 
-		private static Song[] arr = {
+		private static Song[] allSongs;
+
+		static SongIDMap() {
+			allSongs = new Song[ushort.MaxValue + 1];
+			for (int i = 0; i == (ushort)i; i++) {
+				allSongs[i] = existing.FirstOrDefault(s => s.ID == i) ?? customSoundEngineSong(i);
+			}
+		}
+
+		private static Song customSoundEngineSong(int id) {
+			return new Song(
+				"Custom Sound Engine: " + id.ToString("X4"),
+				id.ToString("X8"),
+				(ushort)id,
+				null
+			);
+		}
+
+		private static Song[] existing = {
 			new Song("", "", 0xFFFF, null, null),
 			new Song("Super Smash Bros. Brawl Main Theme", "X01", 0x26F9, 80, 0),
 			new Song("Menu 1", "X02", 0x26FA, 70, 111),

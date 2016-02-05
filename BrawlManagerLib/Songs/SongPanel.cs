@@ -135,7 +135,7 @@ namespace BrawlManagerLib {
 				string filename = Path.GetFileNameWithoutExtension(LastFileCalledFor).ToUpper();
 				int index = (from s in SongIDMap.Songs
 							 where s.Filename == filename
-							 select s.InfoPacIndex ?? -1)
+							 select songNameBar.GetInfoPacIndex(s.ID))
 							 .DefaultIfEmpty(-1).First();
 				songNameBar.Index = index;
 			} else {
