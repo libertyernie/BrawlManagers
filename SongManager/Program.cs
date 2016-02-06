@@ -62,7 +62,7 @@ namespace BrawlSongManager {
 		}
 
 		private static string BSMHelp() {
-			return "Usage: " + Process.GetCurrentProcess().ProcessName + " [args] [path to sound/strm folder]\n" +
+			return "Usage: " + Process.GetCurrentProcess().ProcessName + " [args] [path to folder with BRSTMs]\n" +
 				"\n" +
 				"Arguments:\n" +
 				"  /N  Don't load names from info.pac\n" +

@@ -933,7 +933,11 @@ namespace BrawlStageManager {
 		}
 
 		private void listBoxSongs_SelectedIndexChanged(object sender, EventArgs e) {
-			songPanel1.Open(new FileInfo("../../sound/strm/" + listBoxSongs.SelectedItem + ".brstm"));
+			string basename = listBoxSongs.SelectedItem.ToString();
+			string folder = basename.StartsWith("0000")
+				? "../../sound/sfx/"
+				: "../../sound/strm/";
+			songPanel1.Open(new FileInfo(folder + basename + ".brstm"));
 			exportbrstmToolStripMenuItem.Enabled = deletebrstmToolStripMenuItem.Enabled = songPanel1.FileOpen;
 		}
 
