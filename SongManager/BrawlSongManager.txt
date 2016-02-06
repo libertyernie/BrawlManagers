@@ -1,14 +1,13 @@
-﻿Brawl Song Manager 3.6 - August 28, 2015
-Copyright © 2015 libertyernie
+﻿Brawl Song Manager 3.7 - February 2016
+Copyright © 2016 libertyernie
 http://lakora.us/brawl/songmanager
 
 Brawl Song Manager is a program that uses BrawlLib to quickly view which BRSTM
 music files are installed on your SD card (or in whatever folder, on whatever
 device, you use for Brawl hacks.)
 
-Changes in 3.6:
-  * An option has been added in the View menu to make the window larger by
-    changing the font size to 16pt.
+Changes in 3.7:
+  * Drag-and-drop no longer locks the origin window while the file is copied.
 
 ----------------------------------------
 

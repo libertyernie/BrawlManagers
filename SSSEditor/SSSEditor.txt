@@ -1,5 +1,5 @@
-﻿SSS Editor 3.6 - August 28, 2015
-Copyright © 2015 libertyernie
+﻿SSS Editor 3.7 - February 2016
+Copyright © 2016 libertyernie
 http://lakora.us/brawl/ssseditor
 
 SSS Editor is a .NET application for managing the Custom SSS code, on its own
@@ -13,27 +13,18 @@ code, and a common5/sc_selmap/mu_menumain file (which will not be modified.)
 
 -------- Changes --------
 
-Changes in 3.6:
-  * A complete rewrite of the main interface of the program. The new editing
-    interface uses an embedded WebBrowser control with three columns and is
-	written using HTML, CSS, and JavaScript.
-	* Internet Explorer 8 or higher is now required.
-	* Three additional libraries are included: Microsoft.AspNet.Razor (part
-	  of Microsoft's ASP.NET), RazorEngine (a templating engine built around
-	  Razor), and Newtonsoft.Json (a JSON library for communicating with the
-	  embedded web browser.)
-	  * Although new versions of Microsoft.AspNet.Razor are open source, this one
-	    (which runs on .NET 4.0) is not, so check the licensing terms here:
-		http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm
-  * To adjust to new versions of BrawlLib exposing "in" and "out" keyframes at
-    the same index of a CHR0 entry, SSS Editor now asks BrawlLib for the "out"
-	keyframe specifically when previewing what the SSS will look like.
-	* As of this writing, new versions of BrawlBox have not yet been rewritten
-	  to allow proper editing of the SSS layout in MenSelmapPos_TopN__0, so
-	  use an old version of BrawlBox if you need to do this.
-  * SSS Editor no longer asks you to find the GCT/PAC files if it cannot find
-    them; it just starts up without loading anything.
-  * SSS Editor now tries to load sc_selmap before trying to load common5.
+Changes in 3.7:
+  * Songs added by the Custom Sound Engine code are now recogized.
+
+Notes:
+  * Internet Explorer 8 or higher is now required.
+  * Three additional libraries are included: Microsoft.AspNet.Razor (part
+	of Microsoft's ASP.NET), RazorEngine (a templating engine built around
+	Razor), and Newtonsoft.Json (a JSON library for communicating with the
+	embedded web browser.)
+	* Although new versions of Microsoft.AspNet.Razor are open source, this one
+	  (which runs on .NET 4.0) is not, so check the licensing terms here:
+	  http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm
 
 -------- Stage Control Guide --------
 

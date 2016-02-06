@@ -1,5 +1,5 @@
-﻿Brawl Stage Manager 3.6 - August 28, 2015
-Copyright © 2015 libertyernie
+﻿Brawl Stage Manager 3.7 - February 2016
+Copyright © 2016 libertyernie
 http://lakora.us/brawl/stagemanager
 
 Brawl Stage Manager is a program that uses BrawlLib to help you see and
@@ -8,37 +8,10 @@ your SD card (or in whatever folder, on whatever device, you use for Brawl
 hacks.) It can also add PAT0 entries for expansion stages (with an automated
 process) and change certain PAT0 entries (through a special dialog.)
 
-Changes in 3.6:
-  * BrawlLib has switched the white and alpha channels in IA4 textures to
-    match how they show up on the stage select screen - this means when
-	importing or exporting a MenSelmapMark, it will look as it does in-game
-	instead of having black around the edges and transparency in the middle.
-	* If you have old MenSelmapMark images, turn off "Use Texture Converter" and
-	  Stage Manager will convert them for you.
-  * There is now an option (enabled by default) to look for .rel filenames in
-    a way corresponding to Project M's alternate stage loader, e.g.
-	st_crayon_Z.rel.
-  * "List stages in SSS order" has been renamed to "Use stage list from GCT
-    codeset (SSS+ASL)". It will show you all stage .PACs made available by the
-	Custom SSS code in your GCT (if any), along with all alternates defined for
-	those stages by the Alternate Stage Loader code (if any).
-  * You can now drag and drop a PNG or GIF image onto the "PM 3.6 top" or
-    "PM 3.6 alt" boxes to use it as the main or alternate stage image in the
-	Project M 3.6 stage select preview.
-  * The default border for the icon border replacer has been fixed.
-  * 96x96 is now an option for prevbase auto-resize.
-  * A new collapsible splitter is used in Stage Manager and Costume Manager.
-  * The "Prepare sc_selmap for expansion stages" function has been fixed.
-  * Stage Manager will now look for "codes/RSBE01.gct" and
-	"data/gecko/codes/RSBE01.gct" recursively, up to the root of the drive.
-  * An option has been added in the View menu to make the window larger by
-    changing the font size to 16pt.
-Removed features:
-  * "Convert MenSelmapMarks to CMPR" and "Draw blocks over prevbases" have
-    been removed - I didn't think they were worth the trouble. Let me know
-	if you want them put back in.
-  * The ability to save settings to the registry has also been removed, for
-    similar reasons.
+Changes in 3.7:
+  * Songs added by the Custom Sound Engine code are now recogized (and loaded
+  from the sound/sfx folder instead of sound/srtm).
+  * Drag-and-drop no longer locks the origin window while the file is copied.
 
 ----------------------------------------
 
