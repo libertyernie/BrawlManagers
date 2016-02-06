@@ -26,8 +26,8 @@ To add a song, drag a .BRSTM or .WAV onto the menu and enter a filename.
 Right-click the .BRSTM in the menu for other options (Export, Rename, Delete).
 
 KEYBOARD SHORTCUTS:
-PageUp:		go up one song (focus does not need to be on the song list)
-PageDown:	go down one song (focus does not need to be on the song list)
+PageUp:      go up one song (focus does not need to be on the song list)
+PageDown:    go down one song (focus does not need to be on the song list)
 
 ----------------------------------------
 
@@ -43,6 +43,9 @@ If you have an info_training file, that will be updated as well. If song names
 in the two files are different, the text box will be colored red.
 
 ----------------------------------------
+
+Use the "change directory" dialog to select the folder that has BRSTM files in
+it. This could be sound/strm (or sound/sfx with the Custom Sound Engine.)
 
 Hint: In the "change directory" dialog, select your SD card and hit OK. If
 there are no .brstm files in the root of your SD card, the program should jump
