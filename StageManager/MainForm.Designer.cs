@@ -55,6 +55,8 @@
 			this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
 			this.exportAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.use16ptFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.useTextureConverterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.useAFixedStageListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,13 +116,11 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.brawlSplitter5 = new BrawlManagerLib.BrawlSplitter();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.brawlSplitter3 = new BrawlManagerLib.BrawlSplitter();
 			this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
+			this.stageInfoControl1 = new BrawlStageManager.StageInfoControl();
 			this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
 			this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
-			this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.use16ptFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
 			this.splitContainerLeft.Panel1.SuspendLayout();
 			this.splitContainerLeft.Panel2.SuspendLayout();
@@ -218,10 +218,10 @@
 			// 
 			this.songPanel1.AllowDrop = true;
 			this.songPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.songPanel1.Location = new System.Drawing.Point(46, 0);
+			this.songPanel1.Location = new System.Drawing.Point(65, 0);
 			this.songPanel1.MinimumSize = new System.Drawing.Size(0, 131);
 			this.songPanel1.Name = "songPanel1";
-			this.songPanel1.Size = new System.Drawing.Size(265, 131);
+			this.songPanel1.Size = new System.Drawing.Size(246, 131);
 			this.songPanel1.TabIndex = 6;
 			// 
 			// listBoxSongs
@@ -232,7 +232,7 @@
 			this.listBoxSongs.IntegralHeight = false;
 			this.listBoxSongs.Location = new System.Drawing.Point(0, 0);
 			this.listBoxSongs.Name = "listBoxSongs";
-			this.listBoxSongs.Size = new System.Drawing.Size(46, 131);
+			this.listBoxSongs.Size = new System.Drawing.Size(65, 131);
 			this.listBoxSongs.TabIndex = 8;
 			this.listBoxSongs.SelectedIndexChanged += new System.EventHandler(this.listBoxSongs_SelectedIndexChanged);
 			// 
@@ -397,6 +397,22 @@
 			this.exitToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+			// 
+			// viewToolStripMenuItem
+			// 
+			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.use16ptFontToolStripMenuItem});
+			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+			this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+			this.viewToolStripMenuItem.Text = "View";
+			// 
+			// use16ptFontToolStripMenuItem
+			// 
+			this.use16ptFontToolStripMenuItem.CheckOnClick = true;
+			this.use16ptFontToolStripMenuItem.Name = "use16ptFontToolStripMenuItem";
+			this.use16ptFontToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+			this.use16ptFontToolStripMenuItem.Text = "Use 16pt font";
+			this.use16ptFontToolStripMenuItem.Click += new System.EventHandler(this.use16ptFontToolStripMenuItem_Click);
 			// 
 			// optionsToolStripMenuItem
 			// 
@@ -616,7 +632,7 @@
             this.toolStripMenuItem6,
             this.resizeAllPrevbasesToolStripMenuItem});
 			this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-			this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+			this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
 			this.toolsToolStripMenuItem.Text = "Tools";
 			// 
 			// snapshotPortraiticonToolStripMenuItem
@@ -800,7 +816,7 @@
 			// 
 			this.texturesToolStripMenuItem.CheckOnClick = true;
 			this.texturesToolStripMenuItem.Name = "texturesToolStripMenuItem";
-			this.texturesToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+			this.texturesToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
 			this.texturesToolStripMenuItem.Text = "Model Textures";
 			this.texturesToolStripMenuItem.Click += new System.EventHandler(this.texturesToolStripMenuItem_Click);
 			// 
@@ -876,16 +892,6 @@
 			this.panel1.Size = new System.Drawing.Size(311, 150);
 			this.panel1.TabIndex = 8;
 			// 
-			// stageInfoControl1
-			// 
-			this.stageInfoControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.stageInfoControl1.Location = new System.Drawing.Point(0, 0);
-			this.stageInfoControl1.Name = "stageInfoControl1";
-			this.stageInfoControl1.RelFile = null;
-			this.stageInfoControl1.Size = new System.Drawing.Size(311, 56);
-			this.stageInfoControl1.TabIndex = 0;
-			this.stageInfoControl1.UseRelDescription = false;
-			// 
 			// brawlSplitter3
 			// 
 			this.brawlSplitter3.ControlToHide = this.songContainerPanel;
@@ -904,6 +910,16 @@
 			this.brawlSplitter1.Size = new System.Drawing.Size(8, 477);
 			this.brawlSplitter1.TabIndex = 8;
 			this.brawlSplitter1.TabStop = false;
+			// 
+			// stageInfoControl1
+			// 
+			this.stageInfoControl1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.stageInfoControl1.Location = new System.Drawing.Point(0, 0);
+			this.stageInfoControl1.Name = "stageInfoControl1";
+			this.stageInfoControl1.RelFile = null;
+			this.stageInfoControl1.Size = new System.Drawing.Size(311, 56);
+			this.stageInfoControl1.TabIndex = 0;
+			this.stageInfoControl1.UseRelDescription = false;
 			// 
 			// brawlSplitter2
 			// 
@@ -926,22 +942,6 @@
 			this.portraitViewer1.Name = "portraitViewer1";
 			this.portraitViewer1.Size = new System.Drawing.Size(213, 477);
 			this.portraitViewer1.TabIndex = 2;
-			// 
-			// viewToolStripMenuItem
-			// 
-			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.use16ptFontToolStripMenuItem});
-			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-			this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-			this.viewToolStripMenuItem.Text = "View";
-			// 
-			// use16ptFontToolStripMenuItem
-			// 
-			this.use16ptFontToolStripMenuItem.CheckOnClick = true;
-			this.use16ptFontToolStripMenuItem.Name = "use16ptFontToolStripMenuItem";
-			this.use16ptFontToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.use16ptFontToolStripMenuItem.Text = "Use 16pt font";
-			this.use16ptFontToolStripMenuItem.Click += new System.EventHandler(this.use16ptFontToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 

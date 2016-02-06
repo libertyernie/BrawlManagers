@@ -25,6 +25,7 @@ namespace BrawlManagerLib {
 				"Custom Sound Engine: " + id.ToString("X4"),
 				id.ToString("X8"),
 				(ushort)id,
+				null,
 				null
 			);
 		}
