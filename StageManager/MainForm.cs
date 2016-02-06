@@ -238,12 +238,7 @@ namespace BrawlStageManager {
 									try {
 										MDL0Node model = child as MDL0Node;
 										model.Populate();
-										model._renderAttribs._renderBones = false;
-										model._renderAttribs._renderPolygons = true;
-										model._renderAttribs._renderWireframe = false;
-										model._renderAttribs._renderVertices = false;
-										model.ApplyCHR(null, 0);
-										model.ApplySRT(null, 0);
+										model.ResetToBindState();
 										if (model.TextureGroup != null) {
 											foreach (ResourceNode tex in model.TextureGroup.Children) {
 												if (tex is MDL0TextureNode) {

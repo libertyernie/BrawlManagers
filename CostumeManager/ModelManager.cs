@@ -179,12 +179,7 @@ namespace BrawlCostumeManager {
 
 		public void LoadModel(MDL0Node model) {
 			model.Populate();
-			model._renderAttribs._renderBones = false;
-			model._renderAttribs._renderPolygons = true;
-			model._renderAttribs._renderWireframe = false;
-			model._renderAttribs._renderVertices = false;
-			model.ApplyCHR(null, 0);
-			model.ApplySRT(null, 0);
+			model.ResetToBindState();
 
 			if (UseExceptions) foreach (string texname in TexturesToDisable) {
 				ResourceNode textureGroup = model.TextureGroup;
