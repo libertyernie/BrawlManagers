@@ -22,9 +22,8 @@ namespace BrawlManagerLib {
 			public ushort ID;
 			public int Index;
 
-			public SongIndexEntry(SndBgmTitleEntryNode node) {
-				this.ID = (ushort)(int)node.ID;
-				this.Index = node.Index;
+			public override string ToString() {
+				return ID.ToString("X4") + " --> " + Index;
 			}
 		}
 		private List<SongIndexEntry> common2_titledata;
@@ -107,13 +106,23 @@ namespace BrawlManagerLib {
 					using (var node = NodeFactory.FromFile(null, tempfile)) {
 						foreach (ResourceNode child in node.Children) {
 							if (child is SndBgmTitleDataNode) {
-								common2_titledata = child.Children.Select(n => new SongIndexEntry((SndBgmTitleEntryNode)n)).ToList();
+								common2_titledata = child.Children.Select(n => new SongIndexEntry() {
+									ID = (ushort)(int)((SndBgmTitleEntryNode)n).ID,
+									Index = ((SndBgmTitleEntryNode)n).SongTitleIndex
+								}).ToList();
 								break;
 							}
 						}
 					}
 				}
 				if (common2_titledata.Count > 0) break;
+			}
+
+			if (common2_titledata.Count == 0) {
+				common2_titledata = SongIDMap.Songs.Where(s => s.InfoPacIndex != null).Select(s => new SongIndexEntry() {
+					ID = s.ID,
+					Index = s.InfoPacIndex ?? 0
+				}).ToList();
 			}
 
 			tempfile = Path.GetTempFileName();
@@ -247,6 +256,7 @@ namespace BrawlManagerLib {
 		}
 
 		public int GetInfoPacIndex(ushort id) {
+			Console.WriteLine("++" + id.ToString("X4") + "++");
 			return common2_titledata.Where(c => c.ID == id).Select(c => c.Index).DefaultIfEmpty(-1).First();
 		}
 

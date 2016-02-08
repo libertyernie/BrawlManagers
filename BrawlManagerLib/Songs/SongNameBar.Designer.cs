@@ -24,7 +24,7 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.button1 = new System.Windows.Forms.Button();
-			this.textBox1 = new SongNameBar.MyTextBox();
+			this.textBox1 = new BrawlManagerLib.SongNameBar.MyTextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.button2 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
