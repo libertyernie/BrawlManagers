@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using BrawlLib.SSBB.ResourceNodes;
 
 namespace BrawlStageManager {
 	public class NameCreator {
@@ -49,6 +50,16 @@ namespace BrawlStageManager {
 				Alignment = StringAlignment.Center,
 				LineAlignment = StringAlignment.Center,
 			});
+			return b;
+		}
+
+		internal static Bitmap putMessageInBottomRow(Font font, Bitmap frombmp, string entryText) {
+			Bitmap b = new Bitmap(frombmp.Width, frombmp.Height);
+			Graphics g = Graphics.FromImage(b);
+			g.DrawImage(frombmp, 0, 0);
+            SizeF stringSize = g.MeasureString(entryText, font);
+            g.FillRectangle(Brushes.Black, 0, b.Height - 14, stringSize.Width, 14);
+			g.DrawString(entryText, font, Brushes.White, 0, b.Height - 15);
 			return b;
 		}
 	}

@@ -528,8 +528,10 @@ namespace BrawlStageManager {
 					return;
 				}
 			}
-			string p = readNameFromPac(f);
-			FileOperations.Copy(f.FullName, thisdir + "/" + p);
+			try {
+				string p = readNameFromPac(f);
+				FileOperations.Copy(f.FullName, thisdir + "/" + p);
+			} catch (FileNotFoundException) { }
 			string relname = StageIDMap.RelNameForPac(f.Name, differentrelsForAlternateStagesPM36ToolStripMenuItem.Checked);
 			FileInfo rel = new FileInfo("../../module/" + relname);
 			if (rel.Exists) FileOperations.Copy(rel.FullName, thisdir + "/st.rel");

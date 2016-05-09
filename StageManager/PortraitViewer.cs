@@ -733,10 +733,15 @@ namespace BrawlStageManager {
 		public void generateName() {
 			using (NameDialog n = new NameDialog()) {
 				n.EntryText = "Battlefield";
-				n.LabelText = "Enter the stage name. (Use \\n for a line break.)\nType just ] to launch genname.bat/genname.exe instead.";
+				n.LabelText = "Enter the stage name. (Use \\n for a line break.)\nType just ] to launch genname.bat/genname.exe instead.\nPrefix with } to put message in bottom 14px rows.";
 				if (n.ShowDialog() == DialogResult.OK) {
 					if (n.EntryText == "]") {
 						generateNameExternal();
+					} else if (n.EntryText.StartsWith("}")) {
+						Bitmap bmp = NameCreator.putMessageInBottomRow(new Font("Lucida Console", 18, GraphicsUnit.Pixel), textures.frontstname.tex0.GetImage(0), n.EntryText.Substring(1));
+						string tempfile = TempFiles.Create(".png");
+						bmp.Save(tempfile);
+						Replace(frontstname, tempfile);
 					} else {
 						if (fontSettings == null) changeFrontStnameFont();
 						if (fontSettings == null) return;
