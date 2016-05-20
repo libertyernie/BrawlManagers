@@ -1,4 +1,5 @@
-﻿using BrawlManagerLib;
+﻿using BrawlLib.SSBB;
+using BrawlManagerLib;
 using Newtonsoft.Json;
 using RazorEngine.Templating;
 using RazorEngine.Text;
@@ -29,7 +30,7 @@ namespace SSSEditor {
     }
 
     public class PairListModel {
-        public ReadOnlyCollection<StageIDMap.Stage> stages { get; set; }
+        public Stage[] stages { get; set; }
 		public byte[][] icons { get; set; }
 		public Song[] songsByStage { get; set; }
         public List<ModelPair> pairs { get; set; }
