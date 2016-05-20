@@ -105,12 +105,15 @@ namespace BrawlManagerLib {
 					File.Copy(s, tempfile, true);
 					using (var node = NodeFactory.FromFile(null, tempfile)) {
 						foreach (ResourceNode child in node.Children) {
-							if (child is SndBgmTitleDataNode) {
-								common2_titledata = child.Children.Select(n => new SongIndexEntry() {
-									ID = (ushort)(int)((SndBgmTitleEntryNode)n).ID,
-									Index = ((SndBgmTitleEntryNode)n).SongTitleIndex
-								}).ToList();
-								break;
+							if (child is Common2MiscDataNode) {
+								SndBgmTitleDataNode sndBgmTitleData = child.Children.FirstOrDefault() as SndBgmTitleDataNode;
+								if (sndBgmTitleData != null) {
+									common2_titledata = sndBgmTitleData.Children.Select(n => new SongIndexEntry() {
+										ID = (ushort)((SndBgmTitleEntryNode)n).ID,
+										Index = ((SndBgmTitleEntryNode)n).SongTitleIndex
+									}).ToList();
+									break;
+								}
 							}
 						}
 					}
@@ -165,10 +168,13 @@ namespace BrawlManagerLib {
 						File.Copy(trainingpath, tempfile_training, true);
 						info_training_pac = NodeFactory.FromFile(null, tempfile_training);
 						info_training = (MSBinNode)info_training_pac.FindChild("MiscData[140]", true);
-						return "Loaded info.pac and info_training.pac";
-					} else {
-						return "Loaded info.pac";
+						if (info._strings.Count != info_training._strings.Count) {
+							MessageBox.Show("info.pac and info_training.pac have different MiscData[140] lengths. Ignoring info_training.pac.");
+							info_training = null;
+							info_training_pac = null;
+						}
 					}
+					return info_training != null ? "Loaded info.pac and info_training.pac" : "Loaded info.pac";
 				}
 			}
 		}
