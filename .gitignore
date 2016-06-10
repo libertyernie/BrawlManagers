@@ -109,3 +109,5 @@ UpgradeLog*.XML
 BrawlCostumeManager/
 Release Binaries
 Thumbs.db
+
+.vs

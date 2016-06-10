@@ -240,6 +240,8 @@
 		}
 	
         body {
+			background-color: Window;
+			color: WindowText;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 10pt;
         }
@@ -256,7 +258,6 @@
             vertical-align: top;
 			
 			margin: 4px;
-            border: 2px outset white;
 			
 			box-sizing: border-box;
 			height: 100%;
@@ -270,6 +271,7 @@
         }
 
         .column > .main {
+            border: 1px solid #707070;
             height: 100%;
             overflow-y: scroll;
         }
@@ -285,12 +287,16 @@
 
         .stageRow {
             background-color: lightgray;
-            border: 1px outset white;
+            border: 1px solid #707070;
             overflow: auto;
             margin: 8px;
             padding: 2px;
 
             line-height: 26px;
+        }
+
+        .stageRow .songFilename{
+            font-size: 8pt;
         }
 
         .stageRow .colorCode {
