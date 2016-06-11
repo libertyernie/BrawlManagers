@@ -18,7 +18,7 @@ namespace BrawlManagerLib {
 			// static initializer
 
 			List<KeyValuePair<byte, string>> byID = new List<KeyValuePair<byte, string>>();
-			for (byte b = 1; b <= 100; b++) {
+			for (byte b = 1; b <= 101; b++) {
 				string pac = StageIDMap.PacBasenameForStageID(b);
 				if (pac != null) byID.Add(new KeyValuePair<byte, string>(b, pac.ToUpper()));
 			}
