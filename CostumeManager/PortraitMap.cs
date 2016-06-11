@@ -194,16 +194,24 @@ namespace BrawlCostumeManager {
 
 		private static Dictionary<int, int[]> CompilePM35Mappings() {
 			Dictionary<int, int[]> ret = new Dictionary<int, int[]>();
-			for (int key=0; key<46; key++) {
+			for (int key=0; key<=46; key++) {
 				switch (key) {
 					// Some of these characters have their portraits in a different order than Brawl, or have their additional portraits "out of order."
 					case 0:
 						// Mario
-						ret.Add(key, new int[] { 0, 6, 3, 2, 5, 7, 11, 8, 9, 10 });
+						ret.Add(key, new int[] { 0, 6, 3, 2, 5, 7, 11, 8, 9, 10, /*end*/ 1, 4 });
+						break;
+					case 3:
+						// Samus
+						ret.Add(key, new int[] { 0, 3, 1, 4, 2, 5, 7, 8, 6 });
 						break;
 					case 12:
 						// Fox
 						ret.Add(key, new int[] { 0, 5, 1, 3, 2, 4, 7, 6 });
+						break;
+					case 23:
+						// Zero Suit Samus
+						ret.Add(key, new int[] { 0, 3, 1, 5, 4, 2, 7, 8, 6 });
 						break;
 					case 27:
 						// Mewtwo - uses Pokémon Trainer's character index
@@ -225,10 +233,14 @@ namespace BrawlCostumeManager {
 						// Roy
 						ret.Add(key, new int[] { 0, 2, 1, 3, 4, 5, 6 });
 						break;
+					case 46:
+						// Sonic
+						ret.Add(key, new int[] { 0, 1, 4, 2, 5, 6, 7, 8 });
+						break;
 					default:
 						if (!PortraitToCostumeMappings.ContainsKey(key)) continue;
 
-						/* All other characters in PM 3.5 follow a pattern: the portraits start out in the same order Brawl has them,
+						/* All other characters in PM 3.6 follow a pattern: the portraits start out in the same order Brawl has them,
 						   and any additional portraits are in order after the highest-numbered original portrait. */
 						int[] arr1 = PortraitToCostumeMappings[key];
 						int max = arr1.Max();

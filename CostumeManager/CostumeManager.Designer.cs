@@ -284,7 +284,7 @@
 			this.projectMCheckbox.CheckOnClick = true;
 			this.projectMCheckbox.Name = "projectMCheckbox";
 			this.projectMCheckbox.Size = new System.Drawing.Size(274, 22);
-			this.projectMCheckbox.Text = "Use Project M 3.5 mappings";
+			this.projectMCheckbox.Text = "Use Project M 3.6 mappings";
 			this.projectMCheckbox.Click += new System.EventHandler(this.projectMCheckbox_Click);
 			// 
 			// separator
