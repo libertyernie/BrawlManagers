@@ -1,0 +1,3 @@
+[submodule "brawltools"]
+	path = brawltools
+	url = git@github.com:libertyernie/brawltools.git
