@@ -58,7 +58,7 @@ namespace BrawlStageManager {
 			Graphics g = Graphics.FromImage(b);
 			g.DrawImage(frombmp, 0, 0);
             SizeF stringSize = g.MeasureString(entryText, font);
-            g.FillRectangle(Brushes.Black, 0, b.Height - 14, stringSize.Width, 14);
+            g.FillRectangle(Brushes.Black, 0, b.Height - 15, stringSize.Width, 15);
 			g.DrawString(entryText, font, Brushes.White, 0, b.Height - 15);
 			return b;
 		}

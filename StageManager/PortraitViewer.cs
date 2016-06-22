@@ -738,7 +738,8 @@ namespace BrawlStageManager {
 					if (n.EntryText == "]") {
 						generateNameExternal();
 					} else if (n.EntryText.StartsWith("}")) {
-						Bitmap bmp = NameCreator.putMessageInBottomRow(new Font("Lucida Console", 18, FontStyle.Bold, GraphicsUnit.Pixel), textures.frontstname.tex0.GetImage(0), n.EntryText.Substring(1));
+						var img = textures.frontstname.tex0.GetImage(0);
+						Bitmap bmp = NameCreator.putMessageInBottomRow(new Font("Lucida Console", 18, FontStyle.Bold, GraphicsUnit.Pixel), img, n.EntryText.Substring(1));
 						string tempfile = TempFiles.Create(".png");
 						bmp.Save(tempfile);
 						Replace(frontstname, tempfile);
