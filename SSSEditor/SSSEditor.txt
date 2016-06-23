@@ -1,4 +1,4 @@
-﻿SSS Editor 3.7 - February 2016
+﻿SSS Editor 3.8 - June 2016
 Copyright © 2016 libertyernie
 http://lakora.us/brawl/ssseditor
 
@@ -13,8 +13,10 @@ code, and a common5/sc_selmap/mu_menumain file (which will not be modified.)
 
 -------- Changes --------
 
-Changes in 3.7:
+Changes in 3.8:
   * Songs added by the Custom Sound Engine code are now recogized.
+  * Three more STGCUSTOM stages have been added to the dropdown.
+  * The main window has been re-styled slightly.
 
 Notes:
   * Internet Explorer 8 or higher is now required.

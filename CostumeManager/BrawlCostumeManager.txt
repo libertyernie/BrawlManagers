@@ -1,12 +1,12 @@
-Brawl Costume Manager 3.7 - February 2016
+Brawl Costume Manager 3.8 - June 2016
 Copyright © 2016 libertyernie
 http://lakora.us/brawl/costumemanager
 
 --------
 
-Changes in 3.7:
-  * Model rendering is brighter now (matches BrawlBox).
-  * Drag-and-drop no longer locks the origin window while the file is copied.
+Changes in 3.8:
+  * The option to use Project M mappings has been updated to the mappings used
+    in Project M 3.6.
 
 --------
 

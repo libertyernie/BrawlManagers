@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 3.7.1 - February 2016
+﻿Brawl Stage Manager 3.8 - June 2016
 Copyright © 2016 libertyernie
 http://lakora.us/brawl/stagemanager
 
@@ -8,10 +8,14 @@ your SD card (or in whatever folder, on whatever device, you use for Brawl
 hacks.) It can also add PAT0 entries for expansion stages (with an automated
 process) and change certain PAT0 entries (through a special dialog.)
 
-Changes in 3.7:
-  * Songs added by the Custom Sound Engine code are now recogized (and loaded
-  from the sound/sfx folder instead of sound/srtm).
-  * Drag-and-drop no longer locks the origin window while the file is copied.
+Changes in 3.8:
+  * A new feature has been added to overlay a small message (in a monospace
+    font) onto a stage name - prepend the text you enter in the dialog with ].
+  * Support for the Custom Sound Engine: the app now recognizes song IDs in
+    the C000+ range, and sndBgmTitleData is read from common2.
+  * Songs added by the Custom Sound Engine code are loaded from sound/strm
+    instead of sound/sfx.
+  * The stage name dialog now has a button to open the Windows character map.
 
 ----------------------------------------
 
