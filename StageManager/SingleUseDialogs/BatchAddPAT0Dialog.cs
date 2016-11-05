@@ -21,6 +21,12 @@ namespace BrawlStageManager.SingleUseDialogs {
 			}
 		}
 
+        public bool AddNewTextures {
+            get {
+                return chkAddNewTextures.Checked;
+            }
+        }
+
 		public BatchAddPAT0Dialog() {
 			InitializeComponent();
 		}

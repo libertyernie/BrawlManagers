@@ -490,8 +490,9 @@ namespace BrawlStageManager {
 		/// Adds PAT0 entries for each stage to the given PAT0TextureNode.
 		/// </summary>
 		/// <param name="pathToPAT0TextureNode">Path relative to sc_selmap_en</param>
+        /// <param name="addNew">Whether to add new textures that match the PAT0 entries if those textures don't exist.</param>
 		/// <param name="defaultName">The texture name to be used for new PAT0 entries. If null, the name will be taken from the first entry, with the number at the end replaced with the icon number.</param>
-		public void AddPAT0(string pathToPAT0TextureNode, string defaultName = null) {
+		public void AddPAT0(string pathToPAT0TextureNode, bool addNew, string defaultName = null) {
 			var look = sc_selmap.FindChild(pathToPAT0TextureNode, false).Children[0];
 			if (!(look is PAT0TextureNode)) {
 				throw new FormatException(look.Name);
@@ -565,38 +566,40 @@ namespace BrawlStageManager {
 				}
 			}
 
-			ResourceNode brres = tn;
-			while (brres != null && !(brres is BRRESNode)) {
-				brres = brres.Parent;
-			}
+            if (addNew) {
+			    ResourceNode brres = tn;
+			    while (brres != null && !(brres is BRRESNode)) {
+				    brres = brres.Parent;
+			    }
 
-			if (brres != null) {
-				var folder = brres.FindChild("Textures(NW4R)", false);
-				TEX0Node texToCopy = texToCopyName == null
-					? null
-					: folder.FindChild(texToCopyName, false) as TEX0Node;
-				PLT0Node pltToCopy = texToCopyName == null
-					? null
-					: brres.FindChild("Palettes(NW4R)", false).FindChild(texToCopyName, false) as PLT0Node;
+                if (brres != null) {
+                    var folder = brres.FindChild("Textures(NW4R)", false);
+                    TEX0Node texToCopy = texToCopyName == null
+                        ? null
+                        : folder.FindChild(texToCopyName, false) as TEX0Node;
+                    PLT0Node pltToCopy = texToCopyName == null
+                        ? null
+                        : brres.FindChild("Palettes(NW4R)", false).FindChild(texToCopyName, false) as PLT0Node;
 
-				foreach (ResourceNode c in tn.Children) {
-					PAT0TextureEntryNode p = c as PAT0TextureEntryNode;
-					if (p == null) continue;
+                    foreach (ResourceNode c in tn.Children) {
+                        PAT0TextureEntryNode p = c as PAT0TextureEntryNode;
+                        if (p == null) continue;
 
-					var texture = folder.FindChild(p.Texture, false);
-					if (texture == null) {
-						if (texToCopy != null) {
-							TEX0Node tex0 = ((BRRESNode)brres).CreateResource<TEX0Node>(p.Texture);
-							tex0.ReplaceRaw(texToCopy.WorkingUncompressed.Address, texToCopy.WorkingUncompressed.Length);
-						}
-						if (pltToCopy != null) {
-							PLT0Node plt0 = ((BRRESNode)brres).CreateResource<PLT0Node>(p.Texture);
-							plt0.ReplaceRaw(pltToCopy.WorkingUncompressed.Address, pltToCopy.WorkingUncompressed.Length);
-						}
-					} else if (texture.Index == 1) {
-						texToCopy = texture as TEX0Node;
-					}
-				}
+                        var texture = folder.FindChild(p.Texture, false);
+                        if (texture == null) {
+                            if (texToCopy != null) {
+                                TEX0Node tex0 = ((BRRESNode)brres).CreateResource<TEX0Node>(p.Texture);
+                                tex0.ReplaceRaw(texToCopy.WorkingUncompressed.Address, texToCopy.WorkingUncompressed.Length);
+                            }
+                            if (pltToCopy != null) {
+                                PLT0Node plt0 = ((BRRESNode)brres).CreateResource<PLT0Node>(p.Texture);
+                                plt0.ReplaceRaw(pltToCopy.WorkingUncompressed.Address, pltToCopy.WorkingUncompressed.Length);
+                            }
+                        } else if (texture.Index == 1) {
+                            texToCopy = texture as TEX0Node;
+                        }
+                    }
+                }
 			}
 		}
 		#endregion
