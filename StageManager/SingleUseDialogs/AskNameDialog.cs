@@ -15,7 +15,7 @@ namespace BrawlStageManager {
 			panel1.BackgroundImage = bg;
             panel1.Width = bg.Width;
             panel1.Height = bg.Height;
-            textBox1.Text = BitmapUtilities.HasNonAlpha(bg)
+            textBox1.Text = BitmapUtilities.HasAlpha(bg) && BitmapUtilities.HasNonAlpha(bg)
                 ? "MenSelmapMark."
                 : "MenSelchrMark.";
             textBox1.Select(textBox1.Text.Length, 0);

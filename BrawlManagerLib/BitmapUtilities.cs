@@ -99,10 +99,24 @@ namespace BrawlManagerLib {
 			return true;
 		}
 
-		/// <summary>
-		/// Checks if an image has varying RGB values among pixels that are partially or fully opaque.
-		/// </summary>
-		public static bool HasNonAlpha(Bitmap bmp) {
+        /// <summary>
+        /// Checks if an image has any transparency.
+        /// </summary>
+        public static bool HasAlpha(Bitmap bmp) {
+            for (int y = 0; y < bmp.Height; y++) {
+                for (int x = 0; x < bmp.Width; x++) {
+                    if (bmp.GetPixel(x, y).A < 255) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if an image has varying RGB values among pixels that are partially or fully opaque.
+        /// </summary>
+        public static bool HasNonAlpha(Bitmap bmp) {
             int? found = null;
 			for (int y = 0; y < bmp.Height; y++) {
 				for (int x = 0; x < bmp.Width; x++) {

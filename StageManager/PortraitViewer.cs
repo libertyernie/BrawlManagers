@@ -478,13 +478,15 @@ namespace BrawlStageManager {
 					? selmapMarkFormat.Value
 				: useExistingAsFallback && !createNew
 					? toReplace.Format
-				: BitmapUtilities.HasNonAlpha(newBitmap)
-					? WiiPixelFormat.IA4
+				: BitmapUtilities.HasAlpha(newBitmap) & BitmapUtilities.HasNonAlpha(newBitmap)
+                    ? WiiPixelFormat.IA4
 					: WiiPixelFormat.I4;
-			Bitmap toEncode = BitmapUtilities.HasSolidCorners(newBitmap) ? BitmapUtilities.AlphaSwap(newBitmap) : newBitmap;
-			BrawlLib.IO.FileMap tMap = TextureConverter.Get(format).EncodeTEX0Texture(toEncode, 1);
+			Bitmap toEncode = format == WiiPixelFormat.IA4 && BitmapUtilities.HasSolidCorners(newBitmap)
+                ? BitmapUtilities.AlphaSwap(newBitmap)
+                : newBitmap;
+            BrawlLib.IO.FileMap tMap = TextureConverter.Get(format).EncodeTEX0Texture(toEncode, 1);
 			toReplace.ReplaceRaw(tMap);
-		}
+        }
 
 		/// <summary>
 		/// Adds PAT0 entries for each stage to the given PAT0TextureNode.
@@ -612,9 +614,6 @@ namespace BrawlStageManager {
 				NodeFactory.FromFile(null, path).Export(tmp);
 			}
 			Bitmap bitmap = new Bitmap(tmp ?? path);
-			if (BitmapUtilities.HasSolidCorners(bitmap)) {
-				bitmap = BitmapUtilities.AlphaSwap(bitmap);
-			}
 			string name = Path.GetFileNameWithoutExtension(path);
 			if (ask) {
 				using (var nameDialog = new AskNameDialog(bitmap)) {
