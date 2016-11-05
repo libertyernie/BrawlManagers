@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BrawlManagerLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,12 @@ namespace BrawlStageManager {
 		public AskNameDialog(Bitmap bg) {
 			InitializeComponent();
 			panel1.BackgroundImage = bg;
-			textBox1.Text = "MenSelmapMark.";
+            panel1.Width = bg.Width;
+            panel1.Height = bg.Height;
+            textBox1.Text = BitmapUtilities.HasNonAlpha(bg)
+                ? "MenSelmapMark."
+                : "MenSelchrMark.";
+            textBox1.Select(textBox1.Text.Length, 0);
 			AcceptButton = button1;
 		}
 

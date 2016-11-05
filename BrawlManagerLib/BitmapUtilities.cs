@@ -100,14 +100,21 @@ namespace BrawlManagerLib {
 		}
 
 		/// <summary>
-		/// Checks if an image has any transparency.
+		/// Checks if an image has varying RGB values among pixels that are partially or fully opaque.
 		/// </summary>
-		public static bool HasAlpha(Bitmap bmp) {
+		public static bool HasNonAlpha(Bitmap bmp) {
+            int? found = null;
 			for (int y = 0; y < bmp.Height; y++) {
 				for (int x = 0; x < bmp.Width; x++) {
-					if (bmp.GetPixel(x, y).A < 255) {
-						return true;
-					}
+                    Color color = bmp.GetPixel(x, y);
+                    if (color.A == 0) continue;
+
+                    int rgb = color.ToArgb() & 0xFFFFFF;
+					if (found == null) {
+                        found = rgb;
+                    } else if (rgb != found) {
+                        return true;
+                    }
 				}
 			}
 			return false;

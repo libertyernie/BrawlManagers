@@ -478,10 +478,9 @@ namespace BrawlStageManager {
 					? selmapMarkFormat.Value
 				: useExistingAsFallback && !createNew
 					? toReplace.Format
-				: BitmapUtilities.HasAlpha(newBitmap)
+				: BitmapUtilities.HasNonAlpha(newBitmap)
 					? WiiPixelFormat.IA4
 					: WiiPixelFormat.I4;
-			Console.WriteLine(format);
 			Bitmap toEncode = BitmapUtilities.HasSolidCorners(newBitmap) ? BitmapUtilities.AlphaSwap(newBitmap) : newBitmap;
 			BrawlLib.IO.FileMap tMap = TextureConverter.Get(format).EncodeTEX0Texture(toEncode, 1);
 			toReplace.ReplaceRaw(tMap);
