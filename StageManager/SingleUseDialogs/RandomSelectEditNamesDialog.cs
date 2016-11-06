@@ -21,11 +21,18 @@ namespace BrawlStageManager.SingleUseDialogs {
 					? frontstnames[index]
 					: null;
 				textBox1.Text = (nameList.SelectedItem ?? "").ToString();
+                textBox1.SelectAll();
 			};
 			textBox1.KeyPress += (o, e) => {
 				if (e.KeyChar == (char)Keys.Enter) {
 					int index = nameList.SelectedIndex;
 					if (index >= 0) nameList.Items[index] = textBox1.Text;
+
+                    if (nameList.Items.Count > index + 1) {
+                        nameList.SelectedIndex = index + 1;
+                    }
+
+                    e.Handled = true;
 				}
 			};
 			textBox1.LostFocus += (o, e) => {

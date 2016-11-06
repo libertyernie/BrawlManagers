@@ -670,6 +670,7 @@ namespace BrawlStageManager {
 				for (int i = 0; i < md1._strings.Count; i++) {
 					md1._strings[i] = d[i].ToString();
 				}
+                md1.Rebuild(true);
 			} else {
 				return;
 			}
@@ -684,6 +685,7 @@ namespace BrawlStageManager {
 					string tempFile2 = TempFiles.Create(".plt0");
 					string nameSelcharacter2 = i.ToString("D2");
 					string nameSelmap = BestSSS[sssPos].Item2.ToString("D2");
+                    Console.WriteLine($"{nameSelcharacter2}: sss pos {sssPos}, icon {nameSelmap}");
 					TEX0Node iconFrom = md80.FindChild("Textures(NW4R)/MenSelmapIcon." + nameSelmap, false) as TEX0Node;
 					TEX0Node iconTo = md0.FindChild("Textures(NW4R)/MenSelmapIcon." + nameSelcharacter2, false) as TEX0Node;
 					var palFrom = md80.FindChild("Palettes(NW4R)/MenSelmapIcon." + nameSelmap, false);
