@@ -338,21 +338,18 @@ namespace BrawlStageManager {
 
 			// Special code for the root directory of a drive
 			if (pacFiles.Length == 0) {
-				DirectoryInfo search = new DirectoryInfo(path.FullName + "\\private\\wii\\app\\RSBE\\pf\\stage\\melee");
-				if (search.Exists) {
-					changeDirectory(search); // Change to the typical stage folder used by the FPC, if it exists on the drive
-					return;
-				}
-				search = new DirectoryInfo(path.FullName + "\\projectm\\pf\\stage\\melee");
-				if (search.Exists) {
-					changeDirectory(search); // Change to the typical stage folder used by Project M, if it exists on the drive
-					return;
-				}
-				search = new DirectoryInfo(path.FullName + "\\minusery\\pf\\stage\\melee");
-				if (search.Exists) {
-					changeDirectory(search); // Change to the typical stage folder used by Project M, if it exists on the drive
-					return;
-				}
+                foreach (string subpath in new string[] {
+                    "\\private\\wii\\app\\RSBE\\pf\\stage\\melee",
+                    "\\projectm\\pf\\stage\\melee",
+                    "\\LegacyTE\\pf\\stage\\melee",
+                    "\\minusery\\pf\\stage\\melee"
+                }) {
+                    DirectoryInfo search = new DirectoryInfo(path.FullName + subpath);
+                    if (search.Exists) {
+                        changeDirectory(search); // Change to the typical stage folder used by the FPC, if it exists on the drive
+                        return;
+                    }
+                }
 			}
 
 			stageInfoControl1.setStageLabels("", "", "");
