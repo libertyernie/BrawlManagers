@@ -84,12 +84,9 @@ namespace SSSEditor {
 				screen2.Add(definitions[b]);
 			}
 
-            PairListModel model = new PairListModel();
+			PairListModel model = new PairListModel();
 			for (int i = 0; i < model.songsByStage.Length; i++) {
-				Song s;
-				model.songsByStage[i] = sss.SongLoaders.TryGetSong((byte)i, out s)
-					? s
-					: null;
+				model.songsByStage[i] = sss.SongLoaders.GetSong(i);
 			}
 			for (int i = 0; i < model.icons.Length; i++) {
 				var tex = new TextureContainer(md80, i);

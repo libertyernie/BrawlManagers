@@ -281,13 +281,21 @@ namespace BrawlStageManager {
 			if (!loadbrstmsToolStripMenuItem.Checked) {
 				songPanel1.Close();
 			} else {
-				Song song;
-				if (portraitViewer1.BestSSS.SongLoaders.TryGetSong((byte)stage_id, out song)) {
+				Song song = portraitViewer1.BestSSS.SongLoaders.GetSong(stage_id);
+				if (song != null) {
 					songContainerPanel.Visible = true;
 					listBoxSongs.Items.Add(new SongListItem("../../sound/strm/" + song.Filename + ".brstm"));
 					listBoxSongs.SelectedIndex = 0;
 				} else {
 					string[] arr = SongsByStageID.ForPac(portraitViewer1.BestSSS.TracklistModifier, fi.Name);
+					arr = arr.Select(filename => {
+						Song element = SongIDMap.Songs.SingleOrDefault(s => s.Filename == filename);
+						if (element != null) {
+							return portraitViewer1.BestSSS.SongLoaders.GetSong(stage_id, element).Filename;
+						} else {
+							return filename;
+						}
+					}).ToArray();
 					if (arr != null) {
 						songContainerPanel.Visible = true;
 						listBoxSongs.Items.AddRange(arr);
@@ -535,8 +543,7 @@ namespace BrawlStageManager {
 
 			portraitViewer1.ExportImages(portraitViewer1.BestSSS.IconForStage(StageIDMap.StageIDForPac(f.Name)), thisdir);
 
-			Song song;
-			portraitViewer1.BestSSS.SongLoaders.TryGetSong((byte)StageIDMap.StageIDForPac(f.Name), out song);
+			Song song = portraitViewer1.BestSSS.SongLoaders.GetSong(StageIDMap.StageIDForPac(f.Name));
 			if (song == null) SongsByStageID.ForPac(portraitViewer1.BestSSS.TracklistModifier, f.Name);
 
 			if (song != null && File.Exists("../../sound/strm/" + song.Filename + ".brstm")) {
