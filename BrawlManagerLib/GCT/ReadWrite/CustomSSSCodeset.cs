@@ -7,12 +7,12 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace BrawlManagerLib {
-    /// <summary>
-    /// Allows read-write access to the Custom SSS code, and read-only access to some other codes.
-    /// This class will store the entire codeset, split between itself (the SSS code) and the portions before/after (in raw byte[]).
-    /// </summary>
+	/// <summary>
+	/// Allows read-write access to the Custom SSS code, and read-only access to some other codes.
+	/// This class will store the entire codeset, split between itself (the SSS code) and the portions before/after (in raw byte[]).
+	/// </summary>
 	public class CustomSSSCodeset {
-        public byte[] sss1 { get; private set; }
+		public byte[] sss1 { get; private set; }
 		public byte[] sss2 { get; private set; }
 		public byte[] sss3 { get; private set; }
 
@@ -54,8 +54,8 @@ namespace BrawlManagerLib {
 			}
 		}
 
-        #region Other codes
-        private StageDependentSongLoader _songLoaders;
+		#region Other codes
+		private StageDependentSongLoader _songLoaders;
 
 		/// <summary>
 		/// Gets read-only access to instances of the Stage-Dependent Song Loader in this codeset.
@@ -66,6 +66,20 @@ namespace BrawlManagerLib {
 					_songLoaders = new StageDependentSongLoader(DataBefore.Concat(DataAfter).ToArray());
 				}
 				return _songLoaders;
+			}
+		}
+
+		private TracklistModifier _tracklistModifier;
+
+		/// <summary>
+		/// Gets read-only access to the instance of the TracklistModifier in this codeset.
+		/// </summary>
+		public TracklistModifier TracklistModifier {
+			get {
+				if (_tracklistModifier == null) {
+					_tracklistModifier = new TracklistModifier(DataBefore.Concat(DataAfter).ToArray());
+				}
+				return _tracklistModifier;
 			}
 		}
 
@@ -82,9 +96,9 @@ namespace BrawlManagerLib {
 				return _alternateStageLoaderData;
 			}
 		}
-        #endregion
+		#endregion
 
-        private byte[] _stageIDsInOrder;
+		private byte[] _stageIDsInOrder;
 		public byte[] StageIDsInOrder {
 			get {
 				if (_stageIDsInOrder == null) {
@@ -122,7 +136,7 @@ namespace BrawlManagerLib {
 			init(new byte[0]);
 		}
 
-        public CustomSSSCodeset(string[] s) {
+		public CustomSSSCodeset(string[] s) {
 			init(s);
 		}
 

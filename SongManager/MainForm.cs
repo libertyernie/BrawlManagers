@@ -16,7 +16,8 @@ namespace BrawlSongManager {
 			"RSBE01.gct",
 			"/data/gecko/codes/RSBE01.gct",
 			"/codes/RSBE01.gct",
-			"../../../../codes/RSBE01.gct",
+            "/LegacyTE/RSBE01.gct",
+            "../../../../codes/RSBE01.gct",
 		};
 
 		/// <summary>
@@ -132,8 +133,13 @@ namespace BrawlSongManager {
 				if (search.Exists) {
 					changeDirectory(search);
 					return;
-				}
-			}
+                }
+                search = new DirectoryInfo(dir.FullName + "\\LegacyTE\\pf\\sound\\strm");
+                if (search.Exists) {
+                    changeDirectory(search);
+                    return;
+                }
+            }
 
 			refreshDirectory();
 			findGCT();

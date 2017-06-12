@@ -84,12 +84,9 @@ namespace SSSEditor {
 				screen2.Add(definitions[b]);
 			}
 
-            PairListModel model = new PairListModel();
+			PairListModel model = new PairListModel();
 			for (int i = 0; i < model.songsByStage.Length; i++) {
-				Song s;
-				model.songsByStage[i] = sss.SongLoaders.TryGetSong((byte)i, out s)
-					? s
-					: null;
+				model.songsByStage[i] = sss.SongLoaders.GetSong(i);
 			}
 			for (int i = 0; i < model.icons.Length; i++) {
 				var tex = new TextureContainer(md80, i);
@@ -245,22 +242,28 @@ namespace SSSEditor {
 		private void openSDCardRootToolStripMenuItem_Click(object sender, EventArgs e) {
 			using (var dialog = new FolderBrowserDialog()) {
 				if (dialog.ShowDialog() == DialogResult.OK) {
-					CustomSSSCodeset candidateSSS;
+                    CustomSSSCodeset candidateSSS = null;
 
-					if (File.Exists(dialog.SelectedPath + "/codes/RSBE01.gct")) {
-						candidateSSS = new CustomSSSCodeset(dialog.SelectedPath + "/codes/RSBE01.gct");
-					} else if (File.Exists(dialog.SelectedPath + "/data/gecko/codes/RSBE01.gct")) {
-						candidateSSS = new CustomSSSCodeset(dialog.SelectedPath + "/data/gecko/codes/RSBE01.gct");
-					} else if (File.Exists(dialog.SelectedPath + "/RSBE01.gct")) {
-						candidateSSS = new CustomSSSCodeset(dialog.SelectedPath + "/RSBE01.gct");
-					} else {
-						MessageBox.Show(this, "Could not find codes/RSBE01.gct or data/gecko/codes/RSBE01.gct.",
+                    string[] gctPaths = new string[] {
+                        "codes/RSBE01.gct",
+                        "data/gecko/codes/RSBE01.gct",
+                        "LegacyTE/RSBE01.gct",
+                        "RSBE01.gct"
+                    };
+                    foreach (string gctPath in gctPaths) {
+                        if (File.Exists(dialog.SelectedPath + "/" + gctPath)) {
+                            candidateSSS = new CustomSSSCodeset(dialog.SelectedPath + "/" + gctPath);
+                            break;
+                        }
+                    }
+                    if (candidateSSS == null) {
+						MessageBox.Show(this, "Could not find one of: " + string.Join(", ", gctPaths),
 							"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 						return;
 					}
 
 					string root = null;
-					foreach (string folder in new string[] { "/private/wii/app/RSBE/pf", "/projectm/pf", "/minusery/pf" }) {
+					foreach (string folder in new string[] { "/private/wii/app/RSBE/pf", "/projectm/pf", "/minusery/pf", "/LegacyTE/pf" }) {
 						foreach (string file in new string[] { "/menu2/sc_selmap.pac", "/menu2/sc_selmap_en.pac", "system/common5.pac", "system/common5_en.pac" }) {
 							if (File.Exists(dialog.SelectedPath + folder + "/" + file)) {
 								root = dialog.SelectedPath + folder + "/" + file;
