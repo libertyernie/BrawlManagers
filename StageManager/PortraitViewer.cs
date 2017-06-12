@@ -268,7 +268,19 @@ namespace BrawlStageManager {
 				}
 				directory = directory.Parent;
 			}
+
+            if (sc_selmap != null) {
+                var pat0Folder = sc_selmap.FindChild("MiscData[80]/AnmTexPat(NW4R)", false);
+                PopulateByPrintingNames("PAT0: ", pat0Folder);
+            }
 		}
+
+        private static void PopulateByPrintingNames(string prefix, ResourceNode node) {
+            foreach (var c in node.Children) {
+                Debug.WriteLine(prefix + c.Name);
+                PopulateByPrintingNames(prefix + "  ", c);
+            }
+        }
 
 		public void LoadCustomSSS(string file) {
 			if (File.Exists(file)) {
