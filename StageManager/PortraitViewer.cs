@@ -265,22 +265,25 @@ namespace BrawlStageManager {
 				} else if (File.Exists(directory.FullName + "/codes/RSBE01.gct")) {
 					AutoSSS = new CustomSSSCodeset(File.ReadAllBytes(directory.FullName + "/codes/RSBE01.gct"));
 					break;
+				} else if (File.Exists(directory.FullName + "/LegacyTE/RSBE01.gct")) {
+					AutoSSS = new CustomSSSCodeset(File.ReadAllBytes(directory.FullName + "/LegacyTE/RSBE01.gct"));
+					break;
 				}
 				directory = directory.Parent;
 			}
 
-            if (sc_selmap != null) {
-                var pat0Folder = sc_selmap.FindChild("MiscData[80]/AnmTexPat(NW4R)", false);
-                PopulateByPrintingNames("PAT0: ", pat0Folder);
-            }
+			if (sc_selmap != null) {
+				var pat0Folder = sc_selmap.FindChild("MiscData[80]/AnmTexPat(NW4R)", false);
+				PopulateByPrintingNames("PAT0: ", pat0Folder);
+			}
 		}
 
-        private static void PopulateByPrintingNames(string prefix, ResourceNode node) {
-            foreach (var c in node.Children) {
-                Debug.WriteLine(prefix + c.Name);
-                PopulateByPrintingNames(prefix + "  ", c);
-            }
-        }
+		private static void PopulateByPrintingNames(string prefix, ResourceNode node) {
+			foreach (var c in node.Children) {
+				Debug.WriteLine(prefix + c.Name);
+				PopulateByPrintingNames(prefix + "  ", c);
+			}
+		}
 
 		public void LoadCustomSSS(string file) {
 			if (File.Exists(file)) {
@@ -491,20 +494,20 @@ namespace BrawlStageManager {
 				: useExistingAsFallback && !createNew
 					? toReplace.Format
 				: BitmapUtilities.HasAlpha(newBitmap) & BitmapUtilities.HasNonAlpha(newBitmap)
-                    ? WiiPixelFormat.IA4
+					? WiiPixelFormat.IA4
 					: WiiPixelFormat.I4;
 			Bitmap toEncode = format == WiiPixelFormat.IA4 && BitmapUtilities.HasSolidCorners(newBitmap)
-                ? BitmapUtilities.AlphaSwap(newBitmap)
-                : newBitmap;
-            BrawlLib.IO.FileMap tMap = TextureConverter.Get(format).EncodeTEX0Texture(toEncode, 1);
+				? BitmapUtilities.AlphaSwap(newBitmap)
+				: newBitmap;
+			BrawlLib.IO.FileMap tMap = TextureConverter.Get(format).EncodeTEX0Texture(toEncode, 1);
 			toReplace.ReplaceRaw(tMap);
-        }
+		}
 
 		/// <summary>
 		/// Adds PAT0 entries for each stage to the given PAT0TextureNode.
 		/// </summary>
 		/// <param name="pathToPAT0TextureNode">Path relative to sc_selmap_en</param>
-        /// <param name="addNew">Whether to add new textures that match the PAT0 entries if those textures don't exist.</param>
+		/// <param name="addNew">Whether to add new textures that match the PAT0 entries if those textures don't exist.</param>
 		/// <param name="defaultName">The texture name to be used for new PAT0 entries. If null, the name will be taken from the first entry, with the number at the end replaced with the icon number.</param>
 		public void AddPAT0(string pathToPAT0TextureNode, bool addNew, string defaultName = null) {
 			var look = sc_selmap.FindChild(pathToPAT0TextureNode, false).Children[0];
@@ -580,40 +583,40 @@ namespace BrawlStageManager {
 				}
 			}
 
-            if (addNew) {
-			    ResourceNode brres = tn;
-			    while (brres != null && !(brres is BRRESNode)) {
-				    brres = brres.Parent;
-			    }
+			if (addNew) {
+				ResourceNode brres = tn;
+				while (brres != null && !(brres is BRRESNode)) {
+					brres = brres.Parent;
+				}
 
-                if (brres != null) {
-                    var folder = brres.FindChild("Textures(NW4R)", false);
-                    TEX0Node texToCopy = texToCopyName == null
-                        ? null
-                        : folder.FindChild(texToCopyName, false) as TEX0Node;
-                    PLT0Node pltToCopy = texToCopyName == null
-                        ? null
-                        : brres.FindChild("Palettes(NW4R)", false).FindChild(texToCopyName, false) as PLT0Node;
+				if (brres != null) {
+					var folder = brres.FindChild("Textures(NW4R)", false);
+					TEX0Node texToCopy = texToCopyName == null
+						? null
+						: folder.FindChild(texToCopyName, false) as TEX0Node;
+					PLT0Node pltToCopy = texToCopyName == null
+						? null
+						: brres.FindChild("Palettes(NW4R)", false).FindChild(texToCopyName, false) as PLT0Node;
 
-                    foreach (ResourceNode c in tn.Children) {
-                        PAT0TextureEntryNode p = c as PAT0TextureEntryNode;
-                        if (p == null) continue;
+					foreach (ResourceNode c in tn.Children) {
+						PAT0TextureEntryNode p = c as PAT0TextureEntryNode;
+						if (p == null) continue;
 
-                        var texture = folder.FindChild(p.Texture, false);
-                        if (texture == null) {
-                            if (texToCopy != null) {
-                                TEX0Node tex0 = ((BRRESNode)brres).CreateResource<TEX0Node>(p.Texture);
-                                tex0.ReplaceRaw(texToCopy.WorkingUncompressed.Address, texToCopy.WorkingUncompressed.Length);
-                            }
-                            if (pltToCopy != null) {
-                                PLT0Node plt0 = ((BRRESNode)brres).CreateResource<PLT0Node>(p.Texture);
-                                plt0.ReplaceRaw(pltToCopy.WorkingUncompressed.Address, pltToCopy.WorkingUncompressed.Length);
-                            }
-                        } else if (texture.Index == 1) {
-                            texToCopy = texture as TEX0Node;
-                        }
-                    }
-                }
+						var texture = folder.FindChild(p.Texture, false);
+						if (texture == null) {
+							if (texToCopy != null) {
+								TEX0Node tex0 = ((BRRESNode)brres).CreateResource<TEX0Node>(p.Texture);
+								tex0.ReplaceRaw(texToCopy.WorkingUncompressed.Address, texToCopy.WorkingUncompressed.Length);
+							}
+							if (pltToCopy != null) {
+								PLT0Node plt0 = ((BRRESNode)brres).CreateResource<PLT0Node>(p.Texture);
+								plt0.ReplaceRaw(pltToCopy.WorkingUncompressed.Address, pltToCopy.WorkingUncompressed.Length);
+							}
+						} else if (texture.Index == 1) {
+							texToCopy = texture as TEX0Node;
+						}
+					}
+				}
 			}
 		}
 		#endregion
@@ -682,7 +685,7 @@ namespace BrawlStageManager {
 				for (int i = 0; i < md1._strings.Count; i++) {
 					md1._strings[i] = d[i].ToString();
 				}
-                md1.Rebuild(true);
+				md1.Rebuild(true);
 			} else {
 				return;
 			}
@@ -697,7 +700,7 @@ namespace BrawlStageManager {
 					string tempFile2 = TempFiles.Create(".plt0");
 					string nameSelcharacter2 = i.ToString("D2");
 					string nameSelmap = BestSSS[sssPos].Item2.ToString("D2");
-                    Console.WriteLine($"{nameSelcharacter2}: sss pos {sssPos}, icon {nameSelmap}");
+					Console.WriteLine($"{nameSelcharacter2}: sss pos {sssPos}, icon {nameSelmap}");
 					TEX0Node iconFrom = md80.FindChild("Textures(NW4R)/MenSelmapIcon." + nameSelmap, false) as TEX0Node;
 					TEX0Node iconTo = md0.FindChild("Textures(NW4R)/MenSelmapIcon." + nameSelcharacter2, false) as TEX0Node;
 					var palFrom = md80.FindChild("Palettes(NW4R)/MenSelmapIcon." + nameSelmap, false);

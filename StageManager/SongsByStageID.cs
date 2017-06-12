@@ -343,10 +343,11 @@ namespace BrawlStageManager {
 		};
 		#endregion
 
-		public static string[] ForPac(string filename) {
+		public static string[] ForPac(TracklistModifier modifier, string filename) {
 			filename = filename.ToLower();
 			string key = filename.Substring(0, filename.IndexOfAny("_.".ToCharArray()));
 			int stageId = StageIDMap.StageIDForPac(filename);
+			stageId = modifier[stageId];
 			if (stageId == 5 && filename.StartsWith("stgmariopast_00")) {
 				return new string[] {
 					("A01"),

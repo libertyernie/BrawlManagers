@@ -287,7 +287,7 @@ namespace BrawlStageManager {
 					listBoxSongs.Items.Add(new SongListItem("../../sound/strm/" + song.Filename + ".brstm"));
 					listBoxSongs.SelectedIndex = 0;
 				} else {
-					string[] arr = SongsByStageID.ForPac(fi.Name);
+					string[] arr = SongsByStageID.ForPac(portraitViewer1.BestSSS.TracklistModifier, fi.Name);
 					if (arr != null) {
 						songContainerPanel.Visible = true;
 						listBoxSongs.Items.AddRange(arr);
@@ -338,18 +338,18 @@ namespace BrawlStageManager {
 
 			// Special code for the root directory of a drive
 			if (pacFiles.Length == 0) {
-                foreach (string subpath in new string[] {
-                    "\\private\\wii\\app\\RSBE\\pf\\stage\\melee",
-                    "\\projectm\\pf\\stage\\melee",
-                    "\\minusery\\pf\\stage\\melee",
-                    "\\LegacyTE\\pf\\stage\\melee"
-                }) {
-                    DirectoryInfo search = new DirectoryInfo(path.FullName + subpath);
-                    if (search.Exists) {
-                        changeDirectory(search); // Change to the typical stage folder used by the FPC, if it exists on the drive
-                        return;
-                    }
-                }
+				foreach (string subpath in new string[] {
+					"\\private\\wii\\app\\RSBE\\pf\\stage\\melee",
+					"\\projectm\\pf\\stage\\melee",
+					"\\minusery\\pf\\stage\\melee",
+					"\\LegacyTE\\pf\\stage\\melee"
+				}) {
+					DirectoryInfo search = new DirectoryInfo(path.FullName + subpath);
+					if (search.Exists) {
+						changeDirectory(search); // Change to the typical stage folder used by the FPC, if it exists on the drive
+						return;
+					}
+				}
 			}
 
 			stageInfoControl1.setStageLabels("", "", "");
@@ -537,7 +537,7 @@ namespace BrawlStageManager {
 
 			Song song;
 			portraitViewer1.BestSSS.SongLoaders.TryGetSong((byte)StageIDMap.StageIDForPac(f.Name), out song);
-			if (song == null) SongsByStageID.ForPac(f.Name);
+			if (song == null) SongsByStageID.ForPac(portraitViewer1.BestSSS.TracklistModifier, f.Name);
 
 			if (song != null && File.Exists("../../sound/strm/" + song.Filename + ".brstm")) {
 				File.Copy("../../sound/strm/" + song.Filename + ".brstm", thisdir + "/song.brstm", true);
