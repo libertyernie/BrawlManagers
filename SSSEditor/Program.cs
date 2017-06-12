@@ -13,15 +13,18 @@ namespace SSSEditor {
 			gct = args.Length > 0 ? args[0]
 				: File.Exists(@"data\gecko\codes\RSBE01.gct") ? @"data\gecko\codes\RSBE01.gct"
 				: File.Exists(@"codes\RSBE01.gct") ? @"codes\RSBE01.gct"
-				: null;
+				: File.Exists(@"LegacyTE\RSBE01.gct") ? @"LegacyTE\RSBE01.gct"
+                : File.Exists(@"RSBE01.gct") ? @"RSBE01.gct"
+                : null;
 			pac = args.Length > 1 ? args[1]
 				: File.Exists(@"private\wii\app\RSBE\pf\menu2\sc_selmap.pac") ? @"private\wii\app\RSBE\pf\menu2\sc_selmap.pac"
 				: File.Exists(@"projectm\pf\menu2\sc_selmap.pac") ? @"projectm\pf\menu2\sc_selmap.pac"
-				: File.Exists(@"minusery\pf\menu2\sc_selmap.pac") ? @"minusery\pf\menu2\sc_selmap.pac"
+                : File.Exists(@"minusery\pf\menu2\sc_selmap.pac") ? @"minusery\pf\menu2\sc_selmap.pac"
 				: File.Exists(@"private\wii\app\RSBE\pf\system\common5.pac") ? @"private\wii\app\RSBE\pf\system\common5.pac"
 				: File.Exists(@"projectm\pf\system\common5.pac") ? @"projectm\pf\system\common5.pac"
 				: File.Exists(@"minusery\pf\system\common5.pac") ? @"minusery\pf\system\common5.pac"
-				: null;
+                : File.Exists(@"LegacyTE\pf\menu2\sc_selmap.pac") ? @"LegacyTE\pf\menu2\sc_selmap.pac"
+                : null;
 		}
 
 		/// <summary>

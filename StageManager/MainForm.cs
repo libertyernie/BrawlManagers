@@ -341,8 +341,8 @@ namespace BrawlStageManager {
                 foreach (string subpath in new string[] {
                     "\\private\\wii\\app\\RSBE\\pf\\stage\\melee",
                     "\\projectm\\pf\\stage\\melee",
-                    "\\LegacyTE\\pf\\stage\\melee",
-                    "\\minusery\\pf\\stage\\melee"
+                    "\\minusery\\pf\\stage\\melee",
+                    "\\LegacyTE\\pf\\stage\\melee"
                 }) {
                     DirectoryInfo search = new DirectoryInfo(path.FullName + subpath);
                     if (search.Exists) {

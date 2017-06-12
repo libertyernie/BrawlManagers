@@ -31,13 +31,15 @@ namespace BrawlCostumeManager {
 
 			if (!new DirectoryInfo("fighter").Exists) {
 				if (new DirectoryInfo("/private/wii/app/RSBE/pf/fighter").Exists) {
-					System.Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
+					Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
 				} else if (new DirectoryInfo("/projectm/pf/fighter").Exists) {
-					System.Environment.CurrentDirectory = "/projectm/pf";
+					Environment.CurrentDirectory = "/projectm/pf";
 				} else if (new DirectoryInfo("/minusery/pf/fighter").Exists) {
-					System.Environment.CurrentDirectory = "/minusery/pf";
-				}
-			}
+					Environment.CurrentDirectory = "/minusery/pf";
+                } else if (new DirectoryInfo("/LegacyTE/pf/fighter").Exists) {
+                    Environment.CurrentDirectory = "/LegacyTE/pf";
+                }
+            }
 
 			cssPortraitViewer1.NamePortraitPreview = nameportraitPreviewToolStripMenuItem.Checked;
 			modelManager1.ZoomOut = defaultZoomLevelToolStripMenuItem.Checked;
@@ -47,20 +49,24 @@ namespace BrawlCostumeManager {
 
 		private void readDir() {
 			if (!Directory.Exists("mario")) {
-				if (Directory.Exists(System.Environment.CurrentDirectory + "/private/wii/app/RSBE/pf/fighter")) {
-					System.Environment.CurrentDirectory += "/private/wii/app/RSBE/pf/fighter";
+				if (Directory.Exists(Environment.CurrentDirectory + "/private/wii/app/RSBE/pf/fighter")) {
+					Environment.CurrentDirectory += "/private/wii/app/RSBE/pf/fighter";
 					readDir();
 					return;
-				} else if (Directory.Exists(System.Environment.CurrentDirectory + "/projectm/pf/fighter")) {
-					System.Environment.CurrentDirectory += "/projectm/pf/fighter";
+				} else if (Directory.Exists(Environment.CurrentDirectory + "/projectm/pf/fighter")) {
+					Environment.CurrentDirectory += "/projectm/pf/fighter";
 					readDir();
 					return;
-				} else if (Directory.Exists(System.Environment.CurrentDirectory + "/minusery/pf/fighter")) {
-					System.Environment.CurrentDirectory += "/minusery/pf/fighter";
+				} else if (Directory.Exists(Environment.CurrentDirectory + "/minusery/pf/fighter")) {
+					Environment.CurrentDirectory += "/minusery/pf/fighter";
 					readDir();
 					return;
-				} else if (Directory.Exists("fighter")) {
-					System.Environment.CurrentDirectory += "/fighter";
+                } else if (Directory.Exists(Environment.CurrentDirectory + "/LegacyTE/pf/fighter")) {
+                    Environment.CurrentDirectory += "/LegacyTE/pf/fighter";
+                    readDir();
+                    return;
+                } else if (Directory.Exists("fighter")) {
+					Environment.CurrentDirectory += "/fighter";
 					readDir();
 					return;
 				}
