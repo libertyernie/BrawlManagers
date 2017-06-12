@@ -479,20 +479,20 @@ namespace BrawlStageManager {
 				: useExistingAsFallback && !createNew
 					? toReplace.Format
 				: BitmapUtilities.HasAlpha(newBitmap) & BitmapUtilities.HasNonAlpha(newBitmap)
-                    ? WiiPixelFormat.IA4
+					? WiiPixelFormat.IA4
 					: WiiPixelFormat.I4;
 			Bitmap toEncode = format == WiiPixelFormat.IA4 && BitmapUtilities.HasSolidCorners(newBitmap)
-                ? BitmapUtilities.AlphaSwap(newBitmap)
-                : newBitmap;
-            BrawlLib.IO.FileMap tMap = TextureConverter.Get(format).EncodeTEX0Texture(toEncode, 1);
+				? BitmapUtilities.AlphaSwap(newBitmap)
+				: newBitmap;
+			BrawlLib.IO.FileMap tMap = TextureConverter.Get(format).EncodeTEX0Texture(toEncode, 1);
 			toReplace.ReplaceRaw(tMap);
-        }
+		}
 
 		/// <summary>
 		/// Adds PAT0 entries for each stage to the given PAT0TextureNode.
 		/// </summary>
 		/// <param name="pathToPAT0TextureNode">Path relative to sc_selmap_en</param>
-        /// <param name="addNew">Whether to add new textures that match the PAT0 entries if those textures don't exist.</param>
+		/// <param name="addNew">Whether to add new textures that match the PAT0 entries if those textures don't exist.</param>
 		/// <param name="defaultName">The texture name to be used for new PAT0 entries. If null, the name will be taken from the first entry, with the number at the end replaced with the icon number.</param>
 		public void AddPAT0(string pathToPAT0TextureNode, bool addNew, string defaultName = null) {
 			var look = sc_selmap.FindChild(pathToPAT0TextureNode, false).Children[0];
@@ -568,40 +568,40 @@ namespace BrawlStageManager {
 				}
 			}
 
-            if (addNew) {
-			    ResourceNode brres = tn;
-			    while (brres != null && !(brres is BRRESNode)) {
-				    brres = brres.Parent;
-			    }
+			if (addNew) {
+				ResourceNode brres = tn;
+				while (brres != null && !(brres is BRRESNode)) {
+					brres = brres.Parent;
+				}
 
-                if (brres != null) {
-                    var folder = brres.FindChild("Textures(NW4R)", false);
-                    TEX0Node texToCopy = texToCopyName == null
-                        ? null
-                        : folder.FindChild(texToCopyName, false) as TEX0Node;
-                    PLT0Node pltToCopy = texToCopyName == null
-                        ? null
-                        : brres.FindChild("Palettes(NW4R)", false).FindChild(texToCopyName, false) as PLT0Node;
+				if (brres != null) {
+					var folder = brres.FindChild("Textures(NW4R)", false);
+					TEX0Node texToCopy = texToCopyName == null
+						? null
+						: folder.FindChild(texToCopyName, false) as TEX0Node;
+					PLT0Node pltToCopy = texToCopyName == null
+						? null
+						: brres.FindChild("Palettes(NW4R)", false).FindChild(texToCopyName, false) as PLT0Node;
 
-                    foreach (ResourceNode c in tn.Children) {
-                        PAT0TextureEntryNode p = c as PAT0TextureEntryNode;
-                        if (p == null) continue;
+					foreach (ResourceNode c in tn.Children) {
+						PAT0TextureEntryNode p = c as PAT0TextureEntryNode;
+						if (p == null) continue;
 
-                        var texture = folder.FindChild(p.Texture, false);
-                        if (texture == null) {
-                            if (texToCopy != null) {
-                                TEX0Node tex0 = ((BRRESNode)brres).CreateResource<TEX0Node>(p.Texture);
-                                tex0.ReplaceRaw(texToCopy.WorkingUncompressed.Address, texToCopy.WorkingUncompressed.Length);
-                            }
-                            if (pltToCopy != null) {
-                                PLT0Node plt0 = ((BRRESNode)brres).CreateResource<PLT0Node>(p.Texture);
-                                plt0.ReplaceRaw(pltToCopy.WorkingUncompressed.Address, pltToCopy.WorkingUncompressed.Length);
-                            }
-                        } else if (texture.Index == 1) {
-                            texToCopy = texture as TEX0Node;
-                        }
-                    }
-                }
+						var texture = folder.FindChild(p.Texture, false);
+						if (texture == null) {
+							if (texToCopy != null) {
+								TEX0Node tex0 = ((BRRESNode)brres).CreateResource<TEX0Node>(p.Texture);
+								tex0.ReplaceRaw(texToCopy.WorkingUncompressed.Address, texToCopy.WorkingUncompressed.Length);
+							}
+							if (pltToCopy != null) {
+								PLT0Node plt0 = ((BRRESNode)brres).CreateResource<PLT0Node>(p.Texture);
+								plt0.ReplaceRaw(pltToCopy.WorkingUncompressed.Address, pltToCopy.WorkingUncompressed.Length);
+							}
+						} else if (texture.Index == 1) {
+							texToCopy = texture as TEX0Node;
+						}
+					}
+				}
 			}
 		}
 		#endregion
@@ -670,7 +670,7 @@ namespace BrawlStageManager {
 				for (int i = 0; i < md1._strings.Count; i++) {
 					md1._strings[i] = d[i].ToString();
 				}
-                md1.Rebuild(true);
+				md1.Rebuild(true);
 			} else {
 				return;
 			}
@@ -685,7 +685,7 @@ namespace BrawlStageManager {
 					string tempFile2 = TempFiles.Create(".plt0");
 					string nameSelcharacter2 = i.ToString("D2");
 					string nameSelmap = BestSSS[sssPos].Item2.ToString("D2");
-                    Console.WriteLine($"{nameSelcharacter2}: sss pos {sssPos}, icon {nameSelmap}");
+					Console.WriteLine($"{nameSelcharacter2}: sss pos {sssPos}, icon {nameSelmap}");
 					TEX0Node iconFrom = md80.FindChild("Textures(NW4R)/MenSelmapIcon." + nameSelmap, false) as TEX0Node;
 					TEX0Node iconTo = md0.FindChild("Textures(NW4R)/MenSelmapIcon." + nameSelcharacter2, false) as TEX0Node;
 					var palFrom = md80.FindChild("Palettes(NW4R)/MenSelmapIcon." + nameSelmap, false);
@@ -918,7 +918,7 @@ namespace BrawlStageManager {
 			}
 		}
 
-		private void lblPMTop_DragEnter(object sender, DragEventArgs e) {
+		private void AltImage_DragEnter(object sender, DragEventArgs e) {
 			if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
 				string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
 				if (s.Length == 1) { // Can only drag and drop one file
@@ -955,18 +955,6 @@ namespace BrawlStageManager {
 			}
 		}
 
-		private void lblPMAlt_DragEnter(object sender, DragEventArgs e) {
-			if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
-				string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
-				if (s.Length == 1) { // Can only drag and drop one file
-					string filename = s[0].ToLower();
-					if (filename.EndsWith(".png") || filename.EndsWith(".gif")) {
-						e.Effect = DragDropEffects.Copy;
-					}
-				}
-			}
-		}
-
 		private void lblPMAlt_DragDrop(object sender, DragEventArgs e) {
 			if (e.Effect == DragDropEffects.Copy) {
 				string s = (e.Data.GetData(DataFormats.FileDrop) as string[])[0];
@@ -990,6 +978,61 @@ namespace BrawlStageManager {
 					Replace(prevbase, temp);
 				}).Start();
 			}
+		}
+
+		private void legacyImageDrop(object sender, DragEventArgs e, int x, int y, int width, int height, string overlayFile = null) {
+			if (e.Effect == DragDropEffects.Copy) {
+				string s = (e.Data.GetData(DataFormats.FileDrop) as string[])[0];
+				new Task(() => {
+					try {
+						Bitmap existing = GetTexInfoFor(prevbase).tex0.GetImage(0);
+						Image newBitmap = Image.FromFile(s);
+						Bitmap scaled = new Bitmap(width, height);
+						using (Graphics g = Graphics.FromImage(scaled)) {
+							int h = (int)(((double)newBitmap.Height / newBitmap.Width) * scaled.Width);
+							int offset = (scaled.Height - h) / 2;
+							g.DrawImage(newBitmap, 0, offset, scaled.Width, h);
+						}
+						Bitmap canvas = new Bitmap(176, 176);
+						using (Graphics g = Graphics.FromImage(canvas)) {
+							g.DrawImage(existing, 0, 0, 176, 176);
+							g.DrawImage(scaled, x, y, scaled.Width, scaled.Height);
+							if (overlayFile != null) {
+								Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("BrawlStageManager." + overlayFile);
+								if (stream != null) {
+									Image overlayImage = Image.FromStream(stream) as Bitmap;
+									g.DrawImage(overlayImage, x, y);
+								}
+							}
+							// Keep a pittle bit of padding
+							g.FillRectangle(Brushes.Black, 0, 46, 176, 2);
+							g.FillRectangle(Brushes.Black, 0, 127, 176, 2);
+							g.FillRectangle(Brushes.Black, 87, 128, 2, 48);
+						}
+						string temp = TempFiles.Create(".png");
+						canvas.Save(temp);
+						Replace(prevbase, temp);
+					} catch (Exception ex) {
+						MessageBox.Show(ex.Message);
+					}
+				}).Start();
+			}
+		}
+
+		private void lblLegacyTop_DragDrop(object sender, DragEventArgs e) {
+			legacyImageDrop(sender, e, 0, 0, 176, 48, "button-start.png");
+		}
+
+		private void lblLegacyCenter_DragDrop(object sender, DragEventArgs e) {
+			legacyImageDrop(sender, e, 0, 48, 176, 80);
+		}
+
+		private void lblLegacyBottomLeft_DragDrop(object sender, DragEventArgs e) {
+			legacyImageDrop(sender, e, 0, 128, 88, 48, "button-l.png");
+		}
+
+		private void lblLegacyBottomRight_DragDrop(object sender, DragEventArgs e) {
+			legacyImageDrop(sender, e, 88, 128, 88, 48, "button-z.png");
 		}
 
 		protected void saveButton_Click(object sender, EventArgs e) {

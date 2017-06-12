@@ -28,6 +28,16 @@
 			this.saveButton = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.prevbase = new BrawlStageManager.ImagePreviewPanel();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.lblLegacyBottomRight = new System.Windows.Forms.Label();
+			this.lblLegacyBottomLeft = new System.Windows.Forms.Label();
+			this.lblLegacyCenter = new System.Windows.Forms.Label();
+			this.lblLegacyTop = new System.Windows.Forms.Label();
+			this.lblLegacy = new System.Windows.Forms.Label();
+			this.lblPMAlt = new System.Windows.Forms.Label();
+			this.lblPMTop = new System.Windows.Forms.Label();
+			this.lblPM = new System.Windows.Forms.Label();
 			this.icon = new BrawlStageManager.ImagePreviewPanel();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.btnGenerateName = new System.Windows.Forms.Button();
@@ -38,12 +48,10 @@
 			this.fileSizeBar = new System.Windows.Forms.ProgressBar();
 			this.fileSizeLabel = new System.Windows.Forms.Label();
 			this.modifyPAT0 = new System.Windows.Forms.Button();
-			this.lblPMTop = new System.Windows.Forms.Label();
-			this.lblPMAlt = new System.Windows.Forms.Label();
-			this.panel1 = new System.Windows.Forms.Panel();
 			this.flowLayoutPanel1.SuspendLayout();
-			this.tableLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.panel2.SuspendLayout();
+			this.tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -82,7 +90,7 @@
 			this.flowLayoutPanel1.Controls.Add(this.label1);
 			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(210, 500);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(234, 500);
 			this.flowLayoutPanel1.TabIndex = 3;
 			// 
 			// prevbase
@@ -94,6 +102,137 @@
 			this.prevbase.Name = "prevbase";
 			this.prevbase.Size = new System.Drawing.Size(176, 176);
 			this.prevbase.TabIndex = 0;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.panel2);
+			this.panel1.Controls.Add(this.lblLegacyCenter);
+			this.panel1.Controls.Add(this.lblLegacyTop);
+			this.panel1.Controls.Add(this.lblLegacy);
+			this.panel1.Controls.Add(this.lblPMAlt);
+			this.panel1.Controls.Add(this.lblPMTop);
+			this.panel1.Controls.Add(this.lblPM);
+			this.panel1.Location = new System.Drawing.Point(179, 3);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(52, 159);
+			this.panel1.TabIndex = 14;
+			// 
+			// panel2
+			// 
+			this.panel2.Controls.Add(this.lblLegacyBottomRight);
+			this.panel2.Controls.Add(this.lblLegacyBottomLeft);
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel2.Location = new System.Drawing.Point(0, 94);
+			this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(52, 17);
+			this.panel2.TabIndex = 19;
+			// 
+			// lblLegacyBottomRight
+			// 
+			this.lblLegacyBottomRight.AllowDrop = true;
+			this.lblLegacyBottomRight.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.lblLegacyBottomRight.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lblLegacyBottomRight.Location = new System.Drawing.Point(26, 0);
+			this.lblLegacyBottomRight.Name = "lblLegacyBottomRight";
+			this.lblLegacyBottomRight.Size = new System.Drawing.Size(26, 17);
+			this.lblLegacyBottomRight.TabIndex = 19;
+			this.lblLegacyBottomRight.Text = "Z";
+			this.lblLegacyBottomRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblLegacyBottomRight.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblLegacyBottomRight_DragDrop);
+			this.lblLegacyBottomRight.DragEnter += new System.Windows.Forms.DragEventHandler(this.AltImage_DragEnter);
+			// 
+			// lblLegacyBottomLeft
+			// 
+			this.lblLegacyBottomLeft.AllowDrop = true;
+			this.lblLegacyBottomLeft.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.lblLegacyBottomLeft.Dock = System.Windows.Forms.DockStyle.Left;
+			this.lblLegacyBottomLeft.Location = new System.Drawing.Point(0, 0);
+			this.lblLegacyBottomLeft.Name = "lblLegacyBottomLeft";
+			this.lblLegacyBottomLeft.Size = new System.Drawing.Size(26, 17);
+			this.lblLegacyBottomLeft.TabIndex = 18;
+			this.lblLegacyBottomLeft.Text = "L";
+			this.lblLegacyBottomLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblLegacyBottomLeft.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblLegacyBottomLeft_DragDrop);
+			this.lblLegacyBottomLeft.DragEnter += new System.Windows.Forms.DragEventHandler(this.AltImage_DragEnter);
+			// 
+			// lblLegacyCenter
+			// 
+			this.lblLegacyCenter.AllowDrop = true;
+			this.lblLegacyCenter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.lblLegacyCenter.Dock = System.Windows.Forms.DockStyle.Top;
+			this.lblLegacyCenter.Location = new System.Drawing.Point(0, 77);
+			this.lblLegacyCenter.Name = "lblLegacyCenter";
+			this.lblLegacyCenter.Size = new System.Drawing.Size(52, 17);
+			this.lblLegacyCenter.TabIndex = 16;
+			this.lblLegacyCenter.Text = "Main";
+			this.lblLegacyCenter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblLegacyCenter.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblLegacyCenter_DragDrop);
+			this.lblLegacyCenter.DragEnter += new System.Windows.Forms.DragEventHandler(this.AltImage_DragEnter);
+			// 
+			// lblLegacyTop
+			// 
+			this.lblLegacyTop.AllowDrop = true;
+			this.lblLegacyTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.lblLegacyTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.lblLegacyTop.Location = new System.Drawing.Point(0, 60);
+			this.lblLegacyTop.Name = "lblLegacyTop";
+			this.lblLegacyTop.Size = new System.Drawing.Size(52, 17);
+			this.lblLegacyTop.TabIndex = 15;
+			this.lblLegacyTop.Text = "Start";
+			this.lblLegacyTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblLegacyTop.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblLegacyTop_DragDrop);
+			this.lblLegacyTop.DragEnter += new System.Windows.Forms.DragEventHandler(this.AltImage_DragEnter);
+			// 
+			// lblLegacy
+			// 
+			this.lblLegacy.Dock = System.Windows.Forms.DockStyle.Top;
+			this.lblLegacy.Location = new System.Drawing.Point(0, 47);
+			this.lblLegacy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblLegacy.Name = "lblLegacy";
+			this.lblLegacy.Size = new System.Drawing.Size(52, 13);
+			this.lblLegacy.TabIndex = 17;
+			this.lblLegacy.Text = "Legacy";
+			this.lblLegacy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// lblPMAlt
+			// 
+			this.lblPMAlt.AllowDrop = true;
+			this.lblPMAlt.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.lblPMAlt.Dock = System.Windows.Forms.DockStyle.Top;
+			this.lblPMAlt.Location = new System.Drawing.Point(0, 30);
+			this.lblPMAlt.Name = "lblPMAlt";
+			this.lblPMAlt.Size = new System.Drawing.Size(52, 17);
+			this.lblPMAlt.TabIndex = 13;
+			this.lblPMAlt.Text = "Alt";
+			this.lblPMAlt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblPMAlt.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblPMAlt_DragDrop);
+			this.lblPMAlt.DragEnter += new System.Windows.Forms.DragEventHandler(this.AltImage_DragEnter);
+			// 
+			// lblPMTop
+			// 
+			this.lblPMTop.AllowDrop = true;
+			this.lblPMTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.lblPMTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.lblPMTop.Location = new System.Drawing.Point(0, 13);
+			this.lblPMTop.Name = "lblPMTop";
+			this.lblPMTop.Size = new System.Drawing.Size(52, 17);
+			this.lblPMTop.TabIndex = 12;
+			this.lblPMTop.Text = "Main";
+			this.lblPMTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblPMTop.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblPMTop_DragDrop);
+			this.lblPMTop.DragEnter += new System.Windows.Forms.DragEventHandler(this.AltImage_DragEnter);
+			// 
+			// lblPM
+			// 
+			this.lblPM.Dock = System.Windows.Forms.DockStyle.Top;
+			this.lblPM.Location = new System.Drawing.Point(0, 0);
+			this.lblPM.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblPM.Name = "lblPM";
+			this.lblPM.Size = new System.Drawing.Size(52, 13);
+			this.lblPM.TabIndex = 14;
+			this.lblPM.Text = "Project M";
+			this.lblPM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// icon
 			// 
@@ -198,53 +337,17 @@
 			this.modifyPAT0.UseVisualStyleBackColor = true;
 			this.modifyPAT0.Click += new System.EventHandler(this.modifyPAT0_Click);
 			// 
-			// lblPMTop
-			// 
-			this.lblPMTop.AllowDrop = true;
-			this.lblPMTop.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.lblPMTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.lblPMTop.Location = new System.Drawing.Point(0, 0);
-			this.lblPMTop.Name = "lblPMTop";
-			this.lblPMTop.Size = new System.Drawing.Size(28, 48);
-			this.lblPMTop.TabIndex = 12;
-			this.lblPMTop.Text = "PM 3.6 Top";
-			this.lblPMTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.lblPMTop.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblPMTop_DragDrop);
-			this.lblPMTop.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblPMTop_DragEnter);
-			// 
-			// lblPMAlt
-			// 
-			this.lblPMAlt.AllowDrop = true;
-			this.lblPMAlt.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.lblPMAlt.Dock = System.Windows.Forms.DockStyle.Top;
-			this.lblPMAlt.Location = new System.Drawing.Point(0, 48);
-			this.lblPMAlt.Name = "lblPMAlt";
-			this.lblPMAlt.Size = new System.Drawing.Size(28, 48);
-			this.lblPMAlt.TabIndex = 13;
-			this.lblPMAlt.Text = "PM 3.6 Alt";
-			this.lblPMAlt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.lblPMAlt.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblPMAlt_DragDrop);
-			this.lblPMAlt.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblPMAlt_DragEnter);
-			// 
-			// panel1
-			// 
-			this.panel1.Controls.Add(this.lblPMAlt);
-			this.panel1.Controls.Add(this.lblPMTop);
-			this.panel1.Location = new System.Drawing.Point(179, 3);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(28, 100);
-			this.panel1.TabIndex = 14;
-			// 
 			// PortraitViewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.flowLayoutPanel1);
 			this.Name = "PortraitViewer";
-			this.Size = new System.Drawing.Size(210, 500);
+			this.Size = new System.Drawing.Size(234, 500);
 			this.flowLayoutPanel1.ResumeLayout(false);
-			this.tableLayoutPanel1.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
+			this.panel2.ResumeLayout(false);
+			this.tableLayoutPanel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -268,5 +371,12 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblPMAlt;
 		private System.Windows.Forms.Label lblPMTop;
+		private System.Windows.Forms.Label lblLegacyCenter;
+		private System.Windows.Forms.Label lblLegacyTop;
+		private System.Windows.Forms.Label lblLegacy;
+		private System.Windows.Forms.Label lblPM;
+		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.Label lblLegacyBottomRight;
+		private System.Windows.Forms.Label lblLegacyBottomLeft;
 	}
 }

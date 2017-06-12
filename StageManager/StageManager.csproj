@@ -232,6 +232,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="button-l.png" />
+    <EmbeddedResource Include="button-start.png" />
+    <EmbeddedResource Include="button-z.png" />
     <EmbeddedResource Include="border.png" />
     <Content Include="BrawlStageManager.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
