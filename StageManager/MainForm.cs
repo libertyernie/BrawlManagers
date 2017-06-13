@@ -291,7 +291,7 @@ namespace BrawlStageManager {
 					arr = arr.Select(filename => {
 						Song element = SongIDMap.Songs.SingleOrDefault(s => s.Filename == filename);
 						if (element != null) {
-							return portraitViewer1.BestSSS.SongLoaders.GetSong(stage_id, element).Filename;
+							return portraitViewer1.BestSSS.GetSong(fi.Name, element).Filename;
 						} else {
 							return filename;
 						}
