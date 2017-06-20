@@ -1,16 +1,14 @@
-﻿Brawl Song Manager 3.8 - May 2016
-Copyright © 2016 libertyernie
+﻿Brawl Song Manager 3.9 - June 2017
+Copyright © 2017 libertyernie
 http://lakora.us/brawl/songmanager
 
 Brawl Song Manager is a program that uses BrawlLib to quickly view which BRSTM
 music files are installed on your SD card (or in whatever folder, on whatever
 device, you use for Brawl hacks.)
 
-Changes in 3.8:
-  * Support for the Custom Sound Engine: the app now recognizes song IDs in
-    the C000+ range, and sndBgmTitleData is read from common2.
-  * Songs added by the Custom Sound Engine code are loaded from sound/strm
-    instead of sound/sfx.
+Changes in 3.9:
+  * BrawlLib has been updated, which might fix some bugs.
+  * The software will now look for a LegacyTE folder (just like it looks for a projectm folder.)
 
 ----------------------------------------
 
