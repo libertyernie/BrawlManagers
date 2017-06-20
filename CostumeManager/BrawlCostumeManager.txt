@@ -6,7 +6,7 @@ http://lakora.us/brawl/costumemanager
 
 Changes in 3.9:
   * BrawlLib has been updated, which might fix some bugs.
-  * The software will now look for a LegacyTE folder (just like it looks for a projectm folder.)
+  * The software will now look for a LegacyTE or LegacyXP folder (just like it looks for a projectm folder.)
 
 --------
 

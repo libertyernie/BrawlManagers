@@ -17,6 +17,7 @@ namespace BrawlSongManager {
 			"/data/gecko/codes/RSBE01.gct",
 			"/codes/RSBE01.gct",
             "/LegacyTE/RSBE01.gct",
+            "/LegacyXP/RSBE01.gct",
             "../../../../codes/RSBE01.gct",
 		};
 
@@ -119,25 +120,18 @@ namespace BrawlSongManager {
 
 			// Special code for the root directory of a drive
 			if (brstmFiles.Length == 0) {
-				DirectoryInfo search = new DirectoryInfo(dir.FullName + "\\private\\wii\\app\\RSBE\\pf\\sound\\strm");
-				if (search.Exists) {
-					changeDirectory(search); // Change to the typical song folder used by the FPC, if it exists on the drive
-					return;
-				}
-				search = new DirectoryInfo(dir.FullName + "\\projectm\\pf\\sound\\strm");
-				if (search.Exists) {
-					changeDirectory(search);
-					return;
-				}
-				search = new DirectoryInfo(dir.FullName + "\\minusery\\pf\\sound\\strm");
-				if (search.Exists) {
-					changeDirectory(search);
-					return;
-                }
-                search = new DirectoryInfo(dir.FullName + "\\LegacyTE\\pf\\sound\\strm");
-                if (search.Exists) {
-                    changeDirectory(search);
-                    return;
+                foreach (string path in new [] {
+                    "\\private\\wii\\app\\RSBE\\pf\\sound\\strm",
+                    "\\projectm\\pf\\sound\\strm",
+                    "\\minusery\\pf\\sound\\strm",
+                    "\\LegacyTE\\pf\\sound\\strm",
+                    "\\LegacyXP\\pf\\sound\\strm"
+                }) {
+                    DirectoryInfo search = new DirectoryInfo(dir.FullName + path);
+                    if (search.Exists) {
+                        changeDirectory(search); // Change to the typical song folder used by the FPC, if it exists on the drive
+                        return;
+                    }
                 }
             }
 

@@ -248,6 +248,7 @@ namespace SSSEditor {
                         "codes/RSBE01.gct",
                         "data/gecko/codes/RSBE01.gct",
                         "LegacyTE/RSBE01.gct",
+                        "LegacyXP/RSBE01.gct",
                         "RSBE01.gct"
                     };
                     foreach (string gctPath in gctPaths) {
@@ -263,7 +264,7 @@ namespace SSSEditor {
 					}
 
 					string root = null;
-					foreach (string folder in new string[] { "/private/wii/app/RSBE/pf", "/projectm/pf", "/minusery/pf", "/LegacyTE/pf" }) {
+					foreach (string folder in new string[] { "/private/wii/app/RSBE/pf", "/projectm/pf", "/minusery/pf", "/LegacyTE/pf", "/LegacyXP/pf" }) {
 						foreach (string file in new string[] { "/menu2/sc_selmap.pac", "/menu2/sc_selmap_en.pac", "system/common5.pac", "system/common5_en.pac" }) {
 							if (File.Exists(dialog.SelectedPath + folder + "/" + file)) {
 								root = dialog.SelectedPath + folder + "/" + file;

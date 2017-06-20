@@ -14,6 +14,7 @@ namespace SSSEditor {
 				: File.Exists(@"data\gecko\codes\RSBE01.gct") ? @"data\gecko\codes\RSBE01.gct"
 				: File.Exists(@"codes\RSBE01.gct") ? @"codes\RSBE01.gct"
 				: File.Exists(@"LegacyTE\RSBE01.gct") ? @"LegacyTE\RSBE01.gct"
+                : File.Exists(@"LegacyXP\RSBE01.gct") ? @"LegacyXP\RSBE01.gct"
                 : File.Exists(@"RSBE01.gct") ? @"RSBE01.gct"
                 : null;
 			pac = args.Length > 1 ? args[1]
@@ -24,6 +25,7 @@ namespace SSSEditor {
 				: File.Exists(@"projectm\pf\system\common5.pac") ? @"projectm\pf\system\common5.pac"
 				: File.Exists(@"minusery\pf\system\common5.pac") ? @"minusery\pf\system\common5.pac"
                 : File.Exists(@"LegacyTE\pf\menu2\sc_selmap.pac") ? @"LegacyTE\pf\menu2\sc_selmap.pac"
+                : File.Exists(@"LegacyXP\pf\menu2\sc_selmap.pac") ? @"LegacyXP\pf\menu2\sc_selmap.pac"
                 : null;
 		}
 

@@ -350,8 +350,9 @@ namespace BrawlStageManager {
 					"\\private\\wii\\app\\RSBE\\pf\\stage\\melee",
 					"\\projectm\\pf\\stage\\melee",
 					"\\minusery\\pf\\stage\\melee",
-					"\\LegacyTE\\pf\\stage\\melee"
-				}) {
+					"\\LegacyTE\\pf\\stage\\melee",
+                    "\\LegacyXP\\pf\\stage\\melee"
+                }) {
 					DirectoryInfo search = new DirectoryInfo(path.FullName + subpath);
 					if (search.Exists) {
 						changeDirectory(search); // Change to the typical stage folder used by the FPC, if it exists on the drive

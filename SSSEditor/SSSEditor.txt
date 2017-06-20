@@ -16,7 +16,7 @@ code, and a common5/sc_selmap/mu_menumain file (which will not be modified.)
 Changes in 3.9:
   * BrawlLib has been updated, which might fix some bugs.
   * The "default" Custom SSS code is now correct.
-  * The software will now look for a LegacyTE folder (just like it looks for a projectm folder.)
+  * The software will now look for a LegacyTE or LegacyXP folder (just like it looks for a projectm folder.)
 
 Notes:
   * Internet Explorer 8 or higher is now required.
