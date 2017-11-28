@@ -903,7 +903,11 @@ namespace BrawlStageManager {
 					i++;
 				}
 
-				File.Delete(file);
+                try {
+                    File.Delete(file);
+                } catch (IOException e) {
+                    Console.Error.WriteLine("Warning: " + e.Message);
+                }
 			}
 			MessageBox.Show("Resized " + i + " images.");
 			UpdateImage();
