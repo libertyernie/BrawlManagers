@@ -294,7 +294,7 @@ namespace BrawlStageManager {
 					arr = arr.Select(filename => {
 						Song element = SongIDMap.Songs.SingleOrDefault(s => s.Filename == filename);
 						if (element != null) {
-							return portraitViewer1.BestSSS.SongLoaders.GetSong(stage_id, element).Filename;
+							return portraitViewer1.BestSSS.GetSong(fi.Name, element).Filename;
 						} else {
 							return filename;
 						}
@@ -353,8 +353,9 @@ namespace BrawlStageManager {
 					"\\private\\wii\\app\\RSBE\\pf\\stage\\melee",
 					"\\projectm\\pf\\stage\\melee",
 					"\\minusery\\pf\\stage\\melee",
-					"\\LegacyTE\\pf\\stage\\melee"
-				}) {
+					"\\LegacyTE\\pf\\stage\\melee",
+                    "\\LegacyXP\\pf\\stage\\melee"
+                }) {
 					DirectoryInfo search = new DirectoryInfo(path.FullName + subpath);
 					if (search.Exists) {
 						changeDirectory(search); // Change to the typical stage folder used by the FPC, if it exists on the drive

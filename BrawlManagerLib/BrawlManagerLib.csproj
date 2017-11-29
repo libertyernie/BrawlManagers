@@ -70,6 +70,7 @@
     <Compile Include="BrawlSplitter.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GCT\ReadOnly\AltStageSongForcer.cs" />
     <Compile Include="GCT\ReadOnly\TracklistModifier.cs" />
     <Compile Include="GCT\ReadWrite\CustomSongVolumeCodeset.cs" />
     <Compile Include="GCT\AlternateStageEntry.cs" />

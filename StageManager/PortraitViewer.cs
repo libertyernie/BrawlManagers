@@ -258,7 +258,6 @@ namespace BrawlStageManager {
 			AutoSSS = null;
 			DirectoryInfo directory = new DirectoryInfo(Environment.CurrentDirectory);
 			while (directory != null) {
-				Console.WriteLine(directory);
 				if (File.Exists(directory.FullName + "/data/gecko/codes/RSBE01.gct")) {
 					AutoSSS = new CustomSSSCodeset(File.ReadAllBytes(directory.FullName + "/data/gecko/codes/RSBE01.gct"));
 					break;
@@ -268,8 +267,11 @@ namespace BrawlStageManager {
 				} else if (File.Exists(directory.FullName + "/LegacyTE/RSBE01.gct")) {
 					AutoSSS = new CustomSSSCodeset(File.ReadAllBytes(directory.FullName + "/LegacyTE/RSBE01.gct"));
 					break;
-				}
-				directory = directory.Parent;
+                } else if (File.Exists(directory.FullName + "/LegacyXP/RSBE01.gct")) {
+                    AutoSSS = new CustomSSSCodeset(File.ReadAllBytes(directory.FullName + "/LegacyXP/RSBE01.gct"));
+                    break;
+                }
+                directory = directory.Parent;
 			}
 
 			if (sc_selmap != null) {

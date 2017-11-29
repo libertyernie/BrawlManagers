@@ -1,5 +1,5 @@
-﻿SSS Editor 3.8 - June 2016
-Copyright © 2016 libertyernie
+﻿SSS Editor 3.9 - June 2017
+Copyright © 2017 libertyernie
 http://lakora.us/brawl/ssseditor
 
 SSS Editor is a .NET application for managing the Custom SSS code, on its own
@@ -13,10 +13,10 @@ code, and a common5/sc_selmap/mu_menumain file (which will not be modified.)
 
 -------- Changes --------
 
-Changes in 3.8:
-  * Songs added by the Custom Sound Engine code are now recogized.
-  * Three more STGCUSTOM stages have been added to the dropdown.
-  * The main window has been re-styled slightly.
+Changes in 3.9:
+  * BrawlLib has been updated, which might fix some bugs.
+  * The "default" Custom SSS code is now correct.
+  * The software will now look for a LegacyTE or LegacyXP folder (just like it looks for a projectm folder.)
 
 Notes:
   * Internet Explorer 8 or higher is now required.

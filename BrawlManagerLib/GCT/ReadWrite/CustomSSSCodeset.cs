@@ -83,6 +83,20 @@ namespace BrawlManagerLib {
 			}
 		}
 
+		private AltStageSongForcer _altStageSongForcer;
+
+		/// <summary>
+		/// Gets read-only access to the instance of the TracklistModifier in this codeset.
+		/// </summary>
+		public AltStageSongForcer AltStageSongForcer {
+			get {
+				if (_altStageSongForcer == null) {
+					_altStageSongForcer = new AltStageSongForcer(DataBefore.Concat(DataAfter).ToArray());
+				}
+				return _altStageSongForcer;
+			}
+		}
+
 		private AlternateStageLoaderData _alternateStageLoaderData;
 
 		/// <summary>
@@ -130,6 +144,17 @@ namespace BrawlManagerLib {
 				}
 			}
 			return 0xFF;
+		}
+
+		public Song GetSong(string filename, Song originalSong) {
+			int stageID = StageIDMap.StageIDForPac(filename);
+			if (this.AlternateStageLoaderData.TryGetDefinition(filename, out AlternateStageEntry entry)) {
+				foreach (var alt in entry.ButtonActivated.Where(b => filename.EndsWith($"_{b.Letter}.pac", StringComparison.InvariantCultureIgnoreCase))) {
+					Song newSong = this.AltStageSongForcer.GetSong(stageID, alt.ButtonMask, originalSong);
+					if (newSong.ID != originalSong.ID) return newSong;
+				}
+			}
+			return this.SongLoaders.GetSong(stageID, originalSong);
 		}
 
 		public CustomSSSCodeset() {

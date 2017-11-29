@@ -38,6 +38,8 @@ namespace BrawlCostumeManager {
 					Environment.CurrentDirectory = "/minusery/pf";
                 } else if (new DirectoryInfo("/LegacyTE/pf/fighter").Exists) {
                     Environment.CurrentDirectory = "/LegacyTE/pf";
+                } else if (new DirectoryInfo("/LegacyXP/pf/fighter").Exists) {
+                    Environment.CurrentDirectory = "/LegacyXP/pf";
                 }
             }
 
@@ -49,27 +51,20 @@ namespace BrawlCostumeManager {
 
 		private void readDir() {
 			if (!Directory.Exists("mario")) {
-				if (Directory.Exists(Environment.CurrentDirectory + "/private/wii/app/RSBE/pf/fighter")) {
-					Environment.CurrentDirectory += "/private/wii/app/RSBE/pf/fighter";
-					readDir();
-					return;
-				} else if (Directory.Exists(Environment.CurrentDirectory + "/projectm/pf/fighter")) {
-					Environment.CurrentDirectory += "/projectm/pf/fighter";
-					readDir();
-					return;
-				} else if (Directory.Exists(Environment.CurrentDirectory + "/minusery/pf/fighter")) {
-					Environment.CurrentDirectory += "/minusery/pf/fighter";
-					readDir();
-					return;
-                } else if (Directory.Exists(Environment.CurrentDirectory + "/LegacyTE/pf/fighter")) {
-                    Environment.CurrentDirectory += "/LegacyTE/pf/fighter";
-                    readDir();
-                    return;
-                } else if (Directory.Exists("fighter")) {
-					Environment.CurrentDirectory += "/fighter";
-					readDir();
-					return;
-				}
+                foreach (string path in new[] {
+                    "/private/wii/app/RSBE/pf/fighter",
+                    "/projectm/pf/fighter",
+                    "/minusery/pf/fighter",
+                    "/LegacyTE/pf/fighter",
+                    "/LegacyXP/pf/fighter",
+                    "/fighter"
+                }) {
+                    if (Directory.Exists(Environment.CurrentDirectory + path)) {
+                        Environment.CurrentDirectory += path;
+                        readDir();
+                        return;
+                    }
+                }
 			}
 
 			Text = TITLE + " - " + System.Environment.CurrentDirectory;
