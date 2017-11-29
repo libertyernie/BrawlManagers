@@ -284,7 +284,10 @@ namespace BrawlStageManager {
 				Song song = portraitViewer1.BestSSS.SongLoaders.GetSong(stage_id);
 				if (song != null) {
 					songContainerPanel.Visible = true;
-					listBoxSongs.Items.Add(new SongListItem("../../sound/strm/" + song.Filename + ".brstm"));
+                    string dir = song.Filename.StartsWith("0000") && cse2xToolStripMenuItem.Checked
+                        ? "../../sound/sfx/"
+                        : "../../sound/strm/";
+                    listBoxSongs.Items.Add(new SongListItem(dir + song.Filename + ".brstm"));
 					listBoxSongs.SelectedIndex = 0;
 				} else {
 					string[] arr = SongsByStageID.ForPac(portraitViewer1.BestSSS.TracklistModifier, fi.Name);
@@ -546,9 +549,12 @@ namespace BrawlStageManager {
 			Song song = portraitViewer1.BestSSS.SongLoaders.GetSong(StageIDMap.StageIDForPac(f.Name));
 			if (song == null) SongsByStageID.ForPac(portraitViewer1.BestSSS.TracklistModifier, f.Name);
 
-			if (song != null && File.Exists("../../sound/strm/" + song.Filename + ".brstm")) {
-				File.Copy("../../sound/strm/" + song.Filename + ".brstm", thisdir + "/song.brstm", true);
-			}
+            foreach (string dir in new[] { "../../sound/strm/", "../../sound/sfx/" }) {
+                if (song != null && File.Exists(dir + song.Filename + ".brstm")) {
+                    File.Copy(dir + song.Filename + ".brstm", thisdir + "/song.brstm", true);
+                    break;
+                }
+            }
 		}
 		#endregion
 
@@ -934,11 +940,20 @@ namespace BrawlStageManager {
 		}
 
 		private void listBoxSongs_SelectedIndexChanged(object sender, EventArgs e) {
-			string basename = listBoxSongs.SelectedItem.ToString();
-			string folder = "../../sound/strm/";
-			songPanel1.Open(new FileInfo(folder + basename + ".brstm"));
-			exportbrstmToolStripMenuItem.Enabled = deletebrstmToolStripMenuItem.Enabled = songPanel1.FileOpen;
-		}
+            if (listBoxSongs.SelectedItem is SongListItem sli) {
+                songPanel1.Open(sli.File);
+            } else {
+                string basename = listBoxSongs.SelectedItem.ToString();
+                foreach (string folder in new[] { "../../sound/strm/", "../../sound/sfx/" }) {
+                    var fi = new FileInfo(folder + basename + ".brstm");
+                    if (fi.Exists) {
+                        songPanel1.Open(fi);
+                        break;
+                    }
+                }
+            }
+            exportbrstmToolStripMenuItem.Enabled = deletebrstmToolStripMenuItem.Enabled = songPanel1.FileOpen;
+        }
 
 		private void loadStagepacsToolStripMenuItem_Click(object sender, EventArgs e) {
 			renderModels.Enabled = loadStagepacsToolStripMenuItem.Checked;
@@ -949,10 +964,20 @@ namespace BrawlStageManager {
 		}
 		private void MainForm_FormClosed(object sender, FormClosedEventArgs e) {
 			TempFiles.DeleteAll();
-		}
-		#endregion
+        }
 
-		private void use16ptFontToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void cse2xToolStripMenuItem_Click(object sender, EventArgs e) {
+            cse2xToolStripMenuItem.Checked = true;
+            cse3xToolStripMenuItem.Checked = false;
+        }
+
+        private void cse3xToolStripMenuItem_Click(object sender, EventArgs e) {
+            cse2xToolStripMenuItem.Checked = false;
+            cse3xToolStripMenuItem.Checked = true;
+        }
+        #endregion
+
+        private void use16ptFontToolStripMenuItem_Click(object sender, EventArgs e) {
 			float? size = use16ptFontToolStripMenuItem.Checked
 				? 16f
 				: (float?)null;
