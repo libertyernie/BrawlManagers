@@ -659,6 +659,7 @@ namespace BrawlStageManager {
 		private void loadCustomSSSToolStripMenuItem_Click(object sender, EventArgs e) {
 			OpenDialog.Filter = "Codeset files (*.txt, *.gct)|*.txt;*.gct";
 			OpenDialog.Multiselect = true;
+            OpenDialog.InitialDirectory = CurrentDirectory;
 			if (OpenDialog.ShowDialog() == DialogResult.OK) {
 				portraitViewer1.LoadCustomSSS(OpenDialog.FileName);
 				ReloadDirectory();
