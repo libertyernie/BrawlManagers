@@ -945,13 +945,8 @@ namespace BrawlStageManager {
                 songPanel1.Open(sli.File);
             } else {
                 string basename = listBoxSongs.SelectedItem.ToString();
-                foreach (string folder in new[] { "../../sound/strm/", "../../sound/sfx/" }) {
-                    var fi = new FileInfo(folder + basename + ".brstm");
-                    if (fi.Exists) {
-                        songPanel1.Open(fi);
-                        break;
-                    }
-                }
+                var fi = new FileInfo("../../sound/strm/" + basename + ".brstm");
+                songPanel1.Open(fi);
             }
             exportbrstmToolStripMenuItem.Enabled = deletebrstmToolStripMenuItem.Enabled = songPanel1.FileOpen;
         }
