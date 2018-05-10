@@ -16,9 +16,9 @@ namespace BrawlSongManager {
 			"RSBE01.gct",
 			"/data/gecko/codes/RSBE01.gct",
 			"/codes/RSBE01.gct",
-            "/LegacyTE/RSBE01.gct",
-            "/LegacyXP/RSBE01.gct",
-            "../../../../codes/RSBE01.gct",
+			"/LegacyTE/RSBE01.gct",
+			"/LegacyXP/RSBE01.gct",
+			"../../../../codes/RSBE01.gct",
 		};
 
 		/// <summary>
@@ -63,6 +63,9 @@ namespace BrawlSongManager {
 			}
 		}
 
+		private bool autoplay = false;
+		private bool autoplayNext = false;
+
 		private const string chooseLabel = "Choose a stage from the list on the left-hand side.",
 			loadingLabel = "Loading...",
 			couldNotOpenLabel = "Could not open the .PAC file.";
@@ -80,6 +83,7 @@ namespace BrawlSongManager {
 
 			loadNames = loadNamesFromInfopacToolStripMenuItem.Checked;
 			loadBrstms = loadBRSTMPlayerToolStripMenuItem.Checked;
+			autoplay = whenSongEndsStartPlayingNextSongToolStripMenuItem.Checked;
 
 			RightControl = chooseLabel;
 
@@ -107,6 +111,12 @@ namespace BrawlSongManager {
 
 				RightControl = null;
 			}
+
+			if (autoplay && autoplayNext) {
+				songPanel1.Play();
+			}
+			autoplayNext = false;
+
 			this.Refresh();
 		}
 
@@ -120,20 +130,20 @@ namespace BrawlSongManager {
 
 			// Special code for the root directory of a drive
 			if (brstmFiles.Length == 0) {
-                foreach (string path in new [] {
-                    "\\private\\wii\\app\\RSBE\\pf\\sound\\strm",
-                    "\\projectm\\pf\\sound\\strm",
-                    "\\minusery\\pf\\sound\\strm",
-                    "\\LegacyTE\\pf\\sound\\strm",
-                    "\\LegacyXP\\pf\\sound\\strm"
-                }) {
-                    DirectoryInfo search = new DirectoryInfo(dir.FullName + path);
-                    if (search.Exists) {
-                        changeDirectory(search); // Change to the typical song folder used by the FPC, if it exists on the drive
-                        return;
-                    }
-                }
-            }
+				foreach (string path in new [] {
+					"\\private\\wii\\app\\RSBE\\pf\\sound\\strm",
+					"\\projectm\\pf\\sound\\strm",
+					"\\minusery\\pf\\sound\\strm",
+					"\\LegacyTE\\pf\\sound\\strm",
+					"\\LegacyXP\\pf\\sound\\strm"
+				}) {
+					DirectoryInfo search = new DirectoryInfo(dir.FullName + path);
+					if (search.Exists) {
+						changeDirectory(search); // Change to the typical song folder used by the FPC, if it exists on the drive
+						return;
+					}
+				}
+			}
 
 			refreshDirectory();
 			findGCT();
@@ -325,11 +335,18 @@ namespace BrawlSongManager {
 
 		#region Options menu actions
 		private void loadNamesFromInfopacToolStripMenuItem_Click(object sender, EventArgs e) {
-			songPanel1.LoadNames = !songPanel1.LoadNames;
+			bool b = songPanel1.LoadNames = !songPanel1.LoadNames;
+			if (sender is ToolStripMenuItem t) t.Checked = b;
 		}
 
 		private void loadBRSTMPlayerToolStripMenuItem_Click(object sender, EventArgs e) {
-			songPanel1.LoadBrstms = !songPanel1.LoadBrstms;
+			bool b = songPanel1.LoadBrstms = !songPanel1.LoadBrstms;
+			if (sender is ToolStripMenuItem t) t.Checked = b;
+		}
+
+		private void whenSongEndsStartPlayingNextSongToolStripMenuItem_Click(object sender, EventArgs e) {
+			bool b = autoplay = !autoplay;
+			if (sender is ToolStripMenuItem t) t.Checked = b;
 		}
 
 		private void groupSongsByStageToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -469,6 +486,13 @@ namespace BrawlSongManager {
 				} catch (Exception exc) {
 					MessageBox.Show("Error exporting: " + exc);
 				}
+			}
+		}
+
+		private void songPanel1_AudioEnded(object sender, EventArgs e) {
+			if (listBox1.SelectedIndex < listBox1.Items.Count - 1 && autoplay) {
+				autoplayNext = true;
+				listBox1.SelectedIndex++;
 			}
 		}
 
