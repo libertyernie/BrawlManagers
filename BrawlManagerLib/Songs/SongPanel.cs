@@ -85,6 +85,8 @@ namespace BrawlManagerLib {
 			}
 		}
 
+		public event EventHandler AudioEnded;
+
 		public SongPanel() {
 			InitializeComponent();
 
@@ -150,6 +152,10 @@ namespace BrawlManagerLib {
 				app.TargetSource = null;
 				app.Enabled = grid.Enabled = false;
 			}
+		}
+
+		public void Play() {
+			app.Play();
 		}
 
 		public void Export() {
@@ -255,6 +261,10 @@ namespace BrawlManagerLib {
 
 		private void nudVolume_ValueChanged(object sender, EventArgs e) {
 			app.VolumePercent = nudVolume.Value < 0 ? 1.0 : (double)nudVolume.Value / 127.0;
+		}
+
+		private void app_AudioEnded(object sender, EventArgs e) {
+			AudioEnded?.Invoke(this, e);
 		}
 	}
 }
