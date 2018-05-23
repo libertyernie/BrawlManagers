@@ -124,26 +124,48 @@ namespace BrawlSongManager {
 			CurrentDirectory = newpath; // Update the program's working directory
 			this.Text = this.Text.Substring(0, this.Text.IndexOf('-')) + "- " + newpath; // Update titlebar
 
-			DirectoryInfo dir = new DirectoryInfo(CurrentDirectory);
+			DirectoryInfo dirInfo = new DirectoryInfo(CurrentDirectory);
 			RightControl = chooseLabel;
-			brstmFiles = dir.GetFiles("*.brstm");
+			brstmFiles = dirInfo.GetFiles("*.brstm");
 
 			// Special code for the root directory of a drive
 			if (brstmFiles.Length == 0) {
 				foreach (string path in new [] {
 					"\\private\\wii\\app\\RSBE\\pf\\sound\\strm",
-					"\\projectm\\pf\\sound\\strm",
-					"\\minusery\\pf\\sound\\strm",
-					"\\LegacyTE\\pf\\sound\\strm",
-					"\\LegacyXP\\pf\\sound\\strm"
+					"\\projectm\\pf\\sound\\strm"
 				}) {
-					DirectoryInfo search = new DirectoryInfo(dir.FullName + path);
+					DirectoryInfo search = new DirectoryInfo(dirInfo.FullName + path);
 					if (search.Exists) {
 						changeDirectory(search); // Change to the typical song folder used by the FPC, if it exists on the drive
 						return;
 					}
-				}
-			}
+                }
+
+                string findStrmFolder(string dir)
+                {
+                    if (dir.EndsWith("\\strm")) return dir;
+                    try
+                    {
+                        foreach (string subdir in Directory.EnumerateDirectories(dir))
+                        {
+                            string possible = findStrmFolder(subdir);
+                            if (Directory.Exists(possible))
+                            {
+                                return possible;
+                            }
+                        }
+                    }
+                    catch (Exception) { }
+                    return null;
+                }
+
+                string strmDir = findStrmFolder(CurrentDirectory);
+                if (strmDir != null)
+                {
+                    changeDirectory(strmDir);
+                    return;
+                }
+            }
 
 			refreshDirectory();
 			findGCT();
