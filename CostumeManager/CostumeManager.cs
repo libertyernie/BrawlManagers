@@ -34,12 +34,30 @@ namespace BrawlCostumeManager {
 					Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
 				} else if (new DirectoryInfo("/projectm/pf/fighter").Exists) {
 					Environment.CurrentDirectory = "/projectm/pf";
-				} else if (new DirectoryInfo("/minusery/pf/fighter").Exists) {
-					Environment.CurrentDirectory = "/minusery/pf";
-                } else if (new DirectoryInfo("/LegacyTE/pf/fighter").Exists) {
-                    Environment.CurrentDirectory = "/LegacyTE/pf";
-                } else if (new DirectoryInfo("/LegacyXP/pf/fighter").Exists) {
-                    Environment.CurrentDirectory = "/LegacyXP/pf";
+				} else {
+                    string findFighterFolder(string dir)
+                    {
+                        if (dir.EndsWith("\\fighter")) return dir;
+                        try
+                        {
+                            foreach (string subdir in Directory.EnumerateDirectories(dir))
+                            {
+                                string possible = findFighterFolder(subdir);
+                                if (Directory.Exists(possible))
+                                {
+                                    return possible;
+                                }
+                            }
+                        }
+                        catch (Exception) { }
+                        return null;
+                    }
+
+                    string fighterDir = findFighterFolder(Environment.CurrentDirectory);
+                    if (fighterDir != null)
+                    {
+                        Environment.CurrentDirectory = Path.GetDirectoryName(fighterDir);
+                    }
                 }
             }
 

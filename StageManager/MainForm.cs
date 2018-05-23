@@ -351,10 +351,7 @@ namespace BrawlStageManager {
 			if (pacFiles.Length == 0) {
 				foreach (string subpath in new string[] {
 					"\\private\\wii\\app\\RSBE\\pf\\stage\\melee",
-					"\\projectm\\pf\\stage\\melee",
-					"\\minusery\\pf\\stage\\melee",
-					"\\LegacyTE\\pf\\stage\\melee",
-                    "\\LegacyXP\\pf\\stage\\melee"
+					"\\projectm\\pf\\stage\\melee"
                 }) {
 					DirectoryInfo search = new DirectoryInfo(path.FullName + subpath);
 					if (search.Exists) {
@@ -362,6 +359,31 @@ namespace BrawlStageManager {
 						return;
 					}
 				}
+
+                string findMeleeFolder(string dir)
+                {
+                    if (dir.EndsWith("\\melee")) return dir;
+                    try
+                    {
+                        foreach (string subdir in Directory.EnumerateDirectories(dir))
+                        {
+                            string possible = findMeleeFolder(subdir);
+                            if (Directory.Exists(possible))
+                            {
+                                return possible;
+                            }
+                        }
+                    }
+                    catch (Exception) { }
+                    return null;
+                }
+
+                string meleeDir = findMeleeFolder(CurrentDirectory);
+                if (meleeDir != null)
+                {
+                    changeDirectory(meleeDir);
+                    return;
+                }
 			}
 
 			stageInfoControl1.setStageLabels("", "", "");
