@@ -34,31 +34,7 @@ namespace BrawlCostumeManager {
 					Environment.CurrentDirectory = "/private/wii/app/RSBE/pf";
 				} else if (new DirectoryInfo("/projectm/pf/fighter").Exists) {
 					Environment.CurrentDirectory = "/projectm/pf";
-				} else {
-                    string findFighterFolder(string dir)
-                    {
-                        if (dir.EndsWith("\\fighter")) return dir;
-                        try
-                        {
-                            foreach (string subdir in Directory.EnumerateDirectories(dir))
-                            {
-                                string possible = findFighterFolder(subdir);
-                                if (Directory.Exists(possible))
-                                {
-                                    return possible;
-                                }
-                            }
-                        }
-                        catch (Exception) { }
-                        return null;
-                    }
-
-                    string fighterDir = findFighterFolder(Environment.CurrentDirectory);
-                    if (fighterDir != null)
-                    {
-                        Environment.CurrentDirectory = Path.GetDirectoryName(fighterDir);
-                    }
-                }
+				}
             }
 
 			cssPortraitViewer1.NamePortraitPreview = nameportraitPreviewToolStripMenuItem.Checked;
@@ -72,9 +48,6 @@ namespace BrawlCostumeManager {
                 foreach (string path in new[] {
                     "/private/wii/app/RSBE/pf/fighter",
                     "/projectm/pf/fighter",
-                    "/minusery/pf/fighter",
-                    "/LegacyTE/pf/fighter",
-                    "/LegacyXP/pf/fighter",
                     "/fighter"
                 }) {
                     if (Directory.Exists(Environment.CurrentDirectory + path)) {
@@ -83,7 +56,27 @@ namespace BrawlCostumeManager {
                         return;
                     }
                 }
-			}
+
+                string findFighterFolder(string dir) {
+                    if (dir.EndsWith("\\fighter")) return dir;
+                    try {
+                        foreach (string subdir in Directory.EnumerateDirectories(dir)) {
+                            string possible = findFighterFolder(subdir);
+                            if (Directory.Exists(possible + "\\mario")) {
+                                return possible;
+                            }
+                        }
+                    } catch (Exception) { }
+                    return null;
+                }
+
+                string fighterDir = findFighterFolder(Environment.CurrentDirectory);
+                if (fighterDir != null) {
+                    Environment.CurrentDirectory = Path.GetDirectoryName(fighterDir);
+                    readDir();
+                    return;
+                }
+            }
 
 			Text = TITLE + " - " + System.Environment.CurrentDirectory;
 
