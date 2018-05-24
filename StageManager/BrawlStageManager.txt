@@ -1,6 +1,7 @@
-﻿Brawl Stage Manager 3.9 - June 2017
-Copyright © 2017 libertyernie
+﻿Brawl Stage Manager 4.0 - May 2018
+Copyright © 2018 libertyernie
 http://lakora.us/brawl/stagemanager
+http://github.com/libertyernie/BrawlManagers
 
 Brawl Stage Manager is a program that uses BrawlLib to help you see and
 organize the stages, module files, and stage portraits that are installed on
@@ -8,15 +9,11 @@ your SD card (or in whatever folder, on whatever device, you use for Brawl
 hacks.) It can also add PAT0 entries for expansion stages (with an automated
 process) and change certain PAT0 entries (through a special dialog.)
 
-Changes in 3.9:
-  * BrawlLib has been updated, which might fix some bugs.
-  * Improved I4 vs. IA4 detection when importing MenSelchrMark or MenSelmapMark images.
-  * When adding PAT0s, you can now choose not to add the corresponding TEX0s.
-  * The "default" Custom SSS code is now correct.
-  * Fixed a bug in name entry for the random stage select screen.
-  * The software will now look for a LegacyTE or LegacyXP folder (just like it looks for a projectm folder.)
-  * Stage Manager can now read the Tracklist Modifier and Stage-Track Dependent Song Loader codes and use them to show the correct songs for each stage.
-  * Drag-and-drop targets have been added to replace individual sections of a Legacy TE stage preview.
+Changes in 4.0:
+  * StageBox's version of BrawlLib is now used instead of the BrawlBox version.
+  * If the program does not find a folder with character costumes, it will now
+    search recursively until it finds a folder named "stage" with a folder
+    inside of it named "melee".
 
 ----------------------------------------
 
