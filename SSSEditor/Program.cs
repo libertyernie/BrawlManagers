@@ -13,20 +13,34 @@ namespace SSSEditor {
 			gct = args.Length > 0 ? args[0]
 				: File.Exists(@"data\gecko\codes\RSBE01.gct") ? @"data\gecko\codes\RSBE01.gct"
 				: File.Exists(@"codes\RSBE01.gct") ? @"codes\RSBE01.gct"
-				: File.Exists(@"LegacyTE\RSBE01.gct") ? @"LegacyTE\RSBE01.gct"
-                : File.Exists(@"LegacyXP\RSBE01.gct") ? @"LegacyXP\RSBE01.gct"
                 : File.Exists(@"RSBE01.gct") ? @"RSBE01.gct"
                 : null;
 			pac = args.Length > 1 ? args[1]
 				: File.Exists(@"private\wii\app\RSBE\pf\menu2\sc_selmap.pac") ? @"private\wii\app\RSBE\pf\menu2\sc_selmap.pac"
 				: File.Exists(@"projectm\pf\menu2\sc_selmap.pac") ? @"projectm\pf\menu2\sc_selmap.pac"
-                : File.Exists(@"minusery\pf\menu2\sc_selmap.pac") ? @"minusery\pf\menu2\sc_selmap.pac"
 				: File.Exists(@"private\wii\app\RSBE\pf\system\common5.pac") ? @"private\wii\app\RSBE\pf\system\common5.pac"
 				: File.Exists(@"projectm\pf\system\common5.pac") ? @"projectm\pf\system\common5.pac"
-				: File.Exists(@"minusery\pf\system\common5.pac") ? @"minusery\pf\system\common5.pac"
-                : File.Exists(@"LegacyTE\pf\menu2\sc_selmap.pac") ? @"LegacyTE\pf\menu2\sc_selmap.pac"
-                : File.Exists(@"LegacyXP\pf\menu2\sc_selmap.pac") ? @"LegacyXP\pf\menu2\sc_selmap.pac"
                 : null;
+            
+            string findFile(string path, params string[] names)
+            {
+                foreach (string n in names)
+                {
+                    if (File.Exists(Path.Combine(path, n)))
+                    {
+                        return Path.Combine(path, n);
+                    }
+                }
+                foreach (string dir in Directory.EnumerateDirectories(path))
+                {
+                    string x = findFile(dir, names);
+                    if (x != null) return x;
+                }
+                return null;
+            }
+
+            gct = gct ?? findFile(".", "RSBE01.gct");
+            pac = pac ?? findFile(".", "common5.pac", "common5_en.pac", "sc_selmap.pac", "sc_selmap_en.pac");
 		}
 
 		/// <summary>
