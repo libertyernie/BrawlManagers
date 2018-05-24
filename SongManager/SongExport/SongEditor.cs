@@ -127,32 +127,32 @@ namespace BrawlSongManager.SongExport {
 
 		public void PrepareMUM() {
 			mumPath = FindFile(MUM_PATHS);
-			mumMsbn = LoadPacMsbn(mumPath, "MiscData[7]");
+			mumMsbn = LoadPacMsbn(mumPath, "Misc Data [7]");
 		}
 
 		public void SaveMUM() {
 			mumMsbn.Rebuild();
-			SavePacMsbn(mumMsbn, mumPath, "MiscData[7]");
+			SavePacMsbn(mumMsbn, mumPath, "Misc Data [7]");
 		}
 
 		public void PrepareINFO() {
 			infoPath = FindFile(INFO_PATHS);
-			infoMsbn = LoadPacMsbn(infoPath, "MiscData[140]");
+			infoMsbn = LoadPacMsbn(infoPath, "Misc Data [140]");
 		}
 
 		public void SaveINFO() {
 			infoMsbn.Rebuild();
-			SavePacMsbn(infoMsbn, infoPath, "MiscData[140]");
+			SavePacMsbn(infoMsbn, infoPath, "Misc Data [140]");
 		}
 
 		public void PrepareTRNG() {
 			trngPath = FindFile(TRNG_PATHS);
-			trngMsbn = LoadPacMsbn(trngPath, "MiscData[140]");
+			trngMsbn = LoadPacMsbn(trngPath, "Misc Data [140]");
 		}
 
 		public void SaveTRNG() {
 			trngMsbn.Rebuild();
-			SavePacMsbn(trngMsbn, trngPath, "MiscData[140]");
+			SavePacMsbn(trngMsbn, trngPath, "Misc Data [140]");
 		}
 
 		public void PrepareGCT() {

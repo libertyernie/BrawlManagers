@@ -129,16 +129,16 @@ namespace BrawlManagerLib {
 			}
 
 			tempfile = Path.GetTempFileName();
-			if (new FileInfo("MiscData[140].msbin").Exists) {
-				_currentFile = "MiscData[140].msbin";
-				File.Copy("MiscData[140].msbin", tempfile, true);
+			if (new FileInfo("Misc Data [140].msbin").Exists) {
+				_currentFile = "Misc Data [140].msbin";
+				File.Copy("Misc Data [140].msbin", tempfile, true);
 				info = NodeFactory.FromFile(null, tempfile) as MSBinNode;
-				return "Loaded .\\MiscData[140].msbin";
-			} else if (new FileInfo("\\MiscData[140].msbin").Exists) {
-				_currentFile = "\\MiscData[140].msbin";
-				File.Copy("\\MiscData[140].msbin", tempfile, true);
+				return "Loaded .\\Misc Data [140].msbin";
+			} else if (new FileInfo("\\Misc Data [140].msbin").Exists) {
+				_currentFile = "\\Misc Data [140].msbin";
+				File.Copy("\\Misc Data [140].msbin", tempfile, true);
 				info = NodeFactory.FromFile(null, tempfile) as MSBinNode;
-				return "Loaded \\MiscData[140].msbin";
+				return "Loaded \\Misc Data [140].msbin";
 			} else {
 				string[] infopaths = { "..\\..\\info2\\info.pac", "..\\..\\info2\\info_en.pac", "..\\info.pac" };
 
@@ -149,7 +149,7 @@ namespace BrawlManagerLib {
 							_currentFile = s;
 							File.Copy(s, tempfile, true);
 							info_pac = NodeFactory.FromFile(null, tempfile);
-							info = (MSBinNode)info_pac.FindChild("MiscData[140]", true);
+							info = (MSBinNode)info_pac.FindChild("Misc Data [140]", true);
 						}
 					}
 				}
@@ -167,9 +167,9 @@ namespace BrawlManagerLib {
 						string tempfile_training = Path.GetTempFileName();
 						File.Copy(trainingpath, tempfile_training, true);
 						info_training_pac = NodeFactory.FromFile(null, tempfile_training);
-						info_training = (MSBinNode)info_training_pac.FindChild("MiscData[140]", true);
+						info_training = (MSBinNode)info_training_pac.FindChild("Misc Data [140]", true);
 						if (info._strings.Count != info_training._strings.Count) {
-							MessageBox.Show("info.pac and info_training.pac have different MiscData[140] lengths. Ignoring info_training.pac.");
+							MessageBox.Show("info.pac and info_training.pac have different Misc Data [140] lengths. Ignoring info_training.pac.");
 							info_training = null;
 							info_training_pac = null;
 						}

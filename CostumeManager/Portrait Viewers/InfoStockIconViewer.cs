@@ -14,7 +14,7 @@ namespace BrawlCostumeManager {
 		private int _charNum, _costumeNum;
 
 		private static PortraitViewerTextureData[] textureData = {
-			new PortraitViewerTextureData(32, 32, (i,j) => "MiscData[30]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3"))
+			new PortraitViewerTextureData(32, 32, (i,j) => "Misc Data [30]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3"))
 		};
 
 		private string _openFilePath;

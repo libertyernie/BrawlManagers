@@ -49,12 +49,12 @@ namespace BrawlManagerLib {
 		/// <summary>
 		/// Finds the textures through their PAT0 entries, given an icon number and a ResourceNode
 		/// </summary>
-		/// <param name="sc_selmap">The sc_selmap *or* MiscData[80] node.</param>
+		/// <param name="sc_selmap">The sc_selmap *or* Misc Data [80] node.</param>
 		/// <param name="iconNum">The icon index (also used in the third part of the Custom SSS code.)</param>
 		public TextureContainer(ResourceNode node, int iconNum) {
-			TEX0Folder = node.FindChild("MiscData[80]/Textures(NW4R)", false)
+			TEX0Folder = node.FindChild("Misc Data [80]/Textures(NW4R)", false)
 					  ?? node.FindChild("Textures(NW4R)", false);
-			PAT0Folder = node.FindChild("MiscData[80]/AnmTexPat(NW4R)", false)
+			PAT0Folder = node.FindChild("Misc Data [80]/AnmTexPat(NW4R)", false)
 					  ?? node.FindChild("AnmTexPat(NW4R)", false);
 			this.iconNum = iconNum;
 

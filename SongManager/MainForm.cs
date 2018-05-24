@@ -466,9 +466,9 @@ namespace BrawlSongManager {
 				File.Copy(mu_menumain_path, tempfile, true);
 
 				ResourceNode mu_menumain = NodeFactory.FromFile(null, tempfile);
-				MSBinNode m7 = mu_menumain.FindChild("MiscData[7]", false) as MSBinNode;
+				MSBinNode m7 = mu_menumain.FindChild("Misc Data [7]", false) as MSBinNode;
 				if (m7 == null) {
-					MessageBox.Show(this.ParentForm, "The mu_menumain file does not appear to have a MiscData[7].",
+					MessageBox.Show(this.ParentForm, "The mu_menumain file does not appear to have a Misc Data [7].",
 						"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				} else {
 					m7.Replace(infotmp);

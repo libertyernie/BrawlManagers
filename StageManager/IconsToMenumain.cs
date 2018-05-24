@@ -11,7 +11,7 @@ using System.Text;
 namespace BrawlStageManager {
 	public static class IconsToMenumain {
 		public static void Copy(ResourceNode scSelmap, ResourceNode muMenumain, CustomSSSCodeset sss) {
-			ResourceNode miscData0 = muMenumain.FindChild("MiscData[0]", false);
+			ResourceNode miscData0 = muMenumain.FindChild("Misc Data [0]", false);
 			List<ResourceNode> chrToKeep = miscData0.FindChild("AnmChr(NW4R)", false).Children;
 			Dictionary<string, string> tempFiles = new Dictionary<string, string>(chrToKeep.Count);
 			foreach (ResourceNode n in chrToKeep) {
@@ -20,7 +20,7 @@ namespace BrawlStageManager {
 				n.Export(file);
 			}
 
-			ResourceNode miscData80 = scSelmap.FindChild("MiscData[80]", false);
+			ResourceNode miscData80 = scSelmap.FindChild("Misc Data [80]", false);
 			miscData0.ReplaceRaw(miscData80.WorkingSource.Address, miscData80.WorkingSource.Length);
 			miscData0.SignalPropertyChange();
 

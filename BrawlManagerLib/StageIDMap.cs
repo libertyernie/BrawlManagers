@@ -99,7 +99,7 @@ namespace BrawlManagerLib {
 		}
 
 		#region sc_selcharacter2
-		// the sss3 index is also the index in MiscData[1] in sc_selcharacter2
+		// the sss3 index is also the index in Misc Data [1] in sc_selcharacter2
 		private static int[] sc_selcharacter2_icon_from_sss3_index = {
 			1, // Battlefield
 			2, // Final Destination

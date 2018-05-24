@@ -25,11 +25,11 @@ namespace BrawlCostumeManager {
 		}
 
 		private static PortraitViewerTextureData[] textureData = {
-            new PortraitViewerTextureData(128, 160, (i,j) => "char_bust_tex_lz77/MiscData[" + i + "]/Textures(NW4R)/MenSelchrFaceB." + (i*10 + j + 1).ToString("D3")),
-			new PortraitViewerTextureData(128, 32, (i,j) => "MiscData[30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
-			new PortraitViewerTextureData(80, 56, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrFace." + (i < 47 ? i+1 : i).ToString("D3")),
-			new PortraitViewerTextureData(32, 32, (i,j) => "MiscData[90]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3")),
-			new PortraitViewerTextureData(56, 14, (i,j) => "MiscData[70]/Textures(NW4R)/MenSelchrChrNmS." + (i < 47 ? i+1 : i).ToString("D3")),
+            new PortraitViewerTextureData(128, 160, (i,j) => "char_bust_tex_lz77/Misc Data [" + i + "]/Textures(NW4R)/MenSelchrFaceB." + (i*10 + j + 1).ToString("D3")),
+			new PortraitViewerTextureData(128, 32, (i,j) => "Misc Data [30]/Textures(NW4R)/MenSelchrChrNm." + i.ToString("D2") + "1"),
+			new PortraitViewerTextureData(80, 56, (i,j) => "Misc Data [70]/Textures(NW4R)/MenSelchrChrFace." + (i < 47 ? i+1 : i).ToString("D3")),
+			new PortraitViewerTextureData(32, 32, (i,j) => "Misc Data [90]/Textures(NW4R)/InfStc." + (i*10 + j + 1).ToString("D3")),
+			new PortraitViewerTextureData(56, 14, (i,j) => "Misc Data [70]/Textures(NW4R)/MenSelchrChrNmS." + (i < 47 ? i+1 : i).ToString("D3")),
 		};
 
 		private string _openFilePath;
@@ -143,13 +143,13 @@ namespace BrawlCostumeManager {
 			if (common5 == null) {
 				MessageBox.Show(this.FindForm(), "common5.pac is not loaded - can't update automatically.\n" +
 					"After saving sc_selcharacter.pac,  update the icons manually by replacing sc_selmap's " +
-					"MiscData[40] with sc_selcharacter's MiscData[90].", "Cannot perform operation",
+					"Misc Data [40] with sc_selcharacter's Misc Data [90].", "Cannot perform operation",
 					MessageBoxButtons.OK, MessageBoxIcon.Error);
 			} else {
-				ResourceNode css_stockicons = sc_selcharacter.FindChild("MiscData[90]", false);
+				ResourceNode css_stockicons = sc_selcharacter.FindChild("Misc Data [90]", false);
 				string tempFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".brres";
 				css_stockicons.Export(tempFile);
-				ResourceNode sss_stockicons = common5.FindChild("sc_selmap_en/MiscData[40]", false);
+				ResourceNode sss_stockicons = common5.FindChild("sc_selmap_en/Misc Data [40]", false);
 				sss_stockicons.Replace(tempFile);
 				try {
 					File.Delete(tempFile);

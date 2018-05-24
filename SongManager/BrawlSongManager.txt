@@ -34,7 +34,7 @@ PageDown:    go down one song (focus does not need to be on the song list)
 
 If you have an info.pac file in ..\..\info2\info.pac, ..\..\info2\info_en.pac,
 or .\info.pac, then the program will load that file and allow you to change
-song titles (when applicable) - unless you have MiscData[140].msbin in the
+song titles (when applicable) - unless you have Misc Data [140].msbin in the
 current directory, in which case the program loads that instead. You can save
 your changes through the File menu or by pressing Enter in the text box.
 The "Restore" button resets the song title to the one loaded from info.pac,

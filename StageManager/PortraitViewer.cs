@@ -246,7 +246,7 @@ namespace BrawlStageManager {
 			}
 			if (_openFilePath != null) {
 				updateFileSize();
-				TEX0Node tex0 = sc_selmap.FindChild("MiscData[80]/Textures(NW4R)/MenSelmapFrontBg", false) as TEX0Node;
+				TEX0Node tex0 = sc_selmap.FindChild("Misc Data [80]/Textures(NW4R)/MenSelmapFrontBg", false) as TEX0Node;
 				if (tex0 != null) scribble = tex0.GetImage(0);
 				FindMuMenumain();
 			} else {
@@ -275,7 +275,7 @@ namespace BrawlStageManager {
 			}
 
 			if (sc_selmap != null) {
-				var pat0Folder = sc_selmap.FindChild("MiscData[80]/AnmTexPat(NW4R)", false);
+				var pat0Folder = sc_selmap.FindChild("Misc Data [80]/AnmTexPat(NW4R)", false);
 				PopulateByPrintingNames("PAT0: ", pat0Folder);
 			}
 		}
@@ -356,7 +356,7 @@ namespace BrawlStageManager {
 		}
 
 		private void AddNewTEX0(object sender, string filename) {
-			BRRESNode md80 = sc_selmap.FindChild("MiscData[80]", false) as BRRESNode;
+			BRRESNode md80 = sc_selmap.FindChild("Misc Data [80]", false) as BRRESNode;
 			string dir = Path.Combine(Path.GetTempPath(), "BrawlStageManager-newimage-" + Guid.NewGuid());
 			Directory.CreateDirectory(dir);
 			string temp = Path.Combine(dir, GetTexInfoFor(sender).pat0.Texture + Path.GetExtension(filename));
@@ -404,7 +404,7 @@ namespace BrawlStageManager {
 
 		public void exportAll(string folder) {
 			if (sc_selmap != null) {
-				BRRESNode bres = sc_selmap.FindChild("MiscData[80]", false) as BRRESNode;
+				BRRESNode bres = sc_selmap.FindChild("Misc Data [80]", false) as BRRESNode;
 				if (bres != null) {
 					bres.ExportToFolder(folder, ".png");
 				}
@@ -642,7 +642,7 @@ namespace BrawlStageManager {
 					}
 				}
 			}
-			BRRESNode bres = sc_selmap.FindChild("MiscData[80]", false) as BRRESNode;
+			BRRESNode bres = sc_selmap.FindChild("Misc Data [80]", false) as BRRESNode;
 			TEX0Node tex0 = bres.CreateResource<TEX0Node>(name);
 			ReplaceSelmapMark(bitmap, tex0, true);
 			return true;
@@ -667,8 +667,8 @@ namespace BrawlStageManager {
 			if (s2 == null) return;
 
 			ResourceNode md0 = s2.FindChild("MenuRule_en/ModelData[0]", false);
-			MSBinNode md1 = s2.FindChild("MenuRule_en/MiscData[1]", false) as MSBinNode;
-			ResourceNode md80 = sc_selmap.FindChild("MiscData[80]", false);
+			MSBinNode md1 = s2.FindChild("MenuRule_en/Misc Data [1]", false) as MSBinNode;
+			ResourceNode md80 = sc_selmap.FindChild("Misc Data [80]", false);
 			if (md0 == null || md80 == null) return;
 
 			Image[] icons = new Image[41];
@@ -807,14 +807,14 @@ namespace BrawlStageManager {
 
 		public string MenSelmapMarkUsageReport() {
 			Dictionary<string, int> dict = new Dictionary<string, int>();
-			string pathToPAT0TextureNode = "MiscData[80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnamelogoM";
+			string pathToPAT0TextureNode = "Misc Data [80]/AnmTexPat(NW4R)/MenSelmapPreview/pasted__stnamelogoM";
 			var look = sc_selmap.FindChild(pathToPAT0TextureNode, false).Children[0];
 			if (!(look is PAT0TextureNode)) {
 				throw new FormatException(look.Name);
 			}
 			PAT0TextureNode tn = look as PAT0TextureNode;
 
-			string pathToTextures = "MiscData[80]/Textures(NW4R)";
+			string pathToTextures = "Misc Data [80]/Textures(NW4R)";
 			ResourceNode textures = sc_selmap.FindChild(pathToTextures, false);
 			List<string> marks = (from c in textures.Children
 								  where c.Name.Contains("MenSelmapMark")
@@ -849,7 +849,7 @@ namespace BrawlStageManager {
 				using (ResourceNode mu_menumain = TempFiles.MakeTempNode(mu_menumain_path)) {
 					IconsToMenumain.Copy(sc_selmap, mu_menumain, BestSSS);
 					if (msBinPath != null) {
-						mu_menumain.FindChild("MiscData[7]", false).Replace(msBinPath);
+						mu_menumain.FindChild("Misc Data [7]", false).Replace(msBinPath);
 					}
 					mu_menumain.Export(mu_menumain_path);
 				}
@@ -872,7 +872,7 @@ namespace BrawlStageManager {
 
 		public void ResizeAllPrevbases(Size newSize) {
 			if (sc_selmap == null) return;
-			var prevbases = from c in sc_selmap.FindChild("MiscData[80]/Textures(NW4R)", false).Children
+			var prevbases = from c in sc_selmap.FindChild("Misc Data [80]/Textures(NW4R)", false).Children
 							where c is TEX0Node && c.Name.Contains("MenSelmapPrevbase")
 							select (TEX0Node)c;
 			int i = 0;

@@ -372,7 +372,7 @@
             // 
             this.exportAllMiscData80ToolStripMenuItem.Name = "exportAllMiscData80ToolStripMenuItem";
             this.exportAllMiscData80ToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.exportAllMiscData80ToolStripMenuItem.Text = "Export all (MiscData[80])";
+            this.exportAllMiscData80ToolStripMenuItem.Text = "Export all (Misc Data [80])";
             this.exportAllMiscData80ToolStripMenuItem.Click += new System.EventHandler(this.exportAllMiscData80ToolStripMenuItem_Click);
             // 
             // saveInfopacToolStripMenuItem
