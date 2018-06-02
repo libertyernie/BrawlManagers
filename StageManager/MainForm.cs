@@ -290,7 +290,7 @@ namespace BrawlStageManager {
                     listBoxSongs.Items.Add(new SongListItem(dir + song.Filename + ".brstm"));
 					listBoxSongs.SelectedIndex = 0;
 				} else {
-					string[] arr = SongsByStageID.ForPac(portraitViewer1.BestSSS.TracklistModifier, fi.Name);
+					string[] arr = SongsByStageID.ForPac(portraitViewer1.BestSSS, fi.Name);
 					arr = arr.Select(filename => {
 						Song element = SongIDMap.Songs.SingleOrDefault(s => s.Filename == filename);
 						if (element != null) {
@@ -570,7 +570,7 @@ namespace BrawlStageManager {
 			portraitViewer1.ExportImages(portraitViewer1.BestSSS.IconForStage(StageIDMap.StageIDForPac(f.Name)), thisdir);
 
 			Song song = portraitViewer1.BestSSS.SongLoaders.GetSong(StageIDMap.StageIDForPac(f.Name));
-			if (song == null) SongsByStageID.ForPac(portraitViewer1.BestSSS.TracklistModifier, f.Name);
+			if (song == null) SongsByStageID.ForPac(portraitViewer1.BestSSS, f.Name);
 
             foreach (string dir in new[] { "../../sound/strm/", "../../sound/sfx/" }) {
                 if (song != null && File.Exists(dir + song.Filename + ".brstm")) {

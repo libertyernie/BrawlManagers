@@ -341,12 +341,19 @@ namespace BrawlStageManager {
 				("X07"),
 			}},
 		};
-		#endregion
+        #endregion
 
-		public static string[] ForPac(TracklistModifier modifier, string filename) {
+        public static string[] ForPac(CustomSSSCodeset sss, string filename) {
+            return ForPac(sss.TracklistModifier, sss.CMM, filename);
+        }
+
+        public static string[] ForPac(TracklistModifier modifier, CMM cmm, string filename) {
 			filename = filename.ToLower();
 			string key = filename.Substring(0, filename.IndexOfAny("_.".ToCharArray()));
 			int stageId = StageIDMap.StageIDForPac(filename);
+            if (cmm != null && cmm.Map.TryGetValue(stageId, out IEnumerable<Song> songs)) {
+                return songs.Select(s => s.Filename).ToArray();
+            }
 			stageId = modifier[stageId];
 			if (stageId == 5 && filename.StartsWith("stgmariopast_00")) {
 				return new string[] {

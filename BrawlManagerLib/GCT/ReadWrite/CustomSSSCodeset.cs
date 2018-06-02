@@ -109,10 +109,24 @@ namespace BrawlManagerLib {
 				}
 				return _alternateStageLoaderData;
 			}
-		}
-		#endregion
+        }
 
-		private byte[] _stageIDsInOrder;
+        private CMM _cmm;
+
+        /// <summary>
+        /// Gets read-only access to instances of the CMM Setting Code [JOJI] in this codeset.
+        /// </summary>
+        public CMM CMM {
+            get {
+                if (_cmm == null) {
+                    _cmm = new CMM(DataBefore.Concat(DataAfter).ToArray());
+                }
+                return _cmm;
+            }
+        }
+        #endregion
+
+        private byte[] _stageIDsInOrder;
 		public byte[] StageIDsInOrder {
 			get {
 				if (_stageIDsInOrder == null) {
