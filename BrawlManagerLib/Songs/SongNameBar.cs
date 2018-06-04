@@ -44,6 +44,14 @@ namespace BrawlManagerLib {
 		private HashSet<int> modifiedStringIndices;
 		private List<string> fileStrings;
 
+        public string NegativeIndexText {
+            set {
+                if (Index < 0) {
+                    TextBoxText = value;
+                }
+            }
+        }
+
 		public int Index {
 			get {
 				return _index;

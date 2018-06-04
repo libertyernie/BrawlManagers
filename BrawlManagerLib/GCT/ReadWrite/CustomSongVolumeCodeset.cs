@@ -19,7 +19,21 @@ namespace BrawlManagerLib {
 
 		public Dictionary<ushort, byte> Settings { get; private set; }
 
-		public CustomSongVolumeCodeset(string[] s) {
+        private CNMT _cnmt;
+
+        /// <summary>
+        /// Gets read-only access to instances of the CMM Setting Code [JOJI] in this codeset.
+        /// </summary>
+        public CNMT CNMT {
+            get {
+                if (_cnmt == null) {
+                    _cnmt = new CNMT(DataBefore.Concat(DataAfter).ToArray());
+                }
+                return _cnmt;
+            }
+        }
+
+        public CustomSongVolumeCodeset(string[] s) {
 			init(s);
 		}
 

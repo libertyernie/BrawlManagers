@@ -390,8 +390,9 @@ namespace BrawlStageManager {
 			stageInfoControl1.RelFile = null;
 
 			Console.WriteLine(songPanel1.findInfoFile());
+            songPanel1.CustomSongTitles = portraitViewer1.BestSSS.CNMT.Map;
 
-			portraitViewer1.UpdateDirectory();
+            portraitViewer1.UpdateDirectory();
 
 			if (useAFixedStageListToolStripMenuItem.Checked) {
 				List<string> pacNames = StageIDMap.PacFilesBySSSOrder(portraitViewer1.BestSSS);

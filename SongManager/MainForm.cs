@@ -186,6 +186,7 @@ namespace BrawlSongManager {
 				}
 			}
 			customSongVolumeEditor1.CSV = csv;
+            songPanel1.CustomSongTitles = csv?.CNMT?.Map;
 		}
 
 		private void refreshDirectory() {

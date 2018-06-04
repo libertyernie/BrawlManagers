@@ -7,6 +7,7 @@ using BrawlManagerLib;
 using System.Audio;
 using System.ComponentModel;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace BrawlManagerLib {
 	public partial class SongPanel : UserControl {
@@ -85,6 +86,8 @@ namespace BrawlManagerLib {
 			}
 		}
 
+        public IDictionary<ushort, string> CustomSongTitles { private get; set; }
+
 		public event EventHandler AudioEnded;
 
 		public SongPanel() {
@@ -132,14 +135,20 @@ namespace BrawlManagerLib {
 					_rootPath = null;
 					_rootNode = NodeFactory.FromFile(null, fallback.FullName);
 				}
-			}
-			if (LoadNames) {
-				string filename = Path.GetFileNameWithoutExtension(LastFileCalledFor).ToUpper();
-				int index = (from s in SongIDMap.Songs
-							 where s.Filename == filename
-							 select songNameBar.GetInfoPacIndex(s.ID))
-							 .DefaultIfEmpty(-1).First();
-				songNameBar.Index = index;
+            }
+            string filename = Path.GetFileNameWithoutExtension(LastFileCalledFor).ToUpper();
+            var song = (from s in SongIDMap.Songs
+                        where s.Filename == filename
+                        select s)
+                        .DefaultIfEmpty(null).First();
+            if (song != null && CustomSongTitles != null && CustomSongTitles.TryGetValue(song.ID, out string name)) {
+                songNameBar.Index = -1;
+                songNameBar.NegativeIndexText = name;
+            } else if (LoadNames) {
+                int index = song == null
+                    ? -1
+                    : songNameBar.GetInfoPacIndex(song.ID);
+                songNameBar.Index = index;
 			} else {
 				songNameBar.Index = -1;
 			}

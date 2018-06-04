@@ -71,6 +71,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GCT\ReadOnly\AltStageSongForcer.cs" />
+    <Compile Include="GCT\ReadOnly\CNMT.cs" />
     <Compile Include="GCT\ReadOnly\CMM.cs" />
     <Compile Include="GCT\ReadOnly\TracklistModifier.cs" />
     <Compile Include="GCT\ReadWrite\CustomSongVolumeCodeset.cs" />
