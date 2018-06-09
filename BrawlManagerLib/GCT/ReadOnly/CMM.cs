@@ -28,10 +28,10 @@ namespace BrawlManagerLib {
             }
         }
 
-        private static readonly byte[] StandardCMMTracklistModifierData = StandardCMMTracklistModifierDataSeq().ToArray();
+        public static readonly byte[] StandardCMMTracklistModifierData = StandardCMMTracklistModifierDataSeq().ToArray();
 
-        private static IEnumerable<Stage> GetStageByIdInTracklist(int id) {
-            byte[] b = StandardCMMTracklistModifierData;
+        private IEnumerable<Stage> GetStageByIdInTracklist(int id) {
+            byte[] b = TracklistModifier ?? StandardCMMTracklistModifierData;
             for (int i = 0; i < b.Length; i++) {
                 if (b[i] == id) {
                     foreach (var s in Stage.Stages.Where(s => s.ID == i)) {
@@ -41,9 +41,16 @@ namespace BrawlManagerLib {
             }
         }
 
+        public readonly byte[] TracklistModifier;
         public readonly Dictionary<int, IEnumerable<Song>> Map;
 
         public CMM(byte[] data) {
+            for (int lineskip = 0; lineskip < data.Length; lineskip += 8) {
+                if (ByteUtilities.ByteArrayEquals(data, lineskip, new byte[] { 0x16, 0x1A, 0x47, 0xE8, 0, 0, 0 }, 0, 7)) {
+                    int byteCount = data[lineskip + 7];
+                    TracklistModifier = data.Skip(lineskip + 8).Take(byteCount).ToArray();
+                }
+            }
             Map = new Dictionary<int, IEnumerable<Song>>();
             for (int lineskip = 0; lineskip < data.Length; lineskip += 8) {
                 if (data[lineskip] == 0x00 && data[lineskip + 1] == 0x53 && data[lineskip + 2] == 0xCE) {

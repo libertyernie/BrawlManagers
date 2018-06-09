@@ -1,4 +1,5 @@
-﻿using BrawlManagerLib;
+﻿using BrawlLib.SSBB;
+using BrawlManagerLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -354,7 +355,25 @@ namespace BrawlStageManager {
             if (cmm != null && cmm.Map.TryGetValue(stageId, out IEnumerable<Song> songs)) {
                 return songs.Select(s => s.Filename).ToArray();
             }
-			stageId = modifier[stageId];
+            // Tracklist Modifier 1.0 [Phantom Wings]
+            if (cmm.TracklistModifier != null) {
+                byte currentTracklistId = cmm.TracklistModifier[stageId];
+                for (int i = 0; i < CMM.StandardCMMTracklistModifierData.Length; i++) {
+                    if (CMM.StandardCMMTracklistModifierData[i] == currentTracklistId) {
+                        int originalStageId = i;
+                        // Make sure the index is a valid stage ID. Some bytes
+                        // appear more than once, the first time at an index
+                        // that's not a valid stage ID (e.g. Battlefield's 00
+                        // at index 0 or Bridge of Eldin's 0A at index 10.)
+                        if (Stage.Stages.Any(s => s.ID == i)) {
+                            stageId = originalStageId;
+                            break;
+                        }
+                    }
+                }
+            }
+            // Tracklist Modifier [standardtoaster]
+            stageId = modifier[stageId];
 			if (stageId == 5 && filename.StartsWith("stgmariopast_00")) {
 				return new string[] {
 					("A01"),
