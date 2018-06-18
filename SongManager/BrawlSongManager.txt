@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 4.0 - May 2018
+﻿Brawl Stage Manager 4.0 - June 2018
 Copyright © 2018 libertyernie
 http://lakora.us/brawl/songmanager
 http://github.com/libertyernie/BrawlManagers
@@ -13,6 +13,9 @@ Changes in 4.0:
     search recursively until it finds a folder named "sound" with a folder
     inside of it named "strm".
   * An option has been added that allows songs to auto-advance when they end.
+  * Read-only support added for CNMT Setting Code [JOJI]
+  * The "???" label when a track's custom volume is unknown has been removed
+    and replaced with a disabled numeric spinner.
 
 ----------------------------------------
 
