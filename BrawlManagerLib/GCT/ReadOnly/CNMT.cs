@@ -18,8 +18,9 @@ namespace BrawlManagerLib {
                     | data[lineskip + 2] << 8
                     | data[lineskip + 3];
 
-                int songId = (id - 4031616) / 144;
-                if (songId < 0x286C || songId > 0x2BBD) continue;
+                int songId1 = (id - 4031616) / 144;
+                if (songId1 < 0x286C || songId1 > 0x2BBD) continue;
+                int songId2 = songId1 + 0xBC94;
 
                 if (data[lineskip + 4] != 0x00) continue;
                 if (data[lineskip + 5] != 0x00) continue;
@@ -33,10 +34,11 @@ namespace BrawlManagerLib {
                     .Take(bytes)
                     .Select(b => (char)b)
                     .ToArray();
-                if (Map.TryGetValue((ushort)songId, out string existing)) {
-                    Console.Error.WriteLine($"Replacing already read song title \"{existing}\" for {songId.ToString("X4")} with new song title \"{new string(charArray)}\"");
+                if (Map.TryGetValue((ushort)songId1, out string existing)) {
+                    Console.Error.WriteLine($"Replacing already read song title \"{existing}\" for {songId1.ToString("X4")}/{songId2.ToString("X4")} with new song title \"{new string(charArray)}\"");
                 }
-                Map[(ushort)songId] = new string(charArray);
+                Map[(ushort)songId1] = new string(charArray);
+                Map[(ushort)songId2] = new string(charArray);
             }
         }
     }
