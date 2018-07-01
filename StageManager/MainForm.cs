@@ -379,7 +379,7 @@ namespace BrawlStageManager {
                 }
 
                 string meleeDir = findMeleeFolder(CurrentDirectory);
-                if (meleeDir != null)
+                if (meleeDir != null && meleeDir != CurrentDirectory)
                 {
                     changeDirectory(meleeDir);
                     return;
