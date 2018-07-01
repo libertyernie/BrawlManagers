@@ -57,9 +57,11 @@ namespace BrawlManagerLib {
                     int tracklistIndex = data[lineskip + 3] - 0xA0;
                     int tracks = data[lineskip + 7];
                     foreach (var stage in GetStageByIdInTracklist(tracklistIndex)) {
-                        Map.Add(
-                            stage.ID,
-                            ReadSongs(data, lineskip + 16, tracks));
+                        var songs = ReadSongs(data, lineskip + 16, tracks);
+                        if (Map.TryGetValue(stage.ID, out IEnumerable<Song> existing)) {
+                            Console.Error.WriteLine($"Replacing already read {existing.Count()}-song tracklist for {stage} with newly read {songs.Count()}-song tracklist");
+                        }
+                        Map[stage.ID] = songs;
                     }
                 }
             }

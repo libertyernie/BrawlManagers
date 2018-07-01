@@ -33,7 +33,10 @@ namespace BrawlManagerLib {
                     .Take(bytes)
                     .Select(b => (char)b)
                     .ToArray();
-                Map.Add((ushort)songId, new string(charArray));
+                if (Map.TryGetValue((ushort)songId, out string existing)) {
+                    Console.Error.WriteLine($"Replacing already read song title \"{existing}\" for {songId.ToString("X4")} with new song title \"{new string(charArray)}\"");
+                }
+                Map[(ushort)songId] = new string(charArray);
             }
         }
     }

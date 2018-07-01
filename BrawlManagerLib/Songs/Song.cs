@@ -18,5 +18,9 @@ namespace BrawlManagerLib {
 			DefaultVolume = volume;
 			InfoPacIndex = infoPacIndex;
 		}
-	}
+
+        public override string ToString() {
+            return $"{ID.ToString("X4")} {Filename} {DefaultName}";
+        }
+    }
 }
