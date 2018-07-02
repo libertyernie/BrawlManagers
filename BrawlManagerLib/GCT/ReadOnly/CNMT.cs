@@ -28,17 +28,18 @@ namespace BrawlManagerLib {
 
                 int bytes = data[lineskip + 7];
 
-                char[] charArray = data
+                byte[] byteArray = data
                     .Skip(lineskip)
                     .Skip(8)
                     .Take(bytes)
-                    .Select(b => (char)b)
+                    .TakeWhile(c => c != 0)
                     .ToArray();
-                if (Map.TryGetValue((ushort)songId1, out string existing)) {
-                    Console.Error.WriteLine($"Replacing already read song title \"{existing}\" for {songId1.ToString("X4")}/{songId2.ToString("X4")} with new song title \"{new string(charArray)}\"");
+                string str = Encoding.UTF8.GetString(byteArray);
+                if (Map.TryGetValue((ushort)songId1, out string existing) && existing != str) {
+                    Console.Error.WriteLine($"Replacing already read song title \"{existing}\" for {songId1.ToString("X4")}/{songId2.ToString("X4")} with new song title \"{str}\"");
                 }
-                Map[(ushort)songId1] = new string(charArray);
-                Map[(ushort)songId2] = new string(charArray);
+                Map[(ushort)songId1] = str;
+                Map[(ushort)songId2] = str;
             }
         }
     }

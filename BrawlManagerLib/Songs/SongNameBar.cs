@@ -270,7 +270,6 @@ namespace BrawlManagerLib {
 		}
 
 		public int GetInfoPacIndex(ushort id) {
-			Console.WriteLine("++" + id.ToString("X4") + "++");
 			return common2_titledata.Where(c => c.ID == id).Select(c => c.Index).DefaultIfEmpty(-1).First();
 		}
 
