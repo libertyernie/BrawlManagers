@@ -69,6 +69,9 @@ namespace BrawlSongManager {
 		}
 
 		public string VolumeToolTip {
+            get {
+                return toolTip1.GetToolTip(pictureBox1);
+            }
 			set {
 				toolTip1.SetToolTip(pictureBox1, value);
 			}

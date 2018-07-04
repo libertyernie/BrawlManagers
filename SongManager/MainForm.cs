@@ -19,7 +19,8 @@ namespace BrawlSongManager {
 			"/LegacyTE/RSBE01.gct",
 			"/LegacyXP/RSBE01.gct",
 			"../../../../codes/RSBE01.gct",
-		};
+            "../../../../../../../codes/RSBE01.gct",
+        };
 
 		/// <summary>
 		/// The list of .brstm files in the current directory.
@@ -160,7 +161,7 @@ namespace BrawlSongManager {
                 }
 
                 string strmDir = findStrmFolder(CurrentDirectory);
-                if (strmDir != null)
+                if (strmDir != null && strmDir != CurrentDirectory)
                 {
                     changeDirectory(strmDir);
                     return;
@@ -519,7 +520,11 @@ namespace BrawlSongManager {
 			}
 		}
 
-		private void importMusicSongsToolStripMenuItem_Click(object sender, EventArgs eva) {
+        private void customSongVolumeStatusToolStripMenuItem_Click(object sender, EventArgs e) {
+            MessageBox.Show(this, customSongVolumeEditor1.VolumeToolTip);
+        }
+
+        private void importMusicSongsToolStripMenuItem_Click(object sender, EventArgs eva) {
 			CloseCurrentResources();
 			FolderBrowserDialog fbd = new FolderBrowserDialog();
 			fbd.Description = "Select folder to import from:";
