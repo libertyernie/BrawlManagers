@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 4.0 - June 2018
+﻿Brawl Stage Manager 4.1 - July 2018
 Copyright © 2018 libertyernie
 http://lakora.us/brawl/ssseditor
 http://github.com/libertyernie/BrawlManagers
@@ -12,12 +12,8 @@ My Music screens would look like (2nd-5th tabs).
 To run, the program needs a .txt or .gct file that contains the Custom SSS
 code, and a common5/sc_selmap/mu_menumain file (which will not be modified.)
 
--------- Changes --------
-
-Changes in 4.0:
-  * StageBox's version of BrawlLib is now used instead of the BrawlBox version.
-  * If the program does not find the .gct and .pac files, it will search the
-    current folder recursively for files with the appropriate names.
+Changes in 4.1:
+  * BrawlLib (StageBox) updated
 
 Notes:
   * Internet Explorer 8 or higher is required.

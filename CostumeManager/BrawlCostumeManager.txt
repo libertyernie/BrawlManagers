@@ -1,15 +1,12 @@
-Brawl Stage Manager 4.0 - June 2018
+Brawl Stage Manager 4.1 - July 2018
 Copyright © 2018 libertyernie
 http://lakora.us/brawl/costumemanager
 http://github.com/libertyernie/BrawlManagers
 
 --------
 
-Changes in 4.0:
-  * StageBox's version of BrawlLib is now used instead of the BrawlBox version.
-  * If the program does not find a folder with character costumes, it will now
-    search recursively until it finds a folder named "fighter" with a folder
-    inside of it named "mario".
+Changes in 4.1:
+  * BrawlLib (StageBox) updated
 
 --------
 
