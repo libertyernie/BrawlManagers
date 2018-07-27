@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 4.1 - July 2018
+﻿Brawl Stage Manager 4.1.1 - July 2018
 Copyright © 2018 libertyernie
 http://lakora.us/brawl/songmanager
 http://github.com/libertyernie/BrawlManagers
@@ -7,12 +7,8 @@ Brawl Song Manager is a program that uses BrawlLib to quickly view which BRSTM
 music files are installed on your SD card (or in whatever folder, on whatever
 device, you use for Brawl hacks.)
 
-Changes in 4.1:
-  * BrawlLib (StageBox) updated
-  * CMM and CMNT support fixed
-  * Recursive loop fixed when looking for directories
-  * New GCT relative path added (../../../../../../../codes/RSBE01.gct)
-  * "Custom Song Volume status" added to Tools menu
+Changes in 4.1.1:
+  * BrawlLib (StageBox) updated (to StageBox 0.8 hotfix 1)
 
 ----------------------------------------
 

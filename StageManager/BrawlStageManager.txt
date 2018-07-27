@@ -1,4 +1,4 @@
-﻿Brawl Stage Manager 4.1 - July 2018
+﻿Brawl Stage Manager 4.1.1 - July 2018
 Copyright © 2018 libertyernie
 http://lakora.us/brawl/stagemanager
 http://github.com/libertyernie/BrawlManagers
@@ -9,10 +9,8 @@ your SD card (or in whatever folder, on whatever device, you use for Brawl
 hacks.) It can also add PAT0 entries for expansion stages (with an automated
 process) and change certain PAT0 entries (through a special dialog.)
 
-Changes in 4.1:
-  * BrawlLib (StageBox) updated
-  * CMM and CMNT support fixed
-  * Recursive loop fixed when looking for directories
+Changes in 4.1.1:
+  * BrawlLib (StageBox) updated (to StageBox 0.8 hotfix 1)
 
 ----------------------------------------
 

@@ -1,12 +1,12 @@
-Brawl Stage Manager 4.1 - July 2018
+Brawl Stage Manager 4.1.1 - July 2018
 Copyright © 2018 libertyernie
 http://lakora.us/brawl/costumemanager
 http://github.com/libertyernie/BrawlManagers
 
 --------
 
-Changes in 4.1:
-  * BrawlLib (StageBox) updated
+Changes in 4.1.1:
+  * BrawlLib (StageBox) updated (to StageBox 0.8 hotfix 1)
 
 --------
 
