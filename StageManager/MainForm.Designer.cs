@@ -65,6 +65,9 @@
             this.loadStagepacsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renderModels = new System.Windows.Forms.ToolStripMenuItem();
             this.loadbrstmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customSoundEngineDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cse2xToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cse3xToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separator1 = new System.Windows.Forms.ToolStripSeparator();
             this.moduleFileDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,9 +124,6 @@
             this.brawlSplitter1 = new BrawlManagerLib.BrawlSplitter();
             this.brawlSplitter2 = new BrawlManagerLib.BrawlSplitter();
             this.portraitViewer1 = new BrawlStageManager.PortraitViewer();
-            this.customSoundEngineDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cse2xToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cse3xToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerLeft)).BeginInit();
             this.splitContainerLeft.Panel1.SuspendLayout();
             this.splitContainerLeft.Panel2.SuspendLayout();
@@ -221,10 +221,10 @@
             // 
             this.songPanel1.AllowDrop = true;
             this.songPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.songPanel1.Location = new System.Drawing.Point(65, 0);
+            this.songPanel1.Location = new System.Drawing.Point(90, 0);
             this.songPanel1.MinimumSize = new System.Drawing.Size(0, 131);
             this.songPanel1.Name = "songPanel1";
-            this.songPanel1.Size = new System.Drawing.Size(222, 131);
+            this.songPanel1.Size = new System.Drawing.Size(197, 131);
             this.songPanel1.TabIndex = 6;
             // 
             // listBoxSongs
@@ -235,7 +235,7 @@
             this.listBoxSongs.IntegralHeight = false;
             this.listBoxSongs.Location = new System.Drawing.Point(0, 0);
             this.listBoxSongs.Name = "listBoxSongs";
-            this.listBoxSongs.Size = new System.Drawing.Size(65, 131);
+            this.listBoxSongs.Size = new System.Drawing.Size(90, 131);
             this.listBoxSongs.TabIndex = 8;
             this.listBoxSongs.SelectedIndexChanged += new System.EventHandler(this.listBoxSongs_SelectedIndexChanged);
             // 
@@ -364,14 +364,14 @@
             // saveCommon5scselmapToolStripMenuItem
             // 
             this.saveCommon5scselmapToolStripMenuItem.Name = "saveCommon5scselmapToolStripMenuItem";
-            this.saveCommon5scselmapToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.saveCommon5scselmapToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.saveCommon5scselmapToolStripMenuItem.Text = "Save";
             this.saveCommon5scselmapToolStripMenuItem.Click += new System.EventHandler(this.saveCommon5scselmapToolStripMenuItem_Click);
             // 
             // exportAllMiscData80ToolStripMenuItem
             // 
             this.exportAllMiscData80ToolStripMenuItem.Name = "exportAllMiscData80ToolStripMenuItem";
-            this.exportAllMiscData80ToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.exportAllMiscData80ToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.exportAllMiscData80ToolStripMenuItem.Text = "Export all (Misc Data [80])";
             this.exportAllMiscData80ToolStripMenuItem.Click += new System.EventHandler(this.exportAllMiscData80ToolStripMenuItem_Click);
             // 
@@ -499,6 +499,31 @@
             this.loadbrstmsToolStripMenuItem.Size = new System.Drawing.Size(298, 22);
             this.loadbrstmsToolStripMenuItem.Text = "Load .brstms";
             // 
+            // customSoundEngineDirectoryToolStripMenuItem
+            // 
+            this.customSoundEngineDirectoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cse2xToolStripMenuItem,
+            this.cse3xToolStripMenuItem});
+            this.customSoundEngineDirectoryToolStripMenuItem.Name = "customSoundEngineDirectoryToolStripMenuItem";
+            this.customSoundEngineDirectoryToolStripMenuItem.Size = new System.Drawing.Size(298, 22);
+            this.customSoundEngineDirectoryToolStripMenuItem.Text = "Custom Sound Engine version";
+            // 
+            // cse2xToolStripMenuItem
+            // 
+            this.cse2xToolStripMenuItem.Name = "cse2xToolStripMenuItem";
+            this.cse2xToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
+            this.cse2xToolStripMenuItem.Text = "2.x";
+            this.cse2xToolStripMenuItem.Click += new System.EventHandler(this.cse2xToolStripMenuItem_Click);
+            // 
+            // cse3xToolStripMenuItem
+            // 
+            this.cse3xToolStripMenuItem.Checked = true;
+            this.cse3xToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cse3xToolStripMenuItem.Name = "cse3xToolStripMenuItem";
+            this.cse3xToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
+            this.cse3xToolStripMenuItem.Text = "3.x";
+            this.cse3xToolStripMenuItem.Click += new System.EventHandler(this.cse3xToolStripMenuItem_Click);
+            // 
             // separator1
             // 
             this.separator1.Name = "separator1";
@@ -516,7 +541,7 @@
             // sameToolStripMenuItem
             // 
             this.sameToolStripMenuItem.Name = "sameToolStripMenuItem";
-            this.sameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sameToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.sameToolStripMenuItem.Text = "Same";
             this.sameToolStripMenuItem.Click += new System.EventHandler(this.sameToolStripMenuItem_Click);
             // 
@@ -525,7 +550,7 @@
             this.moduleToolStripMenuItem.Checked = true;
             this.moduleToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.moduleToolStripMenuItem.Name = "moduleToolStripMenuItem";
-            this.moduleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moduleToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.moduleToolStripMenuItem.Text = "..\\..\\module";
             this.moduleToolStripMenuItem.Click += new System.EventHandler(this.moduleToolStripMenuItem_Click);
             // 
@@ -946,31 +971,6 @@
             this.portraitViewer1.Name = "portraitViewer1";
             this.portraitViewer1.Size = new System.Drawing.Size(237, 477);
             this.portraitViewer1.TabIndex = 2;
-            // 
-            // customSoundEngineDirectoryToolStripMenuItem
-            // 
-            this.customSoundEngineDirectoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cse2xToolStripMenuItem,
-            this.cse3xToolStripMenuItem});
-            this.customSoundEngineDirectoryToolStripMenuItem.Name = "customSoundEngineDirectoryToolStripMenuItem";
-            this.customSoundEngineDirectoryToolStripMenuItem.Size = new System.Drawing.Size(298, 22);
-            this.customSoundEngineDirectoryToolStripMenuItem.Text = "Custom Sound Engine version";
-            // 
-            // cse2xToolStripMenuItem
-            // 
-            this.cse2xToolStripMenuItem.Name = "cse2xToolStripMenuItem";
-            this.cse2xToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cse2xToolStripMenuItem.Text = "2.x";
-            this.cse2xToolStripMenuItem.Click += new System.EventHandler(this.cse2xToolStripMenuItem_Click);
-            // 
-            // cse3xToolStripMenuItem
-            // 
-            this.cse3xToolStripMenuItem.Checked = true;
-            this.cse3xToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cse3xToolStripMenuItem.Name = "cse3xToolStripMenuItem";
-            this.cse3xToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cse3xToolStripMenuItem.Text = "3.x";
-            this.cse3xToolStripMenuItem.Click += new System.EventHandler(this.cse3xToolStripMenuItem_Click);
             // 
             // MainForm
             // 
