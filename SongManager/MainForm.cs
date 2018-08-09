@@ -19,8 +19,8 @@ namespace BrawlSongManager {
 			"/LegacyTE/RSBE01.gct",
 			"/LegacyXP/RSBE01.gct",
 			"../../../../codes/RSBE01.gct",
-            "../../../../../../../codes/RSBE01.gct",
-        };
+			"../../../../../../../codes/RSBE01.gct",
+		};
 
 		/// <summary>
 		/// The list of .brstm files in the current directory.
@@ -140,33 +140,33 @@ namespace BrawlSongManager {
 						changeDirectory(search); // Change to the typical song folder used by the FPC, if it exists on the drive
 						return;
 					}
-                }
+				}
 
-                string findStrmFolder(string dir)
-                {
-                    if (dir.EndsWith("\\strm")) return dir;
-                    try
-                    {
-                        foreach (string subdir in Directory.EnumerateDirectories(dir))
-                        {
-                            string possible = findStrmFolder(subdir);
-                            if (Directory.Exists(possible))
-                            {
-                                return possible;
-                            }
-                        }
-                    }
-                    catch (Exception) { }
-                    return null;
-                }
+				string findStrmFolder(string dir)
+				{
+					if (dir.EndsWith("\\strm")) return dir;
+					try
+					{
+						foreach (string subdir in Directory.EnumerateDirectories(dir))
+						{
+							string possible = findStrmFolder(subdir);
+							if (Directory.Exists(possible))
+							{
+								return possible;
+							}
+						}
+					}
+					catch (Exception) { }
+					return null;
+				}
 
-                string strmDir = findStrmFolder(CurrentDirectory);
-                if (strmDir != null && strmDir != CurrentDirectory)
-                {
-                    changeDirectory(strmDir);
-                    return;
-                }
-            }
+				string strmDir = findStrmFolder(CurrentDirectory);
+				if (strmDir != null && strmDir != CurrentDirectory)
+				{
+					changeDirectory(strmDir);
+					return;
+				}
+			}
 
 			refreshDirectory();
 			findGCT();
@@ -187,7 +187,7 @@ namespace BrawlSongManager {
 				}
 			}
 			customSongVolumeEditor1.CSV = csv;
-            songPanel1.CustomSongTitles = csv?.CNMT?.Map;
+			songPanel1.CustomSongTitles = csv?.CNMT?.Map;
 		}
 
 		private void refreshDirectory() {
@@ -520,11 +520,13 @@ namespace BrawlSongManager {
 			}
 		}
 
-        private void customSongVolumeStatusToolStripMenuItem_Click(object sender, EventArgs e) {
-            MessageBox.Show(this, customSongVolumeEditor1.VolumeToolTip);
-        }
+		private void customSongVolumeStatusToolStripMenuItem_Click(object sender, EventArgs e) {
+			using (var f = new CustomSongVolumeStatusForm(customSongVolumeEditor1)) {
+				f.ShowDialog(this);
+			}
+		}
 
-        private void importMusicSongsToolStripMenuItem_Click(object sender, EventArgs eva) {
+		private void importMusicSongsToolStripMenuItem_Click(object sender, EventArgs eva) {
 			CloseCurrentResources();
 			FolderBrowserDialog fbd = new FolderBrowserDialog();
 			fbd.Description = "Select folder to import from:";

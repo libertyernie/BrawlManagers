@@ -143,6 +143,22 @@ namespace BrawlSongManager {
 			reload();
 		}
 
+		public void SetVolume(byte b) {
+			if (!nudVolume.Enabled) {
+				MessageBox.Show("The volume editor control is not enabled. You might need to click the 'Add' button if there is one.");
+			} else if (Song == null) {
+				MessageBox.Show("No song is selected.");
+			} else if (CSV == null) {
+				MessageBox.Show("No Custom Song Volume code is loaded.");
+			} else {
+				byte oldval = CSV.Settings[Song.ID];
+				if (oldval != Value) {
+					ChangeMadeSinceCSVLoaded = true;
+					CSV.Settings[Song.ID] = Value;
+				}
+			}
+		}
+
 		private void nudVolume_ValueChanged(object sender, EventArgs e) {
 			// Don't update the CSV code if the song is unknown (in which case the number spinner acts only as a playback control)
 			if (nudVolume.Enabled && Song != null && CSV != null) {

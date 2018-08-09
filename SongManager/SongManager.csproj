@@ -89,6 +89,12 @@
     <Compile Include="CustomSongVolumeEditor.Designer.cs">
       <DependentUpon>CustomSongVolumeEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomSongVolumeStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomSongVolumeStatusForm.Designer.cs">
+      <DependentUpon>CustomSongVolumeStatusForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     <Compile Include="SongsByStage.cs" />
     <EmbeddedResource Include="CustomSongVolumeEditor.resx">
       <DependentUpon>CustomSongVolumeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomSongVolumeStatusForm.resx">
+      <DependentUpon>CustomSongVolumeStatusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
