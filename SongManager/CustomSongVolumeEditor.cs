@@ -94,7 +94,8 @@ namespace BrawlSongManager {
 				: Song.ID.ToString("X4");
 
 			if (_basenameRequested == null) {
-				btnAdd.Visible = false;
+                this.VolumeToolTip = "No song selected";
+                btnAdd.Visible = false;
 				nudVolume.Enabled = false;
 			} else if (Song == null) {
 				this.VolumeToolTip = "Filename not recognized - volume will only affect playback in this program and will not be saved";
@@ -125,6 +126,7 @@ namespace BrawlSongManager {
 				nudVolume.Enabled = false;
 				nudVolume.Value = 80;
 			} else {
+				this.VolumeToolTip = $"Default volume known: {Song.DefaultVolume}";
 				btnAdd.Visible = true;
 				nudVolume.Enabled = false;
 				nudVolume.Value = Song.DefaultVolume ?? 0;
